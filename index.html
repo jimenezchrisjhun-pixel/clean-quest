@@ -20,7 +20,9 @@
   --shadow:0 18px 50px rgba(42,91,58,.12);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
@@ -36,7 +38,8 @@ body{
     linear-gradient(145deg,#edf9ef,#f8fbf6 55%,#e5f3e8);
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
 
@@ -96,8 +99,15 @@ header{
 }
 
 @keyframes fade{
-  from{opacity:.4;transform:translateY(5px)}
-  to{opacity:1;transform:none}
+  from{
+    opacity:.4;
+    transform:translateY(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 .card{
@@ -305,7 +315,7 @@ input:focus{
   align-items:center;
   gap:12px;
   flex-wrap:wrap;
-  margin:8px 0 18px;
+  margin:8px 0 13px;
 }
 
 .welcome{
@@ -339,9 +349,242 @@ input:focus{
   color:white;
 }
 
-.profile-btn{
-  background:#e7f5e9 !important;
-  border-color:#cce5d0 !important;
+/* =========================
+   PLAYER IDENTITY
+========================= */
+
+.player-strip{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 16px;
+  margin-bottom:17px;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffffef,
+      #f0f9f1
+    );
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(42,91,58,.07);
+}
+
+.player-info{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.player-avatar{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  background:linear-gradient(145deg,#dcefe0,#cce8d2);
+  color:var(--green);
+  display:grid;
+  place-items:center;
+  font-size:17px;
+  font-weight:1000;
+  overflow:hidden;
+  border:2px solid white;
+  box-shadow:0 4px 15px #31573a1a;
+  flex-shrink:0;
+}
+
+.player-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.player-copy{
+  min-width:0;
+}
+
+.player-copy .mini-label{
+  display:block;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:3px;
+}
+
+.player-copy strong{
+  display:block;
+  font-size:15px;
+  font-weight:950;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.player-copy span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:2px;
+}
+
+.profile-open{
+  border:1px solid #cfe4d3;
+  background:#eaf7ec;
+  color:var(--green);
+  border-radius:12px;
+  padding:10px 13px;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
+  transition:.15s;
+}
+
+.profile-open:hover{
+  background:#dff1e2;
+  transform:translateY(-1px);
+}
+
+/* =========================
+   GAME HUB
+========================= */
+
+.game-hub{
+  margin-bottom:17px;
+}
+
+.hub-heading{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.hub-heading h2{
+  margin:0;
+  font-size:21px;
+  letter-spacing:-.04em;
+}
+
+.hub-heading p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.5;
+}
+
+.hub-badge{
+  color:var(--green);
+  background:#e7f5e9;
+  border:1px solid #cfe6d3;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.game-library{
+  display:grid;
+  grid-template-columns:1.55fr 1fr 1fr;
+  gap:10px;
+}
+
+.game-tile{
+  position:relative;
+  min-height:112px;
+  padding:15px;
+  border-radius:19px;
+  border:1px solid var(--line);
+  background:#ffffffd9;
+  box-shadow:0 9px 25px rgba(42,91,58,.06);
+  overflow:hidden;
+}
+
+.game-tile.active-game{
+  background:
+    linear-gradient(
+      135deg,
+      #286e49,
+      #3d9861
+    );
+  color:white;
+  border-color:#3b8e59;
+}
+
+.game-tile.active-game:after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  right:-25px;
+  bottom:-35px;
+  border-radius:50%;
+  background:#ffffff18;
+}
+
+.game-icon{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#e8f5e9;
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.active-game .game-icon{
+  background:#ffffff20;
+}
+
+.game-tile h3{
+  margin:0;
+  font-size:14px;
+  letter-spacing:-.025em;
+}
+
+.game-tile p{
+  margin:4px 0 0;
+  font-size:9px;
+  line-height:1.45;
+  color:var(--muted);
+}
+
+.active-game p{
+  color:#e2f4e6;
+}
+
+.game-status{
+  position:absolute;
+  right:11px;
+  top:11px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#ffffff24;
+  border:1px solid #ffffff2d;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.future-status{
+  background:#f0f5f0;
+  color:#78877d;
+  border:1px solid #e0e9e1;
+}
+
+.future-game{
+  opacity:.86;
+}
+
+.future-game .game-icon{
+  filter:grayscale(.2);
 }
 
 /* =========================
@@ -442,7 +685,11 @@ input:focus{
   height:clamp(460px,58vw,570px);
   min-height:460px;
   background:
-    linear-gradient(#d9f0ed 0 57%,#d7e6d3 57% 60%,#e9d4b4 60%);
+    linear-gradient(
+      #d9f0ed 0 57%,
+      #d7e6d3 57% 60%,
+      #e9d4b4 60%
+    );
   border:1px solid #c8dfd0;
 }
 
@@ -599,8 +846,15 @@ input:focus{
 }
 
 @keyframes pop{
-  from{transform:scale(.3);opacity:0}
-  to{transform:scale(1);opacity:1}
+  from{
+    transform:scale(.3);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
 .trash.taken{
@@ -1155,6 +1409,18 @@ input:focus{
    RESPONSIVE
 ========================= */
 
+@media(max-width:950px){
+
+  .game-library{
+    grid-template-columns:1.4fr 1fr;
+  }
+
+  .game-tile.future-game:last-child{
+    display:none;
+  }
+
+}
+
 @media(max-width:850px){
 
   .login-layout{
@@ -1171,6 +1437,18 @@ input:focus{
 
 }
 
+@media(max-width:650px){
+
+  .game-library{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .game-tile.active-game{
+    grid-column:1 / -1;
+  }
+
+}
+
 @media(max-width:560px){
 
   .app{
@@ -1181,17 +1459,56 @@ input:focus{
     align-items:flex-start;
   }
 
-  .top-pill{
-    font-size:9px;
-    padding:8px 9px;
-  }
-
   .hero{
     min-height:350px;
   }
 
   .hero-art{
     font-size:62px;
+  }
+
+  .player-strip{
+    padding:12px;
+  }
+
+  .player-avatar{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+  }
+
+  .player-copy strong{
+    font-size:13px;
+  }
+
+  .profile-open{
+    padding:9px 10px;
+    font-size:9px;
+  }
+
+  .hub-heading{
+    align-items:start;
+  }
+
+  .hub-badge{
+    display:none;
+  }
+
+  .game-library{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .game-tile{
+    min-height:105px;
+    padding:13px;
+  }
+
+  .game-tile h3{
+    font-size:12px;
+  }
+
+  .game-tile p{
+    font-size:8px;
   }
 
   .stat-row{
@@ -1337,10 +1654,6 @@ input:focus{
 
   </div>
 
-  <div class="top-pill">
-    ♻️ ZERO-COST GAME
-  </div>
-
 </header>
 
 
@@ -1480,28 +1793,57 @@ input:focus{
         🏆 Leaderboard
       </button>
 
-      <button
-        id="profileBtn"
-        class="profile-btn"
-      >
-        👤 Profile
-      </button>
-
     </div>
 
   </div>
 
 
   <!-- =========================
+       PLAYER IDENTITY
+  ========================= -->
+
+  <div class="player-strip">
+
+    <div class="player-info">
+
+      <div
+        id="playerAvatar"
+        class="player-avatar"
+      >
+        🌱
+      </div>
+
+      <div class="player-copy">
+
+        <span class="mini-label">
+          Current player
+        </span>
+
+        <strong id="playerCardName">
+          Cleaner
+        </strong>
+
+        <span>
+          Your progress is saved on this device.
+        </span>
+
+      </div>
+
+    </div>
+
+    <button
+      id="profileBtn"
+      class="profile-open"
+      type="button"
+    >
+      👤 Manage profile
+    </button>
+
+  </div>
+
+
+  <!-- =========================
        PLAY PAGE
-       
-       IMPORTANT:
-       The four stat cards are now
-       INSIDE playPage ONLY.
-       
-       Therefore they disappear
-       automatically when the user
-       switches to Leaderboard.
   ========================= -->
 
   <div
@@ -1509,7 +1851,108 @@ input:focus{
     class="screen active"
   >
 
-    <!-- STATS — PLAY PAGE ONLY -->
+    <!-- =========================
+         GAME HUB
+    ========================= -->
+
+    <section class="game-hub">
+
+      <div class="hub-heading">
+
+        <div>
+
+          <h2>
+            🎮 Game Hub
+          </h2>
+
+          <p>
+            Choose a challenge and make every move count.
+          </p>
+
+        </div>
+
+        <div class="hub-badge">
+          1 GAME AVAILABLE
+        </div>
+
+      </div>
+
+
+      <div class="game-library">
+
+        <div class="game-tile active-game">
+
+          <div class="game-status">
+            PLAY NOW
+          </div>
+
+          <div class="game-icon">
+            🧹
+          </div>
+
+          <h3>
+            Clean Quest
+          </h3>
+
+          <p>
+            Pick up litter, build your streak,
+            and climb the leaderboard.
+          </p>
+
+        </div>
+
+
+        <div class="game-tile future-game">
+
+          <div class="game-status future-status">
+            COMING SOON
+          </div>
+
+          <div class="game-icon">
+            🌱
+          </div>
+
+          <h3>
+            Eco Challenge
+          </h3>
+
+          <p>
+            A new environmental challenge
+            is on the way.
+          </p>
+
+        </div>
+
+
+        <div class="game-tile future-game">
+
+          <div class="game-status future-status">
+            COMING SOON
+          </div>
+
+          <div class="game-icon">
+            ♻️
+          </div>
+
+          <h3>
+            Sort It Out
+          </h3>
+
+          <p>
+            Test your waste-segregation
+            skills in a future game.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATS
+    ========================= -->
 
     <div class="stat-row">
 
@@ -1583,7 +2026,9 @@ input:focus{
     </div>
 
 
-    <!-- GAME -->
+    <!-- =========================
+         GAME
+    ========================= -->
 
     <div class="game-layout">
 
@@ -1640,8 +2085,6 @@ input:focus{
           <div id="trashLayer"></div>
 
 
-          <!-- START / RESULT OVERLAY -->
-
           <div
             id="gameOverlay"
             class="overlay"
@@ -1675,8 +2118,6 @@ input:focus{
 
         </div>
 
-
-        <!-- DEDICATED PICKUP INFORMATION SPACE -->
 
         <div class="pickup-slot">
 
@@ -1810,13 +2251,6 @@ input:focus{
 
   <!-- =========================
        LEADERBOARD
-       
-       IMPORTANT:
-       NO STAT ROW HERE.
-       
-       This means the leaderboard
-       starts directly with the
-       Eco leaderboard card.
   ========================= -->
 
   <div
@@ -2332,6 +2766,11 @@ input:focus{
 
     $("welcomeName").textContent =
       players[key].name;
+
+    $("playerCardName").textContent =
+      players[key].name;
+
+    updatePlayerCardAvatar();
 
     screen("homeScreen");
 
@@ -3605,6 +4044,45 @@ input:focus{
 
     }
 
+    updatePlayerCardAvatar();
+
+  }
+
+
+  function updatePlayerCardAvatar(){
+
+    if(!currentPlayer)
+      return;
+
+    const p =
+      players[currentPlayer];
+
+    const avatar =
+      $("playerAvatar");
+
+    if(!avatar)
+      return;
+
+    if(p.photo){
+
+      avatar.innerHTML =
+        `<img
+          src="${p.photo}"
+          alt="Player profile picture"
+        >`;
+
+    }else{
+
+      avatar.textContent =
+        getInitials(
+          p.name
+        );
+
+    }
+
+    $("playerCardName").textContent =
+      p.name;
+
   }
 
 
@@ -3719,6 +4197,10 @@ input:focus{
 
 
       $("welcomeName").textContent =
+        p.name;
+
+
+      $("playerCardName").textContent =
         p.name;
 
 
