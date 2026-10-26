@@ -17,10 +17,13 @@
   --line:#d9e9dc;
   --gold:#ffd978;
   --red:#df6856;
+  --orange:#efad4e;
   --shadow:0 18px 50px rgba(42,91,58,.12);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
@@ -29,20 +32,41 @@ html{
 body{
   margin:0;
   min-height:100vh;
-  font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:
+    ui-rounded,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   color:var(--ink);
+
   background:
-    radial-gradient(circle at 8% 5%,#ffffff 0,transparent 28%),
-    linear-gradient(145deg,#edf9ef,#f8fbf6 55%,#e5f3e8);
+    radial-gradient(
+      circle at 8% 5%,
+      #ffffff 0,
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      #edf9ef,
+      #f8fbf6 55%,
+      #e5f3e8
+    );
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
 
 button{
   cursor:pointer;
   -webkit-tap-highlight-color:transparent;
+}
+
+button:disabled{
+  cursor:default;
 }
 
 .app{
@@ -76,6 +100,7 @@ header{
   display:grid;
   place-items:center;
   font-size:25px;
+  box-shadow:0 5px 14px #31573a12;
 }
 
 .brand small{
@@ -84,6 +109,17 @@ header{
   letter-spacing:.16em;
   color:var(--muted);
   margin-top:1px;
+}
+
+.top-pill{
+  background:#ffffffb8;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:9px 12px;
+  color:var(--green);
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
 .screen{
@@ -96,8 +132,14 @@ header{
 }
 
 @keyframes fade{
-  from{opacity:.4;transform:translateY(5px)}
-  to{opacity:1;transform:none}
+  from{
+    opacity:.4;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 .card{
@@ -107,9 +149,9 @@ header{
   box-shadow:var(--shadow);
 }
 
-/* =========================
+/* =========================================================
    LOGIN
-========================= */
+========================================================= */
 
 .login-layout{
   display:grid;
@@ -120,10 +162,37 @@ header{
 .hero{
   min-height:455px;
   padding:clamp(26px,5vw,52px);
-  background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);
+
+  background:
+    radial-gradient(
+      circle at 90% 15%,
+      #7bd39633,
+      transparent 25%
+    ),
+    linear-gradient(
+      150deg,
+      #286e49,
+      #338957 65%,
+      #55b879
+    );
+
   color:white;
   position:relative;
   overflow:hidden;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  right:-80px;
+  top:-80px;
+  border:1px solid #ffffff22;
+  box-shadow:
+    0 0 0 30px #ffffff0b,
+    0 0 0 60px #ffffff07;
 }
 
 .eyebrow{
@@ -170,6 +239,7 @@ header{
   bottom:20px;
   font-size:82px;
   transform:rotate(-7deg);
+  filter:drop-shadow(0 8px 10px #173d2518);
 }
 
 .form-card{
@@ -232,6 +302,7 @@ input{
   background:#fbfefb;
   outline:none;
   color:var(--ink);
+  transition:.15s;
 }
 
 input:focus{
@@ -248,6 +319,10 @@ input:focus{
   font-weight:900;
   box-shadow:0 6px 0 #1e5c39;
   transition:.12s;
+}
+
+.btn:hover{
+  filter:brightness(1.04);
 }
 
 .btn:active{
@@ -295,9 +370,9 @@ input:focus{
   margin-top:14px;
 }
 
-/* =========================
+/* =========================================================
    DASHBOARD
-========================= */
+========================================================= */
 
 .dash-top{
   display:flex;
@@ -332,6 +407,11 @@ input:focus{
   padding:10px 13px;
   font-size:11px;
   font-weight:850;
+  transition:.15s;
+}
+
+.nav button:hover{
+  transform:translateY(-1px);
 }
 
 .nav button.active{
@@ -344,9 +424,9 @@ input:focus{
   border-color:#cce5d0 !important;
 }
 
-/* =========================
+/* =========================================================
    STATS
-========================= */
+========================================================= */
 
 .stat-row{
   display:grid;
@@ -381,9 +461,9 @@ input:focus{
   font-weight:800;
 }
 
-/* =========================
+/* =========================================================
    GAME
-========================= */
+========================================================= */
 
 .game-layout{
   display:grid;
@@ -429,11 +509,17 @@ input:focus{
 .timer.danger{
   background:#ffe3dd;
   color:#ac3929;
+  animation:pulse .7s infinite alternate;
 }
 
-/* =========================
-   BIGGER GAME AREA
-========================= */
+@keyframes pulse{
+  from{transform:scale(1)}
+  to{transform:scale(1.05)}
+}
+
+/* =========================================================
+   CLASSROOM SCENE
+========================================================= */
 
 .scene{
   position:relative;
@@ -441,12 +527,18 @@ input:focus{
   border-radius:20px;
   height:clamp(460px,58vw,570px);
   min-height:460px;
+
   background:
-    linear-gradient(#d9f0ed 0 57%,#d7e6d3 57% 60%,#e9d4b4 60%);
+    linear-gradient(
+      #d9f0ed 0 57%,
+      #d7e6d3 57% 60%,
+      #e9d4b4 60%
+    );
+
   border:1px solid #c8dfd0;
 }
 
-/* classroom decoration */
+/* WINDOW */
 
 .window{
   position:absolute;
@@ -480,6 +572,8 @@ input:focus{
   left:0;
 }
 
+/* BOARD */
+
 .board{
   position:absolute;
   top:24px;
@@ -498,12 +592,15 @@ input:focus{
   box-shadow:0 5px 0 #b58a61;
 }
 
+/* FLOOR */
+
 .floorline{
   position:absolute;
   left:0;
   right:0;
   bottom:0;
   height:41%;
+
   background:
     repeating-linear-gradient(
       90deg,
@@ -516,6 +613,8 @@ input:focus{
       #d7b995 45px 47px
     );
 }
+
+/* DESK */
 
 .desk{
   position:absolute;
@@ -552,6 +651,8 @@ input:focus{
   border-right:8px solid #93613e;
 }
 
+/* DECOR */
+
 .plant{
   position:absolute;
   left:25px;
@@ -568,24 +669,32 @@ input:focus{
   font-size:48px;
 }
 
-/* =========================
+/* =========================================================
    TRASH
-========================= */
+========================================================= */
 
 .trash{
   position:absolute;
   z-index:5;
+
   border:2px solid #ffffffdf;
   border-radius:14px;
   background:#ffffffed;
+
   width:58px;
   height:58px;
+
   display:grid;
   place-items:center;
+
   font-size:29px;
+
   box-shadow:0 5px 14px #31573a20;
+
   transition:.12s;
+
   animation:pop .2s ease;
+
   user-select:none;
   touch-action:manipulation;
 }
@@ -599,8 +708,15 @@ input:focus{
 }
 
 @keyframes pop{
-  from{transform:scale(.3);opacity:0}
-  to{transform:scale(1);opacity:1}
+  from{
+    transform:scale(.3);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
 }
 
 .trash.taken{
@@ -633,10 +749,9 @@ input:focus{
   }
 }
 
-/* =========================
+/* =========================================================
    PICKUP INFO
-   DEDICATED SPACE
-========================= */
+========================================================= */
 
 .pickup-slot{
   height:58px;
@@ -650,21 +765,30 @@ input:focus{
   position:static;
   width:100%;
   min-height:46px;
+
   background:#ffffffef;
   border:1px solid #d8e9da;
   border-radius:15px;
+
   padding:9px 13px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   gap:9px;
   text-align:center;
+
   font-size:12px;
   font-weight:850;
+
   box-shadow:0 6px 20px #274b3515;
+
   pointer-events:none;
+
   opacity:0;
   transform:translateY(4px);
+
   transition:.2s;
 }
 
@@ -677,20 +801,24 @@ input:focus{
   color:var(--green);
 }
 
-/* =========================
+/* =========================================================
    OVERLAY
-========================= */
+========================================================= */
 
 .overlay{
   position:absolute;
   inset:0;
   z-index:30;
+
   background:#f6fbf0e9;
   backdrop-filter:blur(3px);
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:22px;
 }
 
@@ -772,9 +900,9 @@ input:focus{
   margin-top:7px;
 }
 
-/* =========================
+/* =========================================================
    SIDE CARD
-========================= */
+========================================================= */
 
 .side-card{
   padding:20px;
@@ -802,10 +930,14 @@ input:focus{
   align-items:center;
   justify-content:space-between;
   gap:8px;
+
   background:#f6faf5;
   border:1px solid #e5eee5;
+
   border-radius:11px;
+
   padding:9px 10px;
+
   font-size:11px;
 }
 
@@ -825,9 +957,9 @@ input:focus{
   color:#725b24;
 }
 
-/* =========================
+/* =========================================================
    LEADERBOARD
-========================= */
+========================================================= */
 
 .leader-card{
   padding:clamp(20px,4vw,32px);
@@ -863,10 +995,19 @@ input:focus{
   grid-template-columns:48px 48px minmax(0,1fr) auto;
   align-items:center;
   gap:10px;
+
   background:#f8fbf7;
   border:1px solid #e3ede3;
+
   border-radius:15px;
   padding:10px 15px;
+
+  transition:.15s;
+}
+
+.leader-row:hover{
+  transform:translateY(-1px);
+  box-shadow:0 5px 18px #31573a10;
 }
 
 .leader-row.me{
@@ -877,10 +1018,13 @@ input:focus{
 .rank-medal{
   width:38px;
   height:38px;
+
   display:grid;
   place-items:center;
+
   border-radius:12px;
   background:#e8f2e8;
+
   font-weight:950;
 }
 
@@ -896,21 +1040,29 @@ input:focus{
   background:#f4dfd1;
 }
 
-/* PLAYER PICTURE IN RANKING */
+/* PLAYER PICTURE */
 
 .leader-avatar{
   width:42px;
   height:42px;
+
   border-radius:50%;
+
   background:#dcefe0;
   color:var(--green);
+
   display:grid;
   place-items:center;
+
   font-size:13px;
   font-weight:1000;
+
   overflow:hidden;
+
   border:3px solid white;
+
   box-shadow:0 3px 12px #31573a1c;
+
   flex-shrink:0;
 }
 
@@ -947,25 +1099,39 @@ input:focus{
   text-transform:uppercase;
 }
 
+.rank-label{
+  display:inline-block;
+  margin-top:4px;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#e7f5e9;
+  color:var(--green);
+  font-size:8px;
+  font-weight:900;
+}
+
 .empty{
   text-align:center;
   padding:40px 18px;
   color:var(--muted);
 }
 
-/* =========================
+/* =========================================================
    PROFILE MODAL
-========================= */
+========================================================= */
 
 .modal{
   position:fixed;
   inset:0;
   z-index:100;
+
   background:#17332355;
   backdrop-filter:blur(5px);
+
   display:none;
   align-items:center;
   justify-content:center;
+
   padding:18px;
 }
 
@@ -975,11 +1141,29 @@ input:focus{
 
 .modal-card{
   width:min(430px,100%);
+
   background:#ffffff;
+
   border:1px solid var(--line);
   border-radius:25px;
+
   padding:25px;
+
   box-shadow:0 25px 80px #17332335;
+
+  animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(8px) scale(.98);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 .modal-head{
@@ -997,10 +1181,13 @@ input:focus{
 .close-btn{
   width:36px;
   height:36px;
+
   border:0;
   border-radius:50%;
+
   background:#edf5ee;
   color:var(--green);
+
   font-size:18px;
   font-weight:900;
 }
@@ -1015,15 +1202,22 @@ input:focus{
 .avatar{
   width:92px;
   height:92px;
+
   border-radius:50%;
+
   background:#dcefe0;
   color:var(--green);
+
   display:grid;
   place-items:center;
+
   font-size:31px;
   font-weight:1000;
+
   overflow:hidden;
+
   border:4px solid white;
+
   box-shadow:0 4px 20px #31573a1c;
 }
 
@@ -1045,9 +1239,9 @@ input:focus{
   display:none;
 }
 
-/* =========================
+/* =========================================================
    BONUS QUESTION
-========================= */
+========================================================= */
 
 .quiz-box{
   width:min(95%,520px);
@@ -1075,18 +1269,25 @@ input:focus{
 
 .quiz-option{
   width:100%;
+
   border:2px solid #dce9dd;
+
   background:#fbfefb;
   color:var(--ink);
+
   text-align:left;
+
   border-radius:14px;
+
   padding:13px 14px;
+
   font-size:12px;
   font-weight:800;
+
   transition:.15s;
 }
 
-.quiz-option:hover{
+.quiz-option:hover:not(:disabled){
   border-color:#8bc99a;
   background:#f1faf2;
 }
@@ -1101,6 +1302,10 @@ input:focus{
   border-color:#e49a8d;
   background:#fff0ed;
   color:#a94b3e;
+}
+
+.quiz-option:disabled{
+  opacity:1;
 }
 
 .quiz-feedback{
@@ -1118,9 +1323,9 @@ input:focus{
   color:#b24b3d;
 }
 
-/* =========================
+/* =========================================================
    FOOTER / TOAST
-========================= */
+========================================================= */
 
 .footnote{
   text-align:center;
@@ -1134,18 +1339,28 @@ input:focus{
   position:fixed;
   left:50%;
   bottom:22px;
+
   transform:translate(-50%,20px);
+
   opacity:0;
   pointer-events:none;
+
   background:#20382d;
   color:white;
+
   padding:11px 16px;
+
   border-radius:999px;
+
   font-size:12px;
   font-weight:850;
+
   z-index:200;
+
   box-shadow:0 8px 25px #0002;
+
   transition:.2s;
+
   white-space:nowrap;
 }
 
@@ -1154,9 +1369,9 @@ input:focus{
   transform:translate(-50%,0);
 }
 
-/* =========================
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media(max-width:850px){
 
@@ -1319,6 +1534,10 @@ input:focus{
     font-size:8px;
   }
 
+  .rank-label{
+    font-size:7px;
+  }
+
 }
 </style>
 </head>
@@ -1347,9 +1566,9 @@ input:focus{
 </header>
 
 
-<!-- =========================
-     LOGIN SCREEN
-========================= -->
+<!-- =======================================================
+     LOGIN
+======================================================= -->
 
 <section id="loginScreen" class="screen active">
 
@@ -1458,9 +1677,9 @@ input:focus{
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
      HOME
-========================= -->
+======================================================= -->
 
 <section id="homeScreen" class="screen">
 
@@ -1569,7 +1788,9 @@ input:focus{
   </div>
 
 
-  <!-- PLAY PAGE -->
+  <!-- =====================================================
+       PLAY PAGE
+  ===================================================== -->
 
   <div
     id="playPage"
@@ -1631,8 +1852,6 @@ input:focus{
           <div id="trashLayer"></div>
 
 
-          <!-- START / RESULT OVERLAY -->
-
           <div
             id="gameOverlay"
             class="overlay"
@@ -1666,12 +1885,6 @@ input:focus{
 
         </div>
 
-
-        <!--
-          DEDICATED PICKUP INFORMATION SPACE.
-          This is intentionally OUTSIDE the classroom scene
-          so it can never cover litter.
-        -->
 
         <div class="pickup-slot">
 
@@ -1803,9 +2016,9 @@ input:focus{
   </div>
 
 
-  <!-- =========================
+  <!-- =====================================================
        LEADERBOARD
-  ========================= -->
+  ===================================================== -->
 
   <div
     id="leaderboardPage"
@@ -1823,7 +2036,7 @@ input:focus{
           </h2>
 
           <p>
-            The highest personal best scores rise to the top.
+            Every player is automatically ranked by personal best score.
           </p>
 
         </div>
@@ -1843,8 +2056,8 @@ input:focus{
       ></div>
 
       <div class="footnote">
-        This demo leaderboard contains only players saved
-        in this browser on this device.
+        Players are automatically added when they create a profile.
+        Rankings update whenever a score changes.
       </div>
 
     </div>
@@ -1861,9 +2074,9 @@ input:focus{
 </div>
 
 
-<!-- =========================
+<!-- =======================================================
      PROFILE MODAL
-========================= -->
+======================================================= -->
 
 <div
   id="profileModal"
@@ -1944,9 +2157,9 @@ input:focus{
 </div>
 
 
-<!-- =========================
+<!-- =======================================================
      BONUS QUIZ MODAL
-========================= -->
+======================================================= -->
 
 <div
   id="quizModal"
@@ -2028,8 +2241,14 @@ input:focus{
   const $ = id =>
     document.getElementById(id);
 
+
+  /* =======================================================
+     STORAGE
+  ======================================================= */
+
   const KEY =
-    "cleanQuestPlayers_v5";
+    "cleanQuestPlayers_v6";
+
 
   let players = {};
 
@@ -2055,10 +2274,6 @@ input:focus{
 
   let storageOK = false;
 
-
-  /* =========================
-     STORAGE
-  ========================= */
 
   try{
 
@@ -2090,7 +2305,8 @@ input:focus{
 
   function persist(){
 
-    if(!storageOK) return;
+    if(!storageOK)
+      return;
 
     try{
 
@@ -2099,83 +2315,69 @@ input:focus{
         JSON.stringify(players)
       );
 
-    }catch(e){}
+    }catch(e){
+
+      console.warn(
+        "Clean Quest could not save data.",
+        e
+      );
+
+    }
 
   }
 
 
-  /* =========================
+  /* =======================================================
      LITTER DATA
-  ========================= */
+  ======================================================= */
 
   const litter = [
 
     ["📄","Paper scrap","Paper / Recyclable",5],
-
     ["📰","Newspaper","Paper / Recyclable",7],
-
     ["📃","Loose paper","Paper / Recyclable",5],
-
     ["📦","Cardboard carton","Paper / Recyclable",8],
 
     ["🍬","Candy wrapper","Residual waste",10],
+    ["🍫","Chocolate wrapper","Residual waste",9],
+    ["🍿","Snack packet","Residual waste",10],
+    ["🍭","Candy stick / wrapper","Residual waste",8],
 
     ["🥤","Plastic cup","Plastic / Recyclable",10],
-
     ["🧴","Plastic bottle","Plastic / Recyclable",15],
-
-    ["🧃","Juice box","Carton / Recyclable",11],
-
-    ["🥫","Tin can","Metal / Recyclable",12],
-
+    ["🧋","Plastic drink cup","Plastic / Recyclable",10],
     ["🍾","Glass bottle","Glass / Recyclable",16],
-
     ["🍶","Drink bottle","Plastic / Recyclable",14],
 
-    ["🧋","Plastic drink cup","Plastic / Recyclable",10],
+    ["🥫","Tin can","Metal / Recyclable",12],
+    ["🧃","Juice box","Carton / Recyclable",11],
 
     ["🥡","Food container","Plastic / Mixed",13],
-
     ["🍱","Takeout food box","Mixed waste",13],
 
     ["🛍️","Plastic shopping bag","Plastic / Recyclable",9],
 
     ["🧻","Used tissue","Residual waste",6],
-
     ["🧼","Soap wrapper","Plastic / Residual",8],
-
     ["🧽","Used sponge","Residual waste",8],
 
-    ["🍿","Snack packet","Residual waste",10],
-
-    ["🍫","Chocolate wrapper","Residual waste",9],
-
-    ["🍭","Candy stick / wrapper","Residual waste",8],
-
     ["🍎","Food waste","Biodegradable",7],
-
     ["🍌","Banana peel","Biodegradable",7],
-
     ["🍊","Fruit peel","Biodegradable",7],
-
     ["🥕","Vegetable waste","Biodegradable",7],
-
     ["🍞","Bread waste","Biodegradable",7],
 
     ["☕","Disposable drink cup","Mixed waste",10],
-
     ["🥢","Disposable chopsticks","Residual waste",6],
-
     ["🥄","Disposable spoon","Plastic / Residual",7],
-
     ["🍴","Disposable fork","Plastic / Residual",7]
 
   ];
 
 
-  /* =========================
+  /* =======================================================
      SCREEN NAVIGATION
-  ========================= */
+  ======================================================= */
 
   function screen(id){
 
@@ -2185,13 +2387,19 @@ input:focus{
         s.classList.remove("active")
       );
 
-    const el = $(id);
+    const el =
+      $(id);
 
     if(el){
+
       el.classList.add("active");
+
     }
 
-    window.scrollTo(0,0);
+    window.scrollTo(
+      0,
+      0
+    );
 
   }
 
@@ -2217,47 +2425,81 @@ input:focus{
       ? "Create my player →"
       : "Log in and play →";
 
-    $("formMsg").textContent = "";
+    $("formMsg").textContent =
+      "";
 
   }
 
 
   $("createTab").onclick =
-    () => setMode("create");
+    () =>
+      setMode("create");
+
 
   $("loginTab").onclick =
-    () => setMode("login");
+    () =>
+      setMode("login");
 
 
-  /* =========================
-     LOGIN / CREATE
-  ========================= */
+  /* =======================================================
+     LOGIN INPUT
+  ======================================================= */
 
   $("playerPin").oninput =
     e => {
 
       e.target.value =
         e.target.value
-        .replace(/\D/g,"")
-        .slice(0,4);
+          .replace(/\D/g,"")
+          .slice(0,4);
 
     };
 
+
+  $("playerName").onkeydown =
+    e => {
+
+      if(e.key === "Enter"){
+
+        $("formSubmit").click();
+
+      }
+
+    };
+
+
+  $("playerPin").onkeydown =
+    e => {
+
+      if(e.key === "Enter"){
+
+        $("formSubmit").click();
+
+      }
+
+    };
+
+
+  /* =======================================================
+     CREATE / LOGIN
+  ======================================================= */
 
   $("formSubmit").onclick =
     () => {
 
       const name =
         $("playerName")
-        .value
-        .trim()
-        .replace(/\s+/g," ");
+          .value
+          .trim()
+          .replace(/\s+/g," ");
+
 
       const pin =
         $("playerPin")
-        .value
-        .replace(/\D/g,"")
-        .slice(0,4);
+          .value
+          .replace(/\D/g,"")
+          .slice(0,4);
+
 
       $("playerPin").value =
         pin;
@@ -2301,9 +2543,9 @@ input:focus{
 
         players[key] = {
 
-          name,
+          name:name,
 
-          pin,
+          pin:pin,
 
           best:0,
 
@@ -2345,18 +2587,28 @@ input:focus{
 
   function login(key){
 
-    currentPlayer = key;
+    currentPlayer =
+      key;
+
 
     $("welcomeName").textContent =
       players[key].name;
 
-    screen("homeScreen");
 
-    showPage("play");
+    screen(
+      "homeScreen"
+    );
+
+
+    showPage(
+      "play"
+    );
+
 
     refreshStats();
 
     resetRoundUI();
+
 
     toast(
       "Welcome, " +
@@ -2367,9 +2619,9 @@ input:focus{
   }
 
 
-  /* =========================
-     NAVIGATION
-  ========================= */
+  /* =======================================================
+     PAGE NAVIGATION
+  ======================================================= */
 
   document
     .querySelectorAll("[data-page]")
@@ -2396,6 +2648,7 @@ input:focus{
         "active",
         page === "play"
       );
+
 
     $("leaderboardPage")
       .classList.toggle(
@@ -2425,61 +2678,135 @@ input:focus{
   }
 
 
-  /* =========================
+  /* =======================================================
+     SORT PLAYERS
+  ======================================================= */
+
+  function sortedPlayers(){
+
+    return Object
+      .values(players)
+      .sort(
+        (a,b) =>
+          b.best - a.best ||
+          b.totalItems - a.totalItems ||
+          b.games - a.games ||
+          a.name.localeCompare(b.name)
+      );
+
+  }
+
+
+  /* =======================================================
+     PLAYER RANK
+  ======================================================= */
+
+  function getRankNumber(key){
+
+    const arr =
+      sortedPlayers();
+
+
+    const player =
+      players[key];
+
+
+    if(!player)
+      return null;
+
+
+    const index =
+      arr.findIndex(
+        p =>
+          p.name.toLowerCase() ===
+          player.name.toLowerCase()
+      );
+
+
+    return index >= 0
+      ? index + 1
+      : null;
+
+  }
+
+
+  function getRankLabel(rank){
+
+    if(rank === 1)
+      return "🌟 #1 Eco Champion";
+
+    if(rank === 2)
+      return "🥈 #2 Green Achiever";
+
+    if(rank === 3)
+      return "🥉 #3 Eco Achiever";
+
+    if(rank <= 10)
+      return "🌱 Top 10 Cleaner";
+
+    if(rank <= 25)
+      return "🍃 Rising Cleaner";
+
+    return "🌿 Eco Cleaner";
+
+  }
+
+
+  /* =======================================================
      STATS
-  ========================= */
+  ======================================================= */
 
   function refreshStats(){
 
-    if(!currentPlayer) return;
+    if(!currentPlayer)
+      return;
+
 
     const p =
       players[currentPlayer];
 
 
+    if(!p)
+      return;
+
+
     $("bestScore").textContent =
-      p.best.toLocaleString();
+      Number(p.best || 0)
+        .toLocaleString();
 
 
     $("totalItems").textContent =
-      p.totalItems.toLocaleString();
+      Number(p.totalItems || 0)
+        .toLocaleString();
 
 
     $("gamesPlayed").textContent =
-      p.games.toLocaleString();
+      Number(p.games || 0)
+        .toLocaleString();
 
 
-    const arr =
-      Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems
-      );
-
-
-    const index =
-      arr.findIndex(
-        x =>
-          x.name === p.name
+    const rank =
+      getRankNumber(
+        currentPlayer
       );
 
 
     $("yourRank").textContent =
-      index >= 0
-      ? "#" + (index + 1)
+      rank
+      ? "#" + rank
       : "—";
 
   }
 
 
-  /* =========================
+  /* =======================================================
      GAME RESET
-  ========================= */
+  ======================================================= */
 
   function resetRoundUI(){
 
     stopTimers();
+
 
     running = false;
 
@@ -2497,15 +2824,20 @@ input:focus{
     $("timer").textContent =
       "00:45";
 
+
     $("timer")
-      .classList.remove("danger");
+      .classList.remove(
+        "danger"
+      );
 
 
     $("scoreValue").textContent =
       "0";
 
+
     $("collectedValue").textContent =
       "0";
+
 
     $("streakValue").textContent =
       "0";
@@ -2516,7 +2848,10 @@ input:focus{
 
 
     $("pickupInfo")
-      .classList.remove("show");
+      .classList.remove(
+        "show"
+      );
+
 
     $("pickupInfo").innerHTML =
       "";
@@ -2565,9 +2900,14 @@ input:focus{
 
   function stopTimers(){
 
-    clearInterval(timerId);
+    clearInterval(
+      timerId
+    );
 
-    clearInterval(spawnId);
+    clearInterval(
+      spawnId
+    );
+
 
     timerId = null;
 
@@ -2576,14 +2916,20 @@ input:focus{
   }
 
 
-  /* =========================
+  /* =======================================================
      START GAME
-  ========================= */
+  ======================================================= */
 
   function startRound(){
 
-    if(!currentPlayer || running)
+    if(
+      !currentPlayer ||
+      running
+    ){
+
       return;
+
+    }
 
 
     running = true;
@@ -2609,7 +2955,10 @@ input:focus{
 
 
     $("pickupInfo")
-      .classList.remove("show");
+      .classList.remove(
+        "show"
+      );
+
 
     $("pickupInfo").innerHTML =
       "";
@@ -2619,11 +2968,14 @@ input:focus{
 
 
     /*
-      Start with 7 items.
-      More appear gradually.
+      Start with 7 litter items.
     */
 
-    for(let i=0;i<7;i++){
+    for(
+      let i = 0;
+      i < 7;
+      i++
+    ){
 
       spawnTrash();
 
@@ -2634,48 +2986,59 @@ input:focus{
 
 
     timerId =
-      setInterval(() => {
+      setInterval(
+        () => {
 
-        timeLeft--;
+          if(!running)
+            return;
 
-        updateTimer();
+
+          timeLeft--;
+
+          updateTimer();
 
 
-        if(timeLeft <= 0){
+          if(timeLeft <= 0){
 
-          finishRound();
+            finishRound();
 
-        }
+          }
 
-      },1000);
+        },
+        1000
+      );
 
 
     spawnId =
-      setInterval(() => {
+      setInterval(
+        () => {
 
-        if(
-          running &&
-          $("trashLayer")
-          .querySelectorAll(".trash")
-          .length < 8
-        ){
+          if(
+            running &&
+            $("trashLayer")
+              .querySelectorAll(".trash")
+              .length < 8
+          ){
 
-          spawnTrash();
+            spawnTrash();
 
-        }
+          }
 
-      },700);
+        },
+        700
+      );
 
   }
 
 
-  /* =========================
+  /* =======================================================
      SPAWN TRASH
-  ========================= */
+  ======================================================= */
 
   function spawnTrash(){
 
-    if(!running) return;
+    if(!running)
+      return;
 
 
     const item =
@@ -2688,12 +3051,18 @@ input:focus{
 
 
     const el =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
 
-    el.type = "button";
+    el.type =
+      "button";
 
-    el.className = "trash";
+
+    el.className =
+      "trash";
+
 
     el.textContent =
       item[0];
@@ -2726,8 +3095,7 @@ input:focus{
 
 
     /*
-      Keep litter inside the actual
-      playable classroom area.
+      Keep litter inside the playable area.
     */
 
     const x =
@@ -2765,14 +3133,16 @@ input:focus{
 
 
     $("trashLayer")
-      .appendChild(el);
+      .appendChild(
+        el
+      );
 
   }
 
 
-  /* =========================
-     PICK UP TRASH
-  ========================= */
+  /* =======================================================
+     COLLECT TRASH
+  ======================================================= */
 
   function collectTrash(
     el,
@@ -2789,13 +3159,10 @@ input:focus{
     }
 
 
-    el.classList.add("taken");
+    el.classList.add(
+      "taken"
+    );
 
-
-    /*
-      Streak means consecutive
-      successful pickups.
-    */
 
     streak++;
 
@@ -2808,14 +3175,16 @@ input:focus{
 
 
     /*
-      Small streak bonus every
-      5 consecutive pickups.
+      Every 5 consecutive pickups:
+      +5 bonus.
     */
 
     let streakBonus = 0;
 
 
-    if(streak % 5 === 0){
+    if(
+      streak % 5 === 0
+    ){
 
       streakBonus = 5;
 
@@ -2827,7 +3196,9 @@ input:focus{
       streakBonus;
 
 
-    score += earned;
+    score +=
+      earned;
+
 
     collected++;
 
@@ -2835,38 +3206,35 @@ input:focus{
     updateGameStats();
 
 
-    /*
-      Correct information appears
-      in the dedicated space BELOW
-      the classroom scene.
-    */
-
     const info =
       $("pickupInfo");
 
 
     info.innerHTML = `
 
-      ${item[0]}
+      <span>${item[0]}</span>
 
       <strong>
         ${escapeHTML(item[1])}
       </strong>
 
-      • ${escapeHTML(item[2])}
-
-      • +${earned}
+      <span>
+        • ${escapeHTML(item[2])}
+        • +${earned}
+      </span>
 
       ${
         streakBonus
-        ? " 🔥 Streak bonus +5"
+        ? `<span>🔥 Streak bonus +5</span>`
         : ""
       }
 
     `;
 
 
-    info.classList.add("show");
+    info.classList.add(
+      "show"
+    );
 
 
     clearTimeout(
@@ -2875,11 +3243,16 @@ input:focus{
 
 
     window.__pickupInfo =
-      setTimeout(() => {
+      setTimeout(
+        () => {
 
-        info.classList.remove("show");
+          info.classList.remove(
+            "show"
+          );
 
-      },1000);
+        },
+        1000
+      );
 
 
     /*
@@ -2892,11 +3265,13 @@ input:focus{
 
     const sr =
       $("scene")
-      .getBoundingClientRect();
+        .getBoundingClientRect();
 
 
     const float =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
 
     float.className =
@@ -2908,37 +3283,47 @@ input:focus{
 
 
     float.style.left =
-      (r.left - sr.left) +
-      "px";
+      (
+        r.left -
+        sr.left
+      ) + "px";
 
 
     float.style.top =
-      (r.top - sr.top) +
-      "px";
+      (
+        r.top -
+        sr.top
+      ) + "px";
 
 
     $("trashLayer")
-      .appendChild(float);
+      .appendChild(
+        float
+      );
 
 
     setTimeout(
-      () => float.remove(),
+      () =>
+        float.remove(),
       700
     );
 
 
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      el.remove();
+        el.remove();
 
 
-      if(running){
+        if(running){
 
-        spawnTrash();
+          spawnTrash();
 
-      }
+        }
 
-    },160);
+      },
+      160
+    );
 
   }
 
@@ -2983,9 +3368,9 @@ input:focus{
   }
 
 
-  /* =========================
+  /* =======================================================
      FINISH ROUND
-  ========================= */
+  ======================================================= */
 
   function finishRound(){
 
@@ -3002,26 +3387,33 @@ input:focus{
       players[currentPlayer];
 
 
+    if(!p)
+      return;
+
+
     /*
-      Save the actual cleaning
-      round first.
+      Save round statistics.
     */
 
     p.best =
       Math.max(
-        p.best,
+        Number(p.best || 0),
         score
       );
 
 
-    p.totalItems +=
+    p.totalItems =
+      Number(p.totalItems || 0) +
       collected;
 
 
-    p.games++;
+    p.games =
+      Number(p.games || 0) +
+      1;
 
 
-    p.totalPoints +=
+    p.totalPoints =
+      Number(p.totalPoints || 0) +
       score;
 
 
@@ -3031,7 +3423,7 @@ input:focus{
 
 
     const rank =
-      getRank(
+      getRankNumber(
         currentPlayer
       );
 
@@ -3092,7 +3484,7 @@ input:focus{
           <div class="result-box">
 
             <strong>
-              ${rank}
+              #${rank}
             </strong>
 
             <span>
@@ -3141,14 +3533,16 @@ input:focus{
   }
 
 
-  /* =========================
+  /* =======================================================
      BONUS QUESTION
-  ========================= */
+  ======================================================= */
 
   function openBonusQuestion(){
 
     $("quizModal")
-      .classList.add("show");
+      .classList.add(
+        "show"
+      );
 
 
     $("quizFeedback").textContent =
@@ -3165,141 +3559,160 @@ input:focus{
 
 
     document
-      .querySelectorAll(".quiz-option")
-      .forEach(button => {
+      .querySelectorAll(
+        ".quiz-option"
+      )
+      .forEach(
+        button => {
 
-        button.disabled =
-          false;
+          button.disabled =
+            false;
 
-        button.classList.remove(
-          "correct",
-          "wrong"
-        );
 
-      });
+          button.classList.remove(
+            "correct",
+            "wrong"
+          );
+
+        }
+      );
 
   }
 
 
   document
-    .querySelectorAll(".quiz-option")
-    .forEach(button => {
+    .querySelectorAll(
+      ".quiz-option"
+    )
+    .forEach(
+      button => {
 
-      button.onclick =
-        () => {
-
-          /*
-            Prevent multiple answers.
-          */
-
-          document
-            .querySelectorAll(".quiz-option")
-            .forEach(b => {
-
-              b.disabled = true;
-
-            });
-
-
-          const correct =
-            button.dataset.correct ===
-            "true";
-
-
-          if(correct){
-
-            button.classList.add(
-              "correct"
-            );
-
-
-            $("quizFeedback")
-              .className =
-              "quiz-feedback good";
-
-
-            $("quizFeedback")
-              .textContent =
-              "✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
-
-
-            score += 25;
-
-
-            const p =
-              players[currentPlayer];
-
-
-            p.totalPoints += 25;
-
-
-            if(score > p.best){
-
-              p.best =
-                score;
-
-            }
-
-
-            persist();
-
-            refreshStats();
-
-
-            $("quizContinue")
-              .style.display =
-              "block";
-
-
-          }else{
-
-            button.classList.add(
-              "wrong"
-            );
-
+        button.onclick =
+          () => {
 
             /*
-              Show the actual
-              correct answer.
+              Only one answer allowed.
             */
 
             document
-              .querySelectorAll(".quiz-option")
-              .forEach(b => {
+              .querySelectorAll(
+                ".quiz-option"
+              )
+              .forEach(
+                b => {
 
-                if(
-                  b.dataset.correct ===
-                  "true"
-                ){
-
-                  b.classList.add(
-                    "correct"
-                  );
+                  b.disabled =
+                    true;
 
                 }
-
-              });
-
-
-            $("quizFeedback")
-              .className =
-              "quiz-feedback bad";
+              );
 
 
-            $("quizFeedback")
-              .textContent =
-              "❌ Not quite. The correct answer is “Using reusable items when possible.”";
+            const correct =
+              button.dataset.correct ===
+              "true";
 
 
-            $("quizContinue")
-              .style.display =
-              "block";
+            if(correct){
 
-          }
+              button.classList.add(
+                "correct"
+              );
 
-        };
 
-    });
+              $("quizFeedback")
+                .className =
+                "quiz-feedback good";
+
+
+              $("quizFeedback")
+                .textContent =
+                "✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
+
+
+              score +=
+                25;
+
+
+              const p =
+                players[currentPlayer];
+
+
+              p.totalPoints =
+                Number(p.totalPoints || 0) +
+                25;
+
+
+              if(
+                score >
+                Number(p.best || 0)
+              ){
+
+                p.best =
+                  score;
+
+              }
+
+
+              persist();
+
+              refreshStats();
+
+
+              $("quizContinue")
+                .style.display =
+                "block";
+
+
+            }else{
+
+              button.classList.add(
+                "wrong"
+              );
+
+
+              document
+                .querySelectorAll(
+                  ".quiz-option"
+                )
+                .forEach(
+                  b => {
+
+                    if(
+                      b.dataset.correct ===
+                      "true"
+                    ){
+
+                      b.classList.add(
+                        "correct"
+                      );
+
+                    }
+
+                  }
+                );
+
+
+              $("quizFeedback")
+                .className =
+                "quiz-feedback bad";
+
+
+              $("quizFeedback")
+                .textContent =
+                "❌ Not quite. The correct answer is “Using reusable items when possible.”";
+
+
+              $("quizContinue")
+                .style.display =
+                "block";
+
+            }
+
+          };
+
+      }
+    );
 
 
   $("quizContinue").onclick =
@@ -3311,8 +3724,13 @@ input:focus{
         );
 
 
+      persist();
+
+      refreshStats();
+
+
       const finalRank =
-        getRank(
+        getRankNumber(
           currentPlayer
         );
 
@@ -3372,7 +3790,7 @@ input:focus{
             <div class="result-box">
 
               <strong>
-                ${finalRank}
+                #${finalRank}
               </strong>
 
               <span>
@@ -3419,47 +3837,14 @@ input:focus{
     };
 
 
-  /* =========================
-     RANKING
-  ========================= */
-
-  function getRank(key){
-
-    const arr =
-      Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems
-      );
-
-
-    const p =
-      players[key];
-
-
-    const index =
-      arr.findIndex(
-        x =>
-          x.name === p.name
-      );
-
-
-    return "#" +
-      (index + 1);
-
-  }
-
+  /* =======================================================
+     LEADERBOARD
+  ======================================================= */
 
   function renderLeaderboard(){
 
     const arr =
-      Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems
-      );
+      sortedPlayers();
 
 
     const box =
@@ -3483,107 +3868,139 @@ input:focus{
 
 
     box.innerHTML =
-      arr.map(
-        (p,i) => {
+      arr
+        .map(
+          (p,i) => {
 
-          const medal =
-            i === 0
-            ? "🥇"
-            : i === 1
-            ? "🥈"
-            : i === 2
-            ? "🥉"
-            : (i + 1);
+            const rank =
+              i + 1;
 
 
-          const isMe =
-            currentPlayer &&
-            p.name ===
-            players[currentPlayer].name;
+            const medal =
+              rank === 1
+              ? "🥇"
+              : rank === 2
+              ? "🥈"
+              : rank === 3
+              ? "🥉"
+              : rank;
 
 
-          /*
-            Use the SAME photo saved
-            in the player's profile.
+            const isMe =
+              currentPlayer &&
+              p.name.toLowerCase() ===
+              players[currentPlayer]
+                .name
+                .toLowerCase();
 
-            If no photo exists,
-            show initials instead.
-          */
 
-          const avatar =
-            p.photo
+            const avatar =
+              p.photo
 
-            ? `
-              <div class="leader-avatar">
-                <img
-                  src="${p.photo}"
-                  alt="${escapeHTML(p.name)} profile picture"
-                >
+              ? `
+                <div class="leader-avatar">
+                  <img
+                    src="${p.photo}"
+                    alt="${escapeHTML(
+                      p.name
+                    )} profile picture"
+                  >
+                </div>
+              `
+
+              : `
+                <div class="leader-avatar">
+                  ${escapeHTML(
+                    getInitials(
+                      p.name
+                    )
+                  )}
+                </div>
+              `;
+
+
+            return `
+
+              <div
+                class="leader-row ${
+                  isMe ? "me" : ""
+                }"
+              >
+
+                <div class="rank-medal">
+                  ${medal}
+                </div>
+
+                ${avatar}
+
+                <div>
+
+                  <div class="player-name">
+                    ${escapeHTML(
+                      p.name
+                    )}
+                  </div>
+
+                  <div class="player-meta">
+
+                    ${
+                      Number(
+                        p.totalItems || 0
+                      )
+                    }
+
+                    items collected
+
+                    •
+
+                    ${
+                      Number(
+                        p.games || 0
+                      )
+                    }
+
+                    round${
+                      Number(p.games || 0) === 1
+                      ? ""
+                      : "s"
+                    }
+
+                  </div>
+
+                  <div class="rank-label">
+                    ${getRankLabel(rank)}
+                  </div>
+
+                </div>
+
+                <div class="leader-score">
+
+                  ${
+                    Number(
+                      p.best || 0
+                    ).toLocaleString()
+                  }
+
+                  <small>
+                    best score
+                  </small>
+
+                </div>
+
               </div>
-            `
 
-            : `
-              <div class="leader-avatar">
-                ${escapeHTML(
-                  getInitials(p.name)
-                )}
-              </div>
             `;
 
-
-          return `
-
-            <div
-              class="leader-row ${isMe ? "me" : ""}"
-            >
-
-              <div class="rank-medal">
-                ${medal}
-              </div>
-
-              ${avatar}
-
-              <div>
-
-                <div class="player-name">
-                  ${escapeHTML(p.name)}
-                </div>
-
-                <div class="player-meta">
-
-                  ${p.totalItems}
-                  items collected
-
-                  • ${p.games}
-                  round${p.games === 1 ? "" : "s"}
-
-                </div>
-
-              </div>
-
-              <div class="leader-score">
-
-                ${p.best.toLocaleString()}
-
-                <small>
-                  best score
-                </small>
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      ).join("");
+          }
+        )
+        .join("");
 
   }
 
 
-  /* =========================
+  /* =======================================================
      PROFILE
-  ========================= */
+  ======================================================= */
 
   $("profileBtn").onclick =
     openProfile;
@@ -3602,6 +4019,24 @@ input:focus{
       ){
 
         closeProfile();
+
+      }
+
+    };
+
+
+  $("quizModal").onclick =
+    e => {
+
+      if(
+        e.target ===
+        $("quizModal")
+      ){
+
+        /*
+          Don't allow accidental closing
+          before the bonus result is handled.
+        */
 
       }
 
@@ -3629,6 +4064,10 @@ input:focus{
       "";
 
 
+    $("profileMsg").style.color =
+      "#b84b3d";
+
+
     $("profileModal")
       .classList.add(
         "show"
@@ -3649,6 +4088,10 @@ input:focus{
 
   function updateAvatar(){
 
+    if(!currentPlayer)
+      return;
+
+
     const p =
       players[currentPlayer];
 
@@ -3659,11 +4102,12 @@ input:focus{
 
     if(p.photo){
 
-      avatar.innerHTML =
-        `<img
+      avatar.innerHTML = `
+        <img
           src="${p.photo}"
           alt="Profile picture"
-        >`;
+        >
+      `;
 
     }else{
 
@@ -3677,6 +4121,10 @@ input:focus{
   }
 
 
+  /* =======================================================
+     PROFILE PHOTO
+  ======================================================= */
+
   $("photoInput").onchange =
     e => {
 
@@ -3688,10 +4136,25 @@ input:focus{
         return;
 
 
+      if(
+        !file.type.startsWith(
+          "image/"
+        )
+      ){
+
+        toast(
+          "Please choose an image file."
+        );
+
+        return;
+
+      }
+
+
       /*
-        Keep uploaded profile pictures
-        small so localStorage doesn't
-        get overloaded.
+        Resize image before storing.
+        This helps prevent localStorage
+        from becoming unnecessarily large.
       */
 
       const reader =
@@ -3701,26 +4164,127 @@ input:focus{
       reader.onload =
         () => {
 
-          const p =
-            players[currentPlayer];
+          const img =
+            new Image();
 
 
-          p.photo =
+          img.onload =
+            () => {
+
+              const canvas =
+                document.createElement(
+                  "canvas"
+                );
+
+
+              const maxSize =
+                500;
+
+
+              let width =
+                img.width;
+
+
+              let height =
+                img.height;
+
+
+              if(
+                width >
+                maxSize ||
+                height >
+                maxSize
+              ){
+
+                if(
+                  width >
+                  height
+                ){
+
+                  height =
+                    height *
+                    maxSize /
+                    width;
+
+                  width =
+                    maxSize;
+
+                }else{
+
+                  width =
+                    width *
+                    maxSize /
+                    height;
+
+                  height =
+                    maxSize;
+
+                }
+
+              }
+
+
+              canvas.width =
+                width;
+
+
+              canvas.height =
+                height;
+
+
+              const ctx =
+                canvas.getContext(
+                  "2d"
+                );
+
+
+              ctx.drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+              );
+
+
+              const p =
+                players[
+                  currentPlayer
+                ];
+
+
+              p.photo =
+                canvas.toDataURL(
+                  "image/jpeg",
+                  .82
+                );
+
+
+              persist();
+
+              updateAvatar();
+
+
+              toast(
+                "Profile picture updated! 🌱"
+              );
+
+
+              if(
+                $("leaderboardPage")
+                  .classList
+                  .contains("active")
+              ){
+
+                renderLeaderboard();
+
+              }
+
+            };
+
+
+          img.src =
             reader.result;
-
-
-          persist();
-
-          updateAvatar();
-
-          /*
-            Refresh leaderboard immediately
-            if the user opens it afterward.
-          */
-
-          toast(
-            "Profile picture updated! 🌱"
-          );
 
         };
 
@@ -3732,17 +4296,29 @@ input:focus{
     };
 
 
+  /* =======================================================
+     SAVE PROFILE
+  ======================================================= */
+
   $("saveProfile").onclick =
     () => {
 
+      if(!currentPlayer)
+        return;
+
+
       const newName =
         $("editName")
-        .value
-        .trim()
-        .replace(/\s+/g," ");
+          .value
+          .trim()
+          .replace(/\s+/g," ");
 
 
       if(newName.length < 2){
+
+        $("profileMsg").style.color =
+          "#b84b3d";
+
 
         $("profileMsg").textContent =
           "Use at least 2 characters.";
@@ -3765,6 +4341,10 @@ input:focus{
         players[newKey]
       ){
 
+        $("profileMsg").style.color =
+          "#b84b3d";
+
+
         $("profileMsg").textContent =
           "That nickname is already being used on this device.";
 
@@ -3781,12 +4361,16 @@ input:focus{
         newName;
 
 
-      if(newKey !== oldKey){
+      if(
+        newKey !== oldKey
+      ){
 
         players[newKey] =
           p;
 
+
         delete players[oldKey];
+
 
         currentPlayer =
           newKey;
@@ -3814,6 +4398,17 @@ input:focus{
         "Profile saved successfully!";
 
 
+      if(
+        $("leaderboardPage")
+          .classList
+          .contains("active")
+      ){
+
+        renderLeaderboard();
+
+      }
+
+
       setTimeout(
         () => {
 
@@ -3826,43 +4421,65 @@ input:focus{
     };
 
 
+  /* =======================================================
+     LOGOUT
+  ======================================================= */
+
   $("logoutBtn").onclick =
     () => {
 
       stopTimers();
 
-      running = false;
 
-      currentPlayer = null;
+      running =
+        false;
+
+
+      currentPlayer =
+        null;
 
 
       $("playerName").value =
         "";
 
+
       $("playerPin").value =
         "";
 
 
-      setMode("create");
+      setMode(
+        "create"
+      );
+
 
       closeProfile();
+
 
       screen(
         "loginScreen"
       );
 
+
+      toast(
+        "Logged out safely. 🌿"
+      );
+
     };
 
 
-  /* =========================
+  /* =======================================================
      HELPERS
-  ========================= */
+  ======================================================= */
 
   function getInitials(name){
 
-    return name
-      .split(" ")
-      .map(x => x[0])
+    return String(name)
+      .trim()
+      .split(/\s+/)
+      .map(
+        x =>
+          x[0]
+      )
       .join("")
       .slice(0,2)
       .toUpperCase();
@@ -3872,17 +4489,18 @@ input:focus{
 
   function escapeHTML(s){
 
-    return String(s).replace(
-      /[&<>"']/g,
-      m =>
-        ({
-          "&":"&amp;",
-          "<":"&lt;",
-          ">":"&gt;",
-          '"':"&quot;",
-          "'":"&#039;"
-        }[m])
-    );
+    return String(s)
+      .replace(
+        /[&<>"']/g,
+        m =>
+          ({
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+          }[m])
+      );
 
   }
 
@@ -3922,11 +4540,14 @@ input:focus{
   }
 
 
-  /* =========================
+  /* =======================================================
      INITIAL STATE
-  ========================= */
+  ======================================================= */
 
-  setMode("create");
+  setMode(
+    "create"
+  );
+
 
   screen(
     "loginScreen"
