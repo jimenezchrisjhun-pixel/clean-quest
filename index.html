@@ -2,1273 +2,328 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#e9f7eb">
 <title>Clean Quest — Play Clean. Rank Up.</title>
 
 <style>
 :root{
-  --ink:#20382d;
-  --muted:#6e8175;
-  --green:#297a4c;
-  --green2:#43a66a;
-  --mint:#e9f7eb;
-  --pale:#f7fbf6;
-  --line:#dce9dd;
-  --gold:#ffd879;
-  --coral:#ff9b86;
-  --shadow:0 18px 48px rgba(42,91,58,.12);
+  --ink:#20382d;--muted:#6e8175;--green:#297a4c;--green2:#43a66a;
+  --line:#dce9dd;--shadow:0 18px 48px rgba(42,91,58,.12)
 }
-
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  margin:0;font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--ink);
-  background:
-    radial-gradient(circle at 8% 6%,#fff 0,transparent 30%),
-    linear-gradient(145deg,#edf9ef,#f8fbf5 56%,#e5f3e7);
-  min-height:100vh;
+  background:radial-gradient(circle at 8% 6%,#fff 0,transparent 30%),
+  linear-gradient(145deg,#edf9ef,#f8fbf5 56%,#e5f3e7);
+  min-height:100vh
 }
+button,input{font:inherit}button{cursor:pointer}
+.app{max-width:1100px;margin:auto;padding:22px 18px 44px}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:950;font-size:clamp(20px,4vw,29px);letter-spacing:-.04em}
+.brandmark{width:45px;height:45px;border-radius:15px;background:#ccebd1;display:grid;place-items:center;font-size:25px}
+.brand small{display:block;font-size:10px;letter-spacing:.16em;color:var(--muted);font-weight:800}
+.top-pill{border:1px solid var(--line);border-radius:999px;background:#ffffffb8;padding:9px 13px;font-size:12px;font-weight:800;color:var(--green)}
 
-button,input{font:inherit}
-button{cursor:pointer}
+.screen{display:none}.screen.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-.app{
-  max-width:1100px;
-  margin:0 auto;
-  padding:22px 18px 44px;
-}
-
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:14px;
-  margin-bottom:20px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  font-weight:950;
-  letter-spacing:-.04em;
-  font-size:clamp(20px,4vw,29px);
-}
-
-.brandmark{
-  width:45px;
-  height:45px;
-  border-radius:15px;
-  background:#ccebd1;
-  display:grid;
-  place-items:center;
-  font-size:25px;
-  box-shadow:inset 0 -3px rgba(28,105,58,.08);
-}
-
-.brand small{
-  display:block;
-  font-size:10px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--muted);
-  font-weight:800;
-  margin-top:1px;
-}
-
-.top-pill{
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:#ffffffb8;
-  padding:9px 13px;
-  font-size:12px;
-  font-weight:800;
-  color:var(--green);
-}
-
-.screen{display:none}
-.screen.active{
-  display:block;
-  animation:fade .25s ease;
-}
-
-@keyframes fade{
-  from{opacity:.4;transform:translateY(5px)}
-  to{opacity:1;transform:none}
-}
-
-.card{
-  background:#ffffffd9;
-  border:1px solid #dceadd;
-  border-radius:25px;
-  box-shadow:var(--shadow);
-}
-
-/* LOGIN */
-
-.login-layout{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:18px;
-}
-
+.card{background:#ffffffdf;border:1px solid #dceadd;border-radius:25px;box-shadow:var(--shadow)}
+.login-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 .hero{
-  padding:clamp(25px,5vw,50px);
-  background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);
-  color:white;
-  position:relative;
-  overflow:hidden;
-  min-height:455px;
+  padding:clamp(25px,5vw,50px);background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);
+  color:white;position:relative;overflow:hidden;min-height:455px
 }
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.18em;font-weight:900;opacity:.78}
+h1{font-size:clamp(39px,6vw,66px);line-height:.98;letter-spacing:-.065em;margin:14px 0 16px}
+.hero p{max-width:390px;line-height:1.65;color:#e4f5e7;font-size:15px}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.hero-chips span{padding:8px 11px;border-radius:999px;background:#ffffff1b;border:1px solid #ffffff2d;font-size:11px;font-weight:800}
+.hero-art{position:absolute;right:24px;bottom:22px;font-size:84px}
+.form-card{padding:clamp(23px,4vw,36px);display:flex;flex-direction:column;justify-content:center}
+h2{margin:0;font-size:27px;letter-spacing:-.04em}
+.sub{margin:8px 0 24px;color:var(--muted);font-size:13px;line-height:1.55}
 
-.hero:after{
-  content:"";
-  position:absolute;
-  width:280px;
-  height:280px;
-  border-radius:50%;
-  right:-88px;
-  bottom:-104px;
-  background:#ffffff17;
-  border:1px solid #ffffff22;
-  box-shadow:
-    0 0 0 30px #ffffff08,
-    0 0 0 60px #ffffff06;
-}
-
-.eyebrow{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-weight:900;
-  opacity:.78;
-}
-
-h1{
-  font-size:clamp(39px,6vw,66px);
-  line-height:.98;
-  letter-spacing:-.065em;
-  margin:14px 0 16px;
-  max-width:500px;
-}
-
-.hero p{
-  max-width:390px;
-  line-height:1.65;
-  color:#e4f5e7;
-  font-size:15px;
-}
-
-.hero-chips{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:24px;
-}
-
-.hero-chips span{
-  padding:8px 11px;
-  border-radius:999px;
-  background:#ffffff1b;
-  border:1px solid #ffffff2d;
-  font-size:11px;
-  font-weight:800;
-}
-
-.hero-art{
-  position:absolute;
-  right:24px;
-  bottom:22px;
-  font-size:84px;
-  filter:drop-shadow(0 12px 10px #12492d32);
-  transform:rotate(-7deg);
-}
-
-.form-card{
-  padding:clamp(23px,4vw,36px);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-h2{
-  margin:0;
-  font-size:27px;
-  letter-spacing:-.04em;
-}
-
-.sub{
-  margin:8px 0 24px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.55;
-}
-
-.tabs{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  background:#edf5ee;
-  border-radius:13px;
-  padding:4px;
-  margin-bottom:20px;
-}
-
-.tab{
-  border:0;
-  border-radius:10px;
-  padding:11px;
-  background:transparent;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:850;
-}
-
-.tab.active{
-  background:white;
-  color:var(--green);
-  box-shadow:0 2px 8px #274b3510;
-}
-
-label{
-  display:block;
-  font-size:12px;
-  font-weight:850;
-  margin:12px 0 7px;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border:1px solid #d9e7db;
-  border-radius:12px;
-  background:#fbfefb;
-  outline:none;
-  color:var(--ink);
-}
-
-input:focus{
-  border-color:#5bb77a;
-  box-shadow:0 0 0 3px #5bb77a22;
-}
-
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:#edf5ee;border-radius:13px;padding:4px;margin-bottom:20px}
+.tab{border:0;border-radius:10px;padding:11px;background:transparent;color:var(--muted);font-size:13px;font-weight:850}
+.tab.active{background:white;color:var(--green)}
+label{display:block;font-size:12px;font-weight:850;margin:12px 0 7px}
+input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;background:#fbfefb;outline:none;color:var(--ink)}
 .btn{
-  border:0;
-  border-radius:13px;
-  padding:13px 17px;
-  background:var(--green);
-  color:white;
-  font-weight:900;
-  box-shadow:0 6px 0 #1e5c39;
-  transition:transform .12s,box-shadow .12s;
+  border:0;border-radius:13px;padding:13px 17px;background:var(--green);
+  color:white;font-weight:900;box-shadow:0 6px 0 #1e5c39
 }
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #1e5c39}
+.btn.full{width:100%;margin-top:18px}
+.btn.light{background:#e7f5e9;color:var(--green);box-shadow:0 5px 0 #c7e4cc}
+.btn.secondary{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}
+.msg{min-height:18px;font-size:12px;font-weight:750;color:#b84b3d;margin-top:8px}
+.micro{color:#809085;font-size:10px;line-height:1.55;margin-top:14px}
 
-.btn:active{
-  transform:translateY(3px);
-  box-shadow:0 3px 0 #1e5c39;
-}
-
-.btn.full{
-  width:100%;
-  margin-top:18px;
-}
-
-.btn.light{
-  background:#e7f5e9;
-  color:var(--green);
-  box-shadow:0 5px 0 #c7e4cc;
-}
-
-.btn.secondary{
-  background:white;
-  color:var(--green);
-  border:1px solid var(--line);
-  box-shadow:none;
-}
-
-.micro{
-  color:#809085;
-  font-size:10px;
-  line-height:1.55;
-  margin-top:14px;
-}
-
-.msg{
-  min-height:18px;
-  font-size:12px;
-  font-weight:750;
-  color:#b84b3d;
-  margin-top:8px;
-}
-
-/* DASHBOARD */
-
-.dash-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin:8px 0 18px;
-  flex-wrap:wrap;
-}
-
-.welcome{
-  font-size:clamp(24px,4vw,34px);
-  font-weight:950;
-  letter-spacing:-.05em;
-}
-
+.dash-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px;flex-wrap:wrap}
+.welcome{font-size:clamp(24px,4vw,34px);font-weight:950}
 .welcome span{color:var(--green)}
-
-.nav{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
+.nav{display:flex;gap:8px;flex-wrap:wrap}
 .nav button{
-  border:1px solid var(--line);
-  background:#ffffffc9;
-  color:var(--green);
-  font-size:12px;
-  font-weight:850;
-  border-radius:999px;
-  padding:10px 14px;
+  border:1px solid var(--line);background:#ffffffc9;color:var(--green);
+  font-size:12px;font-weight:850;border-radius:999px;padding:10px 14px
 }
+.nav button.active{background:var(--green);color:white}
 
-.nav button.active{
-  background:var(--green);
-  color:white;
-  border-color:var(--green);
-}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.stat{padding:17px 19px}
+.stat .label{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:900}
+.stat strong{display:block;font-size:28px;margin-top:6px}
+.stat em{font-size:11px;font-style:normal;color:var(--green);font-weight:800}
 
-.stat-row{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-bottom:16px;
-}
-
-.stat{
-  padding:17px 19px;
-}
-
-.stat .label{
-  font-size:10px;
-  letter-spacing:.11em;
-  text-transform:uppercase;
-  color:var(--muted);
-  font-weight:900;
-}
-
-.stat strong{
-  display:block;
-  font-size:28px;
-  letter-spacing:-.04em;
-  margin-top:6px;
-}
-
-.stat em{
-  font-size:11px;
-  font-style:normal;
-  color:var(--green);
-  font-weight:800;
-}
-
-/* GAME */
-
-.game-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1.55fr) minmax(230px,.75fr);
-  gap:16px;
-}
-
-.game-card{
-  padding:16px;
-}
-
-.game-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:12px;
-}
-
-.game-head h2{
-  font-size:20px;
-}
-
-.timer{
-  background:#fff2da;
-  color:#8a5a07;
-  border-radius:11px;
-  padding:9px 12px;
-  font-weight:950;
-  font-variant-numeric:tabular-nums;
-}
-
-.timer.danger{
-  background:#ffe3dd;
-  color:#ac3929;
-}
-
-/* BIGGER PLAY AREA */
+.game-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.75fr);gap:16px}
+.game-card{padding:16px}
+.game-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.game-head h2{font-size:20px}
+.timer{background:#fff2da;color:#8a5a07;border-radius:11px;padding:9px 12px;font-weight:950}
+.timer.danger{background:#ffe3dd;color:#ac3929}
 
 .scene{
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  min-height:520px;
-  height:520px;
-  background:
-    linear-gradient(#d9f0ed 0 62%,#d7e6d3 62% 64%,#e9d4b4 64%);
-  border:1px solid #c8dfd0;
-  touch-action:manipulation;
+  position:relative;overflow:hidden;border-radius:18px;
+  min-height:460px;height:clamp(460px,58vw,590px);
+  background:linear-gradient(#d9f0ed 0 62%,#d7e6d3 62% 64%,#e9d4b4 64%);
+  border:1px solid #c8dfd0;touch-action:manipulation
 }
-
 .window{
-  position:absolute;
-  top:23px;
-  left:25px;
-  width:118px;
-  height:105px;
-  border:8px solid #fffdf0;
-  border-radius:4px;
-  background:linear-gradient(135deg,#a8dfe0,#e4faf3);
-  box-shadow:0 3px 0 #bbd7c9;
+  position:absolute;top:23px;left:25px;width:118px;height:105px;
+  border:8px solid #fffdf0;border-radius:4px;background:#bde9e7
 }
-
-.window:before,
-.window:after{
-  content:"";
-  position:absolute;
-  background:#fffdf0;
-}
-
-.window:before{
-  width:5px;
-  height:100%;
-  left:48%;
-  top:0;
-}
-
-.window:after{
-  height:5px;
-  width:100%;
-  top:48%;
-  left:0;
-}
-
 .board{
-  position:absolute;
-  top:25px;
-  right:26px;
-  width:42%;
-  height:88px;
-  background:#438468;
-  border:8px solid #d2aa7d;
-  border-radius:5px;
-  color:#eaffec;
-  text-align:center;
-  padding:15px 7px;
-  font-size:14px;
-  letter-spacing:.06em;
-  font-weight:900;
-  transform:rotate(1deg);
-  box-shadow:0 5px 0 #b58a61;
+  position:absolute;top:25px;right:26px;width:42%;height:88px;
+  background:#438468;border:8px solid #d2aa7d;border-radius:5px;
+  color:#eaffec;text-align:center;padding:15px 7px;font-size:14px;
+  font-weight:900;box-shadow:0 5px 0 #b58a61
 }
-
 .floorline{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:36%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #e4c9a8 0 59px,
-      #d7b995 60px 62px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 44px,
-      #d7b995 45px 47px
-    );
-  opacity:.95;
+  position:absolute;left:0;right:0;bottom:0;height:36%;
+  background:repeating-linear-gradient(90deg,#e4c9a8 0 59px,#d7b995 60px 62px)
 }
-
 .desk{
-  position:absolute;
-  bottom:75px;
-  left:50%;
-  transform:translateX(-50%);
-  width:43%;
-  height:69px;
-  background:#b87c4c;
-  border-radius:7px 7px 4px 4px;
-  box-shadow:0 8px 0 #93613e;
-  z-index:2;
+  position:absolute;bottom:55px;left:50%;transform:translateX(-50%);
+  width:43%;height:69px;background:#b87c4c;border-radius:7px;
+  box-shadow:0 8px 0 #93613e;z-index:2
 }
-
-.desk:before{
-  content:"";
-  position:absolute;
-  left:8%;
-  right:8%;
-  top:-12px;
-  height:16px;
-  background:#d9a271;
-  border-radius:4px;
-}
-
-.desk:after{
-  content:"";
-  position:absolute;
-  left:14%;
-  right:14%;
-  top:67px;
-  height:40px;
-  border-left:8px solid #93613e;
-  border-right:8px solid #93613e;
-}
-
-.plant{
-  position:absolute;
-  left:26px;
-  bottom:42px;
-  z-index:2;
-  font-size:55px;
-  filter:drop-shadow(0 5px 1px #45633b18);
-}
-
-.bin{
-  position:absolute;
-  right:26px;
-  bottom:38px;
-  z-index:3;
-  font-size:48px;
-  filter:drop-shadow(0 4px 1px #45633b22);
-}
-
-/* TRASH */
+.plant{position:absolute;left:26px;bottom:42px;z-index:2;font-size:55px}
+.bin{position:absolute;right:26px;bottom:38px;z-index:3;font-size:48px}
 
 .trash{
-  position:absolute;
-  z-index:5;
-  border:2px solid #ffffffd9;
-  border-radius:13px;
-  background:#ffffffed;
-  width:58px;
-  height:58px;
-  display:grid;
-  place-items:center;
-  font-size:29px;
-  box-shadow:0 5px 12px #31573a1c;
-  transition:transform .12s,opacity .15s;
-  animation:pop .2s ease;
-  user-select:none;
-  touch-action:manipulation;
+  position:absolute;z-index:5;border:2px solid #ffffffd9;border-radius:13px;
+  background:#ffffffed;min-width:58px;width:auto;height:58px;
+  padding:0 8px;display:grid;place-items:center;font-size:29px;
+  box-shadow:0 5px 12px #31573a1c;transition:.12s;
+  user-select:none;touch-action:manipulation
 }
-
-.trash:hover{
-  transform:translateY(-4px) rotate(4deg) scale(1.05);
-}
-
-.trash:active{
-  transform:scale(.88);
-}
-
-@keyframes pop{
-  from{transform:scale(.3)}
-  to{transform:scale(1)}
-}
-
-.trash.taken{
-  pointer-events:none;
-  animation:vanish .25s forwards;
-}
-
-@keyframes vanish{
-  to{
-    transform:scale(1.5) rotate(20deg);
-    opacity:0;
-  }
-}
-
-.float-points{
-  position:absolute;
-  z-index:8;
-  font-size:18px;
-  font-weight:1000;
-  color:#227946;
-  text-shadow:0 1px white;
-  pointer-events:none;
-  animation:floatup .8s forwards;
-}
-
-@keyframes floatup{
-  to{
-    transform:translateY(-35px);
-    opacity:0;
-  }
-}
-
-/* ECO CHALLENGE */
-
-.eco-challenge{
-  position:absolute;
-  inset:0;
-  z-index:20;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:#f6fbf0e8;
-  backdrop-filter:blur(5px);
-  padding:20px;
-}
-
-.eco-box{
-  width:min(360px,100%);
-  background:white;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:25px 20px;
-  text-align:center;
-  box-shadow:0 18px 50px #31573a22;
-}
-
-.eco-icon{
-  font-size:46px;
-}
-
-.eco-box h3{
-  font-size:24px;
-  margin:8px 0 5px;
-  letter-spacing:-.04em;
-}
-
-.eco-box p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.55;
-  margin:0 0 17px;
-}
-
-.eco-item{
-  font-size:48px;
-  margin:7px 0 12px;
-}
-
-.eco-options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-}
-
-.eco-option{
-  border:1px solid var(--line);
-  background:#f7fbf6;
-  color:var(--green);
-  padding:12px 8px;
-  border-radius:12px;
-  font-weight:900;
-  font-size:12px;
-}
-
-.eco-option:hover{
-  background:#e9f7eb;
-}
-
-.eco-feedback{
-  min-height:20px;
-  font-size:12px;
-  font-weight:900;
-  margin-top:12px;
-}
-
-/* OVERLAY */
+.trash:hover{transform:translateY(-4px) rotate(4deg) scale(1.05)}
+.trash:active{transform:scale(.9)}
 
 .overlay{
-  position:absolute;
-  inset:0;
-  z-index:10;
-  background:#f6fbf0e8;
-  backdrop-filter:blur(3px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
+  position:absolute;inset:0;z-index:10;background:#f6fbf0e8;
+  backdrop-filter:blur(3px);display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:20px
 }
-
-.overlay-box{
-  width:min(390px,100%);
-}
-
-.overlay-icon{
-  font-size:48px;
-}
-
-.overlay h3{
-  font-size:29px;
-  letter-spacing:-.05em;
-  margin:9px 0;
-}
-
-.overlay-score{
-  font-size:56px;
-  font-weight:1000;
-  color:var(--green);
-  line-height:1;
-  margin:12px 0;
-}
-
-.overlay-score-label{
-  color:var(--muted);
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-.overlay p{
-  font-size:12px;
-  color:#627568;
-  line-height:1.6;
-  margin:12px 0 18px;
-}
-
-.result-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:15px 0;
-}
-
-.result-box{
-  background:#fff;
-  border:1px solid #dceadd;
-  border-radius:13px;
-  padding:11px 6px;
-}
-
-.result-box strong{
-  display:block;
-  font-size:20px;
-  color:var(--green);
-}
-
-.result-box span{
-  display:block;
-  font-size:8px;
-  color:var(--muted);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  margin-top:3px;
-}
-
-.rank-banner{
-  background:#eaf6eb;
-  border:1px solid #d7ead9;
-  color:#36734e;
-  border-radius:13px;
-  padding:11px;
-  font-size:11px;
-  font-weight:850;
-  margin:12px 0;
-}
-
-.overlay-actions{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+.overlay-box{max-width:430px;width:100%}
+.overlay-icon{font-size:48px}
+.overlay h3{font-size:25px;margin:9px 0}
+.overlay p{font-size:12px;color:#627568;line-height:1.6;margin:0 0 18px}
+.overlay-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
 
 .game-foot{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:750;
-  margin-top:12px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  color:var(--muted);font-size:11px;font-weight:750;margin-top:12px
 }
 
-/* SIDE */
-
-.side-card{
-  padding:20px;
-}
-
-.side-card h3{
-  margin:0 0 7px;
-  font-size:18px;
-  letter-spacing:-.03em;
-}
-
-.side-card p{
-  font-size:12px;
-  line-height:1.6;
-  color:var(--muted);
-  margin:0 0 15px;
-}
-
-.points-list{
-  display:grid;
-  gap:9px;
-}
-
+.side-card{padding:20px}
+.side-card h3{margin:0 0 7px;font-size:18px}
+.side-card p{font-size:12px;line-height:1.6;color:var(--muted)}
+.points-list{display:grid;gap:9px}
 .point-line{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:center;
-  font-size:12px;
-  background:#f6faf5;
-  border:1px solid #e5eee5;
-  border-radius:11px;
-  padding:10px 11px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;background:#f6faf5;border:1px solid #e5eee5;
+  border-radius:11px;padding:10px
 }
-
-.point-line span:first-child{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.pts{
-  color:var(--green);
-  font-weight:950;
-}
-
+.pts{color:var(--green);font-weight:950}
 .tip{
-  background:#fff7df;
-  border:1px solid #f2e4b9;
-  border-radius:13px;
-  padding:12px;
-  margin-top:15px;
-  font-size:11px;
-  line-height:1.5;
-  color:#725b24;
+  background:#fff7df;border:1px solid #f2e4b9;border-radius:13px;
+  padding:12px;margin-top:15px;font-size:11px;line-height:1.5;color:#725b24
 }
 
-/* LEADERBOARD */
+.quiz-box{
+  background:white;border:1px solid #d8eadb;border-radius:20px;
+  padding:22px;box-shadow:0 10px 30px #31573a18
+}
+.quiz-tag{
+  display:inline-block;background:#e8f6ea;color:var(--green);
+  font-size:10px;font-weight:950;letter-spacing:.12em;
+  text-transform:uppercase;padding:7px 10px;border-radius:999px
+}
+.quiz-box h3{font-size:23px;line-height:1.15;margin:12px 0 7px}
+.quiz-box p{font-size:12px;color:var(--muted);line-height:1.5}
+.quiz-options{display:grid;gap:8px}
+.quiz-option{
+  border:1px solid #dce9dd;background:#f8fbf7;color:var(--ink);
+  border-radius:12px;padding:12px;text-align:left;font-weight:800;font-size:12px
+}
+.quiz-option:hover{border-color:#6ab77f;background:#edf8ef}
+.quiz-option.correct{background:#dcf5e2;border-color:#58ad70;color:#236b3e}
+.quiz-option.wrong{background:#ffe9e4;border-color:#e99a87;color:#9a3e30}
+.quiz-result{font-weight:900;margin-top:12px;color:var(--green);font-size:13px}
+.quiz-result.wrong-text{color:#a44b3d}
 
-.leader-card{
-  padding:clamp(20px,4vw,32px);
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}
+.result-stat{
+  background:#fff;border:1px solid #dfeadf;border-radius:13px;padding:10px
+}
+.result-stat strong{display:block;font-size:22px;color:var(--green)}
+.result-stat span{font-size:9px;color:var(--muted);text-transform:uppercase;font-weight:900}
+.bonus-banner{
+  background:#fff4cc;border:1px solid #f0df9f;color:#725b24;
+  border-radius:13px;padding:10px;font-size:11px;font-weight:850;margin:10px 0
 }
 
+.leader-card{padding:clamp(20px,4vw,32px)}
 .leader-title{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
+  display:flex;align-items:end;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;margin-bottom:20px
 }
-
-.leader-title h2{
-  font-size:31px;
-}
-
-.leader-title p{
-  color:var(--muted);
-  font-size:12px;
-  margin:7px 0 0;
-}
-
-.leader-list{
-  display:grid;
-  gap:9px;
-}
-
+.leader-title h2{font-size:31px}
+.leader-title p{color:var(--muted);font-size:12px}
+.leader-list{display:grid;gap:9px}
 .leader-row{
-  display:grid;
-  grid-template-columns:42px minmax(0,1fr) auto;
-  align-items:center;
-  gap:12px;
-  background:#f8fbf7;
-  border:1px solid #e3ede3;
-  border-radius:15px;
-  padding:13px 15px;
+  display:grid;grid-template-columns:42px minmax(0,1fr) auto;
+  align-items:center;gap:12px;background:#f8fbf7;
+  border:1px solid #e3ede3;border-radius:15px;padding:13px 15px
 }
-
-.leader-row.me{
-  border-color:#91cfa1;
-  background:#edf8ef;
-}
-
+.leader-row.me{border-color:#8ac69b;background:#f0faf2}
 .rank-medal{
-  width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  border-radius:12px;
-  background:#e8f2e8;
-  font-weight:950;
+  width:38px;height:38px;display:grid;place-items:center;
+  border-radius:12px;background:#e8f2e8;font-weight:950
 }
+.leader-row:nth-child(1) .rank-medal{background:#ffefbd}
+.leader-row:nth-child(2) .rank-medal{background:#e8edf0}
+.leader-row:nth-child(3) .rank-medal{background:#f4dfd1}
+.player-name{font-weight:900}
+.player-meta{font-size:10px;color:var(--muted);margin-top:3px}
+.leader-score{text-align:right;font-size:18px;font-weight:950;color:var(--green)}
+.leader-score small{display:block;font-size:9px;color:var(--muted)}
+.empty{text-align:center;padding:40px 18px;color:var(--muted)}
 
-.leader-row:nth-child(1) .rank-medal{
-  background:#ffefbd;
-}
-
-.leader-row:nth-child(2) .rank-medal{
-  background:#e8edf0;
-}
-
-.leader-row:nth-child(3) .rank-medal{
-  background:#f4dfd1;
-}
-
-.player-name{
-  font-weight:900;
-}
-
-.player-meta{
-  font-size:10px;
-  color:var(--muted);
-  margin-top:3px;
-}
-
-.leader-score{
-  text-align:right;
-  font-size:18px;
-  font-weight:950;
-  color:var(--green);
-}
-
-.leader-score small{
-  display:block;
-  font-size:9px;
-  color:var(--muted);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.empty{
-  text-align:center;
-  padding:40px 18px;
-  color:var(--muted);
-  line-height:1.7;
-}
-
-.empty strong{
-  display:block;
-  color:var(--ink);
-  font-size:17px;
-  margin:9px;
-}
-
-.footnote{
-  text-align:center;
-  font-size:10px;
-  color:#7c8e80;
-  margin-top:20px;
-  line-height:1.7;
-}
-
+.footnote{text-align:center;font-size:10px;color:#7c8e80;margin-top:20px;line-height:1.7}
 .toast{
-  position:fixed;
-  left:50%;
-  bottom:22px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  background:#20382d;
-  color:white;
-  padding:11px 16px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:850;
-  z-index:100;
-  box-shadow:0 8px 25px #0002;
-  transition:.2s;
+  position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;background:#20382d;color:white;
+  padding:11px 16px;border-radius:999px;font-size:12px;font-weight:850;
+  z-index:100;transition:.2s
 }
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-/* MOBILE */
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
 @media(max-width:780px){
-
-  .login-layout{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    min-height:335px;
-  }
-
-  .hero-art{
-    font-size:65px;
-  }
-
-  .game-layout{
-    grid-template-columns:1fr;
-  }
-
-  .stat-row{
-    gap:8px;
-  }
-
-  .stat{
-    padding:13px;
-  }
-
-  .stat strong{
-    font-size:23px;
-  }
-
-  .scene{
-    height:520px;
-    min-height:520px;
-  }
+  .login-layout{grid-template-columns:1fr}
+  .hero{min-height:335px}
+  .game-layout{grid-template-columns:1fr}
+  .scene{height:500px;min-height:500px}
+  .stat-row{gap:8px}
+  .stat{padding:13px}
+  .stat strong{font-size:23px}
 }
-
 @media(max-width:440px){
-
-  .app{
-    padding:14px 11px 28px;
-  }
-
-  header{
-    align-items:flex-start;
-  }
-
-  .top-pill{
-    font-size:9px;
-    padding:8px 9px;
-  }
-
-  .scene{
-    height:500px;
-    min-height:500px;
-  }
-
-  .window{
-    left:13px;
-    width:94px;
-    height:84px;
-  }
-
-  .board{
-    right:13px;
-    width:39%;
-    font-size:11px;
-    padding:13px 4px;
-  }
-
-  .plant{
-    left:10px;
-    font-size:44px;
-  }
-
-  .bin{
-    right:11px;
-    font-size:39px;
-  }
-
-  .desk{
-    width:48%;
-    bottom:65px;
-  }
-
-  .trash{
-    width:52px;
-    height:52px;
-    font-size:27px;
-  }
-
-  .stat .label{
-    font-size:8px;
-  }
-
-  .stat strong{
-    font-size:21px;
-  }
-
-  .leader-row{
-    padding:11px;
-    gap:8px;
-  }
-
-  .overlay h3{
-    font-size:25px;
-  }
-
-  .overlay-score{
-    font-size:48px;
-  }
+  .app{padding:14px 11px 28px}
+  .top-pill{font-size:10px;padding:8px 10px}
+  .scene{height:500px;min-height:500px}
+  .window{left:13px;width:94px;height:84px}
+  .board{right:13px;width:39%;font-size:11px;padding:13px 4px}
+  .plant{left:10px;font-size:44px}
+  .bin{right:11px;font-size:39px}
+  .desk{width:44%;bottom:59px}
+  .trash{min-width:54px;height:54px;font-size:26px}
+  .stat .label{font-size:8px}
+  .stat strong{font-size:21px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
 <header>
   <div class="brand">
     <div class="brandmark">🌱</div>
-    <div>
-      CLEAN QUEST
-      <small>PLAY CLEAN. RANK UP.</small>
-    </div>
+    <div>CLEAN QUEST<small>PLAY CLEAN. RANK UP.</small></div>
   </div>
-
   <div class="top-pill">♻️ ZERO-COST GAME</div>
 </header>
 
-
-<!-- LOGIN -->
-
 <section id="loginScreen" class="screen active">
-
   <div class="login-layout">
 
     <div class="hero card">
-
-      <div class="eyebrow">
-        A tiny game for a greener campus
-      </div>
-
-      <h1>
-        Little taps.<br>
-        Big impact.
-      </h1>
-
+      <div class="eyebrow">A tiny game for a greener campus</div>
+      <h1>Little taps.<br>Big impact.</h1>
       <p>
-        Spot the litter, tap to collect it, earn points,
-        build your streak, and climb the eco leaderboard.
+        Spot the litter, sort it, earn points, answer surprise Eco Quizzes,
+        and climb the leaderboard.
       </p>
-
       <div class="hero-chips">
         <span>🎮 45-second round</span>
-        <span>🏆 Eco ranking</span>
-        <span>🌍 Environment mission</span>
+        <span>🏆 Ranking</span>
+        <span>🧠 Eco Quiz</span>
       </div>
-
       <div class="hero-art">🧹</div>
-
     </div>
 
-
     <div class="form-card card">
-
       <h2>Welcome, cleaner!</h2>
-
       <p class="sub">
-        Create a demo player or log back into one saved
-        on this device.
+        Create a demo player or log back into one saved on this device.
       </p>
 
       <div class="tabs">
-        <button class="tab active" id="createTab">
-          Create player
-        </button>
-
-        <button class="tab" id="loginTab">
-          Log in
-        </button>
+        <button class="tab active" id="createTab">Create player</button>
+        <button class="tab" id="loginTab">Log in</button>
       </div>
 
-      <form id="playerForm">
+      <label for="playerName">Player name / nickname</label>
+      <input id="playerName" maxlength="18" placeholder="e.g. EcoCJ">
 
-        <label for="playerName">
-          Player name / nickname
-        </label>
+      <label for="playerPin">4-digit demo PIN</label>
+      <input id="playerPin" inputmode="numeric" maxlength="4" placeholder="e.g. 1234">
 
-        <input
-          id="playerName"
-          maxlength="18"
-          autocomplete="nickname"
-          placeholder="e.g. EcoCJ"
-          required
-        >
+      <button id="formSubmit" class="btn full">
+        Create my player →
+      </button>
 
-        <label for="playerPin">
-          4-digit demo PIN
-        </label>
-
-        <input
-          id="playerPin"
-          inputmode="numeric"
-          maxlength="4"
-          pattern="[0-9]{4}"
-          placeholder="e.g. 1234"
-          required
-        >
-
-        <button
-          id="formSubmit"
-          class="btn full"
-          type="button"
-        >
-          Create my player →
-        </button>
-
-        <div id="formMsg" class="msg"></div>
-
-      </form>
+      <div id="formMsg" class="msg"></div>
 
       <p class="micro">
-        Demo privacy note: use a nickname, not your full name
-        or real password. This prototype stores demo profiles
-        only in this browser.
+        Use a nickname, not your full name or real password.
+        This prototype stores demo profiles only in this browser.
       </p>
-
     </div>
 
   </div>
-
 </section>
-
-
-<!-- HOME -->
 
 <section id="homeScreen" class="screen">
 
   <div class="dash-top">
-
     <div class="welcome">
       Hey, <span id="welcomeName">Cleaner</span>! 🌿
     </div>
 
     <div class="nav">
-
-      <button
-        class="active"
-        data-page="play"
-      >
-        🎮 Play
-      </button>
-
-      <button data-page="leaderboard">
-        🏆 Leaderboard
-      </button>
-
-      <button id="logoutBtn">
-        ↩ Switch player
-      </button>
-
+      <button class="active" data-page="play">🎮 Play</button>
+      <button data-page="leaderboard">🏆 Leaderboard</button>
+      <button id="logoutBtn">↩ Switch player</button>
     </div>
-
   </div>
 
-
-  <!-- STATS -->
-
   <div class="stat-row">
-
     <div class="stat card">
       <div class="label">Your best score</div>
       <strong id="bestScore">0</strong>
@@ -1286,11 +341,7 @@ input:focus{
       <strong id="yourRank">—</strong>
       <em>on this device</em>
     </div>
-
   </div>
-
-
-  <!-- PLAY PAGE -->
 
   <div id="playPage" class="screen active">
 
@@ -1299,29 +350,17 @@ input:focus{
       <div class="game-card card">
 
         <div class="game-head">
-
           <div>
             <h2>Clean the classroom!</h2>
-
             <div style="font-size:11px;color:var(--muted);margin-top:4px">
-              Tap the litter before time runs out.
+              Tap the litter, choose its category, and score points.
             </div>
           </div>
 
-          <div id="timer" class="timer">
-            00:45
-          </div>
-
+          <div id="timer" class="timer">00:45</div>
         </div>
 
-
-        <!-- GAME SCENE -->
-
-        <div
-          id="scene"
-          class="scene"
-          aria-label="Playable classroom"
-        >
+        <div id="scene" class="scene">
 
           <div class="window"></div>
 
@@ -1331,151 +370,92 @@ input:focus{
           </div>
 
           <div class="floorline"></div>
-
           <div class="plant">🪴</div>
-
           <div class="desk"></div>
-
           <div class="bin">🗑️</div>
 
           <div id="trashLayer"></div>
 
-
-          <!-- START / RESULT OVERLAY -->
-
           <div id="gameOverlay" class="overlay">
-
             <div class="overlay-box">
-
-              <div class="overlay-icon">
-                🧤
-              </div>
-
-              <h3>
-                Ready, cleaner?
-              </h3>
-
+              <div class="overlay-icon">🧤</div>
+              <h3>Ready, cleaner?</h3>
               <p>
-                You have 45 seconds.
-                Tap every piece of litter you can find.
-                Build a streak for bonus points!
+                You have 45 seconds. Tap litter, sort it into the right
+                category, and watch for surprise Eco Quizzes.
               </p>
-
-              <button
-                id="startBtn"
-                class="btn"
-              >
+              <button id="startBtn" class="btn">
                 Start cleaning! →
               </button>
-
             </div>
-
           </div>
-
-
-          <!-- OCCASIONAL ECO CHALLENGE -->
-
-          <div
-            id="ecoChallenge"
-            class="eco-challenge"
-          ></div>
 
         </div>
 
-
-        <!-- GAME FOOT -->
-
         <div class="game-foot">
-
           <span>
             ✨ Score:
-            <strong
-              id="scoreValue"
-              style="color:var(--green)"
-            >
-              0
-            </strong>
+            <strong id="scoreValue" style="color:var(--green)">0</strong>
           </span>
 
           <span>
             ♻️ Collected:
-            <strong
-              id="collectedValue"
-              style="color:var(--green)"
-            >
-              0
-            </strong>
+            <strong id="collectedValue" style="color:var(--green)">0</strong>
           </span>
 
           <span>
             🔥 Streak:
-            <strong
-              id="streakValue"
-              style="color:var(--green)"
-            >
-              0
-            </strong>
+            <strong id="streakValue" style="color:var(--green)">0</strong>
           </span>
-
         </div>
 
       </div>
 
-
-      <!-- SIDE PANEL -->
-
       <aside class="side-card card">
 
-        <h3>🧺 Trash = points</h3>
+        <h3>🧺 Clean & sort</h3>
 
         <p>
-          Tap litter to clean the classroom.
-          Keep your streak going for bonus points.
+          Tap an item, then choose where it belongs.
+          Every item has a different value.
         </p>
 
         <div class="points-list">
-
           <div class="point-line">
-            <span>📄 Paper scrap</span>
+            <span>📄 Paper Scrap</span>
             <span class="pts">+5</span>
           </div>
 
           <div class="point-line">
-            <span>🍬 Wrapper</span>
+            <span>🍬 Candy Wrapper</span>
             <span class="pts">+10</span>
           </div>
 
           <div class="point-line">
-            <span>🥤 Plastic cup</span>
+            <span>🥤 Plastic Cup</span>
             <span class="pts">+10</span>
           </div>
 
           <div class="point-line">
-            <span>🧴 Bottle</span>
+            <span>🧴 Plastic Bottle</span>
             <span class="pts">+15</span>
           </div>
 
           <div class="point-line">
-            <span>🥫 Can</span>
+            <span>🥫 Aluminum Can</span>
             <span class="pts">+12</span>
           </div>
 
           <div class="point-line">
-            <span>📦 Small carton</span>
+            <span>🍎 Fruit Peel</span>
             <span class="pts">+8</span>
           </div>
-
         </div>
 
-
         <div class="tip">
-
           💡 <strong>Eco tip:</strong>
-
-          Every virtual item represents a real-world
-          waste item. Keep recyclable materials clean
-          and follow your school's waste-segregation rules.
-
+          Sorting rules can differ by place.
+          Follow your school's actual waste-segregation rules in real life.
         </div>
 
       </aside>
@@ -1484,44 +464,25 @@ input:focus{
 
   </div>
 
-
-  <!-- LEADERBOARD -->
-
   <div id="leaderboardPage" class="screen">
 
     <div class="leader-card card">
 
       <div class="leader-title">
-
         <div>
-
           <h2>🏆 Eco leaderboard</h2>
-
-          <p>
-            The cleanest taps rise to the top.
-          </p>
-
+          <p>The cleanest taps rise to the top.</p>
         </div>
 
-        <button
-          class="btn light"
-          id="backToPlay"
-        >
+        <button class="btn light" id="backToPlay">
           Play a round →
         </button>
-
       </div>
 
-      <div
-        id="leaderRows"
-        class="leader-list"
-      ></div>
+      <div id="leaderRows" class="leader-list"></div>
 
       <div class="footnote">
-
-        This demo leaderboard includes players
-        saved in this browser on this device.
-
+        Leaderboard includes only players saved in this browser.
       </div>
 
     </div>
@@ -1530,392 +491,473 @@ input:focus{
 
 </section>
 
-
 <div class="footnote">
   CLEAN QUEST · A playable school-project prototype · Every tap counts 🌎
 </div>
 
 </div>
 
-
-<div
-  id="toast"
-  class="toast"
-></div>
-
+<div id="toast" class="toast"></div>
 
 <script>
-
 (() => {
 
-  const $ = id => document.getElementById(id);
+const $ = id => document.getElementById(id);
 
-  const KEY = "cleanQuestPlayers_v3";
+const KEY = "cleanQuestPlayers_v3";
 
-  let players = {};
+let players = {};
+let currentPlayer = null;
+let mode = "create";
 
-  let currentPlayer = null;
+let running = false;
+let timeLeft = 45;
 
-  let mode = "create";
+let score = 0;
+let collected = 0;
+let streak = 0;
+let bestStreak = 0;
 
-  let running = false;
+let quizCorrect = 0;
+let quizUsedInRound = 0;
 
-  let timeLeft = 45;
-
-  let score = 0;
-
-  let collected = 0;
-
-  let streak = 0;
-
-  let bestStreak = 0;
-
-  let timerId = null;
-
-  let spawnId = null;
-
-  let challengeUsed = 0;
+let timerId = null;
+let spawnId = null;
 
 
-  /* STORAGE */
+/* =========================
+   STORAGE
+========================= */
 
-  let storageOK = false;
+let storageOK = false;
 
-  try{
+try {
+  const test = "__cleanquest_test__";
 
-    const t = "__cq_test__";
+  localStorage.setItem(test,"1");
+  localStorage.removeItem(test);
 
-    localStorage.setItem(t,"1");
+  storageOK = true;
 
-    localStorage.removeItem(t);
+  players =
+    JSON.parse(localStorage.getItem(KEY) || "{}") || {};
 
-    storageOK = true;
+} catch(e) {
+  players = {};
+}
 
-    players =
-      JSON.parse(
-        localStorage.getItem(KEY) || "{}"
-      ) || {};
 
-  }catch(e){
+function persist(){
 
-    players = {};
+  if(!storageOK) return;
 
+  try {
+    localStorage.setItem(KEY,JSON.stringify(players));
+  } catch(e) {}
+
+}
+
+
+/* =========================
+   TRASH / ITEMS
+========================= */
+
+const litter = [
+
+  ["📄","Paper Scrap","Paper",5],
+  ["📰","Newspaper","Paper",7],
+  ["📃","Used Paper","Paper",6],
+  ["📕","Old Notebook","Paper",9],
+  ["📦","Small Carton","Paper/Cardboard",8],
+
+  ["🥡","Food Container","Plastic",13],
+  ["🧴","Plastic Bottle","Plastic",15],
+  ["🥤","Plastic Cup","Plastic",10],
+  ["🧃","Juice Box","Paper/Cardboard",11],
+  ["🧋","Plastic Drink Cup","Plastic",11],
+
+  ["🍬","Candy Wrapper","Plastic",10],
+  ["🍭","Lollipop Wrapper","Plastic",9],
+  ["🛍️","Plastic Shopping Bag","Plastic",12],
+
+  ["🥫","Aluminum Can","Metal",12],
+  ["🍾","Glass Bottle","Glass",15],
+  ["🍶","Glass Container","Glass",13],
+
+  ["🧻","Used Tissue","Residual",6],
+
+  ["🍎","Apple Core","Biodegradable",8],
+  ["🍌","Banana Peel","Biodegradable",8],
+  ["🍊","Orange Peel","Biodegradable",8],
+  ["🍋","Lemon Peel","Biodegradable",7],
+  ["🍉","Watermelon Peel","Biodegradable",9],
+  ["🍇","Fruit Remains","Biodegradable",8],
+  ["🥭","Mango Peel","Biodegradable",9],
+  ["🍍","Pineapple Peel","Biodegradable",9],
+  ["🥝","Fruit Peel","Biodegradable",8],
+  ["🍅","Vegetable Remains","Biodegradable",8],
+  ["🥕","Carrot Peel","Biodegradable",7],
+  ["🌽","Corn Husk","Biodegradable",8],
+  ["🥔","Potato Peel","Biodegradable",7],
+  ["🧅","Onion Peel","Biodegradable",7],
+  ["🧄","Garlic Peel","Biodegradable",7],
+  ["🥬","Leafy Vegetable","Biodegradable",7],
+  ["🥦","Vegetable Remains","Biodegradable",8],
+  ["🍞","Bread Remains","Biodegradable",7],
+
+  ["🍪","Cookie Wrapper","Plastic",9],
+  ["🍫","Chocolate Wrapper","Plastic",10],
+  ["🍿","Snack Packet","Plastic",10],
+  ["🧂","Salt Sachet","Plastic",8],
+
+  ["🫙","Empty Jar","Glass",12],
+
+  ["💿","Old Disc","E-waste",14],
+  ["📀","Old Disc","E-waste",14],
+  ["🔋","Used Battery","E-waste",18],
+  ["💡","Used Light Bulb","Glass",16],
+  ["🔌","Old Plug","E-waste",17],
+  ["⌨️","Old Keyboard","E-waste",20],
+  ["🖱️","Old Mouse","E-waste",18],
+  ["🎧","Broken Earphones","E-waste",16],
+  ["📱","Old Phone","E-waste",20],
+
+  ["🧸","Lost Toy","Other",6],
+
+  ["🧢","Old Cap","Textile",7],
+  ["👕","Old Shirt","Textile",9],
+  ["🧦","Old Socks","Textile",7],
+  ["👟","Old Shoe","Textile",9],
+  ["🎒","Old Bag","Textile",10],
+
+  ["🪑","Broken Chair Part","Other",12]
+];
+
+
+const categories = [
+  "Biodegradable",
+  "Paper/Cardboard",
+  "Plastic",
+  "Metal",
+  "Glass",
+  "E-waste",
+  "Textile",
+  "Residual",
+  "Other"
+];
+
+
+/* =========================
+   ECO BONUS QUESTIONS
+========================= */
+
+const quizzes = [
+
+  {
+    q:"Which item is usually biodegradable?",
+    a:["Plastic bottle","Banana peel","Aluminum can"],
+    correct:1,
+    why:"Fruit peels can naturally decompose."
+  },
+
+  {
+    q:"Which belongs to the plastic category?",
+    a:["Plastic cup","Apple core","Glass bottle"],
+    correct:0,
+    why:"A plastic cup is mainly made from plastic."
+  },
+
+  {
+    q:"Which item is commonly metal?",
+    a:["Paper scrap","Aluminum can","Banana peel"],
+    correct:1,
+    why:"Aluminum is a metal."
+  },
+
+  {
+    q:"Why is waste segregation important?",
+    a:[
+      "It makes sorting and recovery easier",
+      "It makes all waste disappear",
+      "It means no waste needs a bin"
+    ],
+    correct:0,
+    why:"Separating materials helps proper handling and recovery."
+  },
+
+  {
+    q:"Which should be handled carefully as e-waste?",
+    a:["Old phone","Fruit peel","Paper scrap"],
+    correct:0,
+    why:"Old electronic devices are e-waste."
+  },
+
+  {
+    q:"What is a good habit before throwing something away?",
+    a:[
+      "Check the proper category",
+      "Throw everything together",
+      "Leave it on the floor"
+    ],
+    correct:0,
+    why:"Checking the category helps proper waste segregation."
+  },
+
+  {
+    q:"Which item is made from glass?",
+    a:["Glass bottle","Plastic cup","Paper box"],
+    correct:0,
+    why:"The glass bottle is the glass item."
+  },
+
+  {
+    q:"What can happen when recyclables are mixed with dirty waste?",
+    a:[
+      "Recovery can become harder",
+      "Everything becomes recyclable",
+      "Nothing changes"
+    ],
+    correct:0,
+    why:"Contamination can make recovery and recycling harder."
   }
 
-
-  /* LITTER */
-
-  const litter = [
-
-    ["📄","Paper scrap",5],
-
-    ["🍬","Wrapper",10],
-
-    ["🥤","Plastic cup",10],
-
-    ["🧴","Bottle",15],
-
-    ["🥫","Can",12],
-
-    ["📦","Small carton",8],
-
-    ["🧻","Tissue",6],
-
-    ["🥡","Food container",13]
-
-  ];
+];
 
 
-  /* STORAGE */
+/* =========================
+   SCREENS
+========================= */
 
-  function persist(){
+function screen(id){
 
-    if(!storageOK) return;
+  document
+    .querySelectorAll(".screen")
+    .forEach(s => s.classList.remove("active"));
 
-    try{
+  const el = $(id);
 
-      localStorage.setItem(
-        KEY,
-        JSON.stringify(players)
-      );
+  if(el) el.classList.add("active");
 
-    }catch(e){}
-
-  }
-
-
-  /* SCREEN */
-
-  function screen(id){
-
-    document
-      .querySelectorAll(".screen")
-      .forEach(
-        s => s.classList.remove("active")
-      );
-
-    const el = $(id);
-
-    if(el)
-      el.classList.add("active");
-
-    window.scrollTo(0,0);
-
-  }
+  window.scrollTo(0,0);
+}
 
 
-  /* LOGIN MODE */
+/* =========================
+   LOGIN
+========================= */
 
-  function setMode(m){
+function setMode(m){
 
-    mode = m;
+  mode = m;
 
-    $("createTab")
-      .classList
-      .toggle("active",m==="create");
+  $("createTab")
+    .classList.toggle("active",m==="create");
 
-    $("loginTab")
-      .classList
-      .toggle("active",m==="login");
+  $("loginTab")
+    .classList.toggle("active",m==="login");
 
-    $("formSubmit").textContent =
-      m==="create"
+  $("formSubmit").textContent =
+    m==="create"
       ? "Create my player →"
       : "Log in and play →";
 
-    $("formMsg").textContent = "";
-
-  }
-
-
-  $("createTab").onclick =
-    () => setMode("create");
-
-  $("loginTab").onclick =
-    () => setMode("login");
+  $("formMsg").textContent = "";
+}
 
 
-  $("formSubmit").onclick = () => {
+$("createTab").onclick = () => setMode("create");
 
-    const name =
-      $("playerName")
+$("loginTab").onclick = () => setMode("login");
+
+
+$("formSubmit").onclick = () => {
+
+  const name =
+    $("playerName")
       .value
       .trim()
       .replace(/\s+/g," ");
 
-    const pin =
-      $("playerPin")
+  const pin =
+    $("playerPin")
       .value
       .replace(/\D/g,"")
       .slice(0,4);
 
-    $("playerPin").value = pin;
+  $("playerPin").value = pin;
 
 
-    if(name.length < 2){
+  if(name.length < 2){
 
-      $("formMsg").textContent =
-        "Use at least 2 characters for your player name.";
+    $("formMsg").textContent =
+      "Use at least 2 characters for your player name.";
 
-      return;
-
-    }
-
-
-    if(!/^\d{4}$/.test(pin)){
-
-      $("formMsg").textContent =
-        "Enter exactly 4 digits for your demo PIN.";
-
-      return;
-
-    }
-
-
-    const key = name.toLowerCase();
-
-
-    if(mode === "create"){
-
-      if(players[key]){
-
-        $("formMsg").textContent =
-          "That player already exists. Tap Log in instead.";
-
-        return;
-
-      }
-
-
-      players[key] = {
-
-        name,
-
-        pin,
-
-        best:0,
-
-        totalItems:0,
-
-        games:0,
-
-        totalPoints:0
-
-      };
-
-
-      persist();
-
-      login(key);
-
-    }
-
-    else{
-
-      if(
-        !players[key] ||
-        players[key].pin !== pin
-      ){
-
-        $("formMsg").textContent =
-          "Player or PIN not found. Check your details.";
-
-        return;
-
-      }
-
-      login(key);
-
-    }
-
-  };
-
-
-  $("playerPin").oninput =
-    e =>
-      e.target.value =
-        e.target.value
-        .replace(/\D/g,"")
-        .slice(0,4);
-
-
-  /* LOGIN */
-
-  function login(key){
-
-    currentPlayer = key;
-
-    $("welcomeName").textContent =
-      players[key].name;
-
-    screen("homeScreen");
-
-    showPage("play");
-
-    refreshStats();
-
-    resetRoundUI();
-
-    toast(
-      "Welcome, "
-      + players[key].name
-      + "! 🌱"
-    );
-
+    return;
   }
 
 
-  /* LOGOUT */
+  if(!/^\d{4}$/.test(pin)){
 
-  $("logoutBtn").onclick = () => {
+    $("formMsg").textContent =
+      "Enter exactly 4 digits for your demo PIN.";
 
-    stopTimers();
-
-    currentPlayer = null;
-
-    $("playerName").value = "";
-
-    $("playerPin").value = "";
-
-    $("formMsg").textContent = "";
-
-    setMode("create");
-
-    screen("loginScreen");
-
-  };
+    return;
+  }
 
 
-  /* NAVIGATION */
+  const key = name.toLowerCase();
+
+
+  if(mode === "create"){
+
+    if(players[key]){
+
+      $("formMsg").textContent =
+        "That player already exists on this device. Tap Log in instead.";
+
+      return;
+    }
+
+
+    players[key] = {
+      name:name,
+      pin:pin,
+      best:0,
+      totalItems:0,
+      games:0,
+      totalPoints:0,
+      quizCorrect:0
+    };
+
+    persist();
+
+    login(key);
+
+  }else{
+
+    if(
+      !players[key] ||
+      players[key].pin !== pin
+    ){
+
+      $("formMsg").textContent =
+        "Player or PIN not found. Check your details or create a new player.";
+
+      return;
+    }
+
+    login(key);
+  }
+
+};
+
+
+$("playerPin").oninput = e => {
+
+  e.target.value =
+    e.target.value
+      .replace(/\D/g,"")
+      .slice(0,4);
+
+};
+
+
+function login(key){
+
+  currentPlayer = key;
+
+  $("welcomeName").textContent =
+    players[key].name;
+
+  screen("homeScreen");
+
+  showPage("play");
+
+  refreshStats();
+
+  resetRoundUI();
+
+  toast(
+    "Welcome, "+players[key].name+"! 🌱"
+  );
+}
+
+
+$("logoutBtn").onclick = () => {
+
+  stopTimers();
+
+  currentPlayer = null;
+
+  $("playerName").value = "";
+  $("playerPin").value = "";
+  $("formMsg").textContent = "";
+
+  setMode("create");
+
+  screen("loginScreen");
+};
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+document
+  .querySelectorAll("[data-page]")
+  .forEach(b => {
+
+    b.onclick = () =>
+      showPage(b.dataset.page);
+
+  });
+
+
+$("backToPlay").onclick =
+  () => showPage("play");
+
+
+function showPage(page){
+
+  $("playPage")
+    .classList.toggle("active",page==="play");
+
+  $("leaderboardPage")
+    .classList.toggle("active",page==="leaderboard");
 
   document
     .querySelectorAll("[data-page]")
-    .forEach(
-      b =>
-        b.onclick =
-          () => showPage(b.dataset.page)
+    .forEach(b =>
+      b.classList.toggle(
+        "active",
+        b.dataset.page === page
+      )
     );
 
-
-  $("backToPlay").onclick =
-    () => showPage("play");
-
-
-  function showPage(page){
-
-    $("playPage")
-      .classList
-      .toggle(
-        "active",
-        page === "play"
-      );
-
-    $("leaderboardPage")
-      .classList
-      .toggle(
-        "active",
-        page === "leaderboard"
-      );
+  if(page==="leaderboard")
+    renderLeaderboard();
+}
 
 
-    document
-      .querySelectorAll("[data-page]")
-      .forEach(
-        b =>
-          b.classList.toggle(
-            "active",
-            b.dataset.page === page
-          )
-      );
+/* =========================
+   PLAYER STATS
+========================= */
+
+function refreshStats(){
+
+  if(!currentPlayer) return;
+
+  const p = players[currentPlayer];
+
+  $("bestScore").textContent =
+    p.best.toLocaleString();
+
+  $("totalItems").textContent =
+    p.totalItems.toLocaleString();
 
 
-    if(page === "leaderboard")
-      renderLeaderboard();
-
-  }
-
-
-  /* STATS */
-
-  function refreshStats(){
-
-    if(!currentPlayer)
-      return;
-
-    const p =
-      players[currentPlayer];
-
-
-    $("bestScore").textContent =
-      p.best.toLocaleString();
-
-
-    $("totalItems").textContent =
-      p.totalItems.toLocaleString();
-
-
-    const arr =
-      Object.values(players)
+  const arr =
+    Object.values(players)
       .sort(
         (a,b) =>
           b.best-a.best ||
@@ -1923,807 +965,730 @@ input:focus{
       );
 
 
-    const i =
-      arr.findIndex(
-        x => x.name === p.name
-      );
+  const i =
+    arr.findIndex(
+      x => x.name === p.name
+    );
 
 
-    $("yourRank").textContent =
-      i >= 0
-      ? "#" + (i+1)
+  $("yourRank").textContent =
+    i >= 0
+      ? "#"+(i+1)
       : "—";
+}
+
+
+/* =========================
+   ROUND
+========================= */
+
+function resetRoundUI(){
+
+  stopTimers();
+
+  running = false;
+
+  timeLeft = 45;
+  score = 0;
+  collected = 0;
+  streak = 0;
+  bestStreak = 0;
+
+  quizCorrect = 0;
+  quizUsedInRound = 0;
+
+  $("timer").textContent = "00:45";
+  $("timer").classList.remove("danger");
+
+  updateStatsDisplay();
+
+  $("trashLayer").innerHTML = "";
+
+  $("gameOverlay").style.display = "flex";
+
+
+  $("gameOverlay").innerHTML = `
+    <div class="overlay-box">
+
+      <div class="overlay-icon">🧤</div>
+
+      <h3>Ready, cleaner?</h3>
+
+      <p>
+        You have 45 seconds.
+        Tap litter, sort it into the correct category,
+        and watch for surprise Eco Quizzes.
+      </p>
+
+      <button id="startBtn" class="btn">
+        Start cleaning! →
+      </button>
+
+    </div>
+  `;
+
+
+  $("startBtn").onclick = startRound;
+}
+
+
+function stopTimers(){
+
+  clearInterval(timerId);
+  clearInterval(spawnId);
+
+  timerId = null;
+  spawnId = null;
+}
+
+
+function startRound(){
+
+  if(!currentPlayer || running)
+    return;
+
+  running = true;
+
+  timeLeft = 45;
+  score = 0;
+  collected = 0;
+  streak = 0;
+  bestStreak = 0;
+  quizCorrect = 0;
+  quizUsedInRound = 0;
+
+  $("gameOverlay").style.display = "none";
+
+  $("trashLayer").innerHTML = "";
+
+  updateStatsDisplay();
+
+
+  for(let i=0;i<7;i++)
+    spawnTrash();
+
+
+  timerId = setInterval(() => {
+
+    timeLeft--;
+
+    updateTimer();
+
+    if(timeLeft <= 0)
+      finishRound();
+
+  },1000);
+
+
+  spawnId = setInterval(() => {
+
+    if(
+      running &&
+      $("trashLayer")
+        .querySelectorAll(".trash")
+        .length < 8
+    ){
+
+      spawnTrash();
+
+    }
+
+  },650);
+}
+
+
+/* =========================
+   SPAWN TRASH
+========================= */
+
+function spawnTrash(){
+
+  if(!running) return;
+
+  const item =
+    litter[
+      Math.floor(
+        Math.random()*litter.length
+      )
+    ];
+
+
+  const el =
+    document.createElement("button");
+
+
+  el.type = "button";
+
+  el.className = "trash";
+
+  el.textContent = item[0];
+
+  el.setAttribute(
+    "aria-label",
+    item[1]+" worth "+item[3]+" points"
+  );
+
+  el.title =
+    item[1]+" · "+item[2]+" · +"+item[3];
+
+
+  const scene = $("scene");
+
+  const rect =
+    scene.getBoundingClientRect();
+
+
+  const x =
+    10 +
+    Math.random() *
+    Math.max(20,rect.width-76);
+
+
+  const y =
+    145 +
+    Math.random() *
+    Math.max(20,rect.height-225);
+
+
+  el.style.left = x+"px";
+  el.style.top = y+"px";
+
+
+  el.onclick =
+    () => collectTrash(el,item);
+
+
+  $("trashLayer")
+    .appendChild(el);
+}
+
+
+/* =========================
+   SORTING
+========================= */
+
+function collectTrash(el,item){
+
+  if(
+    !running ||
+    el.classList.contains("taken")
+  )
+    return;
+
+  el.classList.add("taken");
+
+  openSortChoice(item,el);
+}
+
+
+function openSortChoice(item,el){
+
+  $("gameOverlay").style.display = "flex";
+
+
+  let shuffled =
+    [...categories]
+      .sort(() => Math.random()-.5)
+      .slice(0,4);
+
+
+  if(!shuffled.includes(item[2])){
+
+    shuffled[
+      Math.floor(
+        Math.random()*shuffled.length
+      )
+    ] = item[2];
 
   }
 
 
-  /* RESET ROUND */
+  $("gameOverlay").innerHTML = `
 
-  function resetRoundUI(){
+    <div class="overlay-box quiz-box">
 
-    stopTimers();
+      <span class="quiz-tag">
+        ♻️ SORT IT
+      </span>
 
-    running = false;
+      <h3>
+        ${item[0]} ${escapeHTML(item[1])}
+      </h3>
 
-    timeLeft = 45;
+      <p>
+        Which category does this item belong to?
+      </p>
 
-    score = 0;
+      <div class="quiz-options">
 
-    collected = 0;
+        ${
+          shuffled.map(c => `
+            <button
+              class="quiz-option"
+              data-cat="${escapeHTML(c)}"
+              type="button"
+            >
+              ${escapeHTML(c)}
+            </button>
+          `).join("")
+        }
+
+      </div>
+
+      <div id="sortResult"></div>
+
+    </div>
+  `;
+
+
+  document
+    .querySelectorAll(".quiz-option")
+    .forEach(btn => {
+
+      btn.onclick =
+        () =>
+          resolveSort(
+            btn,
+            item,
+            el
+          );
+
+    });
+
+}
+
+
+function resolveSort(btn,item,el){
+
+  document
+    .querySelectorAll(".quiz-option")
+    .forEach(
+      b => b.disabled = true
+    );
+
+
+  const correct =
+    btn.dataset.cat === item[2];
+
+
+  const result =
+    $("sortResult");
+
+
+  if(correct){
+
+    btn.classList.add("correct");
+
+    score += item[3];
+
+    collected++;
+
+    streak++;
+
+    bestStreak =
+      Math.max(
+        bestStreak,
+        streak
+      );
+
+
+    result.className =
+      "quiz-result";
+
+    result.textContent =
+      "Correct! +"+
+      item[3]+
+      " points 🌱";
+
+
+    toast(
+      "Nice sort! +"+item[3]
+    );
+
+  }else{
+
+    btn.classList.add("wrong");
 
     streak = 0;
 
-    bestStreak = 0;
 
-    challengeUsed = 0;
-
-
-    $("timer").textContent = "00:45";
-
-    $("timer")
-      .classList
-      .remove("danger");
+    const right =
+      document.querySelector(
+        `.quiz-option[data-cat="${CSS.escape(item[2])}"]`
+      );
 
 
-    $("scoreValue").textContent = "0";
-
-    $("collectedValue").textContent = "0";
-
-    $("streakValue").textContent = "0";
+    if(right)
+      right.classList.add("correct");
 
 
-    $("trashLayer").innerHTML = "";
+    result.className =
+      "quiz-result wrong-text";
 
-    $("ecoChallenge").style.display = "none";
+    result.textContent =
+      "Almost! "+
+      item[1]+
+      " goes in "+
+      item[2]+
+      ". +0 points";
+  }
 
 
-    $("gameOverlay").style.display = "flex";
+  updateStatsDisplay();
 
 
-    $("gameOverlay").innerHTML = `
+  setTimeout(() => {
 
-      <div class="overlay-box">
+    $("gameOverlay").style.display =
+      "none";
 
-        <div class="overlay-icon">🧤</div>
+    el.remove();
 
-        <h3>Ready, cleaner?</h3>
+    if(running)
+      spawnTrash();
 
-        <p>
-          You have 45 seconds.
-          Tap the litter as fast as you can,
-          build streaks, and earn bonus points.
-        </p>
 
-        <button
-          id="startBtn"
-          class="btn"
-          type="button"
-        >
-          Start cleaning! →
+    maybeBonusQuiz();
+
+  },700);
+
+}
+
+
+/* =========================
+   BONUS ECO QUIZ
+========================= */
+
+function maybeBonusQuiz(){
+
+  if(!running)
+    return;
+
+  if(collected === 0)
+    return;
+
+  if(collected % 5 !== 0)
+    return;
+
+  if(quizUsedInRound >= 3)
+    return;
+
+
+  quizUsedInRound++;
+
+  setTimeout(
+    showBonusQuiz,
+    120
+  );
+}
+
+
+function showBonusQuiz(){
+
+  if(!running)
+    return;
+
+
+  const q =
+    quizzes[
+      Math.floor(
+        Math.random()*quizzes.length
+      )
+    ];
+
+
+  $("gameOverlay").style.display =
+    "flex";
+
+
+  $("gameOverlay").innerHTML = `
+
+    <div class="overlay-box quiz-box">
+
+      <span class="quiz-tag">
+        🌿 ECO BONUS
+      </span>
+
+      <h3>
+        ${escapeHTML(q.q)}
+      </h3>
+
+      <p>
+        Correct answer =
+        <strong>+20 bonus points</strong>.
+      </p>
+
+      <div class="quiz-options">
+
+        ${
+          q.a.map((a,i) => `
+            <button
+              class="quiz-option"
+              data-answer="${i}"
+              type="button"
+            >
+              ${escapeHTML(a)}
+            </button>
+          `).join("")
+        }
+
+      </div>
+
+      <div id="quizResult"></div>
+
+    </div>
+  `;
+
+
+  document
+    .querySelectorAll(".quiz-option")
+    .forEach(btn => {
+
+      btn.onclick =
+        () =>
+          resolveBonus(btn,q);
+
+    });
+
+}
+
+
+function resolveBonus(btn,q){
+
+  document
+    .querySelectorAll(".quiz-option")
+    .forEach(
+      b => b.disabled = true
+    );
+
+
+  const correct =
+    Number(btn.dataset.answer)
+    === q.correct;
+
+
+  const result =
+    $("quizResult");
+
+
+  if(correct){
+
+    btn.classList.add("correct");
+
+    score += 20;
+
+    quizCorrect++;
+
+
+    result.className =
+      "quiz-result";
+
+    result.textContent =
+      "Correct! +20 bonus points 🎉 "+
+      q.why;
+
+
+    toast(
+      "+20 ECO BONUS! 🌿"
+    );
+
+  }else{
+
+    btn.classList.add("wrong");
+
+
+    const right =
+      document.querySelector(
+        `.quiz-option[data-answer="${q.correct}"]`
+      );
+
+
+    if(right)
+      right.classList.add("correct");
+
+
+    result.className =
+      "quiz-result wrong-text";
+
+    result.textContent =
+      "Nice try! "+q.why;
+
+  }
+
+
+  updateStatsDisplay();
+
+
+  setTimeout(() => {
+
+    if(running)
+      $("gameOverlay").style.display =
+        "none";
+
+  },1100);
+
+}
+
+
+/* =========================
+   DISPLAY
+========================= */
+
+function updateStatsDisplay(){
+
+  $("scoreValue").textContent =
+    score.toLocaleString();
+
+  $("collectedValue").textContent =
+    collected;
+
+  $("streakValue").textContent =
+    streak;
+}
+
+
+function updateTimer(){
+
+  $("timer").textContent =
+    "00:"+
+    String(
+      Math.max(0,timeLeft)
+    ).padStart(2,"0");
+
+
+  $("timer")
+    .classList.toggle(
+      "danger",
+      timeLeft <= 10
+    );
+}
+
+
+/* =========================
+   FINISH
+========================= */
+
+function finishRound(){
+
+  if(!running)
+    return;
+
+  running = false;
+
+  stopTimers();
+
+
+  const p =
+    players[currentPlayer];
+
+
+  p.best =
+    Math.max(
+      p.best,
+      score
+    );
+
+  p.totalItems += collected;
+
+  p.games++;
+
+  p.totalPoints += score;
+
+  p.quizCorrect =
+    (p.quizCorrect || 0)
+    + quizCorrect;
+
+
+  persist();
+
+  refreshStats();
+
+
+  const rank =
+    getRank(currentPlayer);
+
+
+  $("gameOverlay").style.display =
+    "flex";
+
+
+  $("gameOverlay").innerHTML = `
+
+    <div class="overlay-box">
+
+      <div class="overlay-icon">
+        🏆
+      </div>
+
+      <h3>
+        Cleaning complete!
+      </h3>
+
+      <p>
+        You cleaned the virtual classroom
+        and made every tap count.
+      </p>
+
+      <div class="result-grid">
+
+        <div class="result-stat">
+          <strong>${score}</strong>
+          <span>Score</span>
+        </div>
+
+        <div class="result-stat">
+          <strong>${collected}</strong>
+          <span>Items</span>
+        </div>
+
+        <div class="result-stat">
+          <strong>${bestStreak}</strong>
+          <span>Best streak</span>
+        </div>
+
+      </div>
+
+      <div class="bonus-banner">
+        🧠 Eco Quiz correct:
+        ${quizCorrect}
+        · 🏆 Current ranking:
+        <strong>${rank}</strong>
+      </div>
+
+      <div class="overlay-actions">
+
+        <button id="againBtn" class="btn">
+          Play again →
+        </button>
+
+        <button id="boardBtn" class="btn secondary">
+          View leaderboard
         </button>
 
       </div>
 
-    `;
+    </div>
+  `;
 
 
-    $("startBtn").onclick =
-      startRound;
+  $("againBtn").onclick =
+    resetRoundUI;
 
-  }
 
+  $("boardBtn").onclick =
+    () => showPage("leaderboard");
 
-  /* TIMERS */
+}
 
-  function stopTimers(){
 
-    clearInterval(timerId);
+/* =========================
+   LEADERBOARD
+========================= */
 
-    clearInterval(spawnId);
+function getRank(key){
 
-    timerId = null;
-
-    spawnId = null;
-
-  }
-
-
-  /* START GAME */
-
-  function startRound(){
-
-    if(
-      !currentPlayer ||
-      running
-    )
-      return;
-
-
-    running = true;
-
-    timeLeft = 45;
-
-    score = 0;
-
-    collected = 0;
-
-    streak = 0;
-
-    bestStreak = 0;
-
-    challengeUsed = 0;
-
-
-    $("gameOverlay")
-      .style
-      .display = "none";
-
-
-    $("ecoChallenge")
-      .style
-      .display = "none";
-
-
-    $("trashLayer").innerHTML = "";
-
-
-    updateStats();
-
-
-    /* initial trash */
-
-    for(let i=0;i<8;i++)
-      spawnTrash();
-
-
-    timerId =
-      setInterval(() => {
-
-        timeLeft--;
-
-        updateTimer();
-
-
-        /*
-          Occasional educational challenge.
-          It only appears once during the round,
-          not on every tap.
-        */
-
-        if(
-          timeLeft === 28 &&
-          challengeUsed === 0
-        ){
-
-          showEcoChallenge();
-
-        }
-
-
-        if(timeLeft <= 0)
-          finishRound();
-
-      },1000);
-
-
-    spawnId =
-      setInterval(() => {
-
-        if(
-          running &&
-          !$("ecoChallenge").matches(".active")
-        ){
-
-          if(
-            $("trashLayer")
-              .querySelectorAll(".trash")
-              .length < 9
-          ){
-
-            spawnTrash();
-
-          }
-
-        }
-
-      },520);
-
-  }
-
-
-  /* SPAWN */
-
-  function spawnTrash(){
-
-    if(!running)
-      return;
-
-
-    const item =
-      litter[
-        Math.floor(
-          Math.random()*litter.length
-        )
-      ];
-
-
-    const el =
-      document.createElement("button");
-
-
-    el.type = "button";
-
-    el.className = "trash";
-
-    el.textContent = item[0];
-
-
-    el.setAttribute(
-      "aria-label",
-      "Collect "
-      + item[1]
-      + " for "
-      + item[2]
-      + " points"
-    );
-
-
-    el.title =
-      item[1]
-      + " +"
-      + item[2];
-
-
-    const scene =
-      $("scene");
-
-    const rect =
-      scene.getBoundingClientRect();
-
-
-    const x =
-      12 +
-      Math.random() *
-      Math.max(
-        20,
-        rect.width - 74
-      );
-
-
-    /*
-      Keep trash away from
-      top UI and bottom furniture.
-    */
-
-    const y =
-      130 +
-      Math.random() *
-      Math.max(
-        40,
-        rect.height - 245
-      );
-
-
-    el.style.left =
-      x + "px";
-
-    el.style.top =
-      y + "px";
-
-
-    el.onclick =
-      () =>
-        collectTrash(
-          el,
-          item
-        );
-
-
-    $("trashLayer")
-      .appendChild(el);
-
-  }
-
-
-  /* COLLECT */
-
-  function collectTrash(
-    el,
-    item
-  ){
-
-    if(
-      !running ||
-      el.classList.contains("taken")
-    )
-      return;
-
-
-    el.classList.add("taken");
-
-
-    streak++;
-
-    collected++;
-
-
-    if(streak > bestStreak)
-      bestStreak = streak;
-
-
-    let points =
-      item[2];
-
-
-    /*
-      STREAK BONUSES
-
-      3 = +5
-      5 = +10
-      10 = +20
-    */
-
-    let bonus = 0;
-
-
-    if(streak === 3){
-
-      bonus = 5;
-
-      toast("🔥 3-streak! +5 bonus!");
-
-    }
-
-    else if(streak === 5){
-
-      bonus = 10;
-
-      toast("🔥 5-streak! +10 bonus!");
-
-    }
-
-    else if(streak === 10){
-
-      bonus = 20;
-
-      toast("🔥 CLEAN SWEEP! +20 bonus!");
-
-    }
-
-
-    score += points + bonus;
-
-
-    $("scoreValue").textContent =
-      score.toLocaleString();
-
-
-    $("collectedValue").textContent =
-      collected;
-
-
-    $("streakValue").textContent =
-      streak;
-
-
-    const r =
-      el.getBoundingClientRect();
-
-
-    const sr =
-      $("scene").getBoundingClientRect();
-
-
-    const f =
-      document.createElement("div");
-
-
-    f.className =
-      "float-points";
-
-
-    f.textContent =
-      bonus
-      ? "+" + (points+bonus)
-      : "+" + points;
-
-
-    f.style.left =
-      (r.left-sr.left)
-      + "px";
-
-
-    f.style.top =
-      (r.top-sr.top)
-      + "px";
-
-
-    $("trashLayer")
-      .appendChild(f);
-
-
-    setTimeout(
-      () => f.remove(),
-      700
-    );
-
-
-    setTimeout(() => {
-
-      el.remove();
-
-      if(running)
-        spawnTrash();
-
-    },160);
-
-  }
-
-
-  /* UPDATE */
-
-  function updateStats(){
-
-    $("scoreValue").textContent =
-      score.toLocaleString();
-
-    $("collectedValue").textContent =
-      collected;
-
-    $("streakValue").textContent =
-      streak;
-
-  }
-
-
-  /* TIMER */
-
-  function updateTimer(){
-
-    $("timer").textContent =
-      "00:" +
-      String(
-        Math.max(0,timeLeft)
-      ).padStart(2,"0");
-
-
-    $("timer")
-      .classList
-      .toggle(
-        "danger",
-        timeLeft <= 10
-      );
-
-  }
-
-
-  /* ECO CHALLENGE */
-
-  function showEcoChallenge(){
-
-    if(
-      !running ||
-      challengeUsed > 0
-    )
-      return;
-
-
-    challengeUsed = 1;
-
-
-    /*
-      Pause gameplay while the
-      educational question appears.
-    */
-
-    const current =
-      litter[
-        Math.floor(
-          Math.random()*litter.length
-        )
-      ];
-
-
-    let answer = "Recyclable";
-
-    if(
-      current[1] === "Tissue"
-    )
-      answer = "Residual";
-
-    if(
-      current[1] === "Food container"
-    )
-      answer = "Recyclable";
-
-
-    const options = [
-      "Recyclable",
-      "Residual"
-    ];
-
-
-    $("ecoChallenge").innerHTML = `
-
-      <div class="eco-box">
-
-        <div class="eco-icon">
-          🌱
-        </div>
-
-        <h3>
-          Eco Challenge!
-        </h3>
-
-        <p>
-          Quick environmental bonus!
-          Where should this item generally go
-          when following proper school waste rules?
-        </p>
-
-        <div class="eco-item">
-          ${current[0]}
-        </div>
-
-        <div style="
-          font-weight:900;
-          margin-bottom:14px;
-        ">
-          ${current[1]}
-        </div>
-
-        <div class="eco-options">
-
-          <button
-            class="eco-option"
-            data-answer="Recyclable"
-          >
-            ♻️ Recyclable
-          </button>
-
-          <button
-            class="eco-option"
-            data-answer="Residual"
-          >
-            🗑️ Residual
-          </button>
-
-        </div>
-
-        <div
-          id="ecoFeedback"
-          class="eco-feedback"
-        ></div>
-
-      </div>
-
-    `;
-
-
-    $("ecoChallenge")
-      .style
-      .display = "flex";
-
-
-    document
-      .querySelectorAll(".eco-option")
-      .forEach(btn => {
-
-        btn.onclick = () => {
-
-          const selected =
-            btn.dataset.answer;
-
-
-          const feedback =
-            $("ecoFeedback");
-
-
-          if(
-            selected === answer
-          ){
-
-            score += 15;
-
-            feedback.textContent =
-              "✅ Correct! +15 eco bonus!";
-
-            feedback.style.color =
-              "#297a4c";
-
-          }
-
-          else{
-
-            streak = 0;
-
-            feedback.textContent =
-              "🌱 Keep learning! No bonus this time.";
-
-            feedback.style.color =
-              "#9b6a22";
-
-          }
-
-
-          updateStats();
-
-
-          setTimeout(() => {
-
-            $("ecoChallenge")
-              .style
-              .display = "none";
-
-          },700);
-
-        };
-
-      });
-
-  }
-
-
-  /* FINISH */
-
-  function finishRound(){
-
-    if(!running)
-      return;
-
-
-    running = false;
-
-    stopTimers();
-
-
-    const p =
-      players[currentPlayer];
-
-
-    p.best =
-      Math.max(
-        p.best,
-        score
-      );
-
-
-    p.totalItems +=
-      collected;
-
-
-    p.games++;
-
-
-    p.totalPoints +=
-      score;
-
-
-    persist();
-
-
-    refreshStats();
-
-
-    const rank =
-      getRank(currentPlayer);
-
-
-    $("gameOverlay")
-      .style
-      .display = "flex";
-
-
-    $("gameOverlay").innerHTML = `
-
-      <div class="overlay-box">
-
-        <div class="overlay-icon">
-          🏆
-        </div>
-
-        <h3>
-          Cleaning complete!
-        </h3>
-
-        <div class="overlay-score">
-          ${score.toLocaleString()}
-        </div>
-
-        <div class="overlay-score-label">
-          points
-        </div>
-
-        <p>
-          You cleaned the virtual classroom
-          and made every tap count!
-        </p>
-
-        <div class="result-grid">
-
-          <div class="result-box">
-
-            <strong>
-              ${collected}
-            </strong>
-
-            <span>
-              Items
-            </span>
-
-          </div>
-
-          <div class="result-box">
-
-            <strong>
-              ${bestStreak}
-            </strong>
-
-            <span>
-              Best streak
-            </span>
-
-          </div>
-
-          <div class="result-box">
-
-            <strong>
-              ${rank}
-            </strong>
-
-            <span>
-              Ranking
-            </span>
-
-          </div>
-
-        </div>
-
-        <div class="rank-banner">
-          🏆 Current leaderboard position:
-          <strong>${rank}</strong>
-        </div>
-
-        <div class="overlay-actions">
-
-          <button
-            id="againBtn"
-            class="btn"
-          >
-            Play again →
-          </button>
-
-          <button
-            id="boardBtn"
-            class="btn secondary"
-          >
-            Leaderboard
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-
-    $("againBtn").onclick =
-      resetRoundUI;
-
-
-    $("boardBtn").onclick =
-      () =>
-        showPage("leaderboard");
-
-  }
-
-
-  /* RANK */
-
-  function getRank(key){
-
-    const arr =
-      Object.values(players)
+  const arr =
+    Object.values(players)
       .sort(
         (a,b) =>
           b.best-a.best ||
@@ -2731,26 +1696,23 @@ input:focus{
       );
 
 
-    const p =
-      players[key];
+  const p =
+    players[key];
 
 
-    return "#" +
-      (
-        arr.findIndex(
-          x => x.name === p.name
-        ) + 1
-      );
+  return "#"+
+    (
+      arr.findIndex(
+        x => x.name === p.name
+      ) + 1
+    );
+}
 
-  }
 
+function renderLeaderboard(){
 
-  /* LEADERBOARD */
-
-  function renderLeaderboard(){
-
-    const arr =
-      Object.values(players)
+  const arr =
+    Object.values(players)
       .sort(
         (a,b) =>
           b.best-a.best ||
@@ -2758,157 +1720,131 @@ input:focus{
       );
 
 
-    const box =
-      $("leaderRows");
+  const box =
+    $("leaderRows");
 
 
-    if(!arr.length){
-
-      box.innerHTML = `
-
-        <div class="empty">
-
-          <div style="font-size:38px">
-            🌱
-          </div>
-
-          <strong>
-            No cleaners yet.
-          </strong>
-
-          Be the first cleaner!
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
+  if(!arr.length){
 
     box.innerHTML =
-      arr.map((p,i) => {
+      '<div class="empty">No players yet. Be the first cleaner!</div>';
 
-        const medal =
-          i===0
+    return;
+  }
+
+
+  box.innerHTML =
+    arr.map((p,i) => {
+
+      const medal =
+        i===0
           ? "🥇"
           : i===1
           ? "🥈"
           : i===2
           ? "🥉"
-          : (i+1);
+          : i+1;
 
 
-        const isMe =
-          currentPlayer &&
-          p.name ===
-          players[currentPlayer]?.name;
+      const me =
+        currentPlayer &&
+        p.name ===
+        players[currentPlayer]?.name;
 
 
-        return `
+      return `
 
-          <div
-            class="leader-row ${isMe ? "me" : ""}"
-          >
+        <div class="leader-row ${me?"me":""}">
 
-            <div class="rank-medal">
-              ${medal}
+          <div class="rank-medal">
+            ${medal}
+          </div>
+
+          <div>
+
+            <div class="player-name">
+              ${escapeHTML(p.name)}
+              ${me?"🌿":""}
             </div>
 
-            <div>
-
-              <div class="player-name">
-                ${escapeHTML(p.name)}
-              </div>
-
-              <div class="player-meta">
-                ${p.totalItems}
-                items collected
-                · ${p.games}
-                round${p.games===1?"":"s"}
-              </div>
-
-            </div>
-
-            <div class="leader-score">
-
-              ${p.best.toLocaleString()}
-
-              <small>
-                best score
-              </small>
-
+            <div class="player-meta">
+              ${p.totalItems} items ·
+              ${p.quizCorrect || 0}
+              Eco Quizzes correct ·
+              ${p.games} rounds
             </div>
 
           </div>
 
-        `;
+          <div class="leader-score">
 
-      })
-      .join("");
+            ${p.best.toLocaleString()}
 
-  }
+            <small>
+              best score
+            </small>
 
+          </div>
 
-  /* SECURITY */
+        </div>
 
-  function escapeHTML(s){
+      `;
 
-    return String(s)
-      .replace(
-        /[&<>"']/g,
-        m =>
-          ({
-            "&":"&amp;",
-            "<":"&lt;",
-            ">":"&gt;",
-            '"':"&quot;",
-            "'":"&#039;"
-          }[m])
-      );
-
-  }
+    }).join("");
+}
 
 
-  /* TOAST */
+/* =========================
+   SAFETY
+========================= */
 
-  function toast(msg){
+function escapeHTML(s){
 
-    const t =
-      $("toast");
+  return String(s).replace(
+    /[&<>"']/g,
+    m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m])
+  );
+
+}
 
 
-    t.textContent =
-      msg;
+/* =========================
+   TOAST
+========================= */
 
+function toast(msg){
 
-    t.classList.add("show");
+  const t =
+    $("toast");
 
+  t.textContent =
+    msg;
 
-    clearTimeout(
-      window.__cqToast
+  t.classList.add("show");
+
+  clearTimeout(
+    window.__cqToast
+  );
+
+  window.__cqToast =
+    setTimeout(
+      () =>
+        t.classList.remove("show"),
+      1800
     );
+}
 
 
-    window.__cqToast =
-      setTimeout(
-        () =>
-          t.classList.remove("show"),
-        1800
-      );
-
-  }
-
-
-  /* START CLEAN */
-
-  setMode("create");
-
-  screen("loginScreen");
+setMode("create");
+screen("loginScreen");
 
 })();
-
 </script>
 
 </body>
