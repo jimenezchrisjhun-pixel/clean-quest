@@ -1,329 +1,1360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#e9f7eb">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#e9f7eb" />
 <title>Clean Quest — Play Clean. Rank Up.</title>
 
 <style>
 :root{
-  --ink:#20382d;--muted:#6e8175;--green:#297a4c;--green2:#43a66a;
-  --line:#dce9dd;--shadow:0 18px 48px rgba(42,91,58,.12)
+  --ink:#20382d;
+  --muted:#6e8175;
+  --green:#297a4c;
+  --green2:#43a66a;
+  --mint:#e9f7eb;
+  --pale:#f7fbf6;
+  --line:#dce9dd;
+  --gold:#ffd879;
+  --coral:#ff9b86;
+  --shadow:0 18px 48px rgba(42,91,58,.12);
 }
+
 *{box-sizing:border-box}
+
 body{
-  margin:0;font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  margin:0;
+  font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--ink);
-  background:radial-gradient(circle at 8% 6%,#fff 0,transparent 30%),
-  linear-gradient(145deg,#edf9ef,#f8fbf5 56%,#e5f3e7);
-  min-height:100vh
+  background:
+    radial-gradient(circle at 8% 6%,#fff 0,transparent 30%),
+    linear-gradient(145deg,#edf9ef,#f8fbf5 56%,#e5f3e7);
+  min-height:100vh;
 }
-button,input{font:inherit}button{cursor:pointer}
-.app{max-width:1100px;margin:auto;padding:22px 18px 44px}
-header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:950;font-size:clamp(20px,4vw,29px);letter-spacing:-.04em}
-.brandmark{width:45px;height:45px;border-radius:15px;background:#ccebd1;display:grid;place-items:center;font-size:25px}
-.brand small{display:block;font-size:10px;letter-spacing:.16em;color:var(--muted);font-weight:800}
-.top-pill{border:1px solid var(--line);border-radius:999px;background:#ffffffb8;padding:9px 13px;font-size:12px;font-weight:800;color:var(--green)}
 
-.screen{display:none}.screen.active{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+button,input{font:inherit}
+button{cursor:pointer}
 
-.card{background:#ffffffdf;border:1px solid #dceadd;border-radius:25px;box-shadow:var(--shadow)}
-.login-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.app{
+  max-width:1100px;
+  margin:0 auto;
+  padding:22px 18px 44px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:950;
+  letter-spacing:-.04em;
+  font-size:clamp(20px,4vw,29px);
+}
+
+.brandmark{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  background:#ccebd1;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  box-shadow:inset 0 -3px rgba(28,105,58,.08);
+}
+
+.brand small{
+  display:block;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:800;
+  margin-top:1px;
+}
+
+.top-pill{
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#ffffffb8;
+  padding:9px 13px;
+  font-size:12px;
+  font-weight:800;
+  color:var(--green);
+}
+
+.screen{display:none}
+.screen.active{
+  display:block;
+  animation:fade .25s ease;
+}
+
+@keyframes fade{
+  from{opacity:.4;transform:translateY(5px)}
+  to{opacity:1;transform:none}
+}
+
+.card{
+  background:#ffffffd9;
+  border:1px solid #dceadd;
+  border-radius:25px;
+  box-shadow:var(--shadow);
+}
+
+/* LOGIN */
+
+.login-layout{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px;
+  align-items:stretch;
+}
+
 .hero{
-  padding:clamp(25px,5vw,50px);background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);
-  color:white;position:relative;overflow:hidden;min-height:455px
+  padding:clamp(25px,5vw,50px);
+  background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);
+  color:white;
+  position:relative;
+  overflow:hidden;
+  min-height:455px;
 }
-.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.18em;font-weight:900;opacity:.78}
-h1{font-size:clamp(39px,6vw,66px);line-height:.98;letter-spacing:-.065em;margin:14px 0 16px}
-.hero p{max-width:390px;line-height:1.65;color:#e4f5e7;font-size:15px}
-.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
-.hero-chips span{padding:8px 11px;border-radius:999px;background:#ffffff1b;border:1px solid #ffffff2d;font-size:11px;font-weight:800}
-.hero-art{position:absolute;right:24px;bottom:22px;font-size:84px}
-.form-card{padding:clamp(23px,4vw,36px);display:flex;flex-direction:column;justify-content:center}
-h2{margin:0;font-size:27px;letter-spacing:-.04em}
-.sub{margin:8px 0 24px;color:var(--muted);font-size:13px;line-height:1.55}
 
-.tabs{display:grid;grid-template-columns:1fr 1fr;background:#edf5ee;border-radius:13px;padding:4px;margin-bottom:20px}
-.tab{border:0;border-radius:10px;padding:11px;background:transparent;color:var(--muted);font-size:13px;font-weight:850}
-.tab.active{background:white;color:var(--green)}
-label{display:block;font-size:12px;font-weight:850;margin:12px 0 7px}
-input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;background:#fbfefb;outline:none;color:var(--ink)}
+.hero:after{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  right:-88px;
+  bottom:-104px;
+  background:#ffffff17;
+  border:1px solid #ffffff22;
+  box-shadow:0 0 0 30px #ffffff08,0 0 0 60px #ffffff06;
+}
+
+.eyebrow{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-weight:900;
+  opacity:.78;
+}
+
+h1{
+  font-size:clamp(39px,6vw,66px);
+  line-height:.98;
+  letter-spacing:-.065em;
+  margin:14px 0 16px;
+  max-width:500px;
+}
+
+.hero p{
+  max-width:420px;
+  line-height:1.65;
+  color:#e4f5e7;
+  font-size:15px;
+}
+
+.hero-chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+
+.hero-chips span{
+  padding:8px 11px;
+  border-radius:999px;
+  background:#ffffff1b;
+  border:1px solid #ffffff2d;
+  font-size:11px;
+  font-weight:800;
+}
+
+.hero-art{
+  position:absolute;
+  right:24px;
+  bottom:22px;
+  font-size:84px;
+  filter:drop-shadow(0 12px 10px #12492d32);
+  transform:rotate(-7deg);
+}
+
+.form-card{
+  padding:clamp(23px,4vw,36px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+h2{
+  margin:0;
+  font-size:27px;
+  letter-spacing:-.04em;
+}
+
+.sub{
+  margin:8px 0 24px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#edf5ee;
+  border-radius:13px;
+  padding:4px;
+  margin-bottom:20px;
+}
+
+.tab{
+  border:0;
+  border-radius:10px;
+  padding:11px;
+  background:transparent;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:850;
+}
+
+.tab.active{
+  background:white;
+  color:var(--green);
+  box-shadow:0 2px 8px #274b3510;
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:850;
+  margin:12px 0 7px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #d9e7db;
+  border-radius:12px;
+  background:#fbfefb;
+  outline:none;
+  color:var(--ink);
+}
+
+input:focus{
+  border-color:#5bb77a;
+  box-shadow:0 0 0 3px #5bb77a22;
+}
+
 .btn{
-  border:0;border-radius:13px;padding:13px 17px;background:var(--green);
-  color:white;font-weight:900;box-shadow:0 6px 0 #1e5c39
+  border:0;
+  border-radius:13px;
+  padding:13px 17px;
+  background:var(--green);
+  color:white;
+  font-weight:900;
+  box-shadow:0 6px 0 #1e5c39;
+  transition:transform .12s,box-shadow .12s;
 }
-.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #1e5c39}
-.btn.full{width:100%;margin-top:18px}
-.btn.light{background:#e7f5e9;color:var(--green);box-shadow:0 5px 0 #c7e4cc}
-.btn.secondary{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}
-.msg{min-height:18px;font-size:12px;font-weight:750;color:#b84b3d;margin-top:8px}
-.micro{color:#809085;font-size:10px;line-height:1.55;margin-top:14px}
 
-.dash-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px;flex-wrap:wrap}
-.welcome{font-size:clamp(24px,4vw,34px);font-weight:950}
-.welcome span{color:var(--green)}
-.nav{display:flex;gap:8px;flex-wrap:wrap}
+.btn:active{
+  transform:translateY(3px);
+  box-shadow:0 3px 0 #1e5c39;
+}
+
+.btn.full{
+  width:100%;
+  margin-top:18px;
+}
+
+.btn.light{
+  background:#e7f5e9;
+  color:var(--green);
+  box-shadow:0 5px 0 #c7e4cc;
+}
+
+.btn.ghost{
+  background:white;
+  color:var(--green);
+  box-shadow:none;
+  border:1px solid var(--line);
+}
+
+.btn.secondary{
+  background:#fff;
+  color:var(--green);
+  border:1px solid var(--line);
+  box-shadow:none;
+}
+
+.micro{
+  color:#809085;
+  font-size:10px;
+  line-height:1.55;
+  margin-top:14px;
+}
+
+.msg{
+  min-height:18px;
+  font-size:12px;
+  font-weight:750;
+  color:#b84b3d;
+  margin-top:8px;
+}
+
+/* DASHBOARD */
+
+.dash-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:8px 0 18px;
+  flex-wrap:wrap;
+}
+
+.welcome{
+  font-size:clamp(24px,4vw,34px);
+  font-weight:950;
+  letter-spacing:-.05em;
+}
+
+.welcome span{
+  color:var(--green);
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
 .nav button{
-  border:1px solid var(--line);background:#ffffffc9;color:var(--green);
-  font-size:12px;font-weight:850;border-radius:999px;padding:10px 14px
+  border:1px solid var(--line);
+  background:#ffffffc9;
+  color:var(--green);
+  font-size:12px;
+  font-weight:850;
+  border-radius:999px;
+  padding:10px 14px;
 }
-.nav button.active{background:var(--green);color:white}
 
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.stat{padding:17px 19px}
-.stat .label{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:900}
-.stat strong{display:block;font-size:28px;margin-top:6px}
-.stat em{font-size:11px;font-style:normal;color:var(--green);font-weight:800}
+.nav button.active{
+  background:var(--green);
+  color:white;
+  border-color:var(--green);
+}
 
-.game-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.75fr);gap:16px}
-.game-card{padding:16px}
-.game-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-.game-head h2{font-size:20px}
-.timer{background:#fff2da;color:#8a5a07;border-radius:11px;padding:9px 12px;font-weight:950}
-.timer.danger{background:#ffe3dd;color:#ac3929}
+.stat-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.stat{
+  padding:17px 19px;
+}
+
+.stat .label{
+  font-size:10px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:900;
+}
+
+.stat strong{
+  display:block;
+  font-size:28px;
+  letter-spacing:-.04em;
+  margin-top:6px;
+}
+
+.stat em{
+  font-size:11px;
+  font-style:normal;
+  color:var(--green);
+  font-weight:800;
+}
+
+/* GAME */
+
+.game-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(230px,.75fr);
+  gap:16px;
+}
+
+.game-card{
+  padding:16px;
+}
+
+.game-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.game-head h2{
+  font-size:20px;
+}
+
+.timer{
+  background:#fff2da;
+  color:#8a5a07;
+  border-radius:11px;
+  padding:9px 12px;
+  font-weight:950;
+  font-variant-numeric:tabular-nums;
+}
+
+.timer.danger{
+  background:#ffe3dd;
+  color:#ac3929;
+}
 
 .scene{
-  position:relative;overflow:hidden;border-radius:18px;
-  min-height:460px;height:clamp(460px,58vw,590px);
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  min-height:365px;
+  height:clamp(365px,48vw,460px);
   background:linear-gradient(#d9f0ed 0 62%,#d7e6d3 62% 64%,#e9d4b4 64%);
-  border:1px solid #c8dfd0;touch-action:manipulation
+  border:1px solid #c8dfd0;
 }
+
 .window{
-  position:absolute;top:23px;left:25px;width:118px;height:105px;
-  border:8px solid #fffdf0;border-radius:4px;background:#bde9e7
+  position:absolute;
+  top:23px;
+  left:25px;
+  width:118px;
+  height:105px;
+  border:8px solid #fffdf0;
+  border-radius:4px;
+  background:linear-gradient(135deg,#a8dfe0,#e4faf3);
+  box-shadow:0 3px 0 #bbd7c9;
 }
+
+.window:before,
+.window:after{
+  content:"";
+  position:absolute;
+  background:#fffdf0;
+}
+
+.window:before{
+  width:5px;
+  height:100%;
+  left:48%;
+  top:0;
+}
+
+.window:after{
+  height:5px;
+  width:100%;
+  top:48%;
+  left:0;
+}
+
 .board{
-  position:absolute;top:25px;right:26px;width:42%;height:88px;
-  background:#438468;border:8px solid #d2aa7d;border-radius:5px;
-  color:#eaffec;text-align:center;padding:15px 7px;font-size:14px;
-  font-weight:900;box-shadow:0 5px 0 #b58a61
+  position:absolute;
+  top:25px;
+  right:26px;
+  width:42%;
+  height:88px;
+  background:#438468;
+  border:8px solid #d2aa7d;
+  border-radius:5px;
+  color:#eaffec;
+  text-align:center;
+  padding:15px 7px;
+  font-size:14px;
+  letter-spacing:.06em;
+  font-weight:900;
+  transform:rotate(1deg);
+  box-shadow:0 5px 0 #b58a61;
 }
+
 .floorline{
-  position:absolute;left:0;right:0;bottom:0;height:36%;
-  background:repeating-linear-gradient(90deg,#e4c9a8 0 59px,#d7b995 60px 62px)
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:36%;
+  background:
+    repeating-linear-gradient(90deg,#e4c9a8 0 59px,#d7b995 60px 62px),
+    repeating-linear-gradient(0deg,transparent 0 44px,#d7b995 45px 47px);
+  opacity:.95;
 }
+
 .desk{
-  position:absolute;bottom:55px;left:50%;transform:translateX(-50%);
-  width:43%;height:69px;background:#b87c4c;border-radius:7px;
-  box-shadow:0 8px 0 #93613e;z-index:2
+  position:absolute;
+  bottom:55px;
+  left:50%;
+  transform:translateX(-50%);
+  width:43%;
+  height:69px;
+  background:#b87c4c;
+  border-radius:7px 7px 4px 4px;
+  box-shadow:0 8px 0 #93613e;
+  z-index:2;
 }
-.plant{position:absolute;left:26px;bottom:42px;z-index:2;font-size:55px}
-.bin{position:absolute;right:26px;bottom:38px;z-index:3;font-size:48px}
+
+.desk:before{
+  content:"";
+  position:absolute;
+  left:8%;
+  right:8%;
+  top:-12px;
+  height:16px;
+  background:#d9a271;
+  border-radius:4px;
+}
+
+.desk:after{
+  content:"";
+  position:absolute;
+  left:14%;
+  right:14%;
+  top:67px;
+  height:40px;
+  border-left:8px solid #93613e;
+  border-right:8px solid #93613e;
+}
+
+.plant{
+  position:absolute;
+  left:26px;
+  bottom:42px;
+  z-index:2;
+  font-size:55px;
+  filter:drop-shadow(0 5px 1px #45633b18);
+}
+
+.bin{
+  position:absolute;
+  right:26px;
+  bottom:38px;
+  z-index:3;
+  font-size:48px;
+  filter:drop-shadow(0 4px 1px #45633b22);
+}
 
 .trash{
-  position:absolute;z-index:5;border:2px solid #ffffffd9;border-radius:13px;
-  background:#ffffffed;min-width:58px;width:auto;height:58px;
-  padding:0 8px;display:grid;place-items:center;font-size:29px;
-  box-shadow:0 5px 12px #31573a1c;transition:.12s;
-  user-select:none;touch-action:manipulation
+  position:absolute;
+  z-index:5;
+  border:2px solid #ffffffd9;
+  border-radius:13px;
+  background:#ffffffed;
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  box-shadow:0 5px 12px #31573a1c;
+  transition:transform .12s,opacity .15s;
+  animation:pop .2s ease;
+  user-select:none;
+  touch-action:manipulation;
 }
-.trash:hover{transform:translateY(-4px) rotate(4deg) scale(1.05)}
-.trash:active{transform:scale(.9)}
+
+.trash:hover{
+  transform:translateY(-4px) rotate(4deg) scale(1.05);
+}
+
+.trash:active{
+  transform:scale(.9);
+}
+
+@keyframes pop{
+  from{transform:scale(.3)}
+  to{transform:scale(1)}
+}
+
+.trash.taken{
+  pointer-events:none;
+  animation:vanish .25s forwards;
+}
+
+@keyframes vanish{
+  to{
+    transform:scale(1.5) rotate(20deg);
+    opacity:0;
+  }
+}
+
+.float-points{
+  position:absolute;
+  z-index:8;
+  font-size:17px;
+  font-weight:1000;
+  color:#227946;
+  text-shadow:0 1px white;
+  pointer-events:none;
+  animation:floatup .8s forwards;
+}
+
+@keyframes floatup{
+  to{
+    transform:translateY(-35px);
+    opacity:0;
+  }
+}
+
+/* OVERLAY */
 
 .overlay{
-  position:absolute;inset:0;z-index:10;background:#f6fbf0e8;
-  backdrop-filter:blur(3px);display:flex;align-items:center;
-  justify-content:center;text-align:center;padding:20px
+  position:absolute;
+  inset:0;
+  z-index:10;
+  background:#f6fbf0e8;
+  backdrop-filter:blur(3px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
 }
-.overlay-box{max-width:430px;width:100%}
-.overlay-icon{font-size:48px}
-.overlay h3{font-size:25px;margin:9px 0}
-.overlay p{font-size:12px;color:#627568;line-height:1.6;margin:0 0 18px}
-.overlay-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+.overlay-box{
+  max-width:390px;
+}
+
+.overlay-icon{
+  font-size:48px;
+}
+
+.overlay h3{
+  font-size:25px;
+  letter-spacing:-.04em;
+  margin:9px 0;
+}
+
+.overlay p{
+  font-size:12px;
+  color:#627568;
+  line-height:1.6;
+  margin:0 0 18px;
+}
+
+.how-to{
+  background:#ffffffc9;
+  border:1px solid #e0ebdf;
+  border-radius:15px;
+  padding:13px;
+  margin:14px 0 18px;
+  text-align:left;
+}
+
+.how-to-title{
+  font-size:11px;
+  color:var(--green);
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.how-to-main{
+  font-size:14px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.how-to-text{
+  font-size:11px;
+  line-height:1.5;
+  color:var(--muted);
+}
+
+.quick-rule{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  font-size:10px;
+  font-weight:850;
+  color:var(--green);
+  margin-top:10px;
+}
 
 .game-foot{
-  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  color:var(--muted);font-size:11px;font-weight:750;margin-top:12px
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:750;
+  margin-top:12px;
 }
 
-.side-card{padding:20px}
-.side-card h3{margin:0 0 7px;font-size:18px}
-.side-card p{font-size:12px;line-height:1.6;color:var(--muted)}
-.points-list{display:grid;gap:9px}
+/* SIDE */
+
+.side-card{
+  padding:20px;
+}
+
+.side-card h3{
+  margin:0 0 7px;
+  font-size:18px;
+  letter-spacing:-.03em;
+}
+
+.side-card p{
+  font-size:12px;
+  line-height:1.6;
+  color:var(--muted);
+  margin:0 0 15px;
+}
+
+.points-list{
+  display:grid;
+  gap:9px;
+}
+
 .point-line{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:12px;background:#f6faf5;border:1px solid #e5eee5;
-  border-radius:11px;padding:10px
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  font-size:12px;
+  background:#f6faf5;
+  border:1px solid #e5eee5;
+  border-radius:11px;
+  padding:10px 11px;
 }
-.pts{color:var(--green);font-weight:950}
+
+.point-line span:first-child{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.pts{
+  color:var(--green);
+  font-weight:950;
+}
+
 .tip{
-  background:#fff7df;border:1px solid #f2e4b9;border-radius:13px;
-  padding:12px;margin-top:15px;font-size:11px;line-height:1.5;color:#725b24
+  background:#fff7df;
+  border:1px solid #f2e4b9;
+  border-radius:13px;
+  padding:12px;
+  margin-top:15px;
+  font-size:11px;
+  line-height:1.5;
+  color:#725b24;
 }
 
-.quiz-box{
-  background:white;border:1px solid #d8eadb;border-radius:20px;
-  padding:22px;box-shadow:0 10px 30px #31573a18
-}
-.quiz-tag{
-  display:inline-block;background:#e8f6ea;color:var(--green);
-  font-size:10px;font-weight:950;letter-spacing:.12em;
-  text-transform:uppercase;padding:7px 10px;border-radius:999px
-}
-.quiz-box h3{font-size:23px;line-height:1.15;margin:12px 0 7px}
-.quiz-box p{font-size:12px;color:var(--muted);line-height:1.5}
-.quiz-options{display:grid;gap:8px}
-.quiz-option{
-  border:1px solid #dce9dd;background:#f8fbf7;color:var(--ink);
-  border-radius:12px;padding:12px;text-align:left;font-weight:800;font-size:12px
-}
-.quiz-option:hover{border-color:#6ab77f;background:#edf8ef}
-.quiz-option.correct{background:#dcf5e2;border-color:#58ad70;color:#236b3e}
-.quiz-option.wrong{background:#ffe9e4;border-color:#e99a87;color:#9a3e30}
-.quiz-result{font-weight:900;margin-top:12px;color:var(--green);font-size:13px}
-.quiz-result.wrong-text{color:#a44b3d}
+/* LEADERBOARD */
 
-.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}
-.result-stat{
-  background:#fff;border:1px solid #dfeadf;border-radius:13px;padding:10px
-}
-.result-stat strong{display:block;font-size:22px;color:var(--green)}
-.result-stat span{font-size:9px;color:var(--muted);text-transform:uppercase;font-weight:900}
-.bonus-banner{
-  background:#fff4cc;border:1px solid #f0df9f;color:#725b24;
-  border-radius:13px;padding:10px;font-size:11px;font-weight:850;margin:10px 0
+.leader-card{
+  padding:clamp(20px,4vw,32px);
 }
 
-.leader-card{padding:clamp(20px,4vw,32px)}
 .leader-title{
-  display:flex;align-items:end;justify-content:space-between;
-  gap:12px;flex-wrap:wrap;margin-bottom:20px
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
 }
-.leader-title h2{font-size:31px}
-.leader-title p{color:var(--muted);font-size:12px}
-.leader-list{display:grid;gap:9px}
-.leader-row{
-  display:grid;grid-template-columns:42px minmax(0,1fr) auto;
-  align-items:center;gap:12px;background:#f8fbf7;
-  border:1px solid #e3ede3;border-radius:15px;padding:13px 15px
-}
-.leader-row.me{border-color:#8ac69b;background:#f0faf2}
-.rank-medal{
-  width:38px;height:38px;display:grid;place-items:center;
-  border-radius:12px;background:#e8f2e8;font-weight:950
-}
-.leader-row:nth-child(1) .rank-medal{background:#ffefbd}
-.leader-row:nth-child(2) .rank-medal{background:#e8edf0}
-.leader-row:nth-child(3) .rank-medal{background:#f4dfd1}
-.player-name{font-weight:900}
-.player-meta{font-size:10px;color:var(--muted);margin-top:3px}
-.leader-score{text-align:right;font-size:18px;font-weight:950;color:var(--green)}
-.leader-score small{display:block;font-size:9px;color:var(--muted)}
-.empty{text-align:center;padding:40px 18px;color:var(--muted)}
 
-.footnote{text-align:center;font-size:10px;color:#7c8e80;margin-top:20px;line-height:1.7}
-.toast{
-  position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);
-  opacity:0;pointer-events:none;background:#20382d;color:white;
-  padding:11px 16px;border-radius:999px;font-size:12px;font-weight:850;
-  z-index:100;transition:.2s
+.leader-title h2{
+  font-size:31px;
 }
-.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.leader-title p{
+  color:var(--muted);
+  font-size:12px;
+  margin:7px 0 0;
+}
+
+.leader-list{
+  display:grid;
+  gap:9px;
+}
+
+.leader-row{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  align-items:center;
+  gap:12px;
+  background:#f8fbf7;
+  border:1px solid #e3ede3;
+  border-radius:15px;
+  padding:13px 15px;
+}
+
+.leader-row.me{
+  border-color:#9bd1a9;
+  background:#edf8ef;
+}
+
+.rank-medal{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:#e8f2e8;
+  font-weight:950;
+}
+
+.leader-row:nth-child(1) .rank-medal{
+  background:#ffefbd;
+}
+
+.leader-row:nth-child(2) .rank-medal{
+  background:#e8edf0;
+}
+
+.leader-row:nth-child(3) .rank-medal{
+  background:#f4dfd1;
+}
+
+.player-name{
+  font-weight:900;
+}
+
+.player-meta{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.leader-score{
+  text-align:right;
+  font-size:18px;
+  font-weight:950;
+  color:var(--green);
+}
+
+.leader-score small{
+  display:block;
+  font-size:9px;
+  color:var(--muted);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 18px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.empty strong{
+  display:block;
+  color:var(--ink);
+  font-size:17px;
+  margin:9px;
+}
+
+/* PROFILE */
+
+.profile-card{
+  padding:clamp(20px,4vw,32px);
+}
+
+.profile-header{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:20px;
+}
+
+.avatar{
+  width:86px;
+  height:86px;
+  border-radius:25px;
+  background:#dff1e2;
+  border:3px solid #fff;
+  box-shadow:0 4px 15px #31573a18;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  flex-shrink:0;
+  font-size:39px;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile-name{
+  font-size:25px;
+  font-weight:950;
+  letter-spacing:-.04em;
+}
+
+.profile-small{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.profile-stat{
+  background:#f7fbf6;
+  border:1px solid #e3ede3;
+  border-radius:15px;
+  padding:15px;
+}
+
+.profile-stat span{
+  display:block;
+  font-size:10px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:850;
+}
+
+.profile-stat strong{
+  display:block;
+  margin-top:5px;
+  font-size:21px;
+  color:var(--green);
+}
+
+.edit-box{
+  margin-top:18px;
+  background:#f7fbf6;
+  border:1px solid #e3ede3;
+  border-radius:16px;
+  padding:17px;
+}
+
+.edit-box h3{
+  margin:0 0 4px;
+}
+
+.edit-box p{
+  color:var(--muted);
+  font-size:11px;
+  margin:0 0 13px;
+}
+
+.profile-actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.upload-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#e7f5e9;
+  color:var(--green);
+  border-radius:12px;
+  padding:11px 13px;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  border:1px solid #cfe6d3;
+}
+
+.upload-label input{
+  display:none;
+}
+
+.logout-btn{
+  background:#fff;
+  color:#b84b3d;
+  border:1px solid #f0d8d4;
+  box-shadow:none;
+}
+
+/* BONUS QUESTION */
+
+.bonus-box{
+  background:#ffffff;
+  border:1px solid #dfeade;
+  border-radius:19px;
+  padding:19px;
+  margin-top:14px;
+}
+
+.bonus-label{
+  color:var(--green);
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.bonus-box h4{
+  margin:7px 0 12px;
+  font-size:17px;
+}
+
+.bonus-options{
+  display:grid;
+  gap:8px;
+}
+
+.bonus-option{
+  border:1px solid #dce9dd;
+  background:#f8fbf7;
+  color:var(--ink);
+  border-radius:11px;
+  padding:10px 12px;
+  text-align:left;
+  font-size:11px;
+  font-weight:750;
+}
+
+.bonus-option:hover{
+  border-color:#73b984;
+  background:#eef8f0;
+}
+
+.bonus-result{
+  margin-top:10px;
+  font-size:11px;
+  font-weight:850;
+  color:var(--green);
+}
+
+/* FOOTER */
+
+.footnote{
+  text-align:center;
+  font-size:10px;
+  color:#7c8e80;
+  margin-top:20px;
+  line-height:1.7;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  background:#20382d;
+  color:white;
+  padding:11px 16px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  z-index:100;
+  box-shadow:0 8px 25px #0002;
+  transition:.2s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+  .stat-row{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 
 @media(max-width:780px){
-  .login-layout{grid-template-columns:1fr}
-  .hero{min-height:335px}
-  .game-layout{grid-template-columns:1fr}
-  .scene{height:500px;min-height:500px}
-  .stat-row{gap:8px}
-  .stat{padding:13px}
-  .stat strong{font-size:23px}
+  .login-layout{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    min-height:335px;
+  }
+
+  .hero-art{
+    font-size:65px;
+  }
+
+  .game-layout{
+    grid-template-columns:1fr;
+  }
+
+  .scene{
+    height:410px;
+  }
 }
-@media(max-width:440px){
-  .app{padding:14px 11px 28px}
-  .top-pill{font-size:10px;padding:8px 10px}
-  .scene{height:500px;min-height:500px}
-  .window{left:13px;width:94px;height:84px}
-  .board{right:13px;width:39%;font-size:11px;padding:13px 4px}
-  .plant{left:10px;font-size:44px}
-  .bin{right:11px;font-size:39px}
-  .desk{width:44%;bottom:59px}
-  .trash{min-width:54px;height:54px;font-size:26px}
-  .stat .label{font-size:8px}
-  .stat strong{font-size:21px}
+
+@media(max-width:520px){
+  .app{
+    padding:14px 11px 28px;
+  }
+
+  header{
+    align-items:flex-start;
+  }
+
+  .top-pill{
+    font-size:9px;
+    padding:8px 9px;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+
+  .brandmark{
+    width:40px;
+    height:40px;
+    font-size:22px;
+  }
+
+  .stat-row{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  .stat{
+    padding:13px;
+  }
+
+  .stat .label{
+    font-size:8px;
+  }
+
+  .stat strong{
+    font-size:21px;
+  }
+
+  .scene{
+    height:380px;
+    min-height:380px;
+  }
+
+  .window{
+    left:13px;
+    width:94px;
+    height:84px;
+  }
+
+  .board{
+    right:13px;
+    width:39%;
+    font-size:11px;
+    padding:13px 4px;
+  }
+
+  .plant{
+    left:10px;
+    font-size:44px;
+  }
+
+  .bin{
+    right:11px;
+    font-size:39px;
+  }
+
+  .desk{
+    width:44%;
+    bottom:59px;
+  }
+
+  .trash{
+    width:48px;
+    height:48px;
+    font-size:25px;
+  }
+
+  .leader-row{
+    padding:11px;
+    gap:8px;
+  }
+
+  .profile-header{
+    align-items:flex-start;
+  }
+
+  .avatar{
+    width:72px;
+    height:72px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
 <header>
   <div class="brand">
     <div class="brandmark">🌱</div>
-    <div>CLEAN QUEST<small>PLAY CLEAN. RANK UP.</small></div>
+    <div>
+      CLEAN QUEST
+      <small>PLAY CLEAN. RANK UP.</small>
+    </div>
   </div>
+
   <div class="top-pill">♻️ ZERO-COST GAME</div>
 </header>
 
+
+<!-- ================= LOGIN ================= -->
+
 <section id="loginScreen" class="screen active">
+
   <div class="login-layout">
 
     <div class="hero card">
+
       <div class="eyebrow">A tiny game for a greener campus</div>
-      <h1>Little taps.<br>Big impact.</h1>
+
+      <h1>
+        Little taps.<br>
+        Big impact.
+      </h1>
+
       <p>
-        Spot the litter, sort it, earn points, answer surprise Eco Quizzes,
-        and climb the leaderboard.
+        Find the litter, pick it up, earn points, and climb the eco leaderboard.
+        Every clean tap helps make our virtual classroom a little better.
       </p>
+
       <div class="hero-chips">
         <span>🎮 45-second round</span>
-        <span>🏆 Ranking</span>
-        <span>🧠 Eco Quiz</span>
+        <span>🏆 Eco ranking</span>
+        <span>🌍 Environment mission</span>
       </div>
+
       <div class="hero-art">🧹</div>
+
     </div>
 
+
     <div class="form-card card">
+
       <h2>Welcome, cleaner!</h2>
+
       <p class="sub">
-        Create a demo player or log back into one saved on this device.
+        Create a demo player to start your clean-up challenge.
       </p>
 
       <div class="tabs">
-        <button class="tab active" id="createTab">Create player</button>
-        <button class="tab" id="loginTab">Log in</button>
+        <button class="tab active" id="createTab" type="button">
+          Create player
+        </button>
+
+        <button class="tab" id="loginTab" type="button">
+          Log in
+        </button>
       </div>
 
-      <label for="playerName">Player name / nickname</label>
-      <input id="playerName" maxlength="18" placeholder="e.g. EcoCJ">
 
-      <label for="playerPin">4-digit demo PIN</label>
-      <input id="playerPin" inputmode="numeric" maxlength="4" placeholder="e.g. 1234">
+      <form id="playerForm">
 
-      <button id="formSubmit" class="btn full">
-        Create my player →
-      </button>
+        <label for="playerName">
+          Player name / nickname
+        </label>
 
-      <div id="formMsg" class="msg"></div>
+        <input
+          id="playerName"
+          maxlength="18"
+          autocomplete="nickname"
+          placeholder="e.g. EcoCJ"
+          required
+        />
+
+
+        <label for="playerPin">
+          4-digit demo PIN
+        </label>
+
+        <input
+          id="playerPin"
+          inputmode="numeric"
+          maxlength="4"
+          pattern="[0-9]{4}"
+          placeholder="e.g. 1234"
+          required
+        />
+
+
+        <button
+          id="formSubmit"
+          class="btn full"
+          type="button"
+        >
+          Create my player →
+        </button>
+
+        <div id="formMsg" class="msg" aria-live="polite"></div>
+
+      </form>
+
 
       <p class="micro">
-        Use a nickname, not your full name or real password.
-        This prototype stores demo profiles only in this browser.
+        Demo only: use a nickname instead of your full name.
+        Your demo profile is saved only in this browser.
       </p>
+
     </div>
 
   </div>
+
 </section>
+
+
+<!-- ================= HOME ================= -->
 
 <section id="homeScreen" class="screen">
 
   <div class="dash-top">
+
     <div class="welcome">
       Hey, <span id="welcomeName">Cleaner</span>! 🌿
     </div>
 
     <div class="nav">
-      <button class="active" data-page="play">🎮 Play</button>
-      <button data-page="leaderboard">🏆 Leaderboard</button>
-      <button id="logoutBtn">↩ Switch player</button>
+
+      <button class="active" data-page="play">
+        🎮 Play
+      </button>
+
+      <button data-page="leaderboard">
+        🏆 Leaderboard
+      </button>
+
+      <button data-page="profile">
+        👤 Profile
+      </button>
+
     </div>
+
   </div>
 
+
+  <!-- STATS -->
+
   <div class="stat-row">
+
     <div class="stat card">
       <div class="label">Your best score</div>
       <strong id="bestScore">0</strong>
@@ -341,7 +1372,17 @@ input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;backgr
       <strong id="yourRank">—</strong>
       <em>on this device</em>
     </div>
+
+    <div class="stat card">
+      <div class="label">Rounds played</div>
+      <strong id="gamesPlayed">0</strong>
+      <em>clean-up rounds</em>
+    </div>
+
   </div>
+
+
+  <!-- ================= PLAY PAGE ================= -->
 
   <div id="playPage" class="screen active">
 
@@ -350,17 +1391,27 @@ input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;backgr
       <div class="game-card card">
 
         <div class="game-head">
+
           <div>
-            <h2>Clean the classroom!</h2>
+            <h2>🧹 Clean the classroom!</h2>
+
             <div style="font-size:11px;color:var(--muted);margin-top:4px">
-              Tap the litter, choose its category, and score points.
+              Pick up as much litter as you can.
             </div>
           </div>
 
-          <div id="timer" class="timer">00:45</div>
+          <div id="timer" class="timer">
+            00:45
+          </div>
+
         </div>
 
-        <div id="scene" class="scene">
+
+        <div
+          id="scene"
+          class="scene"
+          aria-label="Playable classroom"
+        >
 
           <div class="window"></div>
 
@@ -370,29 +1421,72 @@ input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;backgr
           </div>
 
           <div class="floorline"></div>
+
           <div class="plant">🪴</div>
+
           <div class="desk"></div>
+
           <div class="bin">🗑️</div>
 
           <div id="trashLayer"></div>
 
+
+          <!-- START OVERLAY -->
+
           <div id="gameOverlay" class="overlay">
+
             <div class="overlay-box">
+
               <div class="overlay-icon">🧤</div>
+
               <h3>Ready, cleaner?</h3>
+
               <p>
-                You have 45 seconds. Tap litter, sort it into the right
-                category, and watch for surprise Eco Quizzes.
+                Your mission is simple: pick up the litter you see
+                around the classroom and earn points.
               </p>
-              <button id="startBtn" class="btn">
+
+
+              <div class="how-to">
+
+                <div class="how-to-title">
+                  🌱 HOW TO PLAY
+                </div>
+
+                <div class="how-to-main">
+                  🗑️ Tap the trash to pick it up!
+                </div>
+
+                <div class="how-to-text">
+                  Collect as much litter as possible before the
+                  45-second timer ends. Different items give
+                  different points.
+                </div>
+
+                <div class="quick-rule">
+                  🗑️ Pick up → ⭐ Earn points → 🏆 Rank up
+                </div>
+
+              </div>
+
+
+              <button
+                id="startBtn"
+                class="btn"
+                type="button"
+              >
                 Start cleaning! →
               </button>
+
             </div>
+
           </div>
 
         </div>
 
+
         <div class="game-foot">
+
           <span>
             ✨ Score:
             <strong id="scoreValue" style="color:var(--green)">0</strong>
@@ -407,55 +1501,73 @@ input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;backgr
             🔥 Streak:
             <strong id="streakValue" style="color:var(--green)">0</strong>
           </span>
+
         </div>
 
       </div>
 
+
+      <!-- SIDE PANEL -->
+
       <aside class="side-card card">
 
-        <h3>🧺 Clean & sort</h3>
+        <h3>🧺 Trash = points</h3>
 
         <p>
-          Tap an item, then choose where it belongs.
-          Every item has a different value.
+          Tap litter around the classroom to collect it.
+          The harder-to-spot items can give more points!
         </p>
 
+
         <div class="points-list">
+
           <div class="point-line">
-            <span>📄 Paper Scrap</span>
+            <span>📄 Paper</span>
             <span class="pts">+5</span>
           </div>
 
           <div class="point-line">
-            <span>🍬 Candy Wrapper</span>
+            <span>🧻 Tissue</span>
+            <span class="pts">+6</span>
+          </div>
+
+          <div class="point-line">
+            <span>📦 Carton</span>
+            <span class="pts">+8</span>
+          </div>
+
+          <div class="point-line">
+            <span>🍬 Wrapper</span>
             <span class="pts">+10</span>
           </div>
 
           <div class="point-line">
-            <span>🥤 Plastic Cup</span>
+            <span>🥤 Plastic cup</span>
             <span class="pts">+10</span>
           </div>
 
           <div class="point-line">
-            <span>🧴 Plastic Bottle</span>
-            <span class="pts">+15</span>
-          </div>
-
-          <div class="point-line">
-            <span>🥫 Aluminum Can</span>
+            <span>🥫 Can</span>
             <span class="pts">+12</span>
           </div>
 
           <div class="point-line">
-            <span>🍎 Fruit Peel</span>
-            <span class="pts">+8</span>
+            <span>🥡 Food container</span>
+            <span class="pts">+13</span>
           </div>
+
+          <div class="point-line">
+            <span>🧴 Bottle</span>
+            <span class="pts">+15</span>
+          </div>
+
         </div>
+
 
         <div class="tip">
           💡 <strong>Eco tip:</strong>
-          Sorting rules can differ by place.
-          Follow your school's actual waste-segregation rules in real life.
+          This is a virtual clean-up game. In real life,
+          handle waste safely and follow proper waste-segregation rules.
         </div>
 
       </aside>
@@ -464,25 +1576,194 @@ input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;backgr
 
   </div>
 
+
+  <!-- ================= LEADERBOARD ================= -->
+
   <div id="leaderboardPage" class="screen">
 
     <div class="leader-card card">
 
       <div class="leader-title">
+
         <div>
           <h2>🏆 Eco leaderboard</h2>
-          <p>The cleanest taps rise to the top.</p>
+
+          <p>
+            The cleanest taps rise to the top.
+          </p>
         </div>
 
-        <button class="btn light" id="backToPlay">
+        <button
+          class="btn light"
+          id="backToPlay"
+          type="button"
+        >
           Play a round →
         </button>
+
       </div>
+
 
       <div id="leaderRows" class="leader-list"></div>
 
+
       <div class="footnote">
-        Leaderboard includes only players saved in this browser.
+        This demo leaderboard includes players saved in
+        this browser on this device.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= PROFILE ================= -->
+
+  <div id="profilePage" class="screen">
+
+    <div class="profile-card card">
+
+      <div class="leader-title">
+
+        <div>
+          <h2>👤 My profile</h2>
+
+          <p>
+            Manage your Clean Quest player profile.
+          </p>
+        </div>
+
+        <button
+          class="btn light"
+          id="profileBackBtn"
+          type="button"
+        >
+          ← Back to game
+        </button>
+
+      </div>
+
+
+      <div class="profile-header">
+
+        <div class="avatar" id="profileAvatar">
+          🌱
+        </div>
+
+        <div>
+
+          <div
+            class="profile-name"
+            id="profileDisplayName"
+          >
+            Cleaner
+          </div>
+
+          <div class="profile-small">
+            🌿 Clean Quest player
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-grid">
+
+        <div class="profile-stat">
+          <span>Personal Best</span>
+          <strong id="profileBest">0</strong>
+        </div>
+
+        <div class="profile-stat">
+          <span>Items Collected</span>
+          <strong id="profileItems">0</strong>
+        </div>
+
+        <div class="profile-stat">
+          <span>Current Rank</span>
+          <strong id="profileRank">—</strong>
+        </div>
+
+        <div class="profile-stat">
+          <span>Rounds Played</span>
+          <strong id="profileGames">0</strong>
+        </div>
+
+      </div>
+
+
+      <div class="edit-box">
+
+        <h3>✏️ Edit profile</h3>
+
+        <p>
+          Change your nickname or choose a profile picture.
+        </p>
+
+
+        <label for="editName">
+          Player nickname
+        </label>
+
+        <input
+          id="editName"
+          maxlength="18"
+          placeholder="Your nickname"
+        />
+
+
+        <div style="margin-top:13px">
+
+          <label style="margin-top:0">
+            Profile picture
+          </label>
+
+          <label class="upload-label">
+            🖼️ Choose picture
+            <input
+              type="file"
+              id="profileImageInput"
+              accept="image/*"
+            />
+          </label>
+
+          <div
+            id="imageNote"
+            style="font-size:10px;color:var(--muted);margin-top:7px"
+          >
+            Optional. Your picture stays on this browser.
+          </div>
+
+        </div>
+
+
+        <div class="profile-actions">
+
+          <button
+            class="btn"
+            id="saveProfileBtn"
+            type="button"
+          >
+            Save changes
+          </button>
+
+          <button
+            class="btn logout-btn"
+            id="logoutProfileBtn"
+            type="button"
+          >
+            🚪 Log out
+          </button>
+
+        </div>
+
+        <div
+          id="profileMsg"
+          class="msg"
+          style="margin-top:10px"
+        ></div>
+
       </div>
 
     </div>
@@ -491,473 +1772,450 @@ input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;backgr
 
 </section>
 
+
 <div class="footnote">
-  CLEAN QUEST · A playable school-project prototype · Every tap counts 🌎
+  CLEAN QUEST · A playable school-project prototype ·
+  Every tap counts 🌎
 </div>
 
 </div>
 
-<div id="toast" class="toast"></div>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+
 
 <script>
 (() => {
 
-const $ = id => document.getElementById(id);
+  const $ = id => document.getElementById(id);
 
-const KEY = "cleanQuestPlayers_v3";
+  const KEY = "cleanQuestPlayers_v4";
 
-let players = {};
-let currentPlayer = null;
-let mode = "create";
+  let players = {};
+  let currentPlayer = null;
+  let mode = "create";
 
-let running = false;
-let timeLeft = 45;
+  let running = false;
+  let timeLeft = 45;
+  let score = 0;
+  let collected = 0;
+  let streak = 0;
 
-let score = 0;
-let collected = 0;
-let streak = 0;
-let bestStreak = 0;
-
-let quizCorrect = 0;
-let quizUsedInRound = 0;
-
-let timerId = null;
-let spawnId = null;
+  let timerId = null;
+  let spawnId = null;
 
 
-/* =========================
-   STORAGE
-========================= */
+  /* ================= STORAGE ================= */
 
-let storageOK = false;
+  let storageOK = false;
 
-try {
-  const test = "__cleanquest_test__";
+  try{
 
-  localStorage.setItem(test,"1");
-  localStorage.removeItem(test);
+    const test = "__cq_test__";
 
-  storageOK = true;
+    localStorage.setItem(test,"1");
+    localStorage.removeItem(test);
 
-  players =
-    JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+    storageOK = true;
 
-} catch(e) {
-  players = {};
-}
+    players =
+      JSON.parse(localStorage.getItem(KEY) || "{}") || {};
 
+  }catch(e){
 
-function persist(){
+    players = {};
 
-  if(!storageOK) return;
-
-  try {
-    localStorage.setItem(KEY,JSON.stringify(players));
-  } catch(e) {}
-
-}
-
-
-/* =========================
-   TRASH / ITEMS
-========================= */
-
-const litter = [
-
-  ["📄","Paper Scrap","Paper",5],
-  ["📰","Newspaper","Paper",7],
-  ["📃","Used Paper","Paper",6],
-  ["📕","Old Notebook","Paper",9],
-  ["📦","Small Carton","Paper/Cardboard",8],
-
-  ["🥡","Food Container","Plastic",13],
-  ["🧴","Plastic Bottle","Plastic",15],
-  ["🥤","Plastic Cup","Plastic",10],
-  ["🧃","Juice Box","Paper/Cardboard",11],
-  ["🧋","Plastic Drink Cup","Plastic",11],
-
-  ["🍬","Candy Wrapper","Plastic",10],
-  ["🍭","Lollipop Wrapper","Plastic",9],
-  ["🛍️","Plastic Shopping Bag","Plastic",12],
-
-  ["🥫","Aluminum Can","Metal",12],
-  ["🍾","Glass Bottle","Glass",15],
-  ["🍶","Glass Container","Glass",13],
-
-  ["🧻","Used Tissue","Residual",6],
-
-  ["🍎","Apple Core","Biodegradable",8],
-  ["🍌","Banana Peel","Biodegradable",8],
-  ["🍊","Orange Peel","Biodegradable",8],
-  ["🍋","Lemon Peel","Biodegradable",7],
-  ["🍉","Watermelon Peel","Biodegradable",9],
-  ["🍇","Fruit Remains","Biodegradable",8],
-  ["🥭","Mango Peel","Biodegradable",9],
-  ["🍍","Pineapple Peel","Biodegradable",9],
-  ["🥝","Fruit Peel","Biodegradable",8],
-  ["🍅","Vegetable Remains","Biodegradable",8],
-  ["🥕","Carrot Peel","Biodegradable",7],
-  ["🌽","Corn Husk","Biodegradable",8],
-  ["🥔","Potato Peel","Biodegradable",7],
-  ["🧅","Onion Peel","Biodegradable",7],
-  ["🧄","Garlic Peel","Biodegradable",7],
-  ["🥬","Leafy Vegetable","Biodegradable",7],
-  ["🥦","Vegetable Remains","Biodegradable",8],
-  ["🍞","Bread Remains","Biodegradable",7],
-
-  ["🍪","Cookie Wrapper","Plastic",9],
-  ["🍫","Chocolate Wrapper","Plastic",10],
-  ["🍿","Snack Packet","Plastic",10],
-  ["🧂","Salt Sachet","Plastic",8],
-
-  ["🫙","Empty Jar","Glass",12],
-
-  ["💿","Old Disc","E-waste",14],
-  ["📀","Old Disc","E-waste",14],
-  ["🔋","Used Battery","E-waste",18],
-  ["💡","Used Light Bulb","Glass",16],
-  ["🔌","Old Plug","E-waste",17],
-  ["⌨️","Old Keyboard","E-waste",20],
-  ["🖱️","Old Mouse","E-waste",18],
-  ["🎧","Broken Earphones","E-waste",16],
-  ["📱","Old Phone","E-waste",20],
-
-  ["🧸","Lost Toy","Other",6],
-
-  ["🧢","Old Cap","Textile",7],
-  ["👕","Old Shirt","Textile",9],
-  ["🧦","Old Socks","Textile",7],
-  ["👟","Old Shoe","Textile",9],
-  ["🎒","Old Bag","Textile",10],
-
-  ["🪑","Broken Chair Part","Other",12]
-];
-
-
-const categories = [
-  "Biodegradable",
-  "Paper/Cardboard",
-  "Plastic",
-  "Metal",
-  "Glass",
-  "E-waste",
-  "Textile",
-  "Residual",
-  "Other"
-];
-
-
-/* =========================
-   ECO BONUS QUESTIONS
-========================= */
-
-const quizzes = [
-
-  {
-    q:"Which item is usually biodegradable?",
-    a:["Plastic bottle","Banana peel","Aluminum can"],
-    correct:1,
-    why:"Fruit peels can naturally decompose."
-  },
-
-  {
-    q:"Which belongs to the plastic category?",
-    a:["Plastic cup","Apple core","Glass bottle"],
-    correct:0,
-    why:"A plastic cup is mainly made from plastic."
-  },
-
-  {
-    q:"Which item is commonly metal?",
-    a:["Paper scrap","Aluminum can","Banana peel"],
-    correct:1,
-    why:"Aluminum is a metal."
-  },
-
-  {
-    q:"Why is waste segregation important?",
-    a:[
-      "It makes sorting and recovery easier",
-      "It makes all waste disappear",
-      "It means no waste needs a bin"
-    ],
-    correct:0,
-    why:"Separating materials helps proper handling and recovery."
-  },
-
-  {
-    q:"Which should be handled carefully as e-waste?",
-    a:["Old phone","Fruit peel","Paper scrap"],
-    correct:0,
-    why:"Old electronic devices are e-waste."
-  },
-
-  {
-    q:"What is a good habit before throwing something away?",
-    a:[
-      "Check the proper category",
-      "Throw everything together",
-      "Leave it on the floor"
-    ],
-    correct:0,
-    why:"Checking the category helps proper waste segregation."
-  },
-
-  {
-    q:"Which item is made from glass?",
-    a:["Glass bottle","Plastic cup","Paper box"],
-    correct:0,
-    why:"The glass bottle is the glass item."
-  },
-
-  {
-    q:"What can happen when recyclables are mixed with dirty waste?",
-    a:[
-      "Recovery can become harder",
-      "Everything becomes recyclable",
-      "Nothing changes"
-    ],
-    correct:0,
-    why:"Contamination can make recovery and recycling harder."
   }
 
-];
+
+  function persist(){
+
+    if(!storageOK) return;
+
+    try{
+
+      localStorage.setItem(
+        KEY,
+        JSON.stringify(players)
+      );
+
+    }catch(e){
+
+      console.warn("Could not save player data.");
+
+    }
+
+  }
 
 
-/* =========================
-   SCREENS
-========================= */
+  /* ================= LITTER ================= */
 
-function screen(id){
+  /*
+    These are virtual litter/objects.
+    Lower values = common litter.
+    Higher values = harder-to-find items.
+  */
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(s => s.classList.remove("active"));
+  const litter = [
 
-  const el = $(id);
+    ["📄","Paper scrap",5],
+    ["📃","Paper sheet",5],
+    ["🧻","Tissue",6],
+    ["📰","Newspaper",6],
+    ["📜","Old paper",6],
+    ["📦","Small carton",8],
 
-  if(el) el.classList.add("active");
+    ["🍬","Candy wrapper",10],
+    ["🍭","Candy stick",9],
+    ["🍿","Snack packet",10],
+    ["🥤","Plastic cup",10],
+    ["🧃","Juice carton",11],
+    ["🧋","Drink cup",11],
 
-  window.scrollTo(0,0);
-}
+    ["🥫","Can",12],
+    ["🥡","Food container",13],
+    ["🍱","Food box",13],
+    ["🛍️","Plastic bag",12],
+
+    ["🧴","Bottle",15],
+    ["🍾","Bottle",15],
+    ["🧼","Soap container",11],
+    ["🧽","Sponge",8],
+
+    ["✏️","Pencil",7],
+    ["🖊️","Pen",7],
+    ["🖍️","Crayon",7],
+    ["📎","Paper clip",5],
+    ["🧷","Pin",5],
+
+    ["🎈","Balloon",9],
+    ["🎁","Gift wrapper",10],
+    ["🧸","Toy",9],
+    ["🧢","Cap",8],
+    ["🧦","Sock",8],
+
+    ["📱","Old phone",15],
+    ["🔋","Battery",18],
+    ["🔌","Cable",12],
+    ["💿","Disc",9],
+
+    ["🍎","Apple",8],
+    ["🍌","Banana peel",10],
+    ["🍊","Orange peel",9],
+    ["🍞","Bread wrapper",10],
+    ["🍪","Cookie wrapper",10],
+    ["🍫","Chocolate wrapper",10],
+    ["🍟","Food waste",12],
+    ["🍔","Food waste",12],
+    ["🍕","Food waste",12]
+
+  ];
 
 
-/* =========================
-   LOGIN
-========================= */
+  /* ================= BONUS QUESTIONS ================= */
 
-function setMode(m){
+  const bonusQuestions = [
 
-  mode = m;
+    {
+      q:"Which action helps reduce waste at school?",
+      options:[
+        "Throwing everything on the floor",
+        "Using reusable items when possible",
+        "Leaving trash under desks",
+        "Mixing all waste together"
+      ],
+      answer:1
+    },
 
-  $("createTab")
-    .classList.toggle("active",m==="create");
+    {
+      q:"Why is waste segregation important?",
+      options:[
+        "It makes classrooms dirtier",
+        "It helps manage and recover different types of waste",
+        "It creates more trash",
+        "It makes trash harder to collect"
+      ],
+      answer:1
+    },
 
-  $("loginTab")
-    .classList.toggle("active",m==="login");
+    {
+      q:"Which is a good environmental habit?",
+      options:[
+        "Throwing wrappers anywhere",
+        "Ignoring overflowing bins",
+        "Properly disposing of waste",
+        "Leaving food waste on desks"
+      ],
+      answer:2
+    },
 
-  $("formSubmit").textContent =
-    m==="create"
-      ? "Create my player →"
-      : "Log in and play →";
+    {
+      q:"What should you do when you see litter in a safe area?",
+      options:[
+        "Leave it forever",
+        "Pick it up and dispose of it properly",
+        "Kick it somewhere else",
+        "Hide it under a desk"
+      ],
+      answer:1
+    },
 
-  $("formMsg").textContent = "";
-}
+    {
+      q:"Which choice can help reduce single-use waste?",
+      options:[
+        "Using reusable containers",
+        "Using more plastic bags",
+        "Throwing reusable items away",
+        "Leaving cups everywhere"
+      ],
+      answer:0
+    }
+
+  ];
 
 
-$("createTab").onclick = () => setMode("create");
+  /* ================= SCREEN NAVIGATION ================= */
 
-$("loginTab").onclick = () => setMode("login");
+  function screen(id){
+
+    document
+      .querySelectorAll(".screen")
+      .forEach(s => s.classList.remove("active"));
+
+    const el = $(id);
+
+    if(el){
+      el.classList.add("active");
+    }
+
+    window.scrollTo(0,0);
+  }
 
 
-$("formSubmit").onclick = () => {
+  function showPage(page){
 
-  const name =
-    $("playerName")
+    $("playPage").classList.toggle(
+      "active",
+      page === "play"
+    );
+
+    $("leaderboardPage").classList.toggle(
+      "active",
+      page === "leaderboard"
+    );
+
+    $("profilePage").classList.toggle(
+      "active",
+      page === "profile"
+    );
+
+
+    document
+      .querySelectorAll("[data-page]")
+      .forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.page === page
+        );
+
+      });
+
+
+    if(page === "leaderboard"){
+      renderLeaderboard();
+    }
+
+    if(page === "profile"){
+      renderProfile();
+    }
+
+  }
+
+
+  /* ================= LOGIN / CREATE ================= */
+
+  function setMode(m){
+
+    mode = m;
+
+    $("createTab").classList.toggle(
+      "active",
+      m === "create"
+    );
+
+    $("loginTab").classList.toggle(
+      "active",
+      m === "login"
+    );
+
+    $("formSubmit").textContent =
+      m === "create"
+        ? "Create my player →"
+        : "Log in and play →";
+
+    $("formMsg").textContent = "";
+
+  }
+
+
+  $("createTab").onclick =
+    () => setMode("create");
+
+  $("loginTab").onclick =
+    () => setMode("login");
+
+
+  $("formSubmit").onclick = () => {
+
+    const name =
+      $("playerName")
       .value
       .trim()
       .replace(/\s+/g," ");
 
-  const pin =
-    $("playerPin")
+    const pin =
+      $("playerPin")
       .value
       .replace(/\D/g,"")
       .slice(0,4);
 
-  $("playerPin").value = pin;
+    $("playerPin").value = pin;
 
 
-  if(name.length < 2){
-
-    $("formMsg").textContent =
-      "Use at least 2 characters for your player name.";
-
-    return;
-  }
-
-
-  if(!/^\d{4}$/.test(pin)){
-
-    $("formMsg").textContent =
-      "Enter exactly 4 digits for your demo PIN.";
-
-    return;
-  }
-
-
-  const key = name.toLowerCase();
-
-
-  if(mode === "create"){
-
-    if(players[key]){
+    if(name.length < 2){
 
       $("formMsg").textContent =
-        "That player already exists on this device. Tap Log in instead.";
+        "Use at least 2 characters for your nickname.";
 
       return;
+
     }
 
 
-    players[key] = {
-      name:name,
-      pin:pin,
-      best:0,
-      totalItems:0,
-      games:0,
-      totalPoints:0,
-      quizCorrect:0
+    if(!/^\d{4}$/.test(pin)){
+
+      $("formMsg").textContent =
+        "Enter exactly 4 digits for your demo PIN.";
+
+      return;
+
+    }
+
+
+    const key = name.toLowerCase();
+
+
+    if(mode === "create"){
+
+      if(players[key]){
+
+        $("formMsg").textContent =
+          "That player already exists. Tap Log in instead.";
+
+        return;
+
+      }
+
+
+      players[key] = {
+
+        name:name,
+        pin:pin,
+
+        best:0,
+        totalItems:0,
+        games:0,
+        totalPoints:0,
+
+        photo:""
+
+      };
+
+
+      persist();
+
+      login(key);
+
+    }else{
+
+      if(
+        !players[key] ||
+        players[key].pin !== pin
+      ){
+
+        $("formMsg").textContent =
+          "Player or PIN not found. Check your details.";
+
+        return;
+
+      }
+
+
+      login(key);
+
+    }
+
+  };
+
+
+  $("playerPin").oninput =
+    e => {
+
+      e.target.value =
+        e.target.value
+        .replace(/\D/g,"")
+        .slice(0,4);
+
     };
 
-    persist();
 
-    login(key);
+  function login(key){
 
-  }else{
+    currentPlayer = key;
 
-    if(
-      !players[key] ||
-      players[key].pin !== pin
-    ){
+    $("welcomeName").textContent =
+      players[key].name;
 
-      $("formMsg").textContent =
-        "Player or PIN not found. Check your details or create a new player.";
+    screen("homeScreen");
 
-      return;
-    }
+    showPage("play");
 
-    login(key);
-  }
+    refreshStats();
 
-};
+    resetRoundUI();
 
-
-$("playerPin").oninput = e => {
-
-  e.target.value =
-    e.target.value
-      .replace(/\D/g,"")
-      .slice(0,4);
-
-};
-
-
-function login(key){
-
-  currentPlayer = key;
-
-  $("welcomeName").textContent =
-    players[key].name;
-
-  screen("homeScreen");
-
-  showPage("play");
-
-  refreshStats();
-
-  resetRoundUI();
-
-  toast(
-    "Welcome, "+players[key].name+"! 🌱"
-  );
-}
-
-
-$("logoutBtn").onclick = () => {
-
-  stopTimers();
-
-  currentPlayer = null;
-
-  $("playerName").value = "";
-  $("playerPin").value = "";
-  $("formMsg").textContent = "";
-
-  setMode("create");
-
-  screen("loginScreen");
-};
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-document
-  .querySelectorAll("[data-page]")
-  .forEach(b => {
-
-    b.onclick = () =>
-      showPage(b.dataset.page);
-
-  });
-
-
-$("backToPlay").onclick =
-  () => showPage("play");
-
-
-function showPage(page){
-
-  $("playPage")
-    .classList.toggle("active",page==="play");
-
-  $("leaderboardPage")
-    .classList.toggle("active",page==="leaderboard");
-
-  document
-    .querySelectorAll("[data-page]")
-    .forEach(b =>
-      b.classList.toggle(
-        "active",
-        b.dataset.page === page
-      )
+    toast(
+      "Welcome, " +
+      players[key].name +
+      "! 🌱"
     );
 
-  if(page==="leaderboard")
-    renderLeaderboard();
-}
+  }
 
 
-/* =========================
-   PLAYER STATS
-========================= */
+  /* ================= STATS ================= */
 
-function refreshStats(){
+  function refreshStats(){
 
-  if(!currentPlayer) return;
+    if(!currentPlayer) return;
 
-  const p = players[currentPlayer];
-
-  $("bestScore").textContent =
-    p.best.toLocaleString();
-
-  $("totalItems").textContent =
-    p.totalItems.toLocaleString();
+    const p =
+      players[currentPlayer];
 
 
-  const arr =
-    Object.values(players)
+    $("bestScore").textContent =
+      p.best.toLocaleString();
+
+    $("totalItems").textContent =
+      p.totalItems.toLocaleString();
+
+    $("gamesPlayed").textContent =
+      p.games.toLocaleString();
+
+
+    const arr =
+      Object.values(players)
       .sort(
         (a,b) =>
           b.best-a.best ||
@@ -965,884 +2223,1224 @@ function refreshStats(){
       );
 
 
-  const i =
-    arr.findIndex(
-      x => x.name === p.name
+    const i =
+      arr.findIndex(
+        x =>
+          x.name === p.name
+      );
+
+
+    $("yourRank").textContent =
+      i >= 0
+        ? "#" + (i+1)
+        : "—";
+
+  }
+
+
+  /* ================= GAME RESET ================= */
+
+  function resetRoundUI(){
+
+    stopTimers();
+
+    running = false;
+
+    timeLeft = 45;
+    score = 0;
+    collected = 0;
+    streak = 0;
+
+
+    $("timer").textContent =
+      "00:45";
+
+    $("timer").classList.remove(
+      "danger"
     );
 
 
-  $("yourRank").textContent =
-    i >= 0
-      ? "#"+(i+1)
-      : "—";
-}
+    $("scoreValue").textContent = "0";
+    $("collectedValue").textContent = "0";
+    $("streakValue").textContent = "0";
 
 
-/* =========================
-   ROUND
-========================= */
-
-function resetRoundUI(){
-
-  stopTimers();
-
-  running = false;
-
-  timeLeft = 45;
-  score = 0;
-  collected = 0;
-  streak = 0;
-  bestStreak = 0;
-
-  quizCorrect = 0;
-  quizUsedInRound = 0;
-
-  $("timer").textContent = "00:45";
-  $("timer").classList.remove("danger");
-
-  updateStatsDisplay();
-
-  $("trashLayer").innerHTML = "";
-
-  $("gameOverlay").style.display = "flex";
+    $("trashLayer").innerHTML = "";
 
 
-  $("gameOverlay").innerHTML = `
-    <div class="overlay-box">
-
-      <div class="overlay-icon">🧤</div>
-
-      <h3>Ready, cleaner?</h3>
-
-      <p>
-        You have 45 seconds.
-        Tap litter, sort it into the correct category,
-        and watch for surprise Eco Quizzes.
-      </p>
-
-      <button id="startBtn" class="btn">
-        Start cleaning! →
-      </button>
-
-    </div>
-  `;
+    $("gameOverlay").style.display =
+      "flex";
 
 
-  $("startBtn").onclick = startRound;
-}
+    $("gameOverlay").innerHTML = `
+
+      <div class="overlay-box">
+
+        <div class="overlay-icon">🧤</div>
+
+        <h3>Ready, cleaner?</h3>
+
+        <p>
+          Your mission is simple:
+          pick up the litter you see around
+          the classroom and earn points.
+        </p>
+
+        <div class="how-to">
+
+          <div class="how-to-title">
+            🌱 HOW TO PLAY
+          </div>
+
+          <div class="how-to-main">
+            🗑️ Tap the trash to pick it up!
+          </div>
+
+          <div class="how-to-text">
+            Collect as much litter as possible
+            before the 45-second timer ends.
+            Different items give different points.
+          </div>
+
+          <div class="quick-rule">
+            🗑️ Pick up
+            →
+            ⭐ Earn points
+            →
+            🏆 Rank up
+          </div>
+
+        </div>
+
+        <button
+          id="startBtn"
+          class="btn"
+          type="button"
+        >
+          Start cleaning! →
+        </button>
+
+      </div>
+
+    `;
 
 
-function stopTimers(){
+    $("startBtn").onclick =
+      startRound;
 
-  clearInterval(timerId);
-  clearInterval(spawnId);
-
-  timerId = null;
-  spawnId = null;
-}
+  }
 
 
-function startRound(){
+  /* ================= TIMER ================= */
 
-  if(!currentPlayer || running)
-    return;
+  function stopTimers(){
 
-  running = true;
+    clearInterval(timerId);
+    clearInterval(spawnId);
 
-  timeLeft = 45;
-  score = 0;
-  collected = 0;
-  streak = 0;
-  bestStreak = 0;
-  quizCorrect = 0;
-  quizUsedInRound = 0;
+    timerId = null;
+    spawnId = null;
 
-  $("gameOverlay").style.display = "none";
-
-  $("trashLayer").innerHTML = "";
-
-  updateStatsDisplay();
+  }
 
 
-  for(let i=0;i<7;i++)
-    spawnTrash();
+  /* ================= START GAME ================= */
+
+  function startRound(){
+
+    if(!currentPlayer || running)
+      return;
 
 
-  timerId = setInterval(() => {
+    running = true;
 
-    timeLeft--;
-
-    updateTimer();
-
-    if(timeLeft <= 0)
-      finishRound();
-
-  },1000);
+    timeLeft = 45;
+    score = 0;
+    collected = 0;
+    streak = 0;
 
 
-  spawnId = setInterval(() => {
+    $("gameOverlay").style.display =
+      "none";
 
-    if(
-      running &&
-      $("trashLayer")
-        .querySelectorAll(".trash")
-        .length < 8
-    ){
+    $("trashLayer").innerHTML = "";
+
+    updateStats();
+
+
+    /*
+      Initial litter.
+      Enough objects to make the scene
+      feel full without covering everything.
+    */
+
+    for(let i=0;i<9;i++){
 
       spawnTrash();
 
     }
 
-  },650);
-}
+
+    timerId =
+      setInterval(() => {
+
+        timeLeft--;
+
+        updateTimer();
 
 
-/* =========================
-   SPAWN TRASH
-========================= */
+        if(timeLeft <= 0){
 
-function spawnTrash(){
+          finishRound();
 
-  if(!running) return;
+        }
 
-  const item =
-    litter[
-      Math.floor(
-        Math.random()*litter.length
-      )
-    ];
+      },1000);
 
 
-  const el =
-    document.createElement("button");
+    /*
+      Keep the scene populated.
+    */
 
+    spawnId =
+      setInterval(() => {
 
-  el.type = "button";
+        if(
+          running &&
+          $("trashLayer")
+          .querySelectorAll(".trash")
+          .length < 10
+        ){
 
-  el.className = "trash";
+          spawnTrash();
 
-  el.textContent = item[0];
+        }
 
-  el.setAttribute(
-    "aria-label",
-    item[1]+" worth "+item[3]+" points"
-  );
-
-  el.title =
-    item[1]+" · "+item[2]+" · +"+item[3];
-
-
-  const scene = $("scene");
-
-  const rect =
-    scene.getBoundingClientRect();
-
-
-  const x =
-    10 +
-    Math.random() *
-    Math.max(20,rect.width-76);
-
-
-  const y =
-    145 +
-    Math.random() *
-    Math.max(20,rect.height-225);
-
-
-  el.style.left = x+"px";
-  el.style.top = y+"px";
-
-
-  el.onclick =
-    () => collectTrash(el,item);
-
-
-  $("trashLayer")
-    .appendChild(el);
-}
-
-
-/* =========================
-   SORTING
-========================= */
-
-function collectTrash(el,item){
-
-  if(
-    !running ||
-    el.classList.contains("taken")
-  )
-    return;
-
-  el.classList.add("taken");
-
-  openSortChoice(item,el);
-}
-
-
-function openSortChoice(item,el){
-
-  $("gameOverlay").style.display = "flex";
-
-
-  let shuffled =
-    [...categories]
-      .sort(() => Math.random()-.5)
-      .slice(0,4);
-
-
-  if(!shuffled.includes(item[2])){
-
-    shuffled[
-      Math.floor(
-        Math.random()*shuffled.length
-      )
-    ] = item[2];
+      },520);
 
   }
 
 
-  $("gameOverlay").innerHTML = `
+  /* ================= SPAWN TRASH ================= */
 
-    <div class="overlay-box quiz-box">
+  function spawnTrash(){
 
-      <span class="quiz-tag">
-        ♻️ SORT IT
-      </span>
-
-      <h3>
-        ${item[0]} ${escapeHTML(item[1])}
-      </h3>
-
-      <p>
-        Which category does this item belong to?
-      </p>
-
-      <div class="quiz-options">
-
-        ${
-          shuffled.map(c => `
-            <button
-              class="quiz-option"
-              data-cat="${escapeHTML(c)}"
-              type="button"
-            >
-              ${escapeHTML(c)}
-            </button>
-          `).join("")
-        }
-
-      </div>
-
-      <div id="sortResult"></div>
-
-    </div>
-  `;
+    if(!running) return;
 
 
-  document
-    .querySelectorAll(".quiz-option")
-    .forEach(btn => {
-
-      btn.onclick =
-        () =>
-          resolveSort(
-            btn,
-            item,
-            el
-          );
-
-    });
-
-}
+    const item =
+      litter[
+        Math.floor(
+          Math.random() *
+          litter.length
+        )
+      ];
 
 
-function resolveSort(btn,item,el){
+    const el =
+      document.createElement("button");
 
-  document
-    .querySelectorAll(".quiz-option")
-    .forEach(
-      b => b.disabled = true
+
+    el.type = "button";
+
+    el.className = "trash";
+
+    el.textContent = item[0];
+
+
+    el.setAttribute(
+      "aria-label",
+      "Collect " +
+      item[1] +
+      " for " +
+      item[2] +
+      " points"
     );
 
 
-  const correct =
-    btn.dataset.cat === item[2];
+    el.title =
+      item[1] +
+      " +" +
+      item[2];
 
 
-  const result =
-    $("sortResult");
+    const scene =
+      $("scene");
 
 
-  if(correct){
+    const rect =
+      scene.getBoundingClientRect();
 
-    btn.classList.add("correct");
 
-    score += item[3];
+    /*
+      Keep trash away from the top UI
+      and lower floor edges.
+    */
+
+    const x =
+      10 +
+      Math.random() *
+      Math.max(
+        20,
+        rect.width - 75
+      );
+
+
+    const y =
+      140 +
+      Math.random() *
+      Math.max(
+        20,
+        rect.height - 220
+      );
+
+
+    el.style.left =
+      x + "px";
+
+    el.style.top =
+      y + "px";
+
+
+    el.onclick =
+      () =>
+        collectTrash(
+          el,
+          item
+        );
+
+
+    $("trashLayer")
+      .appendChild(el);
+
+  }
+
+
+  /* ================= COLLECT ================= */
+
+  function collectTrash(
+    el,
+    item
+  ){
+
+    if(
+      !running ||
+      el.classList.contains("taken")
+    ){
+
+      return;
+
+    }
+
+
+    el.classList.add("taken");
+
+
+    score += item[2];
 
     collected++;
 
     streak++;
 
-    bestStreak =
-      Math.max(
-        bestStreak,
-        streak
-      );
+
+    $("scoreValue").textContent =
+      score.toLocaleString();
+
+    $("collectedValue").textContent =
+      collected;
+
+    $("streakValue").textContent =
+      streak;
 
 
-    result.className =
-      "quiz-result";
-
-    result.textContent =
-      "Correct! +"+
-      item[3]+
-      " points 🌱";
+    const r =
+      el.getBoundingClientRect();
 
 
-    toast(
-      "Nice sort! +"+item[3]
+    const sr =
+      $("scene")
+      .getBoundingClientRect();
+
+
+    const f =
+      document.createElement("div");
+
+
+    f.className =
+      "float-points";
+
+
+    f.textContent =
+      "+" + item[2];
+
+
+    f.style.left =
+      (r.left - sr.left) + "px";
+
+
+    f.style.top =
+      (r.top - sr.top) + "px";
+
+
+    $("trashLayer")
+      .appendChild(f);
+
+
+    setTimeout(
+      () => f.remove(),
+      700
     );
 
-  }else{
 
-    btn.classList.add("wrong");
+    setTimeout(
+      () => {
 
-    streak = 0;
+        el.remove();
 
+        if(running){
 
-    const right =
-      document.querySelector(
-        `.quiz-option[data-cat="${CSS.escape(item[2])}"]`
-      );
+          spawnTrash();
 
-
-    if(right)
-      right.classList.add("correct");
-
-
-    result.className =
-      "quiz-result wrong-text";
-
-    result.textContent =
-      "Almost! "+
-      item[1]+
-      " goes in "+
-      item[2]+
-      ". +0 points";
-  }
-
-
-  updateStatsDisplay();
-
-
-  setTimeout(() => {
-
-    $("gameOverlay").style.display =
-      "none";
-
-    el.remove();
-
-    if(running)
-      spawnTrash();
-
-
-    maybeBonusQuiz();
-
-  },700);
-
-}
-
-
-/* =========================
-   BONUS ECO QUIZ
-========================= */
-
-function maybeBonusQuiz(){
-
-  if(!running)
-    return;
-
-  if(collected === 0)
-    return;
-
-  if(collected % 5 !== 0)
-    return;
-
-  if(quizUsedInRound >= 3)
-    return;
-
-
-  quizUsedInRound++;
-
-  setTimeout(
-    showBonusQuiz,
-    120
-  );
-}
-
-
-function showBonusQuiz(){
-
-  if(!running)
-    return;
-
-
-  const q =
-    quizzes[
-      Math.floor(
-        Math.random()*quizzes.length
-      )
-    ];
-
-
-  $("gameOverlay").style.display =
-    "flex";
-
-
-  $("gameOverlay").innerHTML = `
-
-    <div class="overlay-box quiz-box">
-
-      <span class="quiz-tag">
-        🌿 ECO BONUS
-      </span>
-
-      <h3>
-        ${escapeHTML(q.q)}
-      </h3>
-
-      <p>
-        Correct answer =
-        <strong>+20 bonus points</strong>.
-      </p>
-
-      <div class="quiz-options">
-
-        ${
-          q.a.map((a,i) => `
-            <button
-              class="quiz-option"
-              data-answer="${i}"
-              type="button"
-            >
-              ${escapeHTML(a)}
-            </button>
-          `).join("")
         }
 
-      </div>
-
-      <div id="quizResult"></div>
-
-    </div>
-  `;
-
-
-  document
-    .querySelectorAll(".quiz-option")
-    .forEach(btn => {
-
-      btn.onclick =
-        () =>
-          resolveBonus(btn,q);
-
-    });
-
-}
-
-
-function resolveBonus(btn,q){
-
-  document
-    .querySelectorAll(".quiz-option")
-    .forEach(
-      b => b.disabled = true
+      },
+      160
     );
-
-
-  const correct =
-    Number(btn.dataset.answer)
-    === q.correct;
-
-
-  const result =
-    $("quizResult");
-
-
-  if(correct){
-
-    btn.classList.add("correct");
-
-    score += 20;
-
-    quizCorrect++;
-
-
-    result.className =
-      "quiz-result";
-
-    result.textContent =
-      "Correct! +20 bonus points 🎉 "+
-      q.why;
-
-
-    toast(
-      "+20 ECO BONUS! 🌿"
-    );
-
-  }else{
-
-    btn.classList.add("wrong");
-
-
-    const right =
-      document.querySelector(
-        `.quiz-option[data-answer="${q.correct}"]`
-      );
-
-
-    if(right)
-      right.classList.add("correct");
-
-
-    result.className =
-      "quiz-result wrong-text";
-
-    result.textContent =
-      "Nice try! "+q.why;
 
   }
 
 
-  updateStatsDisplay();
+  function updateStats(){
+
+    $("scoreValue").textContent =
+      score.toLocaleString();
+
+    $("collectedValue").textContent =
+      collected;
+
+    $("streakValue").textContent =
+      streak;
+
+  }
 
 
-  setTimeout(() => {
+  function updateTimer(){
 
-    if(running)
-      $("gameOverlay").style.display =
-        "none";
-
-  },1100);
-
-}
-
-
-/* =========================
-   DISPLAY
-========================= */
-
-function updateStatsDisplay(){
-
-  $("scoreValue").textContent =
-    score.toLocaleString();
-
-  $("collectedValue").textContent =
-    collected;
-
-  $("streakValue").textContent =
-    streak;
-}
+    $("timer").textContent =
+      "00:" +
+      String(
+        Math.max(
+          0,
+          timeLeft
+        )
+      ).padStart(2,"0");
 
 
-function updateTimer(){
-
-  $("timer").textContent =
-    "00:"+
-    String(
-      Math.max(0,timeLeft)
-    ).padStart(2,"0");
-
-
-  $("timer")
-    .classList.toggle(
+    $("timer").classList.toggle(
       "danger",
       timeLeft <= 10
     );
-}
 
-
-/* =========================
-   FINISH
-========================= */
-
-function finishRound(){
-
-  if(!running)
-    return;
-
-  running = false;
-
-  stopTimers();
-
-
-  const p =
-    players[currentPlayer];
-
-
-  p.best =
-    Math.max(
-      p.best,
-      score
-    );
-
-  p.totalItems += collected;
-
-  p.games++;
-
-  p.totalPoints += score;
-
-  p.quizCorrect =
-    (p.quizCorrect || 0)
-    + quizCorrect;
-
-
-  persist();
-
-  refreshStats();
-
-
-  const rank =
-    getRank(currentPlayer);
-
-
-  $("gameOverlay").style.display =
-    "flex";
-
-
-  $("gameOverlay").innerHTML = `
-
-    <div class="overlay-box">
-
-      <div class="overlay-icon">
-        🏆
-      </div>
-
-      <h3>
-        Cleaning complete!
-      </h3>
-
-      <p>
-        You cleaned the virtual classroom
-        and made every tap count.
-      </p>
-
-      <div class="result-grid">
-
-        <div class="result-stat">
-          <strong>${score}</strong>
-          <span>Score</span>
-        </div>
-
-        <div class="result-stat">
-          <strong>${collected}</strong>
-          <span>Items</span>
-        </div>
-
-        <div class="result-stat">
-          <strong>${bestStreak}</strong>
-          <span>Best streak</span>
-        </div>
-
-      </div>
-
-      <div class="bonus-banner">
-        🧠 Eco Quiz correct:
-        ${quizCorrect}
-        · 🏆 Current ranking:
-        <strong>${rank}</strong>
-      </div>
-
-      <div class="overlay-actions">
-
-        <button id="againBtn" class="btn">
-          Play again →
-        </button>
-
-        <button id="boardBtn" class="btn secondary">
-          View leaderboard
-        </button>
-
-      </div>
-
-    </div>
-  `;
-
-
-  $("againBtn").onclick =
-    resetRoundUI;
-
-
-  $("boardBtn").onclick =
-    () => showPage("leaderboard");
-
-}
-
-
-/* =========================
-   LEADERBOARD
-========================= */
-
-function getRank(key){
-
-  const arr =
-    Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best-a.best ||
-          b.totalItems-a.totalItems
-      );
-
-
-  const p =
-    players[key];
-
-
-  return "#"+
-    (
-      arr.findIndex(
-        x => x.name === p.name
-      ) + 1
-    );
-}
-
-
-function renderLeaderboard(){
-
-  const arr =
-    Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best-a.best ||
-          b.totalItems-a.totalItems
-      );
-
-
-  const box =
-    $("leaderRows");
-
-
-  if(!arr.length){
-
-    box.innerHTML =
-      '<div class="empty">No players yet. Be the first cleaner!</div>';
-
-    return;
   }
 
 
-  box.innerHTML =
-    arr.map((p,i) => {
+  /* ================= FINISH GAME ================= */
 
-      const medal =
-        i===0
-          ? "🥇"
-          : i===1
-          ? "🥈"
-          : i===2
-          ? "🥉"
-          : i+1;
+  function finishRound(){
+
+    if(!running)
+      return;
 
 
-      const me =
-        currentPlayer &&
-        p.name ===
-        players[currentPlayer]?.name;
+    running = false;
+
+    stopTimers();
 
 
-      return `
+    const p =
+      players[currentPlayer];
 
-        <div class="leader-row ${me?"me":""}">
 
-          <div class="rank-medal">
-            ${medal}
+    p.best =
+      Math.max(
+        p.best,
+        score
+      );
+
+
+    p.totalItems +=
+      collected;
+
+
+    p.games++;
+
+
+    p.totalPoints +=
+      score;
+
+
+    persist();
+
+    refreshStats();
+
+
+    $("gameOverlay").style.display =
+      "flex";
+
+
+    const question =
+      bonusQuestions[
+        Math.floor(
+          Math.random() *
+          bonusQuestions.length
+        )
+      ];
+
+
+    $("gameOverlay").innerHTML = `
+
+      <div class="overlay-box">
+
+        <div class="overlay-icon">🏆</div>
+
+        <h3>
+          Cleaning complete!
+        </h3>
+
+        <p>
+          You collected
+          <strong>${collected}</strong>
+          pieces of litter and earned
+          <strong>${score.toLocaleString()}</strong>
+          points.
+        </p>
+
+
+        <div class="bonus-box">
+
+          <div class="bonus-label">
+            🌱 BONUS ECO QUESTION
           </div>
 
-          <div>
+          <h4>
+            ${escapeHTML(question.q)}
+          </h4>
 
-            <div class="player-name">
-              ${escapeHTML(p.name)}
-              ${me?"🌿":""}
-            </div>
+          <div class="bonus-options">
 
-            <div class="player-meta">
-              ${p.totalItems} items ·
-              ${p.quizCorrect || 0}
-              Eco Quizzes correct ·
-              ${p.games} rounds
-            </div>
+            ${question.options
+              .map(
+                (option,index) => `
 
-          </div>
+                  <button
+                    class="bonus-option"
+                    type="button"
+                    data-answer="${index}"
+                  >
+                    ${escapeHTML(option)}
+                  </button>
 
-          <div class="leader-score">
-
-            ${p.best.toLocaleString()}
-
-            <small>
-              best score
-            </small>
+                `
+              )
+              .join("")}
 
           </div>
+
+          <div
+            id="bonusResult"
+            class="bonus-result"
+          ></div>
 
         </div>
 
+
+        <div
+          style="
+            margin-top:12px;
+            font-size:12px;
+            color:var(--muted);
+          "
+        >
+          Current rank:
+          <strong>
+            ${getRank(currentPlayer)}
+          </strong>
+        </div>
+
+
+        <div class="overlay-actions"
+             style="
+               display:flex;
+               gap:8px;
+               justify-content:center;
+               flex-wrap:wrap;
+               margin-top:14px;
+             ">
+
+          <button
+            id="againBtn"
+            class="btn"
+            type="button"
+          >
+            Play again →
+          </button>
+
+          <button
+            id="boardBtn"
+            class="btn secondary"
+            type="button"
+          >
+            View leaderboard
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    document
+      .querySelectorAll(".bonus-option")
+      .forEach(button => {
+
+        button.onclick = () => {
+
+          const selected =
+            Number(
+              button.dataset.answer
+            );
+
+
+          const result =
+            $("bonusResult");
+
+
+          document
+            .querySelectorAll(
+              ".bonus-option"
+            )
+            .forEach(
+              b =>
+                b.disabled = true
+            );
+
+
+          if(
+            selected ===
+            question.answer
+          ){
+
+            result.textContent =
+              "🌱 Correct! Great eco choice!";
+
+            toast(
+              "Eco bonus answered correctly! 🌱"
+            );
+
+          }else{
+
+            result.textContent =
+              "💚 Good try! Every small action helps.";
+
+          }
+
+        };
+
+      });
+
+
+    $("againBtn").onclick =
+      resetRoundUI;
+
+
+    $("boardBtn").onclick =
+      () =>
+        showPage(
+          "leaderboard"
+        );
+
+  }
+
+
+  /* ================= RANK ================= */
+
+  function getRank(key){
+
+    const arr =
+      Object.values(players)
+      .sort(
+        (a,b) =>
+          b.best-a.best ||
+          b.totalItems-a.totalItems
+      );
+
+
+    const p =
+      players[key];
+
+
+    const index =
+      arr.findIndex(
+        x =>
+          x.name === p.name
+      );
+
+
+    return "#" +
+      (index + 1);
+
+  }
+
+
+  /* ================= LEADERBOARD ================= */
+
+  function renderLeaderboard(){
+
+    const arr =
+      Object.values(players)
+      .sort(
+        (a,b) =>
+          b.best-a.best ||
+          b.totalItems-a.totalItems
+      );
+
+
+    const box =
+      $("leaderRows");
+
+
+    if(!arr.length){
+
+      box.innerHTML = `
+        <div class="empty">
+          <div style="font-size:40px">🌱</div>
+          <strong>
+            No cleaners yet!
+          </strong>
+          Be the first player to clean the classroom.
+        </div>
       `;
 
-    }).join("");
-}
+      return;
+
+    }
 
 
-/* =========================
-   SAFETY
-========================= */
+    box.innerHTML =
+      arr
+      .map(
+        (p,i) => {
 
-function escapeHTML(s){
-
-  return String(s).replace(
-    /[&<>"']/g,
-    m => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[m])
-  );
-
-}
+          const medal =
+            i === 0
+              ? "🥇"
+              : i === 1
+                ? "🥈"
+                : i === 2
+                  ? "🥉"
+                  : (i+1);
 
 
-/* =========================
-   TOAST
-========================= */
+          const isMe =
+            currentPlayer &&
+            p.name ===
+            players[currentPlayer]?.name;
 
-function toast(msg){
 
-  const t =
-    $("toast");
+          return `
 
-  t.textContent =
-    msg;
+            <div
+              class="leader-row ${
+                isMe ? "me" : ""
+              }"
+            >
 
-  t.classList.add("show");
+              <div class="rank-medal">
+                ${medal}
+              </div>
 
-  clearTimeout(
-    window.__cqToast
-  );
 
-  window.__cqToast =
-    setTimeout(
-      () =>
-        t.classList.remove("show"),
-      1800
+              <div>
+
+                <div class="player-name">
+                  ${escapeHTML(p.name)}
+                  ${
+                    isMe
+                      ? " 🌿"
+                      : ""
+                  }
+                </div>
+
+                <div class="player-meta">
+                  ${p.totalItems}
+                  items collected ·
+                  ${p.games}
+                  round${p.games === 1 ? "" : "s"}
+                </div>
+
+              </div>
+
+
+              <div class="leader-score">
+
+                ${p.best.toLocaleString()}
+
+                <small>
+                  best score
+                </small>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+  }
+
+
+  /* ================= PROFILE ================= */
+
+  function renderProfile(){
+
+    if(!currentPlayer)
+      return;
+
+
+    const p =
+      players[currentPlayer];
+
+
+    $("profileDisplayName")
+      .textContent =
+      p.name;
+
+
+    $("editName").value =
+      p.name;
+
+
+    $("profileBest").textContent =
+      p.best.toLocaleString();
+
+
+    $("profileItems").textContent =
+      p.totalItems.toLocaleString();
+
+
+    $("profileRank").textContent =
+      getRank(currentPlayer);
+
+
+    $("profileGames").textContent =
+      p.games.toLocaleString();
+
+
+    const avatar =
+      $("profileAvatar");
+
+
+    if(p.photo){
+
+      avatar.innerHTML =
+        `<img
+          src="${p.photo}"
+          alt="Profile picture"
+        />`;
+
+    }else{
+
+      avatar.innerHTML =
+        "🌱";
+
+    }
+
+  }
+
+
+  /* ================= PROFILE IMAGE ================= */
+
+  $("profileImageInput")
+    .addEventListener(
+      "change",
+      function(){
+
+        const file =
+          this.files &&
+          this.files[0];
+
+
+        if(!file)
+          return;
+
+
+        if(
+          !file.type.startsWith(
+            "image/"
+          )
+        ){
+
+          $("profileMsg")
+            .textContent =
+            "Please choose an image file.";
+
+          return;
+
+        }
+
+
+        /*
+          Resize the image before saving.
+          This keeps localStorage from
+          becoming unnecessarily large.
+        */
+
+        const reader =
+          new FileReader();
+
+
+        reader.onload =
+          event => {
+
+            const img =
+              new Image();
+
+
+            img.onload =
+              () => {
+
+                const max =
+                  500;
+
+
+                let width =
+                  img.width;
+
+
+                let height =
+                  img.height;
+
+
+                if(width > height){
+
+                  if(width > max){
+
+                    height =
+                      Math.round(
+                        height *
+                        max /
+                        width
+                      );
+
+                    width = max;
+
+                  }
+
+                }else{
+
+                  if(height > max){
+
+                    width =
+                      Math.round(
+                        width *
+                        max /
+                        height
+                      );
+
+                    height = max;
+
+                  }
+
+                }
+
+
+                const canvas =
+                  document.createElement(
+                    "canvas"
+                  );
+
+
+                canvas.width =
+                  width;
+
+                canvas.height =
+                  height;
+
+
+                const ctx =
+                  canvas.getContext(
+                    "2d"
+                  );
+
+
+                ctx.drawImage(
+                  img,
+                  0,
+                  0,
+                  width,
+                  height
+                );
+
+
+                const data =
+                  canvas.toDataURL(
+                    "image/jpeg",
+                    .82
+                  );
+
+
+                if(currentPlayer){
+
+                  players[currentPlayer]
+                    .photo = data;
+
+                  persist();
+
+                  renderProfile();
+
+                  $("profileMsg")
+                    .textContent =
+                    "Profile picture updated! 🌿";
+
+                }
+
+              };
+
+
+            img.src =
+              event.target.result;
+
+          };
+
+
+        reader.readAsDataURL(file);
+
+      }
     );
-}
 
 
-setMode("create");
-screen("loginScreen");
+  /* ================= SAVE PROFILE ================= */
+
+  $("saveProfileBtn")
+    .onclick = () => {
+
+      if(!currentPlayer)
+        return;
+
+
+      const newName =
+        $("editName")
+        .value
+        .trim()
+        .replace(/\s+/g," ");
+
+
+      if(newName.length < 2){
+
+        $("profileMsg")
+          .textContent =
+          "Nickname must have at least 2 characters.";
+
+        return;
+
+      }
+
+
+      const oldKey =
+        currentPlayer;
+
+
+      const newKey =
+        newName.toLowerCase();
+
+
+      /*
+        If nickname is changed,
+        move the player data to the
+        new storage key.
+      */
+
+      if(
+        newKey !== oldKey &&
+        players[newKey]
+      ){
+
+        $("profileMsg")
+          .textContent =
+          "That nickname is already being used.";
+
+        return;
+
+      }
+
+
+      const player =
+        players[oldKey];
+
+
+      player.name =
+        newName;
+
+
+      if(newKey !== oldKey){
+
+        delete players[oldKey];
+
+        players[newKey] =
+          player;
+
+        currentPlayer =
+          newKey;
+
+      }
+
+
+      persist();
+
+
+      $("welcomeName")
+        .textContent =
+        player.name;
+
+
+      renderProfile();
+
+      refreshStats();
+
+
+      $("profileMsg")
+        .textContent =
+        "Profile saved successfully! 🌱";
+
+
+      toast(
+        "Profile updated! ✨"
+      );
+
+    };
+
+
+  /* ================= LOG OUT ================= */
+
+  function logout(){
+
+    stopTimers();
+
+    currentPlayer = null;
+
+
+    $("playerName").value = "";
+    $("playerPin").value = "";
+    $("formMsg").textContent = "";
+
+
+    setMode("create");
+
+    screen("loginScreen");
+
+
+    toast(
+      "Logged out successfully."
+    );
+
+  }
+
+
+  $("logoutProfileBtn")
+    .onclick = logout;
+
+
+  $("profileBackBtn")
+    .onclick = () =>
+      showPage("play");
+
+
+  /* ================= NAVIGATION BUTTONS ================= */
+
+  document
+    .querySelectorAll("[data-page]")
+    .forEach(
+      button => {
+
+        button.onclick =
+          () =>
+            showPage(
+              button.dataset.page
+            );
+
+      }
+    );
+
+
+  $("backToPlay")
+    .onclick =
+      () =>
+        showPage("play");
+
+
+  /* ================= SAFE HTML ================= */
+
+  function escapeHTML(s){
+
+    return String(s)
+      .replace(
+        /[&<>"']/g,
+        m =>
+          ({
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+          }[m])
+      );
+
+  }
+
+
+  /* ================= TOAST ================= */
+
+  function toast(msg){
+
+    const t =
+      $("toast");
+
+
+    t.textContent =
+      msg;
+
+
+    t.classList.add(
+      "show"
+    );
+
+
+    clearTimeout(
+      window.__cqToast
+    );
+
+
+    window.__cqToast =
+      setTimeout(
+        () =>
+          t.classList.remove(
+            "show"
+          ),
+        1800
+      );
+
+  }
+
+
+  /* ================= INITIAL STATE ================= */
+
+  setMode("create");
+
+  screen("loginScreen");
 
 })();
 </script>
