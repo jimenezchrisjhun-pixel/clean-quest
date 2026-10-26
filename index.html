@@ -86,16 +86,6 @@ header{
   margin-top:1px;
 }
 
-.top-pill{
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:#ffffffc9;
-  padding:9px 13px;
-  color:var(--green);
-  font-size:11px;
-  font-weight:900;
-}
-
 .screen{
   display:none;
 }
@@ -441,9 +431,9 @@ input:focus{
   color:#ac3929;
 }
 
-/*
-  BIGGER GAME AREA
-*/
+/* =========================
+   BIGGER GAME AREA
+========================= */
 
 .scene{
   position:relative;
@@ -578,7 +568,9 @@ input:focus{
   font-size:48px;
 }
 
-/* trash */
+/* =========================
+   TRASH
+========================= */
 
 .trash{
   position:absolute;
@@ -641,19 +633,27 @@ input:focus{
   }
 }
 
-/* pickup information */
+/* =========================
+   PICKUP INFO
+   DEDICATED SPACE
+========================= */
+
+.pickup-slot{
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5px 0 0;
+}
 
 .pickup-info{
-  position:absolute;
-  left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  z-index:20;
-  width:min(88%,370px);
+  position:static;
+  width:100%;
+  min-height:46px;
   background:#ffffffef;
   border:1px solid #d8e9da;
   border-radius:15px;
-  padding:10px 13px;
+  padding:9px 13px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -661,21 +661,25 @@ input:focus{
   text-align:center;
   font-size:12px;
   font-weight:850;
-  box-shadow:0 8px 25px #274b3515;
+  box-shadow:0 6px 20px #274b3515;
   pointer-events:none;
   opacity:0;
+  transform:translateY(4px);
   transition:.2s;
 }
 
 .pickup-info.show{
   opacity:1;
+  transform:translateY(0);
 }
 
 .pickup-info strong{
   color:var(--green);
 }
 
-/* overlay */
+/* =========================
+   OVERLAY
+========================= */
 
 .overlay{
   position:absolute;
@@ -765,7 +769,7 @@ input:focus{
   color:var(--muted);
   font-size:11px;
   font-weight:750;
-  margin-top:12px;
+  margin-top:7px;
 }
 
 /* =========================
@@ -856,13 +860,13 @@ input:focus{
 
 .leader-row{
   display:grid;
-  grid-template-columns:42px minmax(0,1fr) auto;
+  grid-template-columns:48px 48px minmax(0,1fr) auto;
   align-items:center;
-  gap:12px;
+  gap:10px;
   background:#f8fbf7;
   border:1px solid #e3ede3;
   border-radius:15px;
-  padding:13px 15px;
+  padding:10px 15px;
 }
 
 .leader-row.me{
@@ -890,6 +894,31 @@ input:focus{
 
 .leader-row:nth-child(3) .rank-medal{
   background:#f4dfd1;
+}
+
+/* PLAYER PICTURE IN RANKING */
+
+.leader-avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#dcefe0;
+  color:var(--green);
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:1000;
+  overflow:hidden;
+  border:3px solid white;
+  box-shadow:0 3px 12px #31573a1c;
+  flex-shrink:0;
+}
+
+.leader-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 .player-name{
@@ -1130,6 +1159,7 @@ input:focus{
 ========================= */
 
 @media(max-width:850px){
+
   .login-layout{
     grid-template-columns:1fr;
   }
@@ -1141,9 +1171,11 @@ input:focus{
   .stat-row{
     grid-template-columns:repeat(2,1fr);
   }
+
 }
 
 @media(max-width:560px){
+
   .app{
     padding:13px 10px 30px;
   }
@@ -1232,6 +1264,16 @@ input:focus{
     padding:9px 11px;
   }
 
+  .pickup-slot{
+    height:60px;
+  }
+
+  .pickup-info{
+    font-size:10px;
+    padding:8px 9px;
+    gap:6px;
+  }
+
   .result-score{
     font-size:47px;
   }
@@ -1247,6 +1289,36 @@ input:focus{
   .nav button{
     flex:1;
   }
+
+  .leader-row{
+    grid-template-columns:38px 42px minmax(0,1fr) auto;
+    gap:7px;
+    padding:9px 10px;
+  }
+
+  .leader-avatar{
+    width:38px;
+    height:38px;
+    font-size:11px;
+  }
+
+  .rank-medal{
+    width:34px;
+    height:34px;
+  }
+
+  .leader-score{
+    font-size:15px;
+  }
+
+  .player-name{
+    font-size:12px;
+  }
+
+  .player-meta{
+    font-size:8px;
+  }
+
 }
 </style>
 </head>
@@ -1256,15 +1328,22 @@ input:focus{
 <div class="app">
 
 <header>
+
   <div class="brand">
+
     <div class="brandmark">🌱</div>
+
     <div>
       CLEAN QUEST
       <small>PLAY CLEAN. RANK UP.</small>
     </div>
+
   </div>
 
-  <div class="top-pill">♻️ ZERO-COST GAME</div>
+  <div class="top-pill">
+    ♻️ ZERO-COST GAME
+  </div>
+
 </header>
 
 
@@ -1278,7 +1357,9 @@ input:focus{
 
     <div class="hero card">
 
-      <div class="eyebrow">A tiny game for a greener campus</div>
+      <div class="eyebrow">
+        A tiny game for a greener campus
+      </div>
 
       <h1>
         Little taps.<br>
@@ -1296,30 +1377,46 @@ input:focus{
         <span>🌍 Environment mission</span>
       </div>
 
-      <div class="hero-art">🧹</div>
+      <div class="hero-art">
+        🧹
+      </div>
 
     </div>
 
 
     <div class="form-card card">
 
-      <h2>Welcome, cleaner!</h2>
+      <h2>
+        Welcome, cleaner!
+      </h2>
 
       <p class="sub">
         Create a demo player or log in to a profile saved on this device.
       </p>
 
       <div class="tabs">
-        <button class="tab active" id="createTab" type="button">
+
+        <button
+          class="tab active"
+          id="createTab"
+          type="button"
+        >
           Create player
         </button>
 
-        <button class="tab" id="loginTab" type="button">
+        <button
+          class="tab"
+          id="loginTab"
+          type="button"
+        >
           Log in
         </button>
+
       </div>
 
-      <label for="playerName">Player name / nickname</label>
+      <label for="playerName">
+        Player name / nickname
+      </label>
 
       <input
         id="playerName"
@@ -1328,7 +1425,9 @@ input:focus{
         placeholder="e.g. EcoCJ"
       >
 
-      <label for="playerPin">4-digit demo PIN</label>
+      <label for="playerPin">
+        4-digit demo PIN
+      </label>
 
       <input
         id="playerPin"
@@ -1337,7 +1436,11 @@ input:focus{
         placeholder="e.g. 1234"
       >
 
-      <button id="formSubmit" class="btn full" type="button">
+      <button
+        id="formSubmit"
+        class="btn full"
+        type="button"
+      >
         Create my player →
       </button>
 
@@ -1369,7 +1472,10 @@ input:focus{
 
     <div class="nav">
 
-      <button class="active" data-page="play">
+      <button
+        class="active"
+        data-page="play"
+      >
         🎮 Play
       </button>
 
@@ -1377,7 +1483,10 @@ input:focus{
         🏆 Leaderboard
       </button>
 
-      <button id="profileBtn" class="profile-btn">
+      <button
+        id="profileBtn"
+        class="profile-btn"
+      >
         👤 Profile
       </button>
 
@@ -1391,27 +1500,70 @@ input:focus{
   <div class="stat-row">
 
     <div class="stat card">
-      <div class="label">Your best score</div>
-      <strong id="bestScore">0</strong>
-      <em>personal best</em>
+
+      <div class="label">
+        Your best score
+      </div>
+
+      <strong id="bestScore">
+        0
+      </strong>
+
+      <em>
+        personal best
+      </em>
+
     </div>
 
-    <div class="stat card">
-      <div class="label">Items collected</div>
-      <strong id="totalItems">0</strong>
-      <em>across your rounds</em>
-    </div>
 
     <div class="stat card">
-      <div class="label">Your rank</div>
-      <strong id="yourRank">—</strong>
-      <em>on this device</em>
+
+      <div class="label">
+        Items collected
+      </div>
+
+      <strong id="totalItems">
+        0
+      </strong>
+
+      <em>
+        across your rounds
+      </em>
+
     </div>
 
+
     <div class="stat card">
-      <div class="label">Rounds played</div>
-      <strong id="gamesPlayed">0</strong>
-      <em>clean-up rounds</em>
+
+      <div class="label">
+        Your rank
+      </div>
+
+      <strong id="yourRank">
+        —
+      </strong>
+
+      <em>
+        on this device
+      </em>
+
+    </div>
+
+
+    <div class="stat card">
+
+      <div class="label">
+        Rounds played
+      </div>
+
+      <strong id="gamesPlayed">
+        0
+      </strong>
+
+      <em>
+        clean-up rounds
+      </em>
+
     </div>
 
   </div>
@@ -1419,7 +1571,10 @@ input:focus{
 
   <!-- PLAY PAGE -->
 
-  <div id="playPage" class="screen active">
+  <div
+    id="playPage"
+    class="screen active"
+  >
 
     <div class="game-layout">
 
@@ -1428,18 +1583,31 @@ input:focus{
         <div class="game-head">
 
           <div>
-            <h2>🧹 Clean the classroom!</h2>
-            <p>Pick up as much litter as you can.</p>
+
+            <h2>
+              🧹 Clean the classroom!
+            </h2>
+
+            <p>
+              Pick up as much litter as you can.
+            </p>
+
           </div>
 
-          <div id="timer" class="timer">
+          <div
+            id="timer"
+            class="timer"
+          >
             00:45
           </div>
 
         </div>
 
 
-        <div id="scene" class="scene">
+        <div
+          id="scene"
+          class="scene"
+        >
 
           <div class="window"></div>
 
@@ -1450,33 +1618,45 @@ input:focus{
 
           <div class="floorline"></div>
 
-          <div class="plant">🪴</div>
+          <div class="plant">
+            🪴
+          </div>
 
           <div class="desk"></div>
 
-          <div class="bin">🗑️</div>
+          <div class="bin">
+            🗑️
+          </div>
 
           <div id="trashLayer"></div>
-
-          <div id="pickupInfo" class="pickup-info"></div>
 
 
           <!-- START / RESULT OVERLAY -->
 
-          <div id="gameOverlay" class="overlay">
+          <div
+            id="gameOverlay"
+            class="overlay"
+          >
 
             <div class="overlay-box">
 
-              <div class="overlay-icon">🧤</div>
+              <div class="overlay-icon">
+                🧤
+              </div>
 
-              <h3>Ready, cleaner?</h3>
+              <h3>
+                Ready, cleaner?
+              </h3>
 
               <p>
                 You have 45 seconds. Tap the litter you see
                 around the classroom to pick it up and earn points.
               </p>
 
-              <button id="startBtn" class="btn">
+              <button
+                id="startBtn"
+                class="btn"
+              >
                 Start cleaning! →
               </button>
 
@@ -1487,21 +1667,52 @@ input:focus{
         </div>
 
 
+        <!--
+          DEDICATED PICKUP INFORMATION SPACE.
+          This is intentionally OUTSIDE the classroom scene
+          so it can never cover litter.
+        -->
+
+        <div class="pickup-slot">
+
+          <div
+            id="pickupInfo"
+            class="pickup-info"
+          ></div>
+
+        </div>
+
+
         <div class="game-foot">
 
           <span>
             ✨ Score:
-            <strong id="scoreValue" style="color:var(--green)">0</strong>
+            <strong
+              id="scoreValue"
+              style="color:var(--green)"
+            >
+              0
+            </strong>
           </span>
 
           <span>
             ♻️ Collected:
-            <strong id="collectedValue" style="color:var(--green)">0</strong>
+            <strong
+              id="collectedValue"
+              style="color:var(--green)"
+            >
+              0
+            </strong>
           </span>
 
           <span>
             🔥 Streak:
-            <strong id="streakValue" style="color:var(--green)">0</strong>
+            <strong
+              id="streakValue"
+              style="color:var(--green)"
+            >
+              0
+            </strong>
           </span>
 
         </div>
@@ -1513,7 +1724,9 @@ input:focus{
 
       <aside class="side-card card">
 
-        <h3>🧺 Litter = points</h3>
+        <h3>
+          🧺 Litter = points
+        </h3>
 
         <p>
           Tap the litter around the classroom to collect it.
@@ -1575,10 +1788,12 @@ input:focus{
         </div>
 
         <div class="tip">
+
           💡 <strong>Eco tip:</strong>
           The game is a virtual clean-up activity.
           In real life, only handle waste safely and follow
           your school's waste-segregation rules.
+
         </div>
 
       </aside>
@@ -1588,29 +1803,44 @@ input:focus{
   </div>
 
 
-  <!-- LEADERBOARD -->
+  <!-- =========================
+       LEADERBOARD
+  ========================= -->
 
-  <div id="leaderboardPage" class="screen">
+  <div
+    id="leaderboardPage"
+    class="screen"
+  >
 
     <div class="leader-card card">
 
       <div class="leader-title">
 
         <div>
-          <h2>🏆 Eco leaderboard</h2>
+
+          <h2>
+            🏆 Eco leaderboard
+          </h2>
 
           <p>
             The highest personal best scores rise to the top.
           </p>
+
         </div>
 
-        <button class="btn light" id="backToPlay">
+        <button
+          class="btn light"
+          id="backToPlay"
+        >
           Play a round →
         </button>
 
       </div>
 
-      <div id="leaderRows" class="leader-list"></div>
+      <div
+        id="leaderRows"
+        class="leader-list"
+      ></div>
 
       <div class="footnote">
         This demo leaderboard contains only players saved
@@ -1635,28 +1865,47 @@ input:focus{
      PROFILE MODAL
 ========================= -->
 
-<div id="profileModal" class="modal">
+<div
+  id="profileModal"
+  class="modal"
+>
 
   <div class="modal-card">
 
     <div class="modal-head">
-      <h2>👤 My Profile</h2>
-      <button id="closeProfile" class="close-btn">×</button>
+
+      <h2>
+        👤 My Profile
+      </h2>
+
+      <button
+        id="closeProfile"
+        class="close-btn"
+      >
+        ×
+      </button>
+
     </div>
 
     <div class="avatar-wrap">
 
-      <div id="profileAvatar" class="avatar">
+      <div
+        id="profileAvatar"
+        class="avatar"
+      >
         🌱
       </div>
 
       <label class="photo-label">
+
         Add / change picture
+
         <input
           id="photoInput"
           type="file"
           accept="image/*"
         >
+
       </label>
 
     </div>
@@ -1671,15 +1920,24 @@ input:focus{
       placeholder="Your nickname"
     >
 
-    <button id="saveProfile" class="btn full">
+    <button
+      id="saveProfile"
+      class="btn full"
+    >
       Save profile
     </button>
 
-    <button id="logoutBtn" class="btn danger full">
+    <button
+      id="logoutBtn"
+      class="btn danger full"
+    >
       Log out
     </button>
 
-    <div id="profileMsg" class="msg"></div>
+    <div
+      id="profileMsg"
+      class="msg"
+    ></div>
 
   </div>
 
@@ -1690,7 +1948,10 @@ input:focus{
      BONUS QUIZ MODAL
 ========================= -->
 
-<div id="quizModal" class="modal">
+<div
+  id="quizModal"
+  class="modal"
+>
 
   <div class="modal-card quiz-box">
 
@@ -1702,27 +1963,45 @@ input:focus{
       Which action helps reduce waste at school?
     </div>
 
-    <div id="quizOptions" class="quiz-options">
+    <div
+      id="quizOptions"
+      class="quiz-options"
+    >
 
-      <button class="quiz-option" data-correct="false">
+      <button
+        class="quiz-option"
+        data-correct="false"
+      >
         Throwing everything on the floor
       </button>
 
-      <button class="quiz-option" data-correct="true">
+      <button
+        class="quiz-option"
+        data-correct="true"
+      >
         Using reusable items when possible
       </button>
 
-      <button class="quiz-option" data-correct="false">
+      <button
+        class="quiz-option"
+        data-correct="false"
+      >
         Leaving trash under desks
       </button>
 
-      <button class="quiz-option" data-correct="false">
+      <button
+        class="quiz-option"
+        data-correct="false"
+      >
         Mixing all waste together
       </button>
 
     </div>
 
-    <div id="quizFeedback" class="quiz-feedback"></div>
+    <div
+      id="quizFeedback"
+      class="quiz-feedback"
+    ></div>
 
     <button
       id="quizContinue"
@@ -1737,49 +2016,75 @@ input:focus{
 </div>
 
 
-<div id="toast" class="toast"></div>
+<div
+  id="toast"
+  class="toast"
+></div>
 
 
 <script>
 (() => {
 
-  const $ = id => document.getElementById(id);
+  const $ = id =>
+    document.getElementById(id);
 
-  const KEY = "cleanQuestPlayers_v5";
+  const KEY =
+    "cleanQuestPlayers_v5";
 
   let players = {};
+
   let currentPlayer = null;
+
   let mode = "create";
 
   let running = false;
+
   let timeLeft = 45;
 
   let score = 0;
+
   let collected = 0;
+
   let streak = 0;
+
   let bestStreak = 0;
 
   let timerId = null;
+
   let spawnId = null;
 
   let storageOK = false;
+
 
   /* =========================
      STORAGE
   ========================= */
 
   try{
-    const test = "__cleanquest_test__";
-    localStorage.setItem(test,"1");
-    localStorage.removeItem(test);
+
+    const test =
+      "__cleanquest_test__";
+
+    localStorage.setItem(
+      test,
+      "1"
+    );
+
+    localStorage.removeItem(
+      test
+    );
 
     storageOK = true;
 
     players =
-      JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+      JSON.parse(
+        localStorage.getItem(KEY) || "{}"
+      ) || {};
 
   }catch(e){
+
     players = {};
+
   }
 
 
@@ -1788,20 +2093,20 @@ input:focus{
     if(!storageOK) return;
 
     try{
-      localStorage.setItem(KEY,JSON.stringify(players));
+
+      localStorage.setItem(
+        KEY,
+        JSON.stringify(players)
+      );
+
     }catch(e){}
+
   }
 
 
   /* =========================
      LITTER DATA
   ========================= */
-
-  /*
-    Only realistic litter items are included.
-    Each item:
-    emoji, display name, category, points
-  */
 
   const litter = [
 
@@ -1876,7 +2181,9 @@ input:focus{
 
     document
       .querySelectorAll(".screen")
-      .forEach(s => s.classList.remove("active"));
+      .forEach(s =>
+        s.classList.remove("active")
+      );
 
     const el = $(id);
 
@@ -1885,6 +2192,7 @@ input:focus{
     }
 
     window.scrollTo(0,0);
+
   }
 
 
@@ -1893,10 +2201,16 @@ input:focus{
     mode = m;
 
     $("createTab")
-      .classList.toggle("active",m === "create");
+      .classList.toggle(
+        "active",
+        m === "create"
+      );
 
     $("loginTab")
-      .classList.toggle("active",m === "login");
+      .classList.toggle(
+        "active",
+        m === "login"
+      );
 
     $("formSubmit").textContent =
       m === "create"
@@ -1904,6 +2218,7 @@ input:focus{
       : "Log in and play →";
 
     $("formMsg").textContent = "";
+
   }
 
 
@@ -1918,95 +2233,114 @@ input:focus{
      LOGIN / CREATE
   ========================= */
 
-  $("playerPin").oninput = e => {
+  $("playerPin").oninput =
+    e => {
 
-    e.target.value =
-      e.target.value
-      .replace(/\D/g,"")
-      .slice(0,4);
+      e.target.value =
+        e.target.value
+        .replace(/\D/g,"")
+        .slice(0,4);
 
-  };
+    };
 
 
-  $("formSubmit").onclick = () => {
+  $("formSubmit").onclick =
+    () => {
 
-    const name =
-      $("playerName")
-      .value
-      .trim()
-      .replace(/\s+/g," ");
+      const name =
+        $("playerName")
+        .value
+        .trim()
+        .replace(/\s+/g," ");
 
-    const pin =
-      $("playerPin")
-      .value
-      .replace(/\D/g,"")
-      .slice(0,4);
+      const pin =
+        $("playerPin")
+        .value
+        .replace(/\D/g,"")
+        .slice(0,4);
 
-    $("playerPin").value = pin;
+      $("playerPin").value =
+        pin;
 
-    if(name.length < 2){
 
-      $("formMsg").textContent =
-        "Use at least 2 characters for your player name.";
-
-      return;
-    }
-
-    if(!/^\d{4}$/.test(pin)){
-
-      $("formMsg").textContent =
-        "Enter exactly 4 digits for your demo PIN.";
-
-      return;
-    }
-
-    const key = name.toLowerCase();
-
-    if(mode === "create"){
-
-      if(players[key]){
+      if(name.length < 2){
 
         $("formMsg").textContent =
-          "That player already exists. Tap Log in instead.";
+          "Use at least 2 characters for your player name.";
 
         return;
+
       }
 
-      players[key] = {
 
-        name,
-        pin,
-
-        best:0,
-        totalItems:0,
-        games:0,
-        totalPoints:0,
-
-        photo:""
-
-      };
-
-      persist();
-
-      login(key);
-
-    }else{
-
-      if(
-        !players[key] ||
-        players[key].pin !== pin
-      ){
+      if(!/^\d{4}$/.test(pin)){
 
         $("formMsg").textContent =
-          "Player or PIN not found. Check your details.";
+          "Enter exactly 4 digits for your demo PIN.";
 
         return;
+
       }
 
-      login(key);
-    }
 
-  };
+      const key =
+        name.toLowerCase();
+
+
+      if(mode === "create"){
+
+        if(players[key]){
+
+          $("formMsg").textContent =
+            "That player already exists. Tap Log in instead.";
+
+          return;
+
+        }
+
+
+        players[key] = {
+
+          name,
+
+          pin,
+
+          best:0,
+
+          totalItems:0,
+
+          games:0,
+
+          totalPoints:0,
+
+          photo:""
+
+        };
+
+
+        persist();
+
+        login(key);
+
+      }else{
+
+        if(
+          !players[key] ||
+          players[key].pin !== pin
+        ){
+
+          $("formMsg").textContent =
+            "Player or PIN not found. Check your details.";
+
+          return;
+
+        }
+
+        login(key);
+
+      }
+
+    };
 
 
   function login(key){
@@ -2041,26 +2375,34 @@ input:focus{
     .querySelectorAll("[data-page]")
     .forEach(button => {
 
-      button.onclick = () =>
-        showPage(button.dataset.page);
+      button.onclick =
+        () =>
+          showPage(
+            button.dataset.page
+          );
 
     });
 
 
   $("backToPlay").onclick =
-    () => showPage("play");
+    () =>
+      showPage("play");
 
 
   function showPage(page){
 
     $("playPage")
-      .classList.toggle("active",page === "play");
+      .classList.toggle(
+        "active",
+        page === "play"
+      );
 
     $("leaderboardPage")
       .classList.toggle(
         "active",
         page === "leaderboard"
       );
+
 
     document
       .querySelectorAll("[data-page]")
@@ -2073,8 +2415,11 @@ input:focus{
 
       });
 
+
     if(page === "leaderboard"){
+
       renderLeaderboard();
+
     }
 
   }
@@ -2088,16 +2433,21 @@ input:focus{
 
     if(!currentPlayer) return;
 
-    const p = players[currentPlayer];
+    const p =
+      players[currentPlayer];
+
 
     $("bestScore").textContent =
       p.best.toLocaleString();
 
+
     $("totalItems").textContent =
       p.totalItems.toLocaleString();
 
+
     $("gamesPlayed").textContent =
       p.games.toLocaleString();
+
 
     const arr =
       Object.values(players)
@@ -2107,10 +2457,13 @@ input:focus{
           b.totalItems - a.totalItems
       );
 
+
     const index =
       arr.findIndex(
-        x => x.name === p.name
+        x =>
+          x.name === p.name
       );
+
 
     $("yourRank").textContent =
       index >= 0
@@ -2133,30 +2486,58 @@ input:focus{
     timeLeft = 45;
 
     score = 0;
+
     collected = 0;
+
     streak = 0;
+
     bestStreak = 0;
 
-    $("timer").textContent = "00:45";
-    $("timer").classList.remove("danger");
 
-    $("scoreValue").textContent = "0";
-    $("collectedValue").textContent = "0";
-    $("streakValue").textContent = "0";
+    $("timer").textContent =
+      "00:45";
 
-    $("trashLayer").innerHTML = "";
+    $("timer")
+      .classList.remove("danger");
 
-    $("pickupInfo").classList.remove("show");
 
-    $("gameOverlay").style.display = "flex";
+    $("scoreValue").textContent =
+      "0";
+
+    $("collectedValue").textContent =
+      "0";
+
+    $("streakValue").textContent =
+      "0";
+
+
+    $("trashLayer").innerHTML =
+      "";
+
+
+    $("pickupInfo")
+      .classList.remove("show");
+
+    $("pickupInfo").innerHTML =
+      "";
+
+
+    $("gameOverlay")
+      .style.display =
+      "flex";
+
 
     $("gameOverlay").innerHTML = `
 
       <div class="overlay-box">
 
-        <div class="overlay-icon">🧤</div>
+        <div class="overlay-icon">
+          🧤
+        </div>
 
-        <h3>Ready, cleaner?</h3>
+        <h3>
+          Ready, cleaner?
+        </h3>
 
         <p>
           You have 45 seconds.
@@ -2164,7 +2545,10 @@ input:focus{
           to pick it up and earn points.
         </p>
 
-        <button id="startBtn" class="btn">
+        <button
+          id="startBtn"
+          class="btn"
+        >
           Start cleaning! →
         </button>
 
@@ -2172,7 +2556,9 @@ input:focus{
 
     `;
 
-    $("startBtn").onclick = startRound;
+
+    $("startBtn").onclick =
+      startRound;
 
   }
 
@@ -2180,9 +2566,11 @@ input:focus{
   function stopTimers(){
 
     clearInterval(timerId);
+
     clearInterval(spawnId);
 
     timerId = null;
+
     spawnId = null;
 
   }
@@ -2194,22 +2582,41 @@ input:focus{
 
   function startRound(){
 
-    if(!currentPlayer || running) return;
+    if(!currentPlayer || running)
+      return;
+
 
     running = true;
 
     timeLeft = 45;
 
     score = 0;
+
     collected = 0;
+
     streak = 0;
+
     bestStreak = 0;
 
-    $("gameOverlay").style.display = "none";
 
-    $("trashLayer").innerHTML = "";
+    $("gameOverlay")
+      .style.display =
+      "none";
+
+
+    $("trashLayer").innerHTML =
+      "";
+
+
+    $("pickupInfo")
+      .classList.remove("show");
+
+    $("pickupInfo").innerHTML =
+      "";
+
 
     updateGameStats();
+
 
     /*
       Start with 7 items.
@@ -2217,38 +2624,47 @@ input:focus{
     */
 
     for(let i=0;i<7;i++){
+
       spawnTrash();
+
     }
+
 
     updateTimer();
 
-    timerId = setInterval(() => {
 
-      timeLeft--;
+    timerId =
+      setInterval(() => {
 
-      updateTimer();
+        timeLeft--;
 
-      if(timeLeft <= 0){
-        finishRound();
-      }
-
-    },1000);
+        updateTimer();
 
 
-    spawnId = setInterval(() => {
+        if(timeLeft <= 0){
 
-      if(
-        running &&
-        $("trashLayer")
-        .querySelectorAll(".trash")
-        .length < 8
-      ){
+          finishRound();
 
-        spawnTrash();
+        }
 
-      }
+      },1000);
 
-    },700);
+
+    spawnId =
+      setInterval(() => {
+
+        if(
+          running &&
+          $("trashLayer")
+          .querySelectorAll(".trash")
+          .length < 8
+        ){
+
+          spawnTrash();
+
+        }
+
+      },700);
 
   }
 
@@ -2261,21 +2677,27 @@ input:focus{
 
     if(!running) return;
 
+
     const item =
       litter[
         Math.floor(
-          Math.random() * litter.length
+          Math.random() *
+          litter.length
         )
       ];
 
+
     const el =
       document.createElement("button");
+
 
     el.type = "button";
 
     el.className = "trash";
 
-    el.textContent = item[0];
+    el.textContent =
+      item[0];
+
 
     el.setAttribute(
       "aria-label",
@@ -2286,6 +2708,7 @@ input:focus{
       " points"
     );
 
+
     el.title =
       item[1] +
       " • " +
@@ -2294,33 +2717,51 @@ input:focus{
       item[3];
 
 
-    const scene = $("scene");
+    const scene =
+      $("scene");
+
 
     const rect =
       scene.getBoundingClientRect();
 
+
     /*
       Keep litter inside the actual
-      playable floor area.
+      playable classroom area.
     */
 
     const x =
       12 +
       Math.random() *
-      Math.max(20,rect.width - 76);
+      Math.max(
+        20,
+        rect.width - 76
+      );
+
 
     const y =
       145 +
       Math.random() *
-      Math.max(30,rect.height - 235);
+      Math.max(
+        30,
+        rect.height - 235
+      );
 
 
-    el.style.left = x + "px";
-    el.style.top = y + "px";
+    el.style.left =
+      x + "px";
 
 
-    el.onclick = () =>
-      collectTrash(el,item);
+    el.style.top =
+      y + "px";
+
+
+    el.onclick =
+      () =>
+        collectTrash(
+          el,
+          item
+        );
 
 
     $("trashLayer")
@@ -2333,7 +2774,10 @@ input:focus{
      PICK UP TRASH
   ========================= */
 
-  function collectTrash(el,item){
+  function collectTrash(
+    el,
+    item
+  ){
 
     if(
       !running ||
@@ -2341,6 +2785,7 @@ input:focus{
     ){
 
       return;
+
     }
 
 
@@ -2354,8 +2799,12 @@ input:focus{
 
     streak++;
 
+
     bestStreak =
-      Math.max(bestStreak,streak);
+      Math.max(
+        bestStreak,
+        streak
+      );
 
 
     /*
@@ -2365,6 +2814,7 @@ input:focus{
 
     let streakBonus = 0;
 
+
     if(streak % 5 === 0){
 
       streakBonus = 5;
@@ -2373,7 +2823,8 @@ input:focus{
 
 
     const earned =
-      item[3] + streakBonus;
+      item[3] +
+      streakBonus;
 
 
     score += earned;
@@ -2386,16 +2837,24 @@ input:focus{
 
     /*
       Correct information appears
-      after the item is picked up.
+      in the dedicated space BELOW
+      the classroom scene.
     */
 
-    const info = $("pickupInfo");
+    const info =
+      $("pickupInfo");
+
 
     info.innerHTML = `
 
       ${item[0]}
-      <strong>${escapeHTML(item[1])}</strong>
+
+      <strong>
+        ${escapeHTML(item[1])}
+      </strong>
+
       • ${escapeHTML(item[2])}
+
       • +${earned}
 
       ${
@@ -2406,10 +2865,14 @@ input:focus{
 
     `;
 
+
     info.classList.add("show");
 
 
-    clearTimeout(window.__pickupInfo);
+    clearTimeout(
+      window.__pickupInfo
+    );
+
 
     window.__pickupInfo =
       setTimeout(() => {
@@ -2426,22 +2889,32 @@ input:focus{
     const r =
       el.getBoundingClientRect();
 
+
     const sr =
-      $("scene").getBoundingClientRect();
+      $("scene")
+      .getBoundingClientRect();
+
 
     const float =
       document.createElement("div");
 
-    float.className = "float-points";
+
+    float.className =
+      "float-points";
+
 
     float.textContent =
       "+" + earned;
 
+
     float.style.left =
-      (r.left - sr.left) + "px";
+      (r.left - sr.left) +
+      "px";
+
 
     float.style.top =
-      (r.top - sr.top) + "px";
+      (r.top - sr.top) +
+      "px";
 
 
     $("trashLayer")
@@ -2458,8 +2931,11 @@ input:focus{
 
       el.remove();
 
+
       if(running){
+
         spawnTrash();
+
       }
 
     },160);
@@ -2472,8 +2948,10 @@ input:focus{
     $("scoreValue").textContent =
       score.toLocaleString();
 
+
     $("collectedValue").textContent =
       collected;
+
 
     $("streakValue").textContent =
       streak;
@@ -2486,8 +2964,15 @@ input:focus{
     $("timer").textContent =
       "00:" +
       String(
-        Math.max(0,timeLeft)
-      ).padStart(2,"0");
+        Math.max(
+          0,
+          timeLeft
+        )
+      ).padStart(
+        2,
+        "0"
+      );
+
 
     $("timer")
       .classList.toggle(
@@ -2504,7 +2989,9 @@ input:focus{
 
   function finishRound(){
 
-    if(!running) return;
+    if(!running)
+      return;
+
 
     running = false;
 
@@ -2526,11 +3013,16 @@ input:focus{
         score
       );
 
-    p.totalItems += collected;
+
+    p.totalItems +=
+      collected;
+
 
     p.games++;
 
-    p.totalPoints += score;
+
+    p.totalPoints +=
+      score;
 
 
     persist();
@@ -2539,10 +3031,13 @@ input:focus{
 
 
     const rank =
-      getRank(currentPlayer);
+      getRank(
+        currentPlayer
+      );
 
 
-    $("gameOverlay").style.display =
+    $("gameOverlay")
+      .style.display =
       "flex";
 
 
@@ -2550,9 +3045,13 @@ input:focus{
 
       <div class="overlay-box">
 
-        <div class="overlay-icon">🧹</div>
+        <div class="overlay-icon">
+          🧹
+        </div>
 
-        <h3>Cleaning complete!</h3>
+        <h3>
+          Cleaning complete!
+        </h3>
 
         <div class="result-score">
           ${score.toLocaleString()}
@@ -2567,18 +3066,39 @@ input:focus{
         <div class="result-grid">
 
           <div class="result-box">
-            <strong>${collected}</strong>
-            <span>Items</span>
+
+            <strong>
+              ${collected}
+            </strong>
+
+            <span>
+              Items
+            </span>
+
           </div>
 
           <div class="result-box">
-            <strong>${bestStreak}</strong>
-            <span>Best streak</span>
+
+            <strong>
+              ${bestStreak}
+            </strong>
+
+            <span>
+              Best streak
+            </span>
+
           </div>
 
           <div class="result-box">
-            <strong>${rank}</strong>
-            <span>Ranking</span>
+
+            <strong>
+              ${rank}
+            </strong>
+
+            <span>
+              Ranking
+            </span>
+
           </div>
 
         </div>
@@ -2631,22 +3151,25 @@ input:focus{
       .classList.add("show");
 
 
-    $("quizFeedback").textContent = "";
+    $("quizFeedback").textContent =
+      "";
 
-    $("quizFeedback")
-      .className =
+
+    $("quizFeedback").className =
       "quiz-feedback";
 
 
     $("quizContinue")
-      .style.display = "none";
+      .style.display =
+      "none";
 
 
     document
       .querySelectorAll(".quiz-option")
       .forEach(button => {
 
-        button.disabled = false;
+        button.disabled =
+          false;
 
         button.classList.remove(
           "correct",
@@ -2662,184 +3185,238 @@ input:focus{
     .querySelectorAll(".quiz-option")
     .forEach(button => {
 
-      button.onclick = () => {
-
-        /*
-          Prevent multiple answers.
-        */
-
-        document
-          .querySelectorAll(".quiz-option")
-          .forEach(b => {
-            b.disabled = true;
-          });
-
-
-        const correct =
-          button.dataset.correct === "true";
-
-
-        if(correct){
-
-          button.classList.add("correct");
-
-          $("quizFeedback").className =
-            "quiz-feedback good";
-
-          $("quizFeedback").textContent =
-            "✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
+      button.onclick =
+        () => {
 
           /*
-            Add bonus to current score.
-          */
-
-          score += 25;
-
-          /*
-            Update player's saved score.
-          */
-
-          const p =
-            players[currentPlayer];
-
-          p.totalPoints += 25;
-
-          if(score > p.best){
-            p.best = score;
-          }
-
-          persist();
-
-          refreshStats();
-
-          $("quizContinue")
-            .style.display = "block";
-
-
-        }else{
-
-          button.classList.add("wrong");
-
-          /*
-            Show the actual correct answer.
+            Prevent multiple answers.
           */
 
           document
             .querySelectorAll(".quiz-option")
             .forEach(b => {
 
-              if(
-                b.dataset.correct === "true"
-              ){
-
-                b.classList.add("correct");
-
-              }
+              b.disabled = true;
 
             });
 
 
-          $("quizFeedback").className =
-            "quiz-feedback bad";
-
-          $("quizFeedback").textContent =
-            "❌ Not quite. The correct answer is “Using reusable items when possible.”";
+          const correct =
+            button.dataset.correct ===
+            "true";
 
 
-          $("quizContinue")
-            .style.display = "block";
+          if(correct){
 
-        }
+            button.classList.add(
+              "correct"
+            );
 
-      };
+
+            $("quizFeedback")
+              .className =
+              "quiz-feedback good";
+
+
+            $("quizFeedback")
+              .textContent =
+              "✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
+
+
+            score += 25;
+
+
+            const p =
+              players[currentPlayer];
+
+
+            p.totalPoints += 25;
+
+
+            if(score > p.best){
+
+              p.best =
+                score;
+
+            }
+
+
+            persist();
+
+            refreshStats();
+
+
+            $("quizContinue")
+              .style.display =
+              "block";
+
+
+          }else{
+
+            button.classList.add(
+              "wrong"
+            );
+
+
+            /*
+              Show the actual
+              correct answer.
+            */
+
+            document
+              .querySelectorAll(".quiz-option")
+              .forEach(b => {
+
+                if(
+                  b.dataset.correct ===
+                  "true"
+                ){
+
+                  b.classList.add(
+                    "correct"
+                  );
+
+                }
+
+              });
+
+
+            $("quizFeedback")
+              .className =
+              "quiz-feedback bad";
+
+
+            $("quizFeedback")
+              .textContent =
+              "❌ Not quite. The correct answer is “Using reusable items when possible.”";
+
+
+            $("quizContinue")
+              .style.display =
+              "block";
+
+          }
+
+        };
 
     });
 
 
-  $("quizContinue").onclick = () => {
+  $("quizContinue").onclick =
+    () => {
 
-    $("quizModal")
-      .classList.remove("show");
-
-    /*
-      Return to a clear result screen
-      with the final score.
-    */
-
-    const finalRank =
-      getRank(currentPlayer);
+      $("quizModal")
+        .classList.remove(
+          "show"
+        );
 
 
-    $("gameOverlay").style.display =
-      "flex";
+      const finalRank =
+        getRank(
+          currentPlayer
+        );
 
 
-    $("gameOverlay").innerHTML = `
+      $("gameOverlay")
+        .style.display =
+        "flex";
 
-      <div class="overlay-box">
 
-        <div class="overlay-icon">🏆</div>
+      $("gameOverlay").innerHTML = `
 
-        <h3>Round saved!</h3>
+        <div class="overlay-box">
 
-        <div class="result-score">
-          ${score.toLocaleString()}
-        </div>
-
-        <p>
-          Your final score includes your
-          eco-question bonus.
-        </p>
-
-        <div class="result-grid">
-
-          <div class="result-box">
-            <strong>${collected}</strong>
-            <span>Items</span>
+          <div class="overlay-icon">
+            🏆
           </div>
 
-          <div class="result-box">
-            <strong>${bestStreak}</strong>
-            <span>Best streak</span>
+          <h3>
+            Round saved!
+          </h3>
+
+          <div class="result-score">
+            ${score.toLocaleString()}
           </div>
 
-          <div class="result-box">
-            <strong>${finalRank}</strong>
-            <span>Ranking</span>
+          <p>
+            Your final score includes your
+            eco-question bonus.
+          </p>
+
+          <div class="result-grid">
+
+            <div class="result-box">
+
+              <strong>
+                ${collected}
+              </strong>
+
+              <span>
+                Items
+              </span>
+
+            </div>
+
+            <div class="result-box">
+
+              <strong>
+                ${bestStreak}
+              </strong>
+
+              <span>
+                Best streak
+              </span>
+
+            </div>
+
+            <div class="result-box">
+
+              <strong>
+                ${finalRank}
+              </strong>
+
+              <span>
+                Ranking
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="overlay-actions">
+
+            <button
+              id="againFinal"
+              class="btn"
+            >
+              Play again →
+            </button>
+
+            <button
+              id="boardFinal"
+              class="btn white"
+            >
+              View leaderboard
+            </button>
+
           </div>
 
         </div>
 
-        <div class="overlay-actions">
-
-          <button
-            id="againFinal"
-            class="btn"
-          >
-            Play again →
-          </button>
-
-          <button
-            id="boardFinal"
-            class="btn white"
-          >
-            View leaderboard
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
+      `;
 
 
-    $("againFinal").onclick =
-      resetRoundUI;
+      $("againFinal").onclick =
+        resetRoundUI;
 
-    $("boardFinal").onclick =
-      () => showPage("leaderboard");
 
-  };
+      $("boardFinal").onclick =
+        () =>
+          showPage(
+            "leaderboard"
+          );
+
+    };
 
 
   /* =========================
@@ -2856,14 +3433,20 @@ input:focus{
           b.totalItems - a.totalItems
       );
 
-    const p = players[key];
+
+    const p =
+      players[key];
+
 
     const index =
       arr.findIndex(
-        x => x.name === p.name
+        x =>
+          x.name === p.name
       );
 
-    return "#" + (index + 1);
+
+    return "#" +
+      (index + 1);
 
   }
 
@@ -2878,6 +3461,7 @@ input:focus{
           b.totalItems - a.totalItems
       );
 
+
     const box =
       $("leaderRows");
 
@@ -2885,71 +3469,114 @@ input:focus{
     if(!arr.length){
 
       box.innerHTML = `
+
         <div class="empty">
           No players yet.
           Be the first cleaner! 🌱
         </div>
+
       `;
 
       return;
+
     }
 
 
     box.innerHTML =
-      arr.map((p,i) => {
+      arr.map(
+        (p,i) => {
 
-        const medal =
-          i === 0
-          ? "🥇"
-          : i === 1
-          ? "🥈"
-          : i === 2
-          ? "🥉"
-          : (i + 1);
-
-
-        const isMe =
-          currentPlayer &&
-          p.name ===
-          players[currentPlayer].name;
+          const medal =
+            i === 0
+            ? "🥇"
+            : i === 1
+            ? "🥈"
+            : i === 2
+            ? "🥉"
+            : (i + 1);
 
 
-        return `
+          const isMe =
+            currentPlayer &&
+            p.name ===
+            players[currentPlayer].name;
 
-          <div class="leader-row ${isMe ? "me" : ""}">
 
-            <div class="rank-medal">
-              ${medal}
-            </div>
+          /*
+            Use the SAME photo saved
+            in the player's profile.
 
-            <div>
+            If no photo exists,
+            show initials instead.
+          */
 
-              <div class="player-name">
-                ${escapeHTML(p.name)}
+          const avatar =
+            p.photo
+
+            ? `
+              <div class="leader-avatar">
+                <img
+                  src="${p.photo}"
+                  alt="${escapeHTML(p.name)} profile picture"
+                >
+              </div>
+            `
+
+            : `
+              <div class="leader-avatar">
+                ${escapeHTML(
+                  getInitials(p.name)
+                )}
+              </div>
+            `;
+
+
+          return `
+
+            <div
+              class="leader-row ${isMe ? "me" : ""}"
+            >
+
+              <div class="rank-medal">
+                ${medal}
               </div>
 
-              <div class="player-meta">
-                ${p.totalItems}
-                items collected
-                • ${p.games}
-                round${p.games === 1 ? "" : "s"}
+              ${avatar}
+
+              <div>
+
+                <div class="player-name">
+                  ${escapeHTML(p.name)}
+                </div>
+
+                <div class="player-meta">
+
+                  ${p.totalItems}
+                  items collected
+
+                  • ${p.games}
+                  round${p.games === 1 ? "" : "s"}
+
+                </div>
+
+              </div>
+
+              <div class="leader-score">
+
+                ${p.best.toLocaleString()}
+
+                <small>
+                  best score
+                </small>
+
               </div>
 
             </div>
 
-            <div class="leader-score">
+          `;
 
-              ${p.best.toLocaleString()}
-
-              <small>best score</small>
-
-            </div>
-
-          </div>
-
-        `;
-
-      }).join("");
+        }
+      ).join("");
 
   }
 
@@ -2969,8 +3596,13 @@ input:focus{
   $("profileModal").onclick =
     e => {
 
-      if(e.target === $("profileModal")){
+      if(
+        e.target ===
+        $("profileModal")
+      ){
+
         closeProfile();
+
       }
 
     };
@@ -2978,7 +3610,9 @@ input:focus{
 
   function openProfile(){
 
-    if(!currentPlayer) return;
+    if(!currentPlayer)
+      return;
+
 
     const p =
       players[currentPlayer];
@@ -2991,11 +3625,14 @@ input:focus{
     updateAvatar();
 
 
-    $("profileMsg").textContent = "";
+    $("profileMsg").textContent =
+      "";
 
 
     $("profileModal")
-      .classList.add("show");
+      .classList.add(
+        "show"
+      );
 
   }
 
@@ -3003,7 +3640,9 @@ input:focus{
   function closeProfile(){
 
     $("profileModal")
-      .classList.remove("show");
+      .classList.remove(
+        "show"
+      );
 
   }
 
@@ -3013,6 +3652,7 @@ input:focus{
     const p =
       players[currentPlayer];
 
+
     const avatar =
       $("profileAvatar");
 
@@ -3020,167 +3660,198 @@ input:focus{
     if(p.photo){
 
       avatar.innerHTML =
-        `<img src="${p.photo}" alt="Profile picture">`;
+        `<img
+          src="${p.photo}"
+          alt="Profile picture"
+        >`;
 
     }else{
 
       avatar.textContent =
-        getInitials(p.name);
+        getInitials(
+          p.name
+        );
 
     }
 
   }
 
 
-  $("photoInput").onchange = e => {
+  $("photoInput").onchange =
+    e => {
 
-    const file =
-      e.target.files[0];
-
-    if(!file) return;
-
-
-    /*
-      Keep uploaded profile pictures
-      small so localStorage doesn't
-      get overloaded.
-    */
-
-    const reader =
-      new FileReader();
+      const file =
+        e.target.files[0];
 
 
-    reader.onload = () => {
+      if(!file)
+        return;
 
-      const p =
-        players[currentPlayer];
 
-      p.photo =
-        reader.result;
+      /*
+        Keep uploaded profile pictures
+        small so localStorage doesn't
+        get overloaded.
+      */
 
-      persist();
+      const reader =
+        new FileReader();
 
-      updateAvatar();
 
-      toast("Profile picture updated! 🌱");
+      reader.onload =
+        () => {
+
+          const p =
+            players[currentPlayer];
+
+
+          p.photo =
+            reader.result;
+
+
+          persist();
+
+          updateAvatar();
+
+          /*
+            Refresh leaderboard immediately
+            if the user opens it afterward.
+          */
+
+          toast(
+            "Profile picture updated! 🌱"
+          );
+
+        };
+
+
+      reader.readAsDataURL(
+        file
+      );
 
     };
 
 
-    reader.readAsDataURL(file);
+  $("saveProfile").onclick =
+    () => {
 
-  };
-
-
-  $("saveProfile").onclick = () => {
-
-    const newName =
-      $("editName")
-      .value
-      .trim()
-      .replace(/\s+/g," ");
+      const newName =
+        $("editName")
+        .value
+        .trim()
+        .replace(/\s+/g," ");
 
 
-    if(newName.length < 2){
+      if(newName.length < 2){
+
+        $("profileMsg").textContent =
+          "Use at least 2 characters.";
+
+        return;
+
+      }
+
+
+      const oldKey =
+        currentPlayer;
+
+
+      const newKey =
+        newName.toLowerCase();
+
+
+      if(
+        newKey !== oldKey &&
+        players[newKey]
+      ){
+
+        $("profileMsg").textContent =
+          "That nickname is already being used on this device.";
+
+        return;
+
+      }
+
+
+      const p =
+        players[oldKey];
+
+
+      p.name =
+        newName;
+
+
+      if(newKey !== oldKey){
+
+        players[newKey] =
+          p;
+
+        delete players[oldKey];
+
+        currentPlayer =
+          newKey;
+
+      }
+
+
+      persist();
+
+
+      $("welcomeName").textContent =
+        p.name;
+
+
+      refreshStats();
+
+      updateAvatar();
+
+
+      $("profileMsg").style.color =
+        "#287b4c";
+
 
       $("profileMsg").textContent =
-        "Use at least 2 characters.";
-
-      return;
-
-    }
+        "Profile saved successfully!";
 
 
-    const oldKey =
-      currentPlayer;
+      setTimeout(
+        () => {
 
-    const newKey =
-      newName.toLowerCase();
+          closeProfile();
 
+        },
+        700
+      );
 
-    /*
-      If the name changes,
-      move the profile to a new key.
-    */
-
-    if(
-      newKey !== oldKey &&
-      players[newKey]
-    ){
-
-      $("profileMsg").textContent =
-        "That nickname is already being used on this device.";
-
-      return;
-
-    }
+    };
 
 
-    const p =
-      players[oldKey];
+  $("logoutBtn").onclick =
+    () => {
+
+      stopTimers();
+
+      running = false;
+
+      currentPlayer = null;
 
 
-    p.name =
-      newName;
+      $("playerName").value =
+        "";
+
+      $("playerPin").value =
+        "";
 
 
-    if(newKey !== oldKey){
-
-      players[newKey] = p;
-
-      delete players[oldKey];
-
-      currentPlayer = newKey;
-
-    }
-
-
-    persist();
-
-
-    $("welcomeName").textContent =
-      p.name;
-
-
-    refreshStats();
-
-    updateAvatar();
-
-
-    $("profileMsg").style.color =
-      "#287b4c";
-
-    $("profileMsg").textContent =
-      "Profile saved successfully!";
-
-
-    setTimeout(() => {
+      setMode("create");
 
       closeProfile();
 
-    },700);
+      screen(
+        "loginScreen"
+      );
 
-  };
-
-
-  $("logoutBtn").onclick = () => {
-
-    stopTimers();
-
-    running = false;
-
-    currentPlayer = null;
-
-    $("playerName").value = "";
-    $("playerPin").value = "";
-
-    setMode("create");
-
-    closeProfile();
-
-    screen("loginScreen");
-
-  };
+    };
 
 
   /* =========================
@@ -3203,13 +3874,14 @@ input:focus{
 
     return String(s).replace(
       /[&<>"']/g,
-      m => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[m])
+      m =>
+        ({
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+        }[m])
     );
 
   }
@@ -3220,21 +3892,32 @@ input:focus{
     const t =
       $("toast");
 
+
     t.textContent =
       msg;
 
-    t.classList.add("show");
+
+    t.classList.add(
+      "show"
+    );
+
 
     clearTimeout(
       window.__cqToast
     );
 
+
     window.__cqToast =
-      setTimeout(() => {
+      setTimeout(
+        () => {
 
-        t.classList.remove("show");
+          t.classList.remove(
+            "show"
+          );
 
-      },1800);
+        },
+        1800
+      );
 
   }
 
@@ -3245,7 +3928,9 @@ input:focus{
 
   setMode("create");
 
-  screen("loginScreen");
+  screen(
+    "loginScreen"
+  );
 
 })();
 </script>
