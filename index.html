@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#e9f7eb" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e9f7eb">
 <title>Clean Quest — Play Clean. Rank Up.</title>
 
 <style>
@@ -17,13 +17,10 @@
   --line:#dce9dd;
   --gold:#ffd879;
   --coral:#ff9b86;
-  --red:#c94d3d;
   --shadow:0 18px 48px rgba(42,91,58,.12);
 }
 
 *{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
 
 body{
   margin:0;
@@ -38,21 +35,11 @@ body{
 button,input{font:inherit}
 button{cursor:pointer}
 
-button:focus-visible,
-input:focus-visible{
-  outline:3px solid #62b97e55;
-  outline-offset:2px;
-}
-
 .app{
   max-width:1100px;
   margin:0 auto;
   padding:22px 18px 44px;
 }
-
-/* =========================
-   HEADER
-========================= */
 
 header{
   display:flex;
@@ -102,12 +89,7 @@ header{
   color:var(--green);
 }
 
-/* =========================
-   GENERAL
-========================= */
-
 .screen{display:none}
-
 .screen.active{
   display:block;
   animation:fade .25s ease;
@@ -125,15 +107,12 @@ header{
   box-shadow:var(--shadow);
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* LOGIN */
 
 .login-layout{
   display:grid;
   grid-template-columns:1.1fr .9fr;
   gap:18px;
-  align-items:stretch;
 }
 
 .hero{
@@ -283,10 +262,8 @@ input:focus{
   color:white;
   font-weight:900;
   box-shadow:0 6px 0 #1e5c39;
-  transition:transform .12s,box-shadow .12s,filter .12s;
+  transition:transform .12s,box-shadow .12s;
 }
-
-.btn:hover{filter:brightness(1.04)}
 
 .btn:active{
   transform:translateY(3px);
@@ -304,15 +281,8 @@ input:focus{
   box-shadow:0 5px 0 #c7e4cc;
 }
 
-.btn.ghost{
-  background:white;
-  color:var(--green);
-  box-shadow:none;
-  border:1px solid var(--line);
-}
-
 .btn.secondary{
-  background:#fff;
+  background:white;
   color:var(--green);
   border:1px solid var(--line);
   box-shadow:none;
@@ -333,9 +303,7 @@ input:focus{
   margin-top:8px;
 }
 
-/* =========================
-   HOME
-========================= */
+/* DASHBOARD */
 
 .dash-top{
   display:flex;
@@ -409,9 +377,7 @@ input:focus{
   font-weight:800;
 }
 
-/* =========================
-   GAME
-========================= */
+/* GAME */
 
 .game-layout{
   display:grid;
@@ -419,7 +385,9 @@ input:focus{
   gap:16px;
 }
 
-.game-card{padding:16px}
+.game-card{
+  padding:16px;
+}
 
 .game-head{
   display:flex;
@@ -429,7 +397,9 @@ input:focus{
   margin-bottom:12px;
 }
 
-.game-head h2{font-size:20px}
+.game-head h2{
+  font-size:20px;
+}
 
 .timer{
   background:#fff2da;
@@ -438,31 +408,25 @@ input:focus{
   padding:9px 12px;
   font-weight:950;
   font-variant-numeric:tabular-nums;
-  min-width:70px;
-  text-align:center;
-  transition:.2s;
 }
 
 .timer.danger{
   background:#ffe3dd;
   color:#ac3929;
-  animation:pulseTimer .8s infinite alternate;
 }
 
-@keyframes pulseTimer{
-  from{transform:scale(1)}
-  to{transform:scale(1.05)}
-}
+/* BIGGER PLAY AREA */
 
 .scene{
   position:relative;
   overflow:hidden;
-  border-radius:18px;
-  min-height:365px;
-  height:clamp(365px,48vw,460px);
+  border-radius:20px;
+  min-height:520px;
+  height:520px;
   background:
     linear-gradient(#d9f0ed 0 62%,#d7e6d3 62% 64%,#e9d4b4 64%);
   border:1px solid #c8dfd0;
+  touch-action:manipulation;
 }
 
 .window{
@@ -539,7 +503,7 @@ input:focus{
 
 .desk{
   position:absolute;
-  bottom:55px;
+  bottom:75px;
   left:50%;
   transform:translateX(-50%);
   width:43%;
@@ -590,9 +554,7 @@ input:focus{
   filter:drop-shadow(0 4px 1px #45633b22);
 }
 
-/* =========================
-   TRASH
-========================= */
+/* TRASH */
 
 .trash{
   position:absolute;
@@ -600,16 +562,13 @@ input:focus{
   border:2px solid #ffffffd9;
   border-radius:13px;
   background:#ffffffed;
-  width:54px;
-  height:54px;
+  width:58px;
+  height:58px;
   display:grid;
   place-items:center;
-  font-size:28px;
+  font-size:29px;
   box-shadow:0 5px 12px #31573a1c;
-  transition:
-    transform .12s,
-    opacity .15s,
-    box-shadow .12s;
+  transition:transform .12s,opacity .15s;
   animation:pop .2s ease;
   user-select:none;
   touch-action:manipulation;
@@ -617,14 +576,15 @@ input:focus{
 
 .trash:hover{
   transform:translateY(-4px) rotate(4deg) scale(1.05);
-  box-shadow:0 8px 17px #31573a2c;
 }
 
-.trash:active{transform:scale(.9)}
+.trash:active{
+  transform:scale(.88);
+}
 
 @keyframes pop{
-  from{transform:scale(.3);opacity:0}
-  to{transform:scale(1);opacity:1}
+  from{transform:scale(.3)}
+  to{transform:scale(1)}
 }
 
 .trash.taken{
@@ -641,8 +601,8 @@ input:focus{
 
 .float-points{
   position:absolute;
-  z-index:30;
-  font-size:17px;
+  z-index:8;
+  font-size:18px;
   font-weight:1000;
   color:#227946;
   text-shadow:0 1px white;
@@ -657,14 +617,85 @@ input:focus{
   }
 }
 
-/* =========================
-   GAME OVERLAY
-========================= */
+/* ECO CHALLENGE */
+
+.eco-challenge{
+  position:absolute;
+  inset:0;
+  z-index:20;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:#f6fbf0e8;
+  backdrop-filter:blur(5px);
+  padding:20px;
+}
+
+.eco-box{
+  width:min(360px,100%);
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:25px 20px;
+  text-align:center;
+  box-shadow:0 18px 50px #31573a22;
+}
+
+.eco-icon{
+  font-size:46px;
+}
+
+.eco-box h3{
+  font-size:24px;
+  margin:8px 0 5px;
+  letter-spacing:-.04em;
+}
+
+.eco-box p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+  margin:0 0 17px;
+}
+
+.eco-item{
+  font-size:48px;
+  margin:7px 0 12px;
+}
+
+.eco-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.eco-option{
+  border:1px solid var(--line);
+  background:#f7fbf6;
+  color:var(--green);
+  padding:12px 8px;
+  border-radius:12px;
+  font-weight:900;
+  font-size:12px;
+}
+
+.eco-option:hover{
+  background:#e9f7eb;
+}
+
+.eco-feedback{
+  min-height:20px;
+  font-size:12px;
+  font-weight:900;
+  margin-top:12px;
+}
+
+/* OVERLAY */
 
 .overlay{
   position:absolute;
   inset:0;
-  z-index:40;
+  z-index:10;
   background:#f6fbf0e8;
   backdrop-filter:blur(3px);
   display:flex;
@@ -675,7 +706,7 @@ input:focus{
 }
 
 .overlay-box{
-  max-width:330px;
+  width:min(390px,100%);
 }
 
 .overlay-icon{
@@ -683,16 +714,72 @@ input:focus{
 }
 
 .overlay h3{
-  font-size:25px;
-  letter-spacing:-.04em;
+  font-size:29px;
+  letter-spacing:-.05em;
   margin:9px 0;
+}
+
+.overlay-score{
+  font-size:56px;
+  font-weight:1000;
+  color:var(--green);
+  line-height:1;
+  margin:12px 0;
+}
+
+.overlay-score-label{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
 }
 
 .overlay p{
   font-size:12px;
   color:#627568;
   line-height:1.6;
-  margin:0 0 18px;
+  margin:12px 0 18px;
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:15px 0;
+}
+
+.result-box{
+  background:#fff;
+  border:1px solid #dceadd;
+  border-radius:13px;
+  padding:11px 6px;
+}
+
+.result-box strong{
+  display:block;
+  font-size:20px;
+  color:var(--green);
+}
+
+.result-box span{
+  display:block;
+  font-size:8px;
+  color:var(--muted);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-top:3px;
+}
+
+.rank-banner{
+  background:#eaf6eb;
+  border:1px solid #d7ead9;
+  color:#36734e;
+  border-radius:13px;
+  padding:11px;
+  font-size:11px;
+  font-weight:850;
+  margin:12px 0;
 }
 
 .overlay-actions{
@@ -701,84 +788,6 @@ input:focus{
   justify-content:center;
   flex-wrap:wrap;
 }
-
-.result-score{
-  font-size:38px;
-  font-weight:1000;
-  letter-spacing:-.06em;
-  color:var(--green);
-  margin:5px 0;
-}
-
-.result-rank{
-  background:#edf7ee;
-  border:1px solid #d9eadb;
-  padding:10px 12px;
-  border-radius:12px;
-  margin:12px 0;
-  font-size:12px;
-  color:var(--muted);
-}
-
-.result-rank strong{
-  color:var(--green);
-}
-
-.result-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-  margin:14px 0;
-}
-
-.result-stat{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:11px;
-  padding:9px 5px;
-}
-
-.result-stat strong{
-  display:block;
-  color:var(--green);
-  font-size:16px;
-}
-
-.result-stat span{
-  display:block;
-  font-size:8px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.07em;
-  margin-top:2px;
-}
-
-.rank-badge{
-  display:inline-block;
-  padding:8px 12px;
-  border-radius:999px;
-  background:#fff0bd;
-  color:#765816;
-  font-size:11px;
-  font-weight:950;
-  margin-bottom:4px;
-}
-
-.eco-tip-result{
-  text-align:left;
-  background:#fff7df;
-  border:1px solid #f2e4b9;
-  border-radius:13px;
-  padding:11px;
-  color:#725b24;
-  font-size:10px;
-  line-height:1.5;
-  margin-bottom:14px;
-}
-
-/* =========================
-   GAME FOOT
-========================= */
 
 .game-foot{
   display:flex;
@@ -791,11 +800,11 @@ input:focus{
   margin-top:12px;
 }
 
-/* =========================
-   SIDE PANEL
-========================= */
+/* SIDE */
 
-.side-card{padding:20px}
+.side-card{
+  padding:20px;
+}
 
 .side-card h3{
   margin:0 0 7px;
@@ -849,30 +858,7 @@ input:focus{
   color:#725b24;
 }
 
-.mini-rule{
-  margin:15px 0 0;
-  padding-top:15px;
-  border-top:1px solid var(--line);
-}
-
-.mini-rule strong{
-  display:block;
-  font-size:11px;
-  margin-bottom:7px;
-}
-
-.seg-row{
-  display:flex;
-  justify-content:space-between;
-  gap:6px;
-  font-size:10px;
-  color:var(--muted);
-  padding:4px 0;
-}
-
-/* =========================
-   LEADERBOARD
-========================= */
+/* LEADERBOARD */
 
 .leader-card{
   padding:clamp(20px,4vw,32px);
@@ -911,13 +897,11 @@ input:focus{
   border:1px solid #e3ede3;
   border-radius:15px;
   padding:13px 15px;
-  transition:.15s;
 }
 
 .leader-row.me{
-  border-color:#80c894;
-  background:#eff9f0;
-  box-shadow:0 4px 12px #3b87531a;
+  border-color:#91cfa1;
+  background:#edf8ef;
 }
 
 .rank-medal{
@@ -981,10 +965,6 @@ input:focus{
   margin:9px;
 }
 
-/* =========================
-   FOOT / TOAST
-========================= */
-
 .footnote{
   text-align:center;
   font-size:10px;
@@ -1009,8 +989,6 @@ input:focus{
   z-index:100;
   box-shadow:0 8px 25px #0002;
   transition:.2s;
-  max-width:90%;
-  text-align:center;
 }
 
 .toast.show{
@@ -1018,112 +996,10 @@ input:focus{
   transform:translate(-50%,0);
 }
 
-/* =========================
-   SEGREGATION MODAL
-========================= */
-
-.seg-modal{
-  position:absolute;
-  inset:0;
-  z-index:60;
-  background:#20382dbd;
-  backdrop-filter:blur(4px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-}
-
-.seg-modal.show{
-  display:flex;
-  animation:fade .15s ease;
-}
-
-.seg-box{
-  width:min(420px,100%);
-  background:#fff;
-  border:1px solid #dceadd;
-  border-radius:23px;
-  padding:23px;
-  box-shadow:0 18px 55px #20382d30;
-  text-align:center;
-}
-
-.seg-icon{
-  width:68px;
-  height:68px;
-  margin:0 auto 8px;
-  border-radius:19px;
-  background:#edf7ee;
-  display:grid;
-  place-items:center;
-  font-size:38px;
-}
-
-.seg-box h3{
-  margin:8px 0 5px;
-  font-size:22px;
-  letter-spacing:-.04em;
-}
-
-.seg-box p{
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.55;
-  margin:0 0 17px;
-}
-
-.seg-choices{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.seg-choice{
-  border:1px solid var(--line);
-  background:#f7fbf6;
-  border-radius:15px;
-  padding:13px 6px;
-  color:var(--ink);
-  font-weight:900;
-  transition:.15s;
-}
-
-.seg-choice:hover{
-  transform:translateY(-2px);
-  border-color:#8bc99b;
-  background:#edf8ef;
-}
-
-.seg-choice .emoji{
-  display:block;
-  font-size:27px;
-  margin-bottom:6px;
-}
-
-.seg-choice small{
-  display:block;
-  color:var(--muted);
-  font-size:9px;
-  font-weight:750;
-  margin-top:3px;
-}
-
-.seg-feedback{
-  min-height:18px;
-  font-size:11px;
-  font-weight:900;
-  margin-top:12px;
-}
-
-.seg-feedback.correct{color:#26784a}
-.seg-feedback.wrong{color:#b84b3d}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* MOBILE */
 
 @media(max-width:780px){
+
   .login-layout{
     grid-template-columns:1fr;
   }
@@ -1140,10 +1016,6 @@ input:focus{
     grid-template-columns:1fr;
   }
 
-  .scene{
-    height:410px;
-  }
-
   .stat-row{
     gap:8px;
   }
@@ -1155,36 +1027,31 @@ input:focus{
   .stat strong{
     font-size:23px;
   }
-}
 
-@media(max-width:560px){
-  .seg-choices{
-    grid-template-columns:1fr;
-  }
-
-  .seg-choice{
-    padding:10px;
-  }
-
-  .seg-choice .emoji{
-    display:inline;
-    margin-right:5px;
+  .scene{
+    height:520px;
+    min-height:520px;
   }
 }
 
 @media(max-width:440px){
+
   .app{
     padding:14px 11px 28px;
   }
 
+  header{
+    align-items:flex-start;
+  }
+
   .top-pill{
-    font-size:10px;
-    padding:8px 10px;
+    font-size:9px;
+    padding:8px 9px;
   }
 
   .scene{
-    height:380px;
-    min-height:380px;
+    height:500px;
+    min-height:500px;
   }
 
   .window{
@@ -1211,14 +1078,14 @@ input:focus{
   }
 
   .desk{
-    width:44%;
-    bottom:59px;
+    width:48%;
+    bottom:65px;
   }
 
   .trash{
-    width:48px;
-    height:48px;
-    font-size:25px;
+    width:52px;
+    height:52px;
+    font-size:27px;
   }
 
   .stat .label{
@@ -1234,8 +1101,12 @@ input:focus{
     gap:8px;
   }
 
-  .result-grid{
-    gap:5px;
+  .overlay h3{
+    font-size:25px;
+  }
+
+  .overlay-score{
+    font-size:48px;
   }
 }
 </style>
@@ -1257,9 +1128,8 @@ input:focus{
   <div class="top-pill">♻️ ZERO-COST GAME</div>
 </header>
 
-<!-- =========================
-     LOGIN SCREEN
-========================= -->
+
+<!-- LOGIN -->
 
 <section id="loginScreen" class="screen active">
 
@@ -1277,36 +1147,36 @@ input:focus{
       </h1>
 
       <p>
-        Spot the litter, identify where it belongs, earn points,
-        build a clean streak, and climb the leaderboard.
-        Ready to clean up this virtual classroom?
+        Spot the litter, tap to collect it, earn points,
+        build your streak, and climb the eco leaderboard.
       </p>
 
       <div class="hero-chips">
         <span>🎮 45-second round</span>
-        <span>♻️ Waste segregation</span>
-        <span>🏆 Ranking system</span>
-        <span>🌍 Eco mission</span>
+        <span>🏆 Eco ranking</span>
+        <span>🌍 Environment mission</span>
       </div>
 
       <div class="hero-art">🧹</div>
 
     </div>
 
+
     <div class="form-card card">
 
       <h2>Welcome, cleaner!</h2>
 
       <p class="sub">
-        Create a demo player or log back into one saved on this device.
+        Create a demo player or log back into one saved
+        on this device.
       </p>
 
       <div class="tabs">
-        <button class="tab active" id="createTab" type="button">
+        <button class="tab active" id="createTab">
           Create player
         </button>
 
-        <button class="tab" id="loginTab" type="button">
+        <button class="tab" id="loginTab">
           Log in
         </button>
       </div>
@@ -1323,7 +1193,7 @@ input:focus{
           autocomplete="nickname"
           placeholder="e.g. EcoCJ"
           required
-        />
+        >
 
         <label for="playerPin">
           4-digit demo PIN
@@ -1336,7 +1206,7 @@ input:focus{
           pattern="[0-9]{4}"
           placeholder="e.g. 1234"
           required
-        />
+        >
 
         <button
           id="formSubmit"
@@ -1346,18 +1216,14 @@ input:focus{
           Create my player →
         </button>
 
-        <div
-          id="formMsg"
-          class="msg"
-          aria-live="polite"
-        ></div>
+        <div id="formMsg" class="msg"></div>
 
       </form>
 
       <p class="micro">
-        Demo privacy note: use a nickname, not your full name or real
-        password. This prototype stores demo profiles only in this browser.
-        It is not a secure account system.
+        Demo privacy note: use a nickname, not your full name
+        or real password. This prototype stores demo profiles
+        only in this browser.
       </p>
 
     </div>
@@ -1367,9 +1233,7 @@ input:focus{
 </section>
 
 
-<!-- =========================
-     HOME SCREEN
-========================= -->
+<!-- HOME -->
 
 <section id="homeScreen" class="screen">
 
@@ -1384,22 +1248,15 @@ input:focus{
       <button
         class="active"
         data-page="play"
-        type="button"
       >
         🎮 Play
       </button>
 
-      <button
-        data-page="leaderboard"
-        type="button"
-      >
+      <button data-page="leaderboard">
         🏆 Leaderboard
       </button>
 
-      <button
-        id="logoutBtn"
-        type="button"
-      >
+      <button id="logoutBtn">
         ↩ Switch player
       </button>
 
@@ -1433,9 +1290,7 @@ input:focus{
   </div>
 
 
-  <!-- =========================
-       PLAY PAGE
-  ========================= -->
+  <!-- PLAY PAGE -->
 
   <div id="playPage" class="screen active">
 
@@ -1448,21 +1303,12 @@ input:focus{
           <div>
             <h2>Clean the classroom!</h2>
 
-            <div
-              style="
-                font-size:11px;
-                color:var(--muted);
-                margin-top:4px
-              "
-            >
-              Tap the litter, then put it in the right category.
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">
+              Tap the litter before time runs out.
             </div>
           </div>
 
-          <div
-            id="timer"
-            class="timer"
-          >
+          <div id="timer" class="timer">
             00:45
           </div>
 
@@ -1474,7 +1320,7 @@ input:focus{
         <div
           id="scene"
           class="scene"
-          aria-label="Playable cartoon classroom"
+          aria-label="Playable classroom"
         >
 
           <div class="window"></div>
@@ -1495,30 +1341,29 @@ input:focus{
           <div id="trashLayer"></div>
 
 
-          <!-- START OVERLAY -->
+          <!-- START / RESULT OVERLAY -->
 
-          <div
-            id="gameOverlay"
-            class="overlay"
-          >
+          <div id="gameOverlay" class="overlay">
 
             <div class="overlay-box">
 
-              <div class="overlay-icon">🧤</div>
+              <div class="overlay-icon">
+                🧤
+              </div>
 
               <h3>
                 Ready, cleaner?
               </h3>
 
               <p>
-                You have 45 seconds. Tap each piece of litter,
-                identify its proper waste category, and earn points.
+                You have 45 seconds.
+                Tap every piece of litter you can find.
+                Build a streak for bonus points!
               </p>
 
               <button
                 id="startBtn"
                 class="btn"
-                type="button"
               >
                 Start cleaning! →
               </button>
@@ -1528,79 +1373,17 @@ input:focus{
           </div>
 
 
-          <!-- SEGREGATION MODAL -->
+          <!-- OCCASIONAL ECO CHALLENGE -->
 
           <div
-            id="segModal"
-            class="seg-modal"
-            aria-hidden="true"
-          >
-
-            <div class="seg-box">
-
-              <div
-                id="segIcon"
-                class="seg-icon"
-              >
-                🥤
-              </div>
-
-              <h3>
-                Where does it belong?
-              </h3>
-
-              <p id="segQuestion">
-                Choose the correct waste category.
-              </p>
-
-              <div class="seg-choices">
-
-                <button
-                  class="seg-choice"
-                  type="button"
-                  data-category="general"
-                >
-                  <span class="emoji">🗑️</span>
-                  General
-                  <small>Residual waste</small>
-                </button>
-
-                <button
-                  class="seg-choice"
-                  type="button"
-                  data-category="recyclable"
-                >
-                  <span class="emoji">♻️</span>
-                  Recyclable
-                  <small>Can be recovered</small>
-                </button>
-
-                <button
-                  class="seg-choice"
-                  type="button"
-                  data-category="biodegradable"
-                >
-                  <span class="emoji">🍃</span>
-                  Biodegradable
-                  <small>Breaks down naturally</small>
-                </button>
-
-              </div>
-
-              <div
-                id="segFeedback"
-                class="seg-feedback"
-                aria-live="polite"
-              ></div>
-
-            </div>
-
-          </div>
+            id="ecoChallenge"
+            class="eco-challenge"
+          ></div>
 
         </div>
 
 
-        <!-- GAME STATS -->
+        <!-- GAME FOOT -->
 
         <div class="game-foot">
 
@@ -1639,19 +1422,16 @@ input:focus{
       </div>
 
 
-      <!-- SIDE CARD -->
+      <!-- SIDE PANEL -->
 
       <aside class="side-card card">
 
-        <h3>
-          🧺 Trash = points
-        </h3>
+        <h3>🧺 Trash = points</h3>
 
         <p>
-          Every item has a value. Choose its correct category
-          to earn the full reward.
+          Tap litter to clean the classroom.
+          Keep your streak going for bonus points.
         </p>
-
 
         <div class="points-list">
 
@@ -1685,48 +1465,16 @@ input:focus{
             <span class="pts">+8</span>
           </div>
 
-          <div class="point-line">
-            <span>🧻 Tissue</span>
-            <span class="pts">+6</span>
-          </div>
-
-          <div class="point-line">
-            <span>🥡 Food container</span>
-            <span class="pts">+13</span>
-          </div>
-
-        </div>
-
-
-        <div class="mini-rule">
-
-          <strong>
-            ♻️ Segregation guide
-          </strong>
-
-          <div class="seg-row">
-            <span>🗑️ General</span>
-            <span>Residual waste</span>
-          </div>
-
-          <div class="seg-row">
-            <span>♻️ Recyclable</span>
-            <span>Paper / plastic / metal</span>
-          </div>
-
-          <div class="seg-row">
-            <span>🍃 Biodegradable</span>
-            <span>Organic waste</span>
-          </div>
-
         </div>
 
 
         <div class="tip">
 
           💡 <strong>Eco tip:</strong>
-          Proper waste segregation helps recyclable and biodegradable
-          materials stay out of unnecessary landfill waste.
+
+          Every virtual item represents a real-world
+          waste item. Keep recyclable materials clean
+          and follow your school's waste-segregation rules.
 
         </div>
 
@@ -1737,14 +1485,9 @@ input:focus{
   </div>
 
 
-  <!-- =========================
-       LEADERBOARD
-  ========================= -->
+  <!-- LEADERBOARD -->
 
-  <div
-    id="leaderboardPage"
-    class="screen"
-  >
+  <div id="leaderboardPage" class="screen">
 
     <div class="leader-card card">
 
@@ -1752,9 +1495,7 @@ input:focus{
 
         <div>
 
-          <h2>
-            🏆 Eco leaderboard
-          </h2>
+          <h2>🏆 Eco leaderboard</h2>
 
           <p>
             The cleanest taps rise to the top.
@@ -1765,7 +1506,6 @@ input:focus{
         <button
           class="btn light"
           id="backToPlay"
-          type="button"
         >
           Play a round →
         </button>
@@ -1778,8 +1518,10 @@ input:focus{
       ></div>
 
       <div class="footnote">
-        Leaderboard in this demo includes only players
+
+        This demo leaderboard includes players
         saved in this browser on this device.
+
       </div>
 
     </div>
@@ -1799,18 +1541,12 @@ input:focus{
 <div
   id="toast"
   class="toast"
-  aria-live="polite"
 ></div>
 
 
 <script>
+
 (() => {
-
-  "use strict";
-
-  /* ==========================================================
-     BASIC HELPERS
-  ========================================================== */
 
   const $ = id => document.getElementById(id);
 
@@ -1838,24 +1574,20 @@ input:focus{
 
   let spawnId = null;
 
-  let pendingTrash = null;
+  let challengeUsed = 0;
 
-  let pendingItem = null;
+
+  /* STORAGE */
 
   let storageOK = false;
 
-
-  /* ==========================================================
-     STORAGE
-  ========================================================== */
-
   try{
 
-    const testKey = "__cq_test__";
+    const t = "__cq_test__";
 
-    localStorage.setItem(testKey,"1");
+    localStorage.setItem(t,"1");
 
-    localStorage.removeItem(testKey);
+    localStorage.removeItem(t);
 
     storageOK = true;
 
@@ -1868,10 +1600,33 @@ input:focus{
 
     players = {};
 
-    storageOK = false;
-
   }
 
+
+  /* LITTER */
+
+  const litter = [
+
+    ["📄","Paper scrap",5],
+
+    ["🍬","Wrapper",10],
+
+    ["🥤","Plastic cup",10],
+
+    ["🧴","Bottle",15],
+
+    ["🥫","Can",12],
+
+    ["📦","Small carton",8],
+
+    ["🧻","Tissue",6],
+
+    ["🥡","Food container",13]
+
+  ];
+
+
+  /* STORAGE */
 
   function persist(){
 
@@ -1889,182 +1644,27 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     LITTER DATA
-  ========================================================== */
-
-  /*
-    category:
-    general
-    recyclable
-    biodegradable
-  */
-
-  const litter = [
-
-    {
-      emoji:"📄",
-      name:"Paper scrap",
-      points:5,
-      category:"recyclable"
-    },
-
-    {
-      emoji:"🍬",
-      name:"Candy wrapper",
-      points:10,
-      category:"general"
-    },
-
-    {
-      emoji:"🥤",
-      name:"Plastic cup",
-      points:10,
-      category:"recyclable"
-    },
-
-    {
-      emoji:"🧴",
-      name:"Plastic bottle",
-      points:15,
-      category:"recyclable"
-    },
-
-    {
-      emoji:"🥫",
-      name:"Metal can",
-      points:12,
-      category:"recyclable"
-    },
-
-    {
-      emoji:"📦",
-      name:"Small carton",
-      points:8,
-      category:"recyclable"
-    },
-
-    {
-      emoji:"🧻",
-      name:"Used tissue",
-      points:6,
-      category:"general"
-    },
-
-    {
-      emoji:"🥡",
-      name:"Food container",
-      points:13,
-      category:"general"
-    }
-
-  ];
-
-
-  /* ==========================================================
-     ECO TIPS
-  ========================================================== */
-
-  const ecoTips = [
-
-    "♻️ Recycling works best when recyclable materials are kept clean and properly separated.",
-
-    "🍃 Food scraps and other organic waste can often be managed through composting when facilities are available.",
-
-    "🗑️ Not every piece of waste belongs in the same bin. Proper segregation helps reduce unnecessary waste.",
-
-    "🌱 Keeping shared spaces clean is a small action that can make a visible difference in a community.",
-
-    "🥤 Reusable containers can help reduce the amount of single-use waste produced every day.",
-
-    "🌎 Environmental responsibility starts with everyday choices, including how we handle our waste."
-
-  ];
-
-
-  /* ==========================================================
-     RANK SYSTEM
-  ========================================================== */
-
-  function getRankData(points){
-
-    if(points >= 1000){
-
-      return {
-        title:"Earth Champion",
-        icon:"🌎",
-        color:"gold"
-      };
-
-    }
-
-    if(points >= 700){
-
-      return {
-        title:"Green Guardian",
-        icon:"🌿",
-        color:"green"
-      };
-
-    }
-
-    if(points >= 450){
-
-      return {
-        title:"Eco Cleaner",
-        icon:"♻️",
-        color:"mint"
-      };
-
-    }
-
-    if(points >= 200){
-
-      return {
-        title:"Fresh Starter",
-        icon:"🌱",
-        color:"soft"
-      };
-
-    }
-
-    return {
-      title:"Rookie Cleaner",
-      icon:"🧤",
-      color:"starter"
-    };
-
-  }
-
-
-  /* ==========================================================
-     SCREEN CONTROL
-  ========================================================== */
+  /* SCREEN */
 
   function screen(id){
 
     document
       .querySelectorAll(".screen")
-      .forEach(s =>
-        s.classList.remove("active")
+      .forEach(
+        s => s.classList.remove("active")
       );
 
     const el = $(id);
 
-    if(el){
-
+    if(el)
       el.classList.add("active");
-
-    }
 
     window.scrollTo(0,0);
 
   }
 
 
-  /* ==========================================================
-     LOGIN / CREATE
-  ========================================================== */
+  /* LOGIN MODE */
 
   function setMode(m){
 
@@ -2072,16 +1672,16 @@ input:focus{
 
     $("createTab")
       .classList
-      .toggle("active",m === "create");
+      .toggle("active",m==="create");
 
     $("loginTab")
       .classList
-      .toggle("active",m === "login");
+      .toggle("active",m==="login");
 
     $("formSubmit").textContent =
-      m === "create"
-        ? "Create my player →"
-        : "Log in and play →";
+      m==="create"
+      ? "Create my player →"
+      : "Log in and play →";
 
     $("formMsg").textContent = "";
 
@@ -2140,7 +1740,7 @@ input:focus{
       if(players[key]){
 
         $("formMsg").textContent =
-          "That player already exists on this device. Tap Log in instead.";
+          "That player already exists. Tap Log in instead.";
 
         return;
 
@@ -2159,9 +1759,7 @@ input:focus{
 
         games:0,
 
-        totalPoints:0,
-
-        bestStreak:0
+        totalPoints:0
 
       };
 
@@ -2170,7 +1768,9 @@ input:focus{
 
       login(key);
 
-    }else{
+    }
+
+    else{
 
       if(
         !players[key] ||
@@ -2178,7 +1778,7 @@ input:focus{
       ){
 
         $("formMsg").textContent =
-          "Player or PIN not found. Check your details or create a new player.";
+          "Player or PIN not found. Check your details.";
 
         return;
 
@@ -2195,13 +1795,11 @@ input:focus{
     e =>
       e.target.value =
         e.target.value
-          .replace(/\D/g,"")
-          .slice(0,4);
+        .replace(/\D/g,"")
+        .slice(0,4);
 
 
-  /* ==========================================================
-     LOGIN
-  ========================================================== */
+  /* LOGIN */
 
   function login(key){
 
@@ -2219,13 +1817,15 @@ input:focus{
     resetRoundUI();
 
     toast(
-      "Welcome, " +
-      players[key].name +
-      "! 🌱"
+      "Welcome, "
+      + players[key].name
+      + "! 🌱"
     );
 
   }
 
+
+  /* LOGOUT */
 
   $("logoutBtn").onclick = () => {
 
@@ -2246,18 +1846,15 @@ input:focus{
   };
 
 
-  /* ==========================================================
-     NAVIGATION
-  ========================================================== */
+  /* NAVIGATION */
 
   document
     .querySelectorAll("[data-page]")
-    .forEach(button => {
-
-      button.onclick =
-        () => showPage(button.dataset.page);
-
-    });
+    .forEach(
+      b =>
+        b.onclick =
+          () => showPage(b.dataset.page)
+    );
 
 
   $("backToPlay").onclick =
@@ -2268,82 +1865,79 @@ input:focus{
 
     $("playPage")
       .classList
-      .toggle("active",page === "play");
+      .toggle(
+        "active",
+        page === "play"
+      );
 
     $("leaderboardPage")
       .classList
-      .toggle("active",page === "leaderboard");
+      .toggle(
+        "active",
+        page === "leaderboard"
+      );
 
 
     document
       .querySelectorAll("[data-page]")
-      .forEach(button => {
-
-        button
-          .classList
-          .toggle(
+      .forEach(
+        b =>
+          b.classList.toggle(
             "active",
-            button.dataset.page === page
-          );
+            b.dataset.page === page
+          )
+      );
 
-      });
 
-
-    if(page === "leaderboard"){
-
+    if(page === "leaderboard")
       renderLeaderboard();
-
-    }
 
   }
 
 
-  /* ==========================================================
-     PLAYER STATS
-  ========================================================== */
+  /* STATS */
 
   function refreshStats(){
 
-    if(!currentPlayer) return;
+    if(!currentPlayer)
+      return;
 
-    const player =
+    const p =
       players[currentPlayer];
 
+
     $("bestScore").textContent =
-      player.best.toLocaleString();
+      p.best.toLocaleString();
+
 
     $("totalItems").textContent =
-      player.totalItems.toLocaleString();
+      p.totalItems.toLocaleString();
 
 
     const arr =
       Object.values(players)
       .sort(
         (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems ||
-          b.bestStreak - a.bestStreak
+          b.best-a.best ||
+          b.totalItems-a.totalItems
       );
 
 
-    const index =
+    const i =
       arr.findIndex(
-        playerItem =>
-          playerItem.name === player.name
+        x => x.name === p.name
       );
 
 
     $("yourRank").textContent =
-      index >= 0
-        ? "#" + (index + 1)
-        : "—";
+      i >= 0
+      ? "#" + (i+1)
+      : "—";
 
   }
 
 
-  /* ==========================================================
-     ROUND RESET
-  ========================================================== */
+  /* RESET ROUND */
 
   function resetRoundUI(){
 
@@ -2361,9 +1955,7 @@ input:focus{
 
     bestStreak = 0;
 
-    pendingTrash = null;
-
-    pendingItem = null;
+    challengeUsed = 0;
 
 
     $("timer").textContent = "00:45";
@@ -2379,9 +1971,10 @@ input:focus{
 
     $("streakValue").textContent = "0";
 
+
     $("trashLayer").innerHTML = "";
 
-    closeSegregation();
+    $("ecoChallenge").style.display = "none";
 
 
     $("gameOverlay").style.display = "flex";
@@ -2391,18 +1984,14 @@ input:focus{
 
       <div class="overlay-box">
 
-        <div class="overlay-icon">
-          🧤
-        </div>
+        <div class="overlay-icon">🧤</div>
 
-        <h3>
-          Ready, cleaner?
-        </h3>
+        <h3>Ready, cleaner?</h3>
 
         <p>
           You have 45 seconds.
-          Tap each piece of litter, identify its correct
-          category, and build your clean streak.
+          Tap the litter as fast as you can,
+          build streaks, and earn bonus points.
         </p>
 
         <button
@@ -2424,9 +2013,7 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     TIMER CONTROL
-  ========================================================== */
+  /* TIMERS */
 
   function stopTimers(){
 
@@ -2441,9 +2028,14 @@ input:focus{
   }
 
 
+  /* START GAME */
+
   function startRound(){
 
-    if(!currentPlayer || running)
+    if(
+      !currentPlayer ||
+      running
+    )
       return;
 
 
@@ -2459,43 +2051,57 @@ input:focus{
 
     bestStreak = 0;
 
+    challengeUsed = 0;
 
-    $("gameOverlay").style.display = "none";
+
+    $("gameOverlay")
+      .style
+      .display = "none";
+
+
+    $("ecoChallenge")
+      .style
+      .display = "none";
+
 
     $("trashLayer").innerHTML = "";
+
 
     updateStats();
 
 
-    /*
-      Initial litter.
-      Start with fewer objects so the player can
-      understand the mechanics before the screen
-      gets busy.
-    */
+    /* initial trash */
 
-    for(let i = 0; i < 6; i++){
-
+    for(let i=0;i<8;i++)
       spawnTrash();
-
-    }
 
 
     timerId =
       setInterval(() => {
-
-        if(!running) return;
 
         timeLeft--;
 
         updateTimer();
 
 
-        if(timeLeft <= 0){
+        /*
+          Occasional educational challenge.
+          It only appears once during the round,
+          not on every tap.
+        */
 
-          finishRound();
+        if(
+          timeLeft === 28 &&
+          challengeUsed === 0
+        ){
+
+          showEcoChallenge();
 
         }
+
+
+        if(timeLeft <= 0)
+          finishRound();
 
       },1000);
 
@@ -2505,141 +2111,38 @@ input:focus{
 
         if(
           running &&
-          !$("segModal").classList.contains("show") &&
-          $("trashLayer").querySelectorAll(".trash").length < 8
+          !$("ecoChallenge").matches(".active")
         ){
 
-          spawnTrash();
+          if(
+            $("trashLayer")
+              .querySelectorAll(".trash")
+              .length < 9
+          ){
+
+            spawnTrash();
+
+          }
 
         }
 
-      },700);
+      },520);
 
   }
 
 
-  /* ==========================================================
-     TRASH POSITIONING
-  ========================================================== */
-
-  function isPositionSafe(x,y,existing){
-
-    const minDistance = 62;
-
-    for(const item of existing){
-
-      const dx = x - item.x;
-
-      const dy = y - item.y;
-
-      const distance =
-        Math.sqrt(
-          dx * dx +
-          dy * dy
-        );
-
-      if(distance < minDistance){
-
-        return false;
-
-      }
-
-    }
-
-    return true;
-
-  }
-
-
-  function getSafePosition(){
-
-    const scene =
-      $("scene");
-
-    const rect =
-      scene.getBoundingClientRect();
-
-
-    const width =
-      rect.width;
-
-    const height =
-      rect.height;
-
-
-    const existing =
-      Array.from(
-        $("trashLayer")
-          .querySelectorAll(".trash")
-      )
-      .map(element => ({
-
-        x:parseFloat(element.style.left) || 0,
-
-        y:parseFloat(element.style.top) || 0
-
-      }));
-
-
-    for(let attempt = 0; attempt < 30; attempt++){
-
-      const x =
-        10 +
-        Math.random() *
-        Math.max(
-          20,
-          width - 70
-        );
-
-
-      const y =
-        135 +
-        Math.random() *
-        Math.max(
-          20,
-          height - 215
-        );
-
-
-      if(
-        isPositionSafe(
-          x,
-          y,
-          existing
-        )
-      ){
-
-        return {x,y};
-
-      }
-
-    }
-
-
-    return {
-
-      x:12 + Math.random() * Math.max(20,width - 74),
-
-      y:145 + Math.random() * Math.max(20,height - 220)
-
-    };
-
-  }
-
-
-  /* ==========================================================
-     SPAWN TRASH
-  ========================================================== */
+  /* SPAWN */
 
   function spawnTrash(){
 
-    if(!running) return;
+    if(!running)
+      return;
+
 
     const item =
       litter[
         Math.floor(
-          Math.random() *
-          litter.length
+          Math.random()*litter.length
         )
       ];
 
@@ -2652,34 +2155,60 @@ input:focus{
 
     el.className = "trash";
 
-    el.textContent = item.emoji;
+    el.textContent = item[0];
 
 
     el.setAttribute(
       "aria-label",
-      "Collect " +
-      item.name +
-      " for " +
-      item.points +
-      " points"
+      "Collect "
+      + item[1]
+      + " for "
+      + item[2]
+      + " points"
     );
 
 
     el.title =
-      item.name +
-      " +" +
-      item.points;
+      item[1]
+      + " +"
+      + item[2];
 
 
-    const position =
-      getSafePosition();
+    const scene =
+      $("scene");
+
+    const rect =
+      scene.getBoundingClientRect();
+
+
+    const x =
+      12 +
+      Math.random() *
+      Math.max(
+        20,
+        rect.width - 74
+      );
+
+
+    /*
+      Keep trash away from
+      top UI and bottom furniture.
+    */
+
+    const y =
+      130 +
+      Math.random() *
+      Math.max(
+        40,
+        rect.height - 245
+      );
 
 
     el.style.left =
-      position.x + "px";
+      x + "px";
 
     el.style.top =
-      position.y + "px";
+      y + "px";
 
 
     el.onclick =
@@ -2696,340 +2225,93 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     TRASH TAP
-  ========================================================== */
+  /* COLLECT */
 
-  function collectTrash(el,item){
+  function collectTrash(
+    el,
+    item
+  ){
 
     if(
       !running ||
-      el.classList.contains("taken") ||
-      pendingTrash
-    ){
-
+      el.classList.contains("taken")
+    )
       return;
 
-    }
-
-
-    /*
-      Pause the timer while the player decides
-      where the waste belongs.
-    */
-
-    pendingTrash = el;
-
-    pendingItem = item;
 
     el.classList.add("taken");
 
 
-    $("segIcon").textContent =
-      item.emoji;
+    streak++;
+
+    collected++;
 
 
-    $("segQuestion").textContent =
-      item.name +
-      " — where should it go?";
+    if(streak > bestStreak)
+      bestStreak = streak;
 
 
-    $("segFeedback").textContent = "";
-
-    $("segFeedback")
-      .className =
-        "seg-feedback";
+    let points =
+      item[2];
 
 
-    $("segModal")
-      .classList
-      .add("show");
+    /*
+      STREAK BONUSES
+
+      3 = +5
+      5 = +10
+      10 = +20
+    */
+
+    let bonus = 0;
 
 
-    $("segModal")
-      .setAttribute(
-        "aria-hidden",
-        "false"
-      );
+    if(streak === 3){
 
-  }
+      bonus = 5;
 
+      toast("🔥 3-streak! +5 bonus!");
 
-  /* ==========================================================
-     SEGREGATION
-  ========================================================== */
+    }
 
-  document
-    .querySelectorAll(".seg-choice")
-    .forEach(button => {
+    else if(streak === 5){
 
-      button.onclick =
-        () =>
-          checkCategory(
-            button.dataset.category
-          );
+      bonus = 10;
 
-    });
+      toast("🔥 5-streak! +10 bonus!");
 
+    }
 
-  function checkCategory(selected){
+    else if(streak === 10){
 
-    if(
-      !pendingItem ||
-      !pendingTrash ||
-      !running
-    ){
+      bonus = 20;
 
-      return;
+      toast("🔥 CLEAN SWEEP! +20 bonus!");
 
     }
 
 
-    const correct =
-      selected ===
-      pendingItem.category;
+    score += points + bonus;
 
 
-    const item =
-      pendingItem;
+    $("scoreValue").textContent =
+      score.toLocaleString();
 
-    const trash =
-      pendingTrash;
 
+    $("collectedValue").textContent =
+      collected;
 
-    if(correct){
 
-      /*
-        Base points + streak bonus.
-      */
-
-      streak++;
-
-      bestStreak =
-        Math.max(
-          bestStreak,
-          streak
-        );
-
-
-      let earned =
-        item.points;
-
-
-      let bonus = 0;
-
-
-      if(streak >= 3){
-
-        bonus = 3;
-
-      }
-
-      if(streak >= 5){
-
-        bonus = 7;
-
-      }
-
-      if(streak >= 10){
-
-        bonus = 12;
-
-      }
-
-
-      earned += bonus;
-
-      score += earned;
-
-      collected++;
-
-
-      $("scoreValue").textContent =
-        score.toLocaleString();
-
-      $("collectedValue").textContent =
-        collected;
-
-      $("streakValue").textContent =
-        streak;
-
-
-      showFloatPoints(
-        trash,
-        "+" + earned
-      );
-
-
-      if(streak === 3){
-
-        toast(
-          "🔥 Clean streak ×3! +3 bonus"
-        );
-
-      }else if(streak === 5){
-
-        toast(
-          "🔥 AMAZING! Clean streak ×5! +7 bonus"
-        );
-
-      }else if(streak === 10){
-
-        toast(
-          "🌎 EARTH CHAMPION STREAK! +12 bonus"
-        );
-
-      }else{
-
-        toast(
-          "♻️ Correct! +" +
-          earned +
-          " points"
-        );
-
-      }
-
-
-      $("segFeedback").textContent =
-        bonus > 0
-          ? "✓ Correct! +" +
-            item.points +
-            " + " +
-            bonus +
-            " streak bonus!"
-          : "✓ Correct! +" +
-            item.points +
-            " points!";
-
-
-      $("segFeedback")
-        .classList
-        .add("correct");
-
-
-      setTimeout(() => {
-
-        finishTrashChoice(trash);
-
-      },350);
-
-
-    }else{
-
-      /*
-        Wrong segregation:
-        small penalty but never below zero.
-        Streak resets.
-      */
-
-      score =
-        Math.max(
-          0,
-          score - 5
-        );
-
-
-      streak = 0;
-
-
-      $("scoreValue").textContent =
-        score.toLocaleString();
-
-      $("streakValue").textContent =
-        streak;
-
-
-      $("segFeedback").textContent =
-        "✕ Not quite! -5 points. Streak reset.";
-
-
-      $("segFeedback")
-        .classList
-        .add("wrong");
-
-
-      toast(
-        "❌ Wrong category — -5 points"
-      );
-
-
-      setTimeout(() => {
-
-        finishTrashChoice(trash);
-
-      },650);
-
-    }
-
-  }
-
-
-  function finishTrashChoice(trash){
-
-    if(trash){
-
-      trash.remove();
-
-    }
-
-
-    pendingTrash = null;
-
-    pendingItem = null;
-
-    closeSegregation();
-
-
-    if(
-      running &&
-      $("trashLayer")
-        .querySelectorAll(".trash")
-        .length < 8
-    ){
-
-      spawnTrash();
-
-    }
-
-  }
-
-
-  function closeSegregation(){
-
-    $("segModal")
-      .classList
-      .remove("show");
-
-    $("segModal")
-      .setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-    $("segFeedback").textContent = "";
-
-    pendingTrash = null;
-
-    pendingItem = null;
-
-  }
-
-
-  /* ==========================================================
-     FLOATING POINTS
-  ========================================================== */
-
-  function showFloatPoints(el,text){
-
-    if(!el) return;
+    $("streakValue").textContent =
+      streak;
 
 
     const r =
       el.getBoundingClientRect();
 
+
     const sr =
-      $("scene")
-        .getBoundingClientRect();
+      $("scene").getBoundingClientRect();
 
 
     const f =
@@ -3041,15 +2323,19 @@ input:focus{
 
 
     f.textContent =
-      text;
+      bonus
+      ? "+" + (points+bonus)
+      : "+" + points;
 
 
     f.style.left =
-      (r.left - sr.left) + "px";
+      (r.left-sr.left)
+      + "px";
 
 
     f.style.top =
-      (r.top - sr.top) + "px";
+      (r.top-sr.top)
+      + "px";
 
 
     $("trashLayer")
@@ -3058,15 +2344,23 @@ input:focus{
 
     setTimeout(
       () => f.remove(),
-      800
+      700
     );
+
+
+    setTimeout(() => {
+
+      el.remove();
+
+      if(running)
+        spawnTrash();
+
+    },160);
 
   }
 
 
-  /* ==========================================================
-     GAME STATS
-  ========================================================== */
+  /* UPDATE */
 
   function updateStats(){
 
@@ -3082,9 +2376,7 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     TIMER UI
-  ========================================================== */
+  /* TIMER */
 
   function updateTimer(){
 
@@ -3105,70 +2397,216 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     FINISH ROUND
-  ========================================================== */
+  /* ECO CHALLENGE */
+
+  function showEcoChallenge(){
+
+    if(
+      !running ||
+      challengeUsed > 0
+    )
+      return;
+
+
+    challengeUsed = 1;
+
+
+    /*
+      Pause gameplay while the
+      educational question appears.
+    */
+
+    const current =
+      litter[
+        Math.floor(
+          Math.random()*litter.length
+        )
+      ];
+
+
+    let answer = "Recyclable";
+
+    if(
+      current[1] === "Tissue"
+    )
+      answer = "Residual";
+
+    if(
+      current[1] === "Food container"
+    )
+      answer = "Recyclable";
+
+
+    const options = [
+      "Recyclable",
+      "Residual"
+    ];
+
+
+    $("ecoChallenge").innerHTML = `
+
+      <div class="eco-box">
+
+        <div class="eco-icon">
+          🌱
+        </div>
+
+        <h3>
+          Eco Challenge!
+        </h3>
+
+        <p>
+          Quick environmental bonus!
+          Where should this item generally go
+          when following proper school waste rules?
+        </p>
+
+        <div class="eco-item">
+          ${current[0]}
+        </div>
+
+        <div style="
+          font-weight:900;
+          margin-bottom:14px;
+        ">
+          ${current[1]}
+        </div>
+
+        <div class="eco-options">
+
+          <button
+            class="eco-option"
+            data-answer="Recyclable"
+          >
+            ♻️ Recyclable
+          </button>
+
+          <button
+            class="eco-option"
+            data-answer="Residual"
+          >
+            🗑️ Residual
+          </button>
+
+        </div>
+
+        <div
+          id="ecoFeedback"
+          class="eco-feedback"
+        ></div>
+
+      </div>
+
+    `;
+
+
+    $("ecoChallenge")
+      .style
+      .display = "flex";
+
+
+    document
+      .querySelectorAll(".eco-option")
+      .forEach(btn => {
+
+        btn.onclick = () => {
+
+          const selected =
+            btn.dataset.answer;
+
+
+          const feedback =
+            $("ecoFeedback");
+
+
+          if(
+            selected === answer
+          ){
+
+            score += 15;
+
+            feedback.textContent =
+              "✅ Correct! +15 eco bonus!";
+
+            feedback.style.color =
+              "#297a4c";
+
+          }
+
+          else{
+
+            streak = 0;
+
+            feedback.textContent =
+              "🌱 Keep learning! No bonus this time.";
+
+            feedback.style.color =
+              "#9b6a22";
+
+          }
+
+
+          updateStats();
+
+
+          setTimeout(() => {
+
+            $("ecoChallenge")
+              .style
+              .display = "none";
+
+          },700);
+
+        };
+
+      });
+
+  }
+
+
+  /* FINISH */
 
   function finishRound(){
 
-    if(!running) return;
+    if(!running)
+      return;
 
 
     running = false;
 
     stopTimers();
 
-    closeSegregation();
 
-
-    const player =
+    const p =
       players[currentPlayer];
 
 
-    player.best =
+    p.best =
       Math.max(
-        player.best,
+        p.best,
         score
       );
 
 
-    player.totalItems +=
+    p.totalItems +=
       collected;
 
 
-    player.games++;
+    p.games++;
 
-    player.totalPoints +=
+
+    p.totalPoints +=
       score;
 
 
-    player.bestStreak =
-      Math.max(
-        player.bestStreak || 0,
-        bestStreak
-      );
-
-
     persist();
+
 
     refreshStats();
 
 
     const rank =
       getRank(currentPlayer);
-
-
-    const rankData =
-      getRankData(score);
-
-
-    const tip =
-      ecoTips[
-        Math.floor(
-          Math.random() *
-          ecoTips.length
-        )
-      ];
 
 
     $("gameOverlay")
@@ -3181,53 +2619,69 @@ input:focus{
       <div class="overlay-box">
 
         <div class="overlay-icon">
-          ${rankData.icon}
-        </div>
-
-        <div class="rank-badge">
-          ${rankData.title}
+          🏆
         </div>
 
         <h3>
           Cleaning complete!
         </h3>
 
-        <div class="result-score">
+        <div class="overlay-score">
           ${score.toLocaleString()}
         </div>
 
+        <div class="overlay-score-label">
+          points
+        </div>
+
         <p>
-          You cleaned up the virtual classroom
-          and made every tap count.
+          You cleaned the virtual classroom
+          and made every tap count!
         </p>
 
         <div class="result-grid">
 
-          <div class="result-stat">
-            <strong>${collected}</strong>
-            <span>Items</span>
+          <div class="result-box">
+
+            <strong>
+              ${collected}
+            </strong>
+
+            <span>
+              Items
+            </span>
+
           </div>
 
-          <div class="result-stat">
-            <strong>${bestStreak}</strong>
-            <span>Best streak</span>
+          <div class="result-box">
+
+            <strong>
+              ${bestStreak}
+            </strong>
+
+            <span>
+              Best streak
+            </span>
+
           </div>
 
-          <div class="result-stat">
-            <strong>${rank}</strong>
-            <span>Ranking</span>
+          <div class="result-box">
+
+            <strong>
+              ${rank}
+            </strong>
+
+            <span>
+              Ranking
+            </span>
+
           </div>
 
         </div>
 
-        <div class="result-rank">
+        <div class="rank-banner">
           🏆 Current leaderboard position:
           <strong>${rank}</strong>
-        </div>
-
-        <div class="eco-tip-result">
-          <strong>${tip.split(" ")[0]} ECO TIP:</strong>
-          ${tip.substring(tip.indexOf(" ") + 1)}
         </div>
 
         <div class="overlay-actions">
@@ -3235,7 +2689,6 @@ input:focus{
           <button
             id="againBtn"
             class="btn"
-            type="button"
           >
             Play again →
           </button>
@@ -3243,9 +2696,8 @@ input:focus{
           <button
             id="boardBtn"
             class="btn secondary"
-            type="button"
           >
-            View leaderboard
+            Leaderboard
           </button>
 
         </div>
@@ -3266,9 +2718,7 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     RANK
-  ========================================================== */
+  /* RANK */
 
   function getRank(key){
 
@@ -3276,32 +2726,26 @@ input:focus{
       Object.values(players)
       .sort(
         (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems ||
-          b.bestStreak - a.bestStreak
+          b.best-a.best ||
+          b.totalItems-a.totalItems
       );
 
 
-    const player =
+    const p =
       players[key];
 
 
-    const index =
-      arr.findIndex(
-        item =>
-          item.name === player.name
-      );
-
-
     return "#" +
-      (index + 1);
+      (
+        arr.findIndex(
+          x => x.name === p.name
+        ) + 1
+      );
 
   }
 
 
-  /* ==========================================================
-     LEADERBOARD
-  ========================================================== */
+  /* LEADERBOARD */
 
   function renderLeaderboard(){
 
@@ -3309,9 +2753,8 @@ input:focus{
       Object.values(players)
       .sort(
         (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems ||
-          b.bestStreak - a.bestStreak
+          b.best-a.best ||
+          b.totalItems-a.totalItems
       );
 
 
@@ -3322,11 +2765,21 @@ input:focus{
     if(!arr.length){
 
       box.innerHTML = `
+
         <div class="empty">
-          <div style="font-size:40px">🌱</div>
-          <strong>No players yet.</strong>
+
+          <div style="font-size:38px">
+            🌱
+          </div>
+
+          <strong>
+            No cleaners yet.
+          </strong>
+
           Be the first cleaner!
+
         </div>
+
       `;
 
       return;
@@ -3335,28 +2788,21 @@ input:focus{
 
 
     box.innerHTML =
-      arr
-      .map((player,index) => {
+      arr.map((p,i) => {
 
         const medal =
-          index === 0
-            ? "🥇"
-            : index === 1
-            ? "🥈"
-            : index === 2
-            ? "🥉"
-            : index + 1;
-
-
-        const rankData =
-          getRankData(
-            player.best
-          );
+          i===0
+          ? "🥇"
+          : i===1
+          ? "🥈"
+          : i===2
+          ? "🥉"
+          : (i+1);
 
 
         const isMe =
           currentPlayer &&
-          player.name ===
+          p.name ===
           players[currentPlayer]?.name;
 
 
@@ -3373,26 +2819,21 @@ input:focus{
             <div>
 
               <div class="player-name">
-                ${escapeHTML(player.name)}
-                ${isMe ? " 🌱" : ""}
+                ${escapeHTML(p.name)}
               </div>
 
               <div class="player-meta">
-                ${rankData.icon}
-                ${rankData.title}
-                ·
-                ${player.totalItems}
+                ${p.totalItems}
                 items collected
-                ·
-                Best streak:
-                ${player.bestStreak || 0}
+                · ${p.games}
+                round${p.games===1?"":"s"}
               </div>
 
             </div>
 
             <div class="leader-score">
 
-              ${player.best.toLocaleString()}
+              ${p.best.toLocaleString()}
 
               <small>
                 best score
@@ -3410,9 +2851,7 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     SECURITY / HTML ESCAPE
-  ========================================================== */
+  /* SECURITY */
 
   function escapeHTML(s){
 
@@ -3432,9 +2871,7 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     TOAST
-  ========================================================== */
+  /* TOAST */
 
   function toast(msg){
 
@@ -3446,8 +2883,7 @@ input:focus{
       msg;
 
 
-    t.classList
-      .add("show");
+    t.classList.add("show");
 
 
     clearTimeout(
@@ -3465,15 +2901,14 @@ input:focus{
   }
 
 
-  /* ==========================================================
-     INITIAL STATE
-  ========================================================== */
+  /* START CLEAN */
 
   setMode("create");
 
   screen("loginScreen");
 
 })();
+
 </script>
 
 </body>
