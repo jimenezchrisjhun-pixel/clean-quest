@@ -3,45 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#eef6ee">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-<title>FLASHY — Your Little Study Space</title>
+<meta name="theme-color" content="#eef8f0">
+<title>StudyBloom — Flashcards</title>
 
 <style>
-:root{
-  --bg:#f8f7f1;
-  --surface:#fffdf9;
-  --surface2:#f1f6ef;
-  --sage:#8fa88f;
-  --sage-dark:#5d765f;
-  --sage-light:#e5efe3;
-  --text:#304135;
-  --muted:#7f8a81;
-  --line:#e1e7df;
-  --danger:#b86e66;
-  --danger-bg:#f8e9e6;
-  --cream:#fff6e6;
-  --shadow:0 12px 32px rgba(55,76,59,.08);
-  --radius:24px;
-}
-
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#f6faf7;
+  --card:#ffffff;
+  --soft:#eef7f0;
+  --soft2:#e4f1e7;
+  --green:#6eaa7c;
+  --green-dark:#477457;
+  --text:#294034;
+  --muted:#809187;
+  --line:#e3ece5;
+  --danger:#c87878;
+  --shadow:0 10px 30px rgba(60,90,68,.08);
+  --radius:22px;
 }
 
 html{
-  min-height:100%;
+  scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
 button,
@@ -51,83 +47,21 @@ textarea{
 }
 
 button{
+  border:none;
   cursor:pointer;
 }
 
 button:active{
-  transform:scale(.98);
+  transform:scale(.97);
 }
 
 .hidden{
   display:none !important;
 }
 
-/* =====================================================
-   GENERAL
-===================================================== */
-
-.primary-button{
-  width:100%;
-  border:0;
-  border-radius:16px;
-  padding:14px 18px;
-  background:var(--sage-dark);
-  color:white;
-  font-weight:750;
-}
-
-.secondary-button{
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:12px 16px;
-  background:var(--surface);
-  color:var(--text);
-  font-weight:700;
-}
-
-.text-button{
-  border:0;
-  background:none;
-  color:var(--sage-dark);
-  font-weight:750;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  margin-bottom:7px;
-  font-size:13px;
-  font-weight:750;
-}
-
-.form-input,
-.form-textarea{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:white;
-  color:var(--text);
-  padding:13px 14px;
-  outline:none;
-}
-
-.form-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-.form-input:focus,
-.form-textarea:focus{
-  border-color:var(--sage);
-  box-shadow:0 0 0 3px rgba(143,168,143,.14);
-}
-
-/* =====================================================
+/* =========================
    AUTH
-===================================================== */
+========================= */
 
 .auth-screen{
   min-height:100vh;
@@ -135,774 +69,606 @@ button:active{
   align-items:center;
   justify-content:center;
   padding:24px;
+  background:
+    radial-gradient(circle at top left, #e9f6ec 0, transparent 35%),
+    radial-gradient(circle at bottom right, #eaf5ed 0, transparent 35%),
+    var(--bg);
 }
 
-.auth-container{
+.auth-box{
   width:100%;
   max-width:420px;
-  text-align:center;
+  background:rgba(255,255,255,.94);
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:34px 28px;
+  box-shadow:var(--shadow);
+  animation:fadeUp .5s ease;
 }
 
-.logo-icon{
-  width:76px;
-  height:76px;
+.logo-mark{
+  width:58px;
+  height:58px;
   margin:0 auto 15px;
-  border-radius:26px;
-  background:var(--sage-light);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:35px;
-  box-shadow:var(--shadow);
+  background:var(--soft);
+  border-radius:19px;
+  font-size:28px;
 }
 
-.brand{
-  font-size:35px;
-  font-weight:850;
-  letter-spacing:-1.5px;
+.auth-title{
+  text-align:center;
+  font-size:28px;
+  letter-spacing:-.7px;
+  margin-bottom:6px;
 }
 
-.tagline{
-  color:var(--muted);
-  margin-top:5px;
-  margin-bottom:29px;
-}
-
-.auth-card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:25px;
-  box-shadow:var(--shadow);
-  text-align:left;
-}
-
-.auth-card h2{
-  margin:0 0 6px;
-  font-size:22px;
-}
-
-.description{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
-  margin:0 0 21px;
-}
-
-.auth-switch{
+.auth-subtitle{
   text-align:center;
   color:var(--muted);
   font-size:14px;
-  margin-top:18px;
-}
-
-/* =====================================================
-   MAIN APP
-===================================================== */
-
-.app{
-  min-height:100vh;
-}
-
-.app-content{
-  width:100%;
-  max-width:720px;
-  margin:auto;
-  padding:22px 18px 105px;
-}
-
-/* =====================================================
-   TOPBAR
-===================================================== */
-
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:25px;
-}
-
-.brand-mini{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.mini-logo{
-  width:43px;
-  height:43px;
-  border-radius:15px;
-  background:var(--sage-light);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:21px;
-}
-
-.mini-brand{
-  font-size:18px;
-  font-weight:850;
-}
-
-.profile-avatar-button{
-  width:45px;
-  height:45px;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:var(--surface);
-  overflow:hidden;
-  padding:0;
-}
-
-.profile-avatar-button img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.avatar-placeholder{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--sage-light);
-  font-size:21px;
-}
-
-/* =====================================================
-   HOME
-===================================================== */
-
-.greeting small{
-  color:var(--muted);
-}
-
-.greeting h1{
-  margin:5px 0 22px;
-  font-size:29px;
-  letter-spacing:-1px;
-}
-
-.hero{
-  background:var(--sage-light);
-  border-radius:28px;
-  padding:25px;
-  margin-bottom:25px;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero:after{
-  content:"✦";
-  position:absolute;
-  right:24px;
-  top:18px;
-  font-size:30px;
-  opacity:.35;
-}
-
-.hero h2{
-  margin:0 0 6px;
-  font-size:22px;
-}
-
-.hero p{
-  margin:0 0 18px;
-  max-width:285px;
-  line-height:1.5;
-  color:#667367;
-}
-
-.study-button{
-  border:0;
-  border-radius:15px;
-  background:var(--sage-dark);
-  color:white;
-  padding:12px 18px;
-  font-weight:750;
-}
-
-.section-heading{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:0 2px 12px;
-}
-
-.section-heading h2{
-  margin:0;
-  font-size:18px;
-}
-
-.deck-list{
-  display:grid;
-  gap:11px;
-}
-
-.deck-card{
-  width:100%;
-  border:1px solid var(--line);
-  background:var(--surface);
-  border-radius:21px;
-  padding:16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  text-align:left;
-  color:var(--text);
-  box-shadow:0 5px 18px rgba(55,76,59,.045);
-}
-
-.deck-card-main{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  min-width:0;
-}
-
-.deck-icon{
-  width:47px;
-  height:47px;
-  flex:none;
-  border-radius:16px;
-  background:var(--cream);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-}
-
-.deck-info{
-  min-width:0;
-}
-
-.deck-info strong{
-  display:block;
-  font-size:15px;
-  margin-bottom:4px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.deck-info span{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.deck-arrow{
-  color:var(--muted);
-  font-size:22px;
-  padding-left:10px;
-}
-
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-.empty-state{
-  text-align:center;
-  background:var(--surface);
-  border:1px dashed var(--line);
-  border-radius:22px;
-  padding:36px 20px;
-  color:var(--muted);
-}
-
-.empty-emoji{
-  font-size:33px;
-  margin-bottom:10px;
-}
-
-.empty-state strong{
-  color:var(--text);
-}
-
-.empty-state p{
-  margin:7px 0 18px;
-  font-size:14px;
+  margin-bottom:28px;
   line-height:1.5;
 }
 
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
-
-.bottom-nav{
-  position:fixed;
-  z-index:30;
-  left:50%;
-  bottom:14px;
-  transform:translateX(-50%);
-  width:min(440px,calc(100% - 30px));
+.auth-tabs{
   display:flex;
-  gap:5px;
-  padding:7px;
-  background:rgba(255,253,249,.95);
-  backdrop-filter:blur(16px);
-  border:1px solid var(--line);
-  border-radius:22px;
-  box-shadow:0 12px 30px rgba(55,76,59,.13);
-}
-
-.nav-button{
-  flex:1;
-  border:0;
-  border-radius:15px;
-  background:none;
-  color:var(--muted);
-  padding:8px 5px;
-  font-size:12px;
-  font-weight:750;
-  line-height:1.5;
-}
-
-.nav-button.active{
-  background:var(--sage-light);
-  color:var(--sage-dark);
-}
-
-/* =====================================================
-   PAGE HEAD
-===================================================== */
-
-.page-back{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  background:#f1f6f2;
+  padding:4px;
+  border-radius:14px;
   margin-bottom:22px;
 }
 
-.back-button{
+.auth-tab{
+  flex:1;
+  padding:11px;
+  border-radius:11px;
+  background:transparent;
+  color:var(--muted);
+  transition:.25s ease;
+}
+
+.auth-tab.active{
+  background:white;
+  color:var(--green-dark);
+  box-shadow:0 3px 12px rgba(60,90,68,.07);
+}
+
+.field{
+  margin-bottom:16px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:7px;
+  color:var(--text);
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fbfdfb;
+  padding:13px 14px;
+  border-radius:13px;
+  outline:none;
+  color:var(--text);
+  transition:.2s ease;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#a8cdb0;
+  box-shadow:0 0 0 4px rgba(110,170,124,.1);
+  background:white;
+}
+
+.primary-btn{
+  width:100%;
+  padding:13px 16px;
+  border-radius:14px;
+  background:var(--green);
+  color:white;
+  font-weight:650;
+  transition:.25s ease;
+  box-shadow:0 6px 15px rgba(110,170,124,.18);
+}
+
+.primary-btn:hover{
+  background:var(--green-dark);
+  transform:translateY(-1px);
+}
+
+.small-note{
+  margin-top:15px;
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.error-message{
+  color:#b76565;
+  background:#fff1f1;
+  border-radius:12px;
+  padding:10px 12px;
+  margin-bottom:14px;
+  font-size:12px;
+  display:none;
+}
+
+.error-message.show{
+  display:block;
+}
+
+/* =========================
+   APP
+========================= */
+
+.app{
+  min-height:100vh;
+  padding-bottom:90px;
+}
+
+.app-header{
+  max-width:1050px;
+  margin:auto;
+  padding:22px 22px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
   width:40px;
   height:40px;
-  border:0;
-  background:none;
-  color:var(--text);
-  font-size:25px;
-  border-radius:13px;
-}
-
-.page-title{
-  margin:0;
-  font-size:25px;
-  letter-spacing:-.5px;
-}
-
-.page-subtitle{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
-}
-
-/* =====================================================
-   DECK PAGE
-===================================================== */
-
-.new-deck-button{
-  width:100%;
-  border:1px dashed var(--sage);
-  background:var(--sage-light);
-  color:var(--sage-dark);
-  border-radius:18px;
-  padding:14px;
-  font-weight:750;
-  margin-bottom:19px;
-}
-
-.card-list{
-  display:grid;
-  gap:10px;
-}
-
-.card-item{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:19px;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-
-.card-copy{
-  min-width:0;
-}
-
-.card-copy strong{
-  display:block;
-  font-size:14px;
-  line-height:1.4;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.card-copy span{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.card-actions{
-  display:flex;
-  gap:6px;
-  flex:none;
-}
-
-.mini-button{
-  width:36px;
-  height:36px;
-  border:0;
-  border-radius:12px;
-  background:var(--sage-light);
-}
-
-.mini-button.delete{
-  background:var(--danger-bg);
-}
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile-header{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.profile-big-avatar{
-  width:105px;
-  height:105px;
-  margin:0 auto 13px;
-  border-radius:32px;
-  overflow:hidden;
-  background:var(--sage-light);
-  border:4px solid var(--surface);
-  box-shadow:var(--shadow);
-}
-
-.profile-big-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.profile-big-placeholder{
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:42px;
-}
-
-.profile-name{
-  font-size:22px;
-  font-weight:850;
-}
-
-.profile-label{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
-}
-
-.profile-actions{
-  display:grid;
-  gap:10px;
-  margin-bottom:25px;
-}
-
-.profile-action{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:19px;
-  background:var(--surface);
-  color:var(--text);
-  padding:16px;
-  text-align:left;
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.profile-action-icon{
-  width:42px;
-  height:42px;
   border-radius:14px;
-  background:var(--sage-light);
+  background:var(--soft);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:20px;
-  flex:none;
 }
 
-.profile-action-copy strong{
-  display:block;
-  font-size:14px;
+.brand-name{
+  font-size:19px;
+  font-weight:750;
+  letter-spacing:-.3px;
 }
 
-.profile-action-copy span{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
-}
-
-.circle-card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:23px;
-  padding:18px;
-}
-
-.circle-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:13px;
-}
-
-.circle-title h2{
-  margin:0;
-  font-size:17px;
-}
-
-.offline-note{
-  font-size:11px;
-  color:var(--muted);
-  background:var(--surface2);
-  padding:5px 8px;
-  border-radius:10px;
-}
-
-.circle-message{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.55;
-  margin:0;
-}
-
-.circle-user{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  padding:11px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.circle-user:last-child{
-  border-bottom:0;
-}
-
-.circle-avatar{
+.profile-button{
   width:42px;
   height:42px;
-  border-radius:14px;
+  border-radius:50%;
   overflow:hidden;
-  background:var(--sage-light);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex:none;
+  background:var(--soft);
+  border:2px solid white;
+  box-shadow:0 3px 12px rgba(60,90,68,.1);
+  transition:.25s ease;
 }
 
-.circle-avatar img{
+.profile-button:hover{
+  transform:translateY(-2px);
+}
+
+.profile-button img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.circle-user-info{
-  flex:1;
+.profile-initial{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--green-dark);
+  font-weight:700;
 }
 
-.circle-user-info strong{
-  display:block;
+/* =========================
+   PAGES
+========================= */
+
+.page{
+  max-width:1050px;
+  margin:auto;
+  padding:20px 22px;
+  animation:pageIn .35s ease;
+}
+
+.welcome{
+  margin:10px 0 22px;
+}
+
+.welcome small{
+  color:var(--muted);
   font-size:13px;
 }
 
-.circle-user-info span{
-  display:block;
+.welcome h1{
+  font-size:30px;
+  letter-spacing:-1px;
+  margin-top:3px;
+}
+
+/* =========================
+   HOME
+========================= */
+
+.quick-card{
+  background:linear-gradient(135deg,#edf8ef,#f8fcf8);
+  border:1px solid #dfeee2;
+  border-radius:var(--radius);
+  padding:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.quick-card h2{
+  font-size:18px;
+  margin-bottom:5px;
+}
+
+.quick-card p{
   color:var(--muted);
-  font-size:11px;
-  margin-top:2px;
+  font-size:13px;
 }
 
-.status-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#9aa49c;
+.quick-btn{
+  white-space:nowrap;
+  background:white;
+  color:var(--green-dark);
+  padding:11px 15px;
+  border-radius:13px;
+  font-weight:650;
+  border:1px solid #dceadf;
+  transition:.25s ease;
 }
 
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-.settings-section{
-  margin-top:25px;
+.quick-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 15px rgba(60,90,68,.08);
 }
 
-.settings-section h2{
-  font-size:16px;
-  margin:0 0 11px;
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:13px;
 }
 
-.settings-list{
+.section-title h2{
+  font-size:18px;
+}
+
+.section-title span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.deck-grid{
   display:grid;
-  gap:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
 }
 
-.setting-row{
-  background:var(--surface);
+.deck-card{
+  background:white;
   border:1px solid var(--line);
   border-radius:20px;
+  padding:18px;
+  min-height:145px;
+  box-shadow:0 5px 18px rgba(60,90,68,.04);
+  cursor:pointer;
+  transition:.25s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.deck-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
+
+.deck-card:after{
+  content:"";
+  position:absolute;
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  right:-30px;
+  bottom:-30px;
+  background:var(--soft);
+}
+
+.deck-icon{
+  width:39px;
+  height:39px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--soft);
+  border-radius:13px;
+  margin-bottom:13px;
+}
+
+.deck-name{
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:5px;
+  position:relative;
+  z-index:1;
+}
+
+.deck-count{
+  color:var(--muted);
+  font-size:12px;
+  position:relative;
+  z-index:1;
+}
+
+/* =========================
+   DECKS
+========================= */
+
+.page-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+  gap:15px;
+}
+
+.page-heading h1{
+  font-size:26px;
+  letter-spacing:-.7px;
+}
+
+.add-btn{
+  background:var(--green);
+  color:white;
+  padding:11px 15px;
+  border-radius:13px;
+  font-weight:650;
+  transition:.25s ease;
+  white-space:nowrap;
+}
+
+.add-btn:hover{
+  background:var(--green-dark);
+  transform:translateY(-2px);
+}
+
+.deck-list{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+}
+
+.deck-row{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
   padding:16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:15px;
+  cursor:pointer;
+  transition:.25s ease;
 }
 
-.setting-copy{
+.deck-row:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow);
+}
+
+.deck-row-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
   min-width:0;
 }
 
-.setting-copy strong{
-  display:block;
+.deck-row-icon{
+  width:43px;
+  height:43px;
+  flex-shrink:0;
+  background:var(--soft);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.deck-row-name{
+  font-weight:700;
   font-size:14px;
 }
 
-.setting-copy span{
-  display:block;
+.deck-row-count{
   color:var(--muted);
   font-size:12px;
   margin-top:3px;
 }
 
-.setting-button{
-  flex:none;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:var(--sage-light);
-  color:var(--sage-dark);
-  padding:9px 12px;
-  font-weight:700;
+.arrow{
+  color:#a2b1a7;
+  font-size:20px;
 }
 
-.setting-button.danger{
-  background:var(--danger-bg);
-  color:var(--danger);
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  background:white;
+  border:1px dashed #d8e5db;
+  border-radius:22px;
 }
 
-/* =====================================================
-   MODAL
-===================================================== */
+.empty-icon{
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-.modal-overlay{
-  position:fixed;
-  z-index:80;
-  inset:0;
-  background:rgba(38,53,41,.28);
+.empty h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.empty p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* =========================
+   DECK DETAIL
+========================= */
+
+.back-btn{
+  background:transparent;
+  color:var(--muted);
+  padding:4px 0;
+  margin-bottom:16px;
+  transition:.2s ease;
+}
+
+.back-btn:hover{
+  color:var(--green-dark);
+  transform:translateX(-3px);
+}
+
+.deck-detail-head{
   display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding:0;
-}
-
-.modal{
-  width:min(720px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:var(--surface);
-  border-radius:29px 29px 0 0;
-  padding:23px 20px 28px;
-}
-
-.modal-header{
-  display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
+  gap:15px;
   margin-bottom:20px;
 }
 
-.modal-header h2{
-  margin:0;
-  font-size:20px;
+.deck-detail-head h1{
+  font-size:25px;
+  letter-spacing:-.5px;
 }
 
-.close-button{
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:13px;
-  background:var(--sage-light);
-  color:var(--text);
-  font-size:20px;
+.deck-detail-head p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
 }
 
-.modal-actions{
+.card-list{
   display:flex;
+  flex-direction:column;
   gap:10px;
-  margin-top:20px;
 }
 
-.modal-actions button{
-  flex:1;
-}
-
-/* =====================================================
-   STUDY
-===================================================== */
-
-.study-page{
-  min-height:100vh;
-  max-width:720px;
-  margin:auto;
-  padding:18px;
-}
-
-.study-header{
+.card-row{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:15px 17px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:22px;
+  gap:12px;
 }
 
-.study-deck-name,
-.study-count{
+.card-preview{
+  min-width:0;
+}
+
+.card-front{
+  font-weight:650;
+  font-size:14px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.card-back-preview{
   color:var(--muted);
-  font-size:13px;
-  font-weight:750;
+  font-size:12px;
+  margin-top:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-.flashcard-area{
-  perspective:1000px;
-  min-height:405px;
+.delete-card{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  background:#fff4f4;
+  color:var(--danger);
+  flex-shrink:0;
+  transition:.2s ease;
+}
+
+.delete-card:hover{
+  background:#ffe8e8;
+}
+
+/* =========================
+   REVIEW
+========================= */
+
+.review-wrap{
+  max-width:650px;
+  margin:10px auto;
+}
+
+.review-select{
+  width:100%;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:15px;
+  padding:13px;
+  color:var(--text);
+  outline:none;
   margin-bottom:18px;
+}
+
+.review-progress{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:12px;
 }
 
 .flashcard{
   width:100%;
-  min-height:405px;
-  position:relative;
+  min-height:340px;
+  perspective:1200px;
   cursor:pointer;
+  margin-bottom:17px;
 }
 
 .flashcard-inner{
   width:100%;
-  min-height:405px;
+  height:100%;
+  min-height:340px;
   position:relative;
-  transition:transform .55s ease;
+  transition:transform .55s cubic-bezier(.2,.75,.25,1);
   transform-style:preserve-3d;
 }
 
@@ -910,98 +676,291 @@ button:active{
   transform:rotateY(180deg);
 }
 
-.card-face{
+.flash-side{
   position:absolute;
   inset:0;
-  min-height:405px;
-  border:1px solid var(--line);
-  border-radius:31px;
-  background:var(--surface);
-  box-shadow:var(--shadow);
   backface-visibility:hidden;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  padding:35px;
   display:flex;
-  justify-content:center;
   align-items:center;
-  padding:34px;
+  justify-content:center;
   text-align:center;
 }
 
-.card-face.answer{
+.flash-back{
   transform:rotateY(180deg);
-  background:var(--sage-light);
+  background:#f1f8f2;
 }
 
-.face-text{
-  max-width:570px;
-  font-size:25px;
+.flash-text{
+  font-size:23px;
   line-height:1.45;
-  font-weight:750;
+  font-weight:650;
   word-break:break-word;
 }
 
-.study-actions{
+.tap-hint{
+  position:absolute;
+  bottom:20px;
+  left:0;
+  right:0;
+  text-align:center;
+  color:#91a096;
+  font-size:11px;
+}
+
+.review-controls{
   display:flex;
   gap:10px;
 }
 
-.study-action{
+.review-controls button{
   flex:1;
-  border:0;
-  border-radius:17px;
-  padding:14px 8px;
-  font-weight:750;
+  padding:12px;
+  border-radius:14px;
+  transition:.25s ease;
 }
 
-.study-action.review{
-  background:var(--danger-bg);
-  color:var(--danger);
+.prev-btn,
+.next-btn{
+  background:white;
+  border:1px solid var(--line);
+  color:var(--text);
 }
 
-.study-action.known{
-  background:var(--sage-light);
-  color:var(--sage-dark);
+.shuffle-btn{
+  background:var(--soft);
+  color:var(--green-dark);
 }
 
-.study-finished{
-  background:var(--sage-light);
-  border-radius:29px;
+/* =========================
+   PROFILE
+========================= */
+
+.profile-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:25px;
   text-align:center;
-  padding:40px 24px;
+  box-shadow:var(--shadow);
+  max-width:500px;
+  margin:0 auto;
 }
 
-.study-finished .big{
-  font-size:45px;
+.profile-picture-large{
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  margin:0 auto 14px;
+  overflow:hidden;
+  background:var(--soft);
+  border:4px solid #f5faf6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.study-finished h2{
-  margin:9px 0 6px;
+.profile-picture-large img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.study-finished p{
+.profile-placeholder{
+  font-size:34px;
+  color:var(--green-dark);
+  font-weight:700;
+}
+
+.profile-card h1{
+  font-size:22px;
+  margin-bottom:4px;
+}
+
+.profile-card p{
   color:var(--muted);
-  margin:0 0 22px;
+  font-size:13px;
+  margin-bottom:22px;
 }
 
-/* =====================================================
+.upload-btn{
+  display:inline-block;
+  background:var(--soft);
+  color:var(--green-dark);
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:650;
+  cursor:pointer;
+  margin-bottom:22px;
+  transition:.2s ease;
+}
+
+.upload-btn:hover{
+  background:var(--soft2);
+}
+
+.profile-actions{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.logout-btn{
+  padding:12px;
+  border-radius:13px;
+  background:#fff3f3;
+  color:#b96e6e;
+  font-weight:650;
+  transition:.2s ease;
+}
+
+.logout-btn:hover{
+  background:#ffe8e8;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(38,57,44,.25);
+  backdrop-filter:blur(4px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+}
+
+.modal-overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal{
+  width:100%;
+  max-width:430px;
+  background:white;
+  border-radius:25px;
+  padding:24px;
+  box-shadow:0 20px 60px rgba(40,60,45,.18);
+  transform:translateY(15px) scale(.98);
+  transition:.3s ease;
+}
+
+.modal-overlay.show .modal{
+  transform:translateY(0) scale(1);
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.modal-head h2{
+  font-size:19px;
+}
+
+.close-btn{
+  width:33px;
+  height:33px;
+  border-radius:10px;
+  background:#f2f6f3;
+  color:var(--muted);
+  transition:.2s ease;
+}
+
+.close-btn:hover{
+  background:#e8f0ea;
+}
+
+.modal .primary-btn{
+  margin-top:3px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:50;
+  padding:9px 14px calc(9px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.93);
+  backdrop-filter:blur(15px);
+  border-top:1px solid rgba(220,232,223,.9);
+}
+
+.nav-inner{
+  max-width:520px;
+  margin:auto;
+  display:flex;
+  justify-content:space-around;
+}
+
+.nav-btn{
+  min-width:90px;
+  padding:8px 12px;
+  border-radius:14px;
+  background:transparent;
+  color:#99a69d;
+  transition:.25s ease;
+}
+
+.nav-btn .nav-icon{
+  display:block;
+  font-size:18px;
+  margin-bottom:2px;
+}
+
+.nav-btn span:last-child{
+  font-size:10px;
+}
+
+.nav-btn.active{
+  background:var(--soft);
+  color:var(--green-dark);
+}
+
+.nav-btn:hover{
+  color:var(--green-dark);
+}
+
+/* =========================
    TOAST
-===================================================== */
+========================= */
 
 .toast{
   position:fixed;
-  z-index:120;
   left:50%;
-  bottom:91px;
+  bottom:85px;
   transform:translate(-50%,20px);
+  background:#304638;
+  color:white;
+  padding:11px 15px;
+  border-radius:13px;
+  font-size:12px;
   opacity:0;
   pointer-events:none;
-  background:var(--text);
-  color:white;
-  padding:11px 16px;
-  border-radius:14px;
-  font-size:13px;
-  transition:.25s;
-  text-align:center;
-  max-width:calc(100% - 40px);
+  transition:.3s ease;
+  z-index:200;
+  white-space:nowrap;
 }
 
 .toast.show{
@@ -1009,3723 +968,2307 @@ button:active{
   transform:translate(-50%,0);
 }
 
-/* =====================================================
-   DARK MODE
-===================================================== */
+/* =========================
+   ANIMATIONS
+========================= */
 
-body.dark{
-  --bg:#1d2821;
-  --surface:#263329;
-  --surface2:#303c33;
-  --sage:#91aa94;
-  --sage-dark:#b0c7b2;
-  --sage-light:#334438;
-  --text:#edf3ed;
-  --muted:#aab7ac;
-  --line:#3c4a40;
-  --danger:#d58a81;
-  --danger-bg:#49312e;
-  --cream:#3c3a31;
-  --shadow:0 12px 32px rgba(0,0,0,.22);
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-body.dark .form-input,
-body.dark .form-textarea{
-  background:#202b23;
-  color:var(--text);
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(6px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-body.dark .bottom-nav{
-  background:rgba(38,51,41,.95);
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
-/* =====================================================
-   DESKTOP
-===================================================== */
-
-@media(min-width:700px){
-
-  .modal-overlay{
-    align-items:center;
-    padding:20px;
+@media(max-width:760px){
+  .deck-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .modal{
-    border-radius:29px;
-    max-width:520px;
+  .quick-card{
+    align-items:flex-start;
+    flex-direction:column;
   }
 
-  .app-content{
-    padding-top:30px;
+  .quick-btn{
+    width:100%;
+    text-align:center;
   }
-
 }
 
-/* =====================================================
-   SMALL PHONES
-===================================================== */
+@media(max-width:520px){
+  .app-header{
+    padding:17px 17px 8px;
+  }
 
-@media(max-width:390px){
+  .page{
+    padding:18px 17px;
+  }
 
-  .face-text{
-    font-size:21px;
+  .welcome h1{
+    font-size:27px;
+  }
+
+  .deck-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .deck-card{
+    min-height:135px;
+    padding:15px;
+  }
+
+  .page-heading h1{
+    font-size:23px;
+  }
+
+  .add-btn{
+    padding:10px 12px;
+    font-size:12px;
   }
 
   .flashcard,
-  .flashcard-inner,
-  .card-face,
-  .flashcard-area{
-    min-height:365px;
+  .flashcard-inner{
+    min-height:300px;
   }
 
-  .hero{
-    padding:21px;
+  .flash-side{
+    padding:25px;
   }
 
+  .flash-text{
+    font-size:20px;
+  }
+
+  .nav-btn{
+    min-width:75px;
+  }
+}
+
+@media(max-width:350px){
+  .deck-grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     AUTH SCREEN
+========================= -->
 
-<!-- =====================================================
-     AUTH
-===================================================== -->
+<div id="authScreen" class="auth-screen">
 
-<section id="authScreen" class="auth-screen">
+  <div class="auth-box">
 
-  <div class="auth-container">
+    <div class="logo-mark">🌱</div>
 
-    <div class="logo-icon">🌱</div>
+    <h1 class="auth-title">StudyBloom</h1>
 
-    <div class="brand">FLASHY</div>
+    <p class="auth-subtitle">
+      A simple little place for your flashcards,
+      made for studying without the stress.
+    </p>
 
-    <div class="tagline">
-      your little study space ♡
+    <div class="auth-tabs">
+      <button id="loginTab" class="auth-tab active">
+        Log in
+      </button>
+
+      <button id="signupTab" class="auth-tab">
+        Create account
+      </button>
     </div>
 
+    <div id="authError" class="error-message"></div>
 
-    <!-- LOGIN -->
-
-    <div id="loginPanel" class="auth-card">
-
-      <h2>Welcome back! 🌷</h2>
-
-      <p class="description">
-        Log in and continue where you left off.
-      </p>
-
-
-      <div class="form-group">
-
-        <label for="loginName">
-          Student Name
-        </label>
-
-        <input
-          id="loginName"
-          class="form-input"
-          type="text"
-          autocomplete="username"
-          placeholder="your name"
-          maxlength="40"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="loginPassword">
-          Password
-        </label>
-
-        <input
-          id="loginPassword"
-          class="form-input"
-          type="password"
-          autocomplete="current-password"
-          placeholder="your password"
-        >
-
-      </div>
-
-
-      <button
-        id="loginButton"
-        class="primary-button"
-        type="button"
+    <div class="field">
+      <label>Student name</label>
+      <input
+        id="authName"
+        type="text"
+        placeholder="e.g. CJ"
+        autocomplete="off"
       >
-        Log In
-      </button>
-
-
-      <div class="auth-switch">
-
-        Don't have an account?
-
-        <button
-          id="showSignupButton"
-          class="text-button"
-          type="button"
-        >
-          Create Account
-        </button>
-
-      </div>
-
     </div>
 
-
-    <!-- CREATE ACCOUNT -->
-
-    <div
-      id="signupPanel"
-      class="auth-card hidden"
-    >
-
-      <h2>Create your space 🌿</h2>
-
-      <p class="description">
-        Your study data stays saved on this device.
-      </p>
-
-
-      <div class="form-group">
-
-        <label for="signupName">
-          Student Name
-        </label>
-
-        <input
-          id="signupName"
-          class="form-input"
-          type="text"
-          placeholder="e.g. CJ"
-          maxlength="40"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="signupPassword">
-          Password
-        </label>
-
-        <input
-          id="signupPassword"
-          class="form-input"
-          type="password"
-          autocomplete="new-password"
-          placeholder="choose a password"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="signupConfirm">
-          Confirm Password
-        </label>
-
-        <input
-          id="signupConfirm"
-          class="form-input"
-          type="password"
-          autocomplete="new-password"
-          placeholder="repeat your password"
-        >
-
-      </div>
-
-
-      <button
-        id="createAccountButton"
-        class="primary-button"
-        type="button"
+    <div class="field">
+      <label>Password</label>
+      <input
+        id="authPassword"
+        type="password"
+        placeholder="Your password"
       >
-        Create Account
-      </button>
-
-
-      <div class="auth-switch">
-
-        Already have an account?
-
-        <button
-          id="showLoginButton"
-          class="text-button"
-          type="button"
-        >
-          Log In
-        </button>
-
-      </div>
-
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     MAIN APP
-===================================================== -->
-
-<section id="app" class="app hidden">
-
-  <main class="app-content">
-
-
-    <!-- TOPBAR -->
-
-    <header class="topbar">
-
-      <div class="brand-mini">
-
-        <div class="mini-logo">
-          🌱
-        </div>
-
-        <div class="mini-brand">
-          FLASHY
-        </div>
-
-      </div>
-
-
-      <button
-        id="topProfileButton"
-        class="profile-avatar-button"
-        type="button"
-        aria-label="Open profile"
-      >
-        <div
-          id="topAvatar"
-          class="avatar-placeholder"
-        >
-          👤
-        </div>
-      </button>
-
-    </header>
-
-
-    <!-- =================================================
-         HOME
-    ================================================= -->
-
-    <section id="homePage">
-
-      <div class="greeting">
-
-        <small id="greetingText">
-          Good day!
-        </small>
-
-        <h1>
-          Hi, <span id="homeName">friend</span>! 👋
-        </h1>
-
-      </div>
-
-
-      <div class="hero">
-
-        <h2>
-          Ready to study?
-        </h2>
-
-        <p>
-          Take it one card at a time.
-          You've got this. 🌷
-        </p>
-
-        <button
-          id="studyNowButton"
-          class="study-button"
-          type="button"
-        >
-          Study Now
-        </button>
-
-      </div>
-
-
-      <div class="section-heading">
-
-        <h2>
-          My Decks
-        </h2>
-
-      </div>
-
-
-      <div
-        id="homeDeckList"
-        class="deck-list"
-      ></div>
-
-    </section>
-
-
-    <!-- =================================================
-         DECKS
-    ================================================= -->
-
-    <section
-      id="decksPage"
-      class="hidden"
-    >
-
-      <div class="section-heading">
-
-        <h2>
-          My Decks
-        </h2>
-
-      </div>
-
-
-      <!-- ONLY MAIN CREATE DECK BUTTON -->
-
-      <button
-        id="newDeckButton"
-        class="new-deck-button"
-        type="button"
-      >
-        + Create a New Deck
-      </button>
-
-
-      <div
-        id="allDeckList"
-        class="deck-list"
-      ></div>
-
-    </section>
-
-
-    <!-- =================================================
-         PROFILE
-    ================================================= -->
-
-    <section
-      id="profilePage"
-      class="hidden"
-    >
-
-      <div class="page-back">
-
-        <h1 class="page-title">
-          My Profile
-        </h1>
-
-      </div>
-
-
-      <div class="profile-header">
-
-        <div class="profile-big-avatar">
-
-          <div
-            id="bigProfileAvatar"
-            class="profile-big-placeholder"
-          >
-            👤
-          </div>
-
-        </div>
-
-
-        <div
-          id="profileName"
-          class="profile-name"
-        >
-          Student
-        </div>
-
-        <div class="profile-label">
-          FLASHY student
-        </div>
-
-      </div>
-
-
-      <div class="profile-actions">
-
-
-        <button
-          id="editProfileButton"
-          class="profile-action"
-          type="button"
-        >
-
-          <div class="profile-action-icon">
-            ✏️
-          </div>
-
-          <div class="profile-action-copy">
-
-            <strong>
-              Edit Profile
-            </strong>
-
-            <span>
-              Change your name or profile picture
-            </span>
-
-          </div>
-
-        </button>
-
-
-        <button
-          id="studyCircleButton"
-          class="profile-action"
-          type="button"
-        >
-
-          <div class="profile-action-icon">
-            🫶
-          </div>
-
-          <div class="profile-action-copy">
-
-            <strong>
-              Study Circle
-            </strong>
-
-            <span>
-              See your study community
-            </span>
-
-          </div>
-
-        </button>
-
-      </div>
-
-
-      <!-- STUDY CIRCLE -->
-
-      <div
-        id="circleSection"
-        class="circle-card hidden"
-      >
-
-        <div class="circle-title">
-
-          <h2>
-            Study Circle
-          </h2>
-
-          <span class="offline-note">
-            offline mode
-          </span>
-
-        </div>
-
-
-        <div
-          id="circleContent"
-        ></div>
-
-      </div>
-
-
-      <!-- SETTINGS -->
-
-      <div class="settings-section">
-
-        <h2>
-          Settings
-        </h2>
-
-
-        <div class="settings-list">
-
-
-          <div class="setting-row">
-
-            <div class="setting-copy">
-
-              <strong>
-                🌙 Appearance
-              </strong>
-
-              <span>
-                Switch between light and dark
-              </span>
-
-            </div>
-
-            <button
-              id="darkModeButton"
-              class="setting-button"
-              type="button"
-            >
-              Toggle
-            </button>
-
-          </div>
-
-
-          <div class="setting-row">
-
-            <div class="setting-copy">
-
-              <strong>
-                💾 Backup
-              </strong>
-
-              <span>
-                Save your study data
-              </span>
-
-            </div>
-
-            <button
-              id="exportButton"
-              class="setting-button"
-              type="button"
-            >
-              Export
-            </button>
-
-          </div>
-
-
-          <div class="setting-row">
-
-            <div class="setting-copy">
-
-              <strong>
-                📥 Restore
-              </strong>
-
-              <span>
-                Import a saved backup
-              </span>
-
-            </div>
-
-            <button
-              id="importButton"
-              class="setting-button"
-              type="button"
-            >
-              Import
-            </button>
-
-            <input
-              id="restoreInput"
-              type="file"
-              accept=".json,application/json"
-              class="hidden"
-            >
-
-          </div>
-
-
-          <div class="setting-row">
-
-            <div class="setting-copy">
-
-              <strong>
-                🚪 Log Out
-              </strong>
-
-              <span>
-                Your data will stay saved
-              </span>
-
-            </div>
-
-            <button
-              id="logoutButton"
-              class="setting-button"
-              type="button"
-            >
-              Log Out
-            </button>
-
-          </div>
-
-
-          <div class="setting-row">
-
-            <div class="setting-copy">
-
-              <strong>
-                🗑️ Delete Account
-              </strong>
-
-              <span>
-                Permanently remove local data
-              </span>
-
-            </div>
-
-            <button
-              id="deleteAccountButton"
-              class="setting-button danger"
-              type="button"
-            >
-              Delete
-            </button>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- =================================================
-       BOTTOM NAV
-  ================================================= -->
-
-  <nav class="bottom-nav">
-
-    <button
-      id="homeNavButton"
-      class="nav-button active"
-      type="button"
-    >
-      🏡<br>
-      Home
+    <button id="authSubmit" class="primary-btn">
+      Log in
     </button>
 
-
-    <button
-      id="decksNavButton"
-      class="nav-button"
-      type="button"
-    >
-      📚<br>
-      Decks
-    </button>
-
-
-    <button
-      id="profileNavButton"
-      class="nav-button"
-      type="button"
-    >
-      👤<br>
-      Profile
-    </button>
-
-  </nav>
-
-</section>
-
-
-<!-- =====================================================
-     DECK VIEW
-===================================================== -->
-
-<section
-  id="deckView"
-  class="app hidden"
->
-
-  <main class="app-content">
-
-    <div class="page-back">
-
-      <button
-        id="deckBackButton"
-        class="back-button"
-        type="button"
-      >
-        ←
-      </button>
-
-      <div>
-
-        <h1
-          id="deckTitle"
-          class="page-title"
-        >
-          Deck
-        </h1>
-
-        <div
-          id="deckSubtitle"
-          class="page-subtitle"
-        >
-          0 cards
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <button
-      id="addCardButton"
-      class="new-deck-button"
-      type="button"
-    >
-      + Add a Flashcard
-    </button>
-
-
-    <div
-      id="cardList"
-      class="card-list"
-    ></div>
-
-  </main>
-
-</section>
-
-
-<!-- =====================================================
-     STUDY VIEW
-===================================================== -->
-
-<section
-  id="studyView"
-  class="study-page hidden"
->
-
-  <div class="study-header">
-
-    <button
-      id="studyBackButton"
-      class="back-button"
-      type="button"
-    >
-      ←
-    </button>
-
-    <div
-      id="studyDeckName"
-      class="study-deck-name"
-    >
-      Deck
-    </div>
-
-    <div
-      id="studyCount"
-      class="study-count"
-    >
-      1 / 1
-    </div>
-
-  </div>
-
-
-  <div id="studyContent"></div>
-
-</section>
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-  id="modalOverlay"
-  class="modal-overlay hidden"
->
-
-  <div class="modal">
-
-    <div class="modal-header">
-
-      <h2 id="modalTitle">
-        New Deck
-      </h2>
-
-      <button
-        id="modalCloseButton"
-        class="close-button"
-        type="button"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div id="modalContent"></div>
+    <p class="small-note">
+      Your study data is saved on this device,
+      so refreshing the page won't erase your work.
+    </p>
 
   </div>
 
 </div>
 
 
-<!-- TOAST -->
+<!-- =========================
+     MAIN APP
+========================= -->
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<div id="app" class="app hidden">
+
+  <header class="app-header">
+
+    <div class="brand">
+      <div class="brand-icon">🌱</div>
+      <div class="brand-name">StudyBloom</div>
+    </div>
+
+    <!-- PROFILE ONLY HERE -->
+    <button id="profileTopButton" class="profile-button">
+      <div id="profileInitial" class="profile-initial">S</div>
+      <img id="profileTopImage" class="hidden" alt="Profile">
+    </button>
+
+  </header>
+
+
+  <!-- =====================
+       HOME PAGE
+  ====================== -->
+
+  <main id="homePage" class="page">
+
+    <div class="welcome">
+      <small id="welcomeSmall">Welcome back!</small>
+      <h1 id="welcomeName">Ready to study? 🌱</h1>
+    </div>
+
+    <div class="quick-card">
+
+      <div>
+        <h2>Keep your study flow going ✨</h2>
+        <p>Review your cards whenever you need them.</p>
+      </div>
+
+      <button id="quickReviewBtn" class="quick-btn">
+        Start reviewing
+      </button>
+
+    </div>
+
+    <div class="section-title">
+      <h2>Your decks</h2>
+      <span id="homeDeckCount">0 decks</span>
+    </div>
+
+    <div id="homeDeckGrid" class="deck-grid"></div>
+
+  </main>
+
+
+  <!-- =====================
+       DECKS PAGE
+  ====================== -->
+
+  <main id="decksPage" class="page hidden">
+
+    <div class="page-heading">
+
+      <h1>My decks</h1>
+
+      <button id="addDeckBtn" class="add-btn">
+        + Add deck
+      </button>
+
+    </div>
+
+    <div id="deckList" class="deck-list"></div>
+
+  </main>
+
+
+  <!-- =====================
+       REVIEW PAGE
+  ====================== -->
+
+  <main id="reviewPage" class="page hidden">
+
+    <div class="review-wrap">
+
+      <div class="page-heading">
+        <h1>Review</h1>
+      </div>
+
+      <select id="reviewDeckSelect" class="review-select">
+        <option value="">Choose a deck</option>
+      </select>
+
+      <div id="reviewEmpty" class="empty">
+        <div class="empty-icon">📚</div>
+        <h3>No cards to review yet</h3>
+        <p>
+          Create a deck and add some flashcards first.
+        </p>
+      </div>
+
+      <div id="reviewContent" class="hidden">
+
+        <div id="reviewProgress" class="review-progress">
+          1 of 1
+        </div>
+
+        <div id="flashcard" class="flashcard">
+
+          <div class="flashcard-inner">
+
+            <div class="flash-side flash-front">
+
+              <div id="flashFrontText" class="flash-text">
+              </div>
+
+              <div class="tap-hint">
+                Tap to flip
+              </div>
+
+            </div>
+
+            <div class="flash-side flash-back">
+
+              <div id="flashBackText" class="flash-text">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="review-controls">
+
+          <button id="prevCardBtn" class="prev-btn">
+            ← Previous
+          </button>
+
+          <button id="shuffleBtn" class="shuffle-btn">
+            ↻ Shuffle
+          </button>
+
+          <button id="nextCardBtn" class="next-btn">
+            Next →
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================
+       PROFILE PAGE
+  ====================== -->
+
+  <main id="profilePage" class="page hidden">
+
+    <div class="page-heading">
+      <h1>My profile</h1>
+    </div>
+
+    <div class="profile-card">
+
+      <div class="profile-picture-large">
+
+        <div id="profileLargeInitial" class="profile-placeholder">
+          S
+        </div>
+
+        <img
+          id="profileLargeImage"
+          class="hidden"
+          alt="Profile picture"
+        >
+
+      </div>
+
+      <h1 id="profileName">
+        Student
+      </h1>
+
+      <p>
+        Your personal study space 🌱
+      </p>
+
+      <label class="upload-btn">
+        Change profile picture
+        <input
+          id="profileUpload"
+          type="file"
+          accept="image/*"
+          hidden
+        >
+      </label>
+
+      <div class="profile-actions">
+
+        <button id="editNameBtn" class="quick-btn">
+          Edit student name
+        </button>
+
+        <button id="logoutBtn" class="logout-btn">
+          Log out
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================
+       BOTTOM NAV
+       ONLY 3 ITEMS
+  ====================== -->
+
+  <nav class="bottom-nav">
+
+    <div class="nav-inner">
+
+      <button class="nav-btn active" data-page="home">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+      </button>
+
+      <button class="nav-btn" data-page="decks">
+        <span class="nav-icon">▣</span>
+        <span>Decks</span>
+      </button>
+
+      <button class="nav-btn" data-page="review">
+        <span class="nav-icon">♡</span>
+        <span>Review</span>
+      </button>
+
+    </div>
+
+  </nav>
+
+</div>
+
+
+<!-- =========================
+     ADD DECK MODAL
+========================= -->
+
+<div id="deckModal" class="modal-overlay">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2>Create a deck</h2>
+
+      <button id="closeDeckModal" class="close-btn">
+        ×
+      </button>
+
+    </div>
+
+    <div id="deckError" class="error-message"></div>
+
+    <div class="field">
+
+      <label>Deck name</label>
+
+      <input
+        id="deckNameInput"
+        type="text"
+        placeholder="e.g. Earth and Life Science"
+        maxlength="60"
+      >
+
+    </div>
+
+    <button id="saveDeckBtn" class="primary-btn">
+      Create deck
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADD CARD MODAL
+========================= -->
+
+<div id="cardModal" class="modal-overlay">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2 id="cardModalTitle">Add flashcard</h2>
+
+      <button id="closeCardModal" class="close-btn">
+        ×
+      </button>
+
+    </div>
+
+    <div id="cardError" class="error-message"></div>
+
+    <div class="field">
+
+      <label>Front</label>
+
+      <textarea
+        id="frontInput"
+        rows="4"
+        placeholder="Type what you want to remember..."
+        maxlength="1000"
+      ></textarea>
+
+    </div>
+
+    <div class="field">
+
+      <label>Back</label>
+
+      <textarea
+        id="backInput"
+        rows="4"
+        placeholder="Type the answer or explanation..."
+        maxlength="2000"
+      ></textarea>
+
+    </div>
+
+    <button id="saveCardBtn" class="primary-btn">
+      Save flashcard
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     EDIT NAME MODAL
+========================= -->
+
+<div id="nameModal" class="modal-overlay">
+
+  <div class="modal">
+
+    <div class="modal-head">
+
+      <h2>Change your name</h2>
+
+      <button id="closeNameModal" class="close-btn">
+        ×
+      </button>
+
+    </div>
+
+    <div id="nameError" class="error-message"></div>
+
+    <div class="field">
+
+      <label>Student name</label>
+
+      <input
+        id="newNameInput"
+        type="text"
+        maxlength="40"
+        placeholder="Your student name"
+      >
+
+    </div>
+
+    <button id="saveNameBtn" class="primary-btn">
+      Save changes
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div id="toast" class="toast"></div>
 
 
 <script>
-"use strict";
 
-/* =====================================================
+/* =========================================================
    STORAGE
-===================================================== */
+========================================================= */
 
-const ACCOUNTS_KEY = "flashy_accounts_v3";
-const SESSION_KEY = "flashy_session_v3";
-const DARK_KEY = "flashy_dark_v3";
-
-
-/* =====================================================
-   STATE
-===================================================== */
-
-let accounts = loadAccounts();
-let currentAccountId =
-  localStorage.getItem(SESSION_KEY) || null;
-
-let currentDeckId = null;
-let editingCardId = null;
-
-let studyDeckId = null;
-let studyCards = [];
-let studyIndex = 0;
+const STORAGE_KEY = "studybloom_accounts_v1";
+const SESSION_KEY = "studybloom_current_user_v1";
 
 
-/* =====================================================
-   STORAGE HELPERS
-===================================================== */
-
-function loadAccounts(){
-
+function getAccounts(){
   try{
-
-    const saved =
-      localStorage.getItem(ACCOUNTS_KEY);
-
-    return saved ? JSON.parse(saved) : {};
-
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
   }catch(error){
-
-    console.error(error);
-
     return {};
-
   }
-
 }
 
 
-function saveAccounts(){
-
+function saveAccounts(accounts){
   localStorage.setItem(
-    ACCOUNTS_KEY,
+    STORAGE_KEY,
     JSON.stringify(accounts)
   );
-
 }
 
 
-function makeAccountId(name){
-
-  return name
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g," ")
-    .replace(/[^\p{L}\p{N} ]/gu,"");
-
+function getCurrentUserName(){
+  return localStorage.getItem(SESSION_KEY);
 }
 
 
-function createId(){
-
-  return (
-    Date.now().toString(36) +
-    Math.random().toString(36).slice(2,9)
-  );
-
+function setCurrentUserName(name){
+  localStorage.setItem(SESSION_KEY,name);
 }
 
 
-function getCurrentUser(){
+function clearCurrentUser(){
+  localStorage.removeItem(SESSION_KEY);
+}
 
-  if(
-    currentAccountId &&
-    accounts[currentAccountId]
-  ){
 
-    return accounts[currentAccountId];
+/* =========================================================
+   STATE
+========================================================= */
 
+let currentUser = null;
+let currentDeckId = null;
+
+let reviewCards = [];
+let reviewIndex = 0;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const authScreen = document.getElementById("authScreen");
+const app = document.getElementById("app");
+
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+
+const authName = document.getElementById("authName");
+const authPassword = document.getElementById("authPassword");
+const authSubmit = document.getElementById("authSubmit");
+const authError = document.getElementById("authError");
+
+const homePage = document.getElementById("homePage");
+const decksPage = document.getElementById("decksPage");
+const reviewPage = document.getElementById("reviewPage");
+const profilePage = document.getElementById("profilePage");
+
+const profileTopButton =
+  document.getElementById("profileTopButton");
+
+const profileInitial =
+  document.getElementById("profileInitial");
+
+const profileTopImage =
+  document.getElementById("profileTopImage");
+
+const welcomeName =
+  document.getElementById("welcomeName");
+
+const homeDeckCount =
+  document.getElementById("homeDeckCount");
+
+const homeDeckGrid =
+  document.getElementById("homeDeckGrid");
+
+const deckList =
+  document.getElementById("deckList");
+
+const addDeckBtn =
+  document.getElementById("addDeckBtn");
+
+const quickReviewBtn =
+  document.getElementById("quickReviewBtn");
+
+const deckModal =
+  document.getElementById("deckModal");
+
+const closeDeckModal =
+  document.getElementById("closeDeckModal");
+
+const deckNameInput =
+  document.getElementById("deckNameInput");
+
+const saveDeckBtn =
+  document.getElementById("saveDeckBtn");
+
+const deckError =
+  document.getElementById("deckError");
+
+const cardModal =
+  document.getElementById("cardModal");
+
+const closeCardModal =
+  document.getElementById("closeCardModal");
+
+const frontInput =
+  document.getElementById("frontInput");
+
+const backInput =
+  document.getElementById("backInput");
+
+const saveCardBtn =
+  document.getElementById("saveCardBtn");
+
+const cardError =
+  document.getElementById("cardError");
+
+const cardModalTitle =
+  document.getElementById("cardModalTitle");
+
+const reviewDeckSelect =
+  document.getElementById("reviewDeckSelect");
+
+const reviewEmpty =
+  document.getElementById("reviewEmpty");
+
+const reviewContent =
+  document.getElementById("reviewContent");
+
+const flashcard =
+  document.getElementById("flashcard");
+
+const flashFrontText =
+  document.getElementById("flashFrontText");
+
+const flashBackText =
+  document.getElementById("flashBackText");
+
+const reviewProgress =
+  document.getElementById("reviewProgress");
+
+const prevCardBtn =
+  document.getElementById("prevCardBtn");
+
+const nextCardBtn =
+  document.getElementById("nextCardBtn");
+
+const shuffleBtn =
+  document.getElementById("shuffleBtn");
+
+const profileLargeInitial =
+  document.getElementById("profileLargeInitial");
+
+const profileLargeImage =
+  document.getElementById("profileLargeImage");
+
+const profileName =
+  document.getElementById("profileName");
+
+const profileUpload =
+  document.getElementById("profileUpload");
+
+const editNameBtn =
+  document.getElementById("editNameBtn");
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
+
+const nameModal =
+  document.getElementById("nameModal");
+
+const closeNameModal =
+  document.getElementById("closeNameModal");
+
+const newNameInput =
+  document.getElementById("newNameInput");
+
+const saveNameBtn =
+  document.getElementById("saveNameBtn");
+
+const nameError =
+  document.getElementById("nameError");
+
+const toast =
+  document.getElementById("toast");
+
+
+/* =========================================================
+   AUTH MODE
+========================================================= */
+
+let authMode = "login";
+
+
+loginTab.addEventListener("click",()=>{
+  authMode = "login";
+
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+
+  authSubmit.textContent = "Log in";
+
+  clearAuthError();
+});
+
+
+signupTab.addEventListener("click",()=>{
+  authMode = "signup";
+
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
+
+  authSubmit.textContent = "Create account";
+
+  clearAuthError();
+});
+
+
+function showAuthError(message){
+  authError.textContent = message;
+  authError.classList.add("show");
+}
+
+
+function clearAuthError(){
+  authError.textContent = "";
+  authError.classList.remove("show");
+}
+
+
+/* =========================================================
+   CREATE / LOGIN
+========================================================= */
+
+authSubmit.addEventListener("click",handleAuth);
+
+
+authPassword.addEventListener("keydown",(event)=>{
+  if(event.key === "Enter"){
+    handleAuth();
   }
-
-  return null;
-
-}
+});
 
 
-/* =====================================================
-   SAFE TEXT
-===================================================== */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
+authName.addEventListener("keydown",(event)=>{
+  if(event.key === "Enter"){
+    handleAuth();
+  }
+});
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+function handleAuth(){
 
-function showToast(message){
+  const name = authName.value.trim();
+  const password = authPassword.value;
 
-  const toast =
-    document.getElementById("toast");
+  clearAuthError();
 
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-  clearTimeout(window.flashyToastTimer);
-
-  window.flashyToastTimer =
-    setTimeout(function(){
-
-      toast.classList.remove("show");
-
-    },1800);
-
-}
-
-
-/* =====================================================
-   AUTH
-===================================================== */
-
-function showLoginPanel(){
-
-  document
-    .getElementById("loginPanel")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("signupPanel")
-    .classList.add("hidden");
-
-}
-
-
-function showSignupPanel(){
-
-  document
-    .getElementById("loginPanel")
-    .classList.add("hidden");
-
-  document
-    .getElementById("signupPanel")
-    .classList.remove("hidden");
-
-}
-
-
-function createAccount(){
-
-  const name =
-    document
-      .getElementById("signupName")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("signupPassword")
-      .value;
-
-  const confirmPassword =
-    document
-      .getElementById("signupConfirm")
-      .value;
-
-
-  if(!name || !password || !confirmPassword){
-
-    alert("Please fill in everything. 🌷");
-
+  if(!name){
+    showAuthError("Please enter your student name.");
     return;
-
   }
-
 
   if(name.length < 2){
-
-    alert("Please enter your student name.");
-
+    showAuthError("Your student name is too short.");
     return;
-
   }
 
+  if(!password){
+    showAuthError("Please enter your password.");
+    return;
+  }
 
   if(password.length < 4){
-
-    alert("Your password should be at least 4 characters.");
-
+    showAuthError("Password must be at least 4 characters.");
     return;
-
   }
 
+  const accounts = getAccounts();
 
-  if(password !== confirmPassword){
+  const accountKey = name.toLowerCase();
 
-    alert("Your passwords don't match.");
+  if(authMode === "signup"){
 
-    return;
+    if(accounts[accountKey]){
+      showAuthError(
+        "That student name already has an account. Try logging in."
+      );
+      return;
+    }
 
-  }
+    accounts[accountKey] = {
+      name:name,
+      password:password,
+      profileImage:"",
+      decks:[]
+    };
 
+    saveAccounts(accounts);
+    setCurrentUserName(accountKey);
 
-  const id =
-    makeAccountId(name);
+    authName.value = "";
+    authPassword.value = "";
 
+    loadCurrentUser();
 
-  if(!id){
-
-    alert("Please enter a valid student name.");
-
-    return;
-
-  }
-
-
-  if(accounts[id]){
-
-    alert(
-      "An account with this student name already exists. Please log in instead."
-    );
-
-    return;
-
-  }
-
-
-  accounts[id] = {
-
-    id:id,
-
-    name:name,
-
-    password:password,
-
-    photo:"",
-
-    createdAt:new Date().toISOString(),
-
-    decks:[]
-
-  };
-
-
-  saveAccounts();
-
-
-  currentAccountId = id;
-
-  localStorage.setItem(
-    SESSION_KEY,
-    currentAccountId
-  );
-
-
-  document
-    .getElementById("signupName")
-    .value = "";
-
-  document
-    .getElementById("signupPassword")
-    .value = "";
-
-  document
-    .getElementById("signupConfirm")
-    .value = "";
-
-
-  enterApp();
-
-  showToast("Welcome to FLASHY! 🌱");
-
-}
-
-
-function login(){
-
-  const name =
-    document
-      .getElementById("loginName")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
-
-
-  if(!name || !password){
-
-    alert("Please enter your student name and password.");
-
-    return;
-
-  }
-
-
-  const id =
-    makeAccountId(name);
-
-
-  const account =
-    accounts[id];
-
-
-  if(!account || account.password !== password){
-
-    alert(
-      "Student name or password is incorrect."
-    );
-
-    return;
-
-  }
-
-
-  currentAccountId = id;
-
-  localStorage.setItem(
-    SESSION_KEY,
-    currentAccountId
-  );
-
-
-  document
-    .getElementById("loginPassword")
-    .value = "";
-
-
-  enterApp();
-
-}
-
-
-function logout(){
-
-  currentAccountId = null;
-
-  localStorage.removeItem(SESSION_KEY);
-
-  hideAllScreens();
-
-  document
-    .getElementById("authScreen")
-    .classList.remove("hidden");
-
-  showLoginPanel();
-
-}
-
-
-function deleteAccount(){
-
-  const user =
-    getCurrentUser();
-
-  if(!user) return;
-
-
-  const confirmed =
-    confirm(
-      "Delete your account and ALL of your flashcards permanently?"
-    );
-
-
-  if(!confirmed) return;
-
-
-  delete accounts[currentAccountId];
-
-  saveAccounts();
-
-  localStorage.removeItem(SESSION_KEY);
-
-  currentAccountId = null;
-
-  location.reload();
-
-}
-
-
-/* =====================================================
-   APP ENTRY
-===================================================== */
-
-function enterApp(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user){
-
-    showLoginPanel();
-
-    return;
-
-  }
-
-
-  document
-    .getElementById("authScreen")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-
-  document
-    .getElementById("homeName")
-    .textContent = user.name;
-
-
-  updateGreeting();
-
-  renderProfile();
-
-  renderHomeDecks();
-
-  showHome();
-
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function hideAppPages(){
-
-  document
-    .getElementById("homePage")
-    .classList.add("hidden");
-
-  document
-    .getElementById("decksPage")
-    .classList.add("hidden");
-
-  document
-    .getElementById("profilePage")
-    .classList.add("hidden");
-
-}
-
-
-function hideAllScreens(){
-
-  document
-    .getElementById("authScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-}
-
-
-function setActiveNav(which){
-
-  document
-    .querySelectorAll(".nav-button")
-    .forEach(function(button){
-
-      button.classList.remove("active");
-
-    });
-
-
-  if(which === "home"){
-
-    document
-      .getElementById("homeNavButton")
-      .classList.add("active");
-
-  }
-
-
-  if(which === "decks"){
-
-    document
-      .getElementById("decksNavButton")
-      .classList.add("active");
-
-  }
-
-
-  if(which === "profile"){
-
-    document
-      .getElementById("profileNavButton")
-      .classList.add("active");
-
-  }
-
-}
-
-
-function showHome(){
-
-  hideAppPages();
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("homePage")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-  setActiveNav("home");
-
-  renderHomeDecks();
-
-}
-
-
-function showDecks(){
-
-  hideAppPages();
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("decksPage")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-  setActiveNav("decks");
-
-  renderAllDecks();
-
-}
-
-
-function showProfile(){
-
-  hideAppPages();
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("profilePage")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-  setActiveNav("profile");
-
-  renderProfile();
-
-}
-
-
-/* =====================================================
-   GREETING
-===================================================== */
-
-function updateGreeting(){
-
-  const hour =
-    new Date().getHours();
-
-  let text = "Good day!";
-
-  if(hour < 12){
-
-    text = "Good morning! ☀️";
-
-  }else if(hour < 18){
-
-    text = "Good afternoon! 🌤️";
+    showToast("Account created! 🌱");
 
   }else{
 
-    text = "Good evening! 🌙";
+    if(!accounts[accountKey]){
+      showAuthError(
+        "No account found with that student name."
+      );
+      return;
+    }
 
+    if(accounts[accountKey].password !== password){
+      showAuthError(
+        "That password doesn't match."
+      );
+      return;
+    }
+
+    setCurrentUserName(accountKey);
+
+    authName.value = "";
+    authPassword.value = "";
+
+    loadCurrentUser();
+
+    showToast("Welcome back! ✨");
+  }
+}
+
+
+/* =========================================================
+   LOAD USER
+========================================================= */
+
+function loadCurrentUser(){
+
+  const username = getCurrentUserName();
+
+  if(!username){
+    showAuth();
+    return;
   }
 
+  const accounts = getAccounts();
 
-  document
-    .getElementById("greetingText")
-    .textContent = text;
+  if(!accounts[username]){
+    clearCurrentUser();
+    showAuth();
+    return;
+  }
+
+  currentUser = accounts[username];
+
+  showApp();
+  updateUserInterface();
+  renderAll();
+}
+
+
+function showAuth(){
+  authScreen.classList.remove("hidden");
+  app.classList.add("hidden");
+}
+
+
+function showApp(){
+  authScreen.classList.add("hidden");
+  app.classList.remove("hidden");
+}
+
+
+/* =========================================================
+   SAVE USER
+========================================================= */
+
+function saveCurrentUser(){
+
+  if(!currentUser){
+    return;
+  }
+
+  const username = getCurrentUserName();
+
+  const accounts = getAccounts();
+
+  accounts[username] = currentUser;
+
+  saveAccounts(accounts);
+}
+
+
+/* =========================================================
+   USER UI
+========================================================= */
+
+function updateUserInterface(){
+
+  const name = currentUser.name || "Student";
+
+  welcomeName.textContent =
+    "Ready to study, " + name + "? 🌱";
+
+  profileName.textContent = name;
+
+  const initial =
+    name.charAt(0).toUpperCase();
+
+  profileInitial.textContent = initial;
+  profileLargeInitial.textContent = initial;
+
+  if(currentUser.profileImage){
+
+    profileTopImage.src =
+      currentUser.profileImage;
+
+    profileTopImage.classList.remove("hidden");
+    profileInitial.classList.add("hidden");
+
+    profileLargeImage.src =
+      currentUser.profileImage;
+
+    profileLargeImage.classList.remove("hidden");
+    profileLargeInitial.classList.add("hidden");
+
+  }else{
+
+    profileTopImage.classList.add("hidden");
+    profileInitial.classList.remove("hidden");
+
+    profileLargeImage.classList.add("hidden");
+    profileLargeInitial.classList.remove("hidden");
+  }
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const navButtons =
+  document.querySelectorAll(".nav-btn");
+
+
+navButtons.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const page =
+      button.dataset.page;
+
+    navigateTo(page);
+
+  });
+
+});
+
+
+function navigateTo(page){
+
+  homePage.classList.add("hidden");
+  decksPage.classList.add("hidden");
+  reviewPage.classList.add("hidden");
+  profilePage.classList.add("hidden");
+
+  navButtons.forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  if(page === "home"){
+    homePage.classList.remove("hidden");
+  }
+
+  if(page === "decks"){
+    decksPage.classList.remove("hidden");
+    renderDecks();
+  }
+
+  if(page === "review"){
+    reviewPage.classList.remove("hidden");
+    prepareReview();
+  }
+
+  if(page === "profile"){
+    profilePage.classList.remove("hidden");
+  }
+
+  const active =
+    document.querySelector(
+      `.nav-btn[data-page="${page}"]`
+    );
+
+  if(active){
+    active.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* =========================================================
+   PROFILE TOP BUTTON
+========================================================= */
+
+profileTopButton.addEventListener("click",()=>{
+  navigateTo("profile");
+});
+
+
+/* =========================================================
+   RENDER ALL
+========================================================= */
+
+function renderAll(){
+
+  renderHome();
+  renderDecks();
+  populateReviewDecks();
+  updateUserInterface();
 
 }
 
 
-/* =====================================================
-   DECK RENDERING
-===================================================== */
+/* =========================================================
+   HOME
+========================================================= */
 
-function deckMarkup(deck){
+function renderHome(){
 
-  return `
+  const decks =
+    currentUser.decks || [];
 
-    <button
-      type="button"
-      class="deck-card"
-      data-deck-id="${deck.id}"
-    >
+  homeDeckCount.textContent =
+    decks.length +
+    (decks.length === 1 ? " deck" : " decks");
 
-      <div class="deck-card-main">
+  homeDeckGrid.innerHTML = "";
 
-        <div class="deck-icon">
-          ${escapeHTML(deck.icon || "📚")}
-        </div>
+  if(decks.length === 0){
 
-        <div class="deck-info">
-
-          <strong>
-            ${escapeHTML(deck.name)}
-          </strong>
-
-          <span>
-            ${deck.cards.length}
-            ${deck.cards.length === 1 ? "card" : "cards"}
-          </span>
-
-        </div>
-
+    homeDeckGrid.innerHTML = `
+      <div class="empty" style="grid-column:1/-1;">
+        <div class="empty-icon">🌱</div>
+        <h3>Your first deck starts here</h3>
+        <p>
+          Make a deck for a subject, topic,
+          or anything you want to remember.
+        </p>
       </div>
+    `;
 
-      <div class="deck-arrow">
-        ›
-      </div>
+    return;
+  }
 
-    </button>
+  decks.forEach(deck=>{
 
-  `;
+    const card =
+      document.createElement("div");
 
-}
+    card.className = "deck-card";
 
+    card.innerHTML = `
+      <div class="deck-icon">📖</div>
+      <div class="deck-name"></div>
+      <div class="deck-count"></div>
+    `;
 
-function attachDeckButtons(container){
+    card.querySelector(".deck-name").textContent =
+      deck.name;
 
-  container
-    .querySelectorAll("[data-deck-id]")
-    .forEach(function(button){
+    const count =
+      deck.cards.length;
 
-      button.addEventListener(
-        "click",
-        function(){
+    card.querySelector(".deck-count").textContent =
+      count +
+      (count === 1 ? " flashcard" : " flashcards");
 
-          openDeck(button.dataset.deckId);
-
-        }
-      );
-
+    card.addEventListener("click",()=>{
+      openDeck(deck.id);
     });
 
+    homeDeckGrid.appendChild(card);
+
+  });
 }
 
 
-function renderHomeDecks(){
+/* =========================================================
+   DECKS
+========================================================= */
 
-  const user =
-    getCurrentUser();
+function renderDecks(){
 
-  const container =
-    document.getElementById("homeDeckList");
+  deckList.innerHTML = "";
 
+  const decks =
+    currentUser.decks || [];
 
-  if(!user){
+  if(decks.length === 0){
 
-    container.innerHTML = "";
-
-    return;
-
-  }
-
-
-  if(user.decks.length === 0){
-
-    container.innerHTML = `
-
-      <div class="empty-state">
-
-        <div class="empty-emoji">
-          🌱
-        </div>
-
-        <strong>
-          Your study space is empty.
-        </strong>
-
+    deckList.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📚</div>
+        <h3>No decks yet</h3>
         <p>
-          Go to <b>Decks</b> to create your first study deck.
+          Tap “Add deck” to create your first study deck.
         </p>
-
       </div>
-
     `;
 
     return;
-
   }
 
+  decks.forEach(deck=>{
 
-  container.innerHTML =
-    user.decks
-      .slice(0,4)
-      .map(deckMarkup)
-      .join("");
+    const row =
+      document.createElement("div");
 
+    row.className = "deck-row";
 
-  attachDeckButtons(container);
+    row.innerHTML = `
+      <div class="deck-row-left">
 
-}
-
-
-function renderAllDecks(){
-
-  const user =
-    getCurrentUser();
-
-  const container =
-    document.getElementById("allDeckList");
-
-
-  if(!user) return;
-
-
-  if(user.decks.length === 0){
-
-    container.innerHTML = `
-
-      <div class="empty-state">
-
-        <div class="empty-emoji">
-          📚
+        <div class="deck-row-icon">
+          📖
         </div>
 
-        <strong>
-          No decks yet.
-        </strong>
-
-        <p>
-          Create your first deck above.
-        </p>
+        <div>
+          <div class="deck-row-name"></div>
+          <div class="deck-row-count"></div>
+        </div>
 
       </div>
 
+      <div class="arrow">›</div>
     `;
 
-    return;
+    row.querySelector(".deck-row-name").textContent =
+      deck.name;
 
+    const count =
+      deck.cards.length;
+
+    row.querySelector(".deck-row-count").textContent =
+      count +
+      (count === 1 ? " flashcard" : " flashcards");
+
+    row.addEventListener("click",()=>{
+      openDeck(deck.id);
+    });
+
+    deckList.appendChild(row);
+
+  });
+}
+
+
+/* =========================================================
+   ADD DECK
+========================================================= */
+
+addDeckBtn.addEventListener("click",()=>{
+  openModal(deckModal);
+  deckNameInput.focus();
+});
+
+
+closeDeckModal.addEventListener("click",()=>{
+  closeModal(deckModal);
+});
+
+
+saveDeckBtn.addEventListener("click",createDeck);
+
+
+deckNameInput.addEventListener("keydown",(event)=>{
+  if(event.key === "Enter"){
+    createDeck();
   }
-
-
-  container.innerHTML =
-    user.decks
-      .map(deckMarkup)
-      .join("");
-
-
-  attachDeckButtons(container);
-
-}
-
-
-/* =====================================================
-   CREATE DECK
-===================================================== */
-
-function openCreateDeckModal(){
-
-  openModal(
-    "Create a New Deck",
-    `
-
-      <div class="form-group">
-
-        <label for="newDeckName">
-          Deck Name
-        </label>
-
-        <input
-          id="newDeckName"
-          class="form-input"
-          type="text"
-          maxlength="50"
-          placeholder="e.g. Philosophy"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="newDeckIcon">
-          Choose an icon
-        </label>
-
-        <input
-          id="newDeckIcon"
-          class="form-input"
-          type="text"
-          maxlength="2"
-          value="📚"
-        >
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          id="cancelDeckButton"
-          class="secondary-button"
-          type="button"
-        >
-          Cancel
-        </button>
-
-        <button
-          id="saveDeckButton"
-          class="primary-button"
-          type="button"
-        >
-          Save Deck
-        </button>
-
-      </div>
-
-    `
-  );
-
-
-  document
-    .getElementById("cancelDeckButton")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  document
-    .getElementById("saveDeckButton")
-    .addEventListener(
-      "click",
-      createDeck
-    );
-
-
-  setTimeout(function(){
-
-    document
-      .getElementById("newDeckName")
-      .focus();
-
-  },50);
-
-}
+});
 
 
 function createDeck(){
 
   const name =
-    document
-      .getElementById("newDeckName")
-      .value
-      .trim();
+    deckNameInput.value.trim();
 
-  const icon =
-    document
-      .getElementById("newDeckIcon")
-      .value
-      .trim() || "📚";
-
+  deckError.classList.remove("show");
 
   if(!name){
 
-    alert("Please give your deck a name. 🌷");
+    deckError.textContent =
+      "Please give your deck a name.";
+
+    deckError.classList.add("show");
 
     return;
-
   }
 
+  const newDeck = {
 
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  user.decks.push({
-
-    id:createId(),
+    id:
+      "deck_" +
+      Date.now() +
+      "_" +
+      Math.random()
+        .toString(36)
+        .slice(2),
 
     name:name,
 
-    icon:icon,
-
     cards:[]
+
+  };
+
+  currentUser.decks.push(newDeck);
+
+  saveCurrentUser();
+
+  deckNameInput.value = "";
+
+  closeModal(deckModal);
+
+  renderAll();
+
+  showToast("Deck created! 📚");
+
+  openDeck(newDeck.id);
+}
+
+
+/* =========================================================
+   OPEN DECK
+========================================================= */
+
+function openDeck(deckId){
+
+  currentDeckId = deckId;
+
+  const deck =
+    currentUser.decks.find(
+      item=>item.id === deckId
+    );
+
+  if(!deck){
+    return;
+  }
+
+  renderDeckDetail(deck);
+
+}
+
+
+/* =========================================================
+   DECK DETAIL
+========================================================= */
+
+function renderDeckDetail(deck){
+
+  decksPage.innerHTML = "";
+
+  const page =
+    document.createElement("div");
+
+  page.className = "page";
+
+  page.innerHTML = `
+
+    <button class="back-btn" id="backToDecks">
+      ← Back to decks
+    </button>
+
+    <div class="deck-detail-head">
+
+      <div>
+        <h1></h1>
+        <p></p>
+      </div>
+
+      <button class="add-btn" id="addCardButton">
+        + Add card
+      </button>
+
+    </div>
+
+    <div class="card-list" id="detailCardList"></div>
+
+  `;
+
+  page.querySelector("h1").textContent =
+    deck.name;
+
+  page.querySelector("p").textContent =
+    deck.cards.length +
+    (deck.cards.length === 1
+      ? " flashcard"
+      : " flashcards");
+
+  decksPage.appendChild(page);
+
+  page.querySelector("#backToDecks")
+    .addEventListener("click",()=>{
+      renderDecksPageAgain();
+    });
+
+  page.querySelector("#addCardButton")
+    .addEventListener("click",()=>{
+      openCardModal();
+    });
+
+  const list =
+    page.querySelector("#detailCardList");
+
+  if(deck.cards.length === 0){
+
+    list.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📝</div>
+        <h3>This deck is empty</h3>
+        <p>
+          Add your first flashcard when you're ready.
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+  deck.cards.forEach((card,index)=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className = "card-row";
+
+    row.innerHTML = `
+
+      <div class="card-preview">
+
+        <div class="card-front"></div>
+
+        <div class="card-back-preview"></div>
+
+      </div>
+
+      <button
+        class="delete-card"
+        title="Delete flashcard"
+      >
+        ×
+      </button>
+
+    `;
+
+    row.querySelector(".card-front").textContent =
+      card.front;
+
+    row.querySelector(".card-back-preview").textContent =
+      card.back;
+
+    row.querySelector(".delete-card")
+      .addEventListener("click",(event)=>{
+
+        event.stopPropagation();
+
+        deleteCard(deck.id,card.id);
+
+      });
+
+    list.appendChild(row);
+
+  });
+
+}
+
+
+function renderDecksPageAgain(){
+
+  decksPage.innerHTML = `
+    <div class="page-heading">
+      <h1>My decks</h1>
+
+      <button id="addDeckBtnAgain" class="add-btn">
+        + Add deck
+      </button>
+    </div>
+
+    <div id="deckListAgain" class="deck-list"></div>
+  `;
+
+  const btn =
+    document.getElementById("addDeckBtnAgain");
+
+  const list =
+    document.getElementById("deckListAgain");
+
+  btn.addEventListener("click",()=>{
+    openModal(deckModal);
+    deckNameInput.focus();
+  });
+
+  renderDeckListInto(list);
+
+}
+
+
+function renderDeckListInto(list){
+
+  list.innerHTML = "";
+
+  const decks =
+    currentUser.decks || [];
+
+  if(decks.length === 0){
+
+    list.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📚</div>
+        <h3>No decks yet</h3>
+        <p>
+          Tap “Add deck” to create your first study deck.
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+  decks.forEach(deck=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className = "deck-row";
+
+    row.innerHTML = `
+      <div class="deck-row-left">
+        <div class="deck-row-icon">📖</div>
+        <div>
+          <div class="deck-row-name"></div>
+          <div class="deck-row-count"></div>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    `;
+
+    row.querySelector(".deck-row-name").textContent =
+      deck.name;
+
+    row.querySelector(".deck-row-count").textContent =
+      deck.cards.length +
+      (deck.cards.length === 1
+        ? " flashcard"
+        : " flashcards");
+
+    row.addEventListener("click",()=>{
+      openDeck(deck.id);
+    });
+
+    list.appendChild(row);
+
+  });
+
+}
+
+
+/* =========================================================
+   ADD CARD
+========================================================= */
+
+function openCardModal(){
+
+  if(!currentDeckId){
+    return;
+  }
+
+  frontInput.value = "";
+  backInput.value = "";
+
+  cardError.classList.remove("show");
+
+  cardModalTitle.textContent =
+    "Add flashcard";
+
+  openModal(cardModal);
+
+  setTimeout(()=>{
+    frontInput.focus();
+  },200);
+
+}
+
+
+closeCardModal.addEventListener("click",()=>{
+  closeModal(cardModal);
+});
+
+
+saveCardBtn.addEventListener("click",createCard);
+
+
+function createCard(){
+
+  const front =
+    frontInput.value.trim();
+
+  const back =
+    backInput.value.trim();
+
+  cardError.classList.remove("show");
+
+  if(!front){
+
+    cardError.textContent =
+      "Please add something to the front.";
+
+    cardError.classList.add("show");
+
+    return;
+  }
+
+  if(!back){
+
+    cardError.textContent =
+      "Please add the answer or explanation.";
+
+    cardError.classList.add("show");
+
+    return;
+  }
+
+  const deck =
+    currentUser.decks.find(
+      item=>item.id === currentDeckId
+    );
+
+  if(!deck){
+    return;
+  }
+
+  deck.cards.push({
+
+    id:
+      "card_" +
+      Date.now() +
+      "_" +
+      Math.random()
+        .toString(36)
+        .slice(2),
+
+    front:front,
+
+    back:back
+
+  });
+
+  saveCurrentUser();
+
+  /*
+    Clear the typing area after saving.
+    This prevents old information from remaining
+    in the form.
+  */
+
+  frontInput.value = "";
+  backInput.value = "";
+
+  closeModal(cardModal);
+
+  renderDeckDetail(deck);
+
+  renderHome();
+
+  populateReviewDecks();
+
+  showToast("Flashcard saved! 📝");
+
+}
+
+
+/* =========================================================
+   DELETE CARD
+========================================================= */
+
+function deleteCard(deckId,cardId){
+
+  const deck =
+    currentUser.decks.find(
+      item=>item.id === deckId
+    );
+
+  if(!deck){
+    return;
+  }
+
+  deck.cards =
+    deck.cards.filter(
+      card=>card.id !== cardId
+    );
+
+  saveCurrentUser();
+
+  renderDeckDetail(deck);
+  renderHome();
+  populateReviewDecks();
+
+  showToast("Flashcard removed.");
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function populateReviewDecks(){
+
+  reviewDeckSelect.innerHTML =
+    `<option value="">Choose a deck</option>`;
+
+  currentUser.decks.forEach(deck=>{
+
+    const option =
+      document.createElement("option");
+
+    option.value = deck.id;
+    option.textContent =
+      deck.name +
+      " · " +
+      deck.cards.length +
+      " cards";
+
+    reviewDeckSelect.appendChild(option);
+
+  });
+
+}
+
+
+reviewDeckSelect.addEventListener("change",()=>{
+
+  const deckId =
+    reviewDeckSelect.value;
+
+  if(!deckId){
+
+    reviewContent.classList.add("hidden");
+    reviewEmpty.classList.remove("hidden");
+
+    return;
+  }
+
+  const deck =
+    currentUser.decks.find(
+      item=>item.id === deckId
+    );
+
+  if(!deck || deck.cards.length === 0){
+
+    reviewContent.classList.add("hidden");
+    reviewEmpty.classList.remove("hidden");
+
+    return;
+  }
+
+  reviewCards =
+    [...deck.cards];
+
+  reviewIndex = 0;
+
+  reviewEmpty.classList.add("hidden");
+  reviewContent.classList.remove("hidden");
+
+  updateFlashcard();
+
+});
+
+
+function prepareReview(){
+
+  populateReviewDecks();
+
+  reviewContent.classList.add("hidden");
+  reviewEmpty.classList.remove("hidden");
+
+  if(currentDeckId){
+
+    const deck =
+      currentUser.decks.find(
+        item=>item.id === currentDeckId
+      );
+
+    if(deck && deck.cards.length){
+
+      reviewDeckSelect.value =
+        currentDeckId;
+
+      reviewCards =
+        [...deck.cards];
+
+      reviewIndex = 0;
+
+      reviewEmpty.classList.add("hidden");
+      reviewContent.classList.remove("hidden");
+
+      updateFlashcard();
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   FLASHCARD
+========================================================= */
+
+flashcard.addEventListener("click",()=>{
+
+  flashcard.classList.toggle("flipped");
+
+});
+
+
+function updateFlashcard(){
+
+  if(!reviewCards.length){
+    return;
+  }
+
+  const card =
+    reviewCards[reviewIndex];
+
+  flashcard.classList.remove("flipped");
+
+  flashFrontText.textContent =
+    card.front;
+
+  flashBackText.textContent =
+    card.back;
+
+  reviewProgress.textContent =
+    (reviewIndex + 1) +
+    " of " +
+    reviewCards.length;
+
+}
+
+
+nextCardBtn.addEventListener("click",()=>{
+
+  if(!reviewCards.length){
+    return;
+  }
+
+  reviewIndex =
+    (reviewIndex + 1) %
+    reviewCards.length;
+
+  updateFlashcard();
+
+});
+
+
+prevCardBtn.addEventListener("click",()=>{
+
+  if(!reviewCards.length){
+    return;
+  }
+
+  reviewIndex =
+    (reviewIndex - 1 + reviewCards.length) %
+    reviewCards.length;
+
+  updateFlashcard();
+
+});
+
+
+shuffleBtn.addEventListener("click",()=>{
+
+  if(reviewCards.length < 2){
+    return;
+  }
+
+  for(
+    let i = reviewCards.length - 1;
+    i > 0;
+    i--
+  ){
+
+    const j =
+      Math.floor(Math.random() * (i + 1));
+
+    [
+      reviewCards[i],
+      reviewCards[j]
+    ] =
+    [
+      reviewCards[j],
+      reviewCards[i]
+    ];
+
+  }
+
+  reviewIndex = 0;
+
+  updateFlashcard();
+
+  showToast("Cards shuffled ✨");
+
+});
+
+
+/* =========================================================
+   QUICK REVIEW
+========================================================= */
+
+quickReviewBtn.addEventListener("click",()=>{
+
+  if(!currentUser.decks.length){
+
+    showToast("Create a deck first 📚");
+
+    navigateTo("decks");
+
+    return;
+  }
+
+  const deckWithCards =
+    currentUser.decks.find(
+      deck=>deck.cards.length > 0
+    );
+
+  if(!deckWithCards){
+
+    showToast("Add some flashcards first 📝");
+
+    navigateTo("decks");
+
+    return;
+  }
+
+  currentDeckId =
+    deckWithCards.id;
+
+  navigateTo("review");
+
+});
+
+
+/* =========================================================
+   PROFILE PICTURE
+========================================================= */
+
+profileUpload.addEventListener("change",(event)=>{
+
+  const file =
+    event.target.files[0];
+
+  if(!file){
+    return;
+  }
+
+  if(!file.type.startsWith("image/")){
+
+    showToast("Please choose an image.");
+
+    return;
+  }
+
+  /*
+    Resize the image before saving.
+    This keeps localStorage from becoming unnecessarily large.
+  */
+
+  const reader =
+    new FileReader();
+
+  reader.onload = function(e){
+
+    const img =
+      new Image();
+
+    img.onload = function(){
+
+      const maxSize = 500;
+
+      let width = img.width;
+      let height = img.height;
+
+      if(width > maxSize || height > maxSize){
+
+        if(width > height){
+
+          height =
+            Math.round(
+              height * maxSize / width
+            );
+
+          width = maxSize;
+
+        }else{
+
+          width =
+            Math.round(
+              width * maxSize / height
+            );
+
+          height = maxSize;
+
+        }
+
+      }
+
+      const canvas =
+        document.createElement("canvas");
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx =
+        canvas.getContext("2d");
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        width,
+        height
+      );
+
+      const compressed =
+        canvas.toDataURL(
+          "image/jpeg",
+          .78
+        );
+
+      currentUser.profileImage =
+        compressed;
+
+      saveCurrentUser();
+
+      updateUserInterface();
+
+      showToast("Profile picture updated! 🌷");
+
+    };
+
+    img.src = e.target.result;
+
+  };
+
+  reader.readAsDataURL(file);
+
+});
+
+
+/* =========================================================
+   EDIT NAME
+========================================================= */
+
+editNameBtn.addEventListener("click",()=>{
+
+  newNameInput.value =
+    currentUser.name;
+
+  nameError.classList.remove("show");
+
+  openModal(nameModal);
+
+});
+
+
+closeNameModal.addEventListener("click",()=>{
+  closeModal(nameModal);
+});
+
+
+saveNameBtn.addEventListener("click",changeName);
+
+
+function changeName(){
+
+  const newName =
+    newNameInput.value.trim();
+
+  nameError.classList.remove("show");
+
+  if(!newName){
+
+    nameError.textContent =
+      "Please enter a student name.";
+
+    nameError.classList.add("show");
+
+    return;
+  }
+
+  if(newName.length < 2){
+
+    nameError.textContent =
+      "Your name is too short.";
+
+    nameError.classList.add("show");
+
+    return;
+  }
+
+  const accounts =
+    getAccounts();
+
+  const oldKey =
+    getCurrentUserName();
+
+  const newKey =
+    newName.toLowerCase();
+
+  if(
+    newKey !== oldKey &&
+    accounts[newKey]
+  ){
+
+    nameError.textContent =
+      "That student name is already being used.";
+
+    nameError.classList.add("show");
+
+    return;
+  }
+
+  currentUser.name =
+    newName;
+
+  delete accounts[oldKey];
+
+  accounts[newKey] =
+    currentUser;
+
+  saveAccounts(accounts);
+
+  setCurrentUserName(newKey);
+
+  closeModal(nameModal);
+
+  updateUserInterface();
+
+  showToast("Name updated! ✨");
+
+}
+
+
+/* =========================================================
+   LOG OUT
+========================================================= */
+
+logoutBtn.addEventListener("click",()=>{
+
+  saveCurrentUser();
+
+  clearCurrentUser();
+
+  currentUser = null;
+  currentDeckId = null;
+
+  closeAllModals();
+
+  showAuth();
+
+  authName.value = "";
+  authPassword.value = "";
+
+  authMode = "login";
+
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+
+  authSubmit.textContent = "Log in";
+
+  clearAuthError();
+
+});
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(modal){
+
+  modal.classList.add("show");
+
+}
+
+
+function closeModal(modal){
+
+  modal.classList.remove("show");
+
+}
+
+
+function closeAllModals(){
+
+  document
+    .querySelectorAll(".modal-overlay")
+    .forEach(modal=>{
+      modal.classList.remove("show");
+    });
+
+}
+
+
+/*
+  Clicking outside the modal closes it.
+*/
+
+document
+  .querySelectorAll(".modal-overlay")
+  .forEach(overlay=>{
+
+    overlay.addEventListener("click",(event)=>{
+
+      if(event.target === overlay){
+
+        closeModal(overlay);
+
+      }
+
+    });
 
   });
 
 
-  saveAccounts();
+/* =========================================================
+   TOAST
+========================================================= */
 
-  closeModal();
-
-  renderHomeDecks();
-
-  renderAllDecks();
-
-  showToast("Deck saved 🌱");
-
-}
+let toastTimer;
 
 
-/* =====================================================
-   OPEN DECK
-===================================================== */
+function showToast(message){
 
-function openDeck(deckId){
+  toast.textContent =
+    message;
 
-  const user =
-    getCurrentUser();
+  toast.classList.add("show");
 
-  if(!user) return;
+  clearTimeout(toastTimer);
 
+  toastTimer =
+    setTimeout(()=>{
 
-  const deck =
-    user.decks.find(function(item){
+      toast.classList.remove("show");
 
-      return item.id === deckId;
-
-    });
-
-
-  if(!deck) return;
-
-
-  currentDeckId = deckId;
-
-
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("deckView")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("deckTitle")
-    .textContent = deck.name;
-
-
-  updateDeckSubtitle(deck);
-
-  renderCards();
+    },2200);
 
 }
 
 
-function updateDeckSubtitle(deck){
+/* =========================================================
+   START APP
+========================================================= */
 
-  document
-    .getElementById("deckSubtitle")
-    .textContent =
-      `${deck.cards.length} ${
-        deck.cards.length === 1 ? "card" : "cards"
-      }`;
+window.addEventListener("load",()=>{
 
-}
+  const savedUser =
+    getCurrentUserName();
 
+  if(savedUser){
 
-/* =====================================================
-   CARD LIST
-===================================================== */
-
-function renderCards(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  const deck =
-    user.decks.find(function(item){
-
-      return item.id === currentDeckId;
-
-    });
-
-
-  const container =
-    document.getElementById("cardList");
-
-
-  if(!deck){
-
-    container.innerHTML = "";
-
-    return;
-
-  }
-
-
-  updateDeckSubtitle(deck);
-
-
-  if(deck.cards.length === 0){
-
-    container.innerHTML = `
-
-      <div class="empty-state">
-
-        <div class="empty-emoji">
-          🃏
-        </div>
-
-        <strong>
-          No flashcards yet.
-        </strong>
-
-        <p>
-          Add your first flashcard above.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    deck.cards
-      .map(function(card){
-
-        return `
-
-          <div class="card-item">
-
-            <div class="card-copy">
-
-              <strong>
-                ${escapeHTML(card.front)}
-              </strong>
-
-              <span>
-                ${escapeHTML(card.back)}
-              </span>
-
-            </div>
-
-
-            <div class="card-actions">
-
-              <button
-                type="button"
-                class="mini-button edit-card-button"
-                data-card-id="${card.id}"
-              >
-                ✏️
-              </button>
-
-
-              <button
-                type="button"
-                class="mini-button delete delete-card-button"
-                data-card-id="${card.id}"
-              >
-                🗑️
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      })
-      .join("");
-
-
-  container
-    .querySelectorAll(".edit-card-button")
-    .forEach(function(button){
-
-      button.addEventListener(
-        "click",
-        function(){
-
-          editCard(button.dataset.cardId);
-
-        }
-      );
-
-    });
-
-
-  container
-    .querySelectorAll(".delete-card-button")
-    .forEach(function(button){
-
-      button.addEventListener(
-        "click",
-        function(){
-
-          deleteCard(button.dataset.cardId);
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =====================================================
-   FLASHCARD CREATION
-===================================================== */
-
-function cardFormMarkup(card){
-
-  card = card || {};
-
-
-  return `
-
-    <div class="form-group">
-
-      <label for="cardFront">
-        Front
-      </label>
-
-      <textarea
-        id="cardFront"
-        class="form-textarea"
-        maxlength="400"
-        placeholder="Type what you want to remember..."
-      >${escapeHTML(card.front || "")}</textarea>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label for="cardBack">
-        Back
-      </label>
-
-      <textarea
-        id="cardBack"
-        class="form-textarea"
-        maxlength="400"
-        placeholder="Type the answer or explanation..."
-      >${escapeHTML(card.back || "")}</textarea>
-
-    </div>
-
-
-    <div class="modal-actions">
-
-      <button
-        id="cancelCardButton"
-        class="secondary-button"
-        type="button"
-      >
-        Cancel
-      </button>
-
-      <button
-        id="saveCardButton"
-        class="primary-button"
-        type="button"
-      >
-        Save Card
-      </button>
-
-    </div>
-
-  `;
-
-}
-
-
-function openCreateCardModal(){
-
-  editingCardId = null;
-
-
-  openModal(
-    "New Flashcard",
-    cardFormMarkup()
-  );
-
-
-  document
-    .getElementById("cancelCardButton")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  document
-    .getElementById("saveCardButton")
-    .addEventListener(
-      "click",
-      saveCard
-    );
-
-
-  setTimeout(function(){
-
-    document
-      .getElementById("cardFront")
-      .focus();
-
-  },50);
-
-}
-
-
-function saveCard(){
-
-  const front =
-    document
-      .getElementById("cardFront")
-      .value
-      .trim();
-
-  const back =
-    document
-      .getElementById("cardBack")
-      .value
-      .trim();
-
-
-  if(!front || !back){
-
-    alert(
-      "Please fill in both sides of the flashcard."
-    );
-
-    return;
-
-  }
-
-
-  const user =
-    getCurrentUser();
-
-
-  const deck =
-    user.decks.find(function(item){
-
-      return item.id === currentDeckId;
-
-    });
-
-
-  if(!deck) return;
-
-
-  if(editingCardId){
-
-    const card =
-      deck.cards.find(function(item){
-
-        return item.id === editingCardId;
-
-      });
-
-
-    if(card){
-
-      card.front = front;
-
-      card.back = back;
-
-    }
+    loadCurrentUser();
 
   }else{
 
-    deck.cards.push({
-
-      id:createId(),
-
-      front:front,
-
-      back:back,
-
-      known:false,
-
-      reviews:0,
-
-      lastReviewed:null
-
-    });
+    showAuth();
 
   }
 
+});
 
-  saveAccounts();
 
+/*
+  Save before leaving the page.
+  This is an extra safety layer on top of
+  saving immediately whenever data changes.
+*/
 
-  /*
-    The form disappears after saving.
-    Nothing remains in the typing area.
-  */
+window.addEventListener("beforeunload",()=>{
 
-  closeModal();
+  if(currentUser){
 
-  renderCards();
-
-  renderHomeDecks();
-
-  renderAllDecks();
-
-
-  showToast(
-    editingCardId
-      ? "Flashcard updated ✨"
-      : "Flashcard saved 🌷"
-  );
-
-
-  editingCardId = null;
-
-}
-
-
-function editCard(cardId){
-
-  const user =
-    getCurrentUser();
-
-
-  const deck =
-    user.decks.find(function(item){
-
-      return item.id === currentDeckId;
-
-    });
-
-
-  if(!deck) return;
-
-
-  const card =
-    deck.cards.find(function(item){
-
-      return item.id === cardId;
-
-    });
-
-
-  if(!card) return;
-
-
-  editingCardId = cardId;
-
-
-  openModal(
-    "Edit Flashcard",
-    cardFormMarkup(card)
-  );
-
-
-  document
-    .getElementById("cancelCardButton")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  document
-    .getElementById("saveCardButton")
-    .addEventListener(
-      "click",
-      saveCard
-    );
-
-}
-
-
-function deleteCard(cardId){
-
-  const confirmed =
-    confirm(
-      "Delete this flashcard?"
-    );
-
-
-  if(!confirmed) return;
-
-
-  const user =
-    getCurrentUser();
-
-
-  const deck =
-    user.decks.find(function(item){
-
-      return item.id === currentDeckId;
-
-    });
-
-
-  if(!deck) return;
-
-
-  deck.cards =
-    deck.cards.filter(function(card){
-
-      return card.id !== cardId;
-
-    });
-
-
-  saveAccounts();
-
-  renderCards();
-
-  renderHomeDecks();
-
-  renderAllDecks();
-
-  showToast("Flashcard removed");
-
-}
-
-
-/* =====================================================
-   STUDY MODE
-===================================================== */
-
-function studyNow(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user || user.decks.length === 0){
-
-    alert(
-      "Create a deck and add flashcards first. 🌱"
-    );
-
-    return;
+    saveCurrentUser();
 
   }
 
+});
 
-  const availableDecks =
-    user.decks.filter(function(deck){
 
-      return deck.cards.length > 0;
+/*
+  Also save when the browser changes visibility.
+*/
 
-    });
-
-
-  if(availableDecks.length === 0){
-
-    alert(
-      "Add at least one flashcard before studying. 🌷"
-    );
-
-    return;
-
-  }
-
-
-  const deck =
-    availableDecks[
-      Math.floor(
-        Math.random() * availableDecks.length
-      )
-    ];
-
-
-  startStudy(deck.id);
-
-}
-
-
-function startStudy(deckId){
-
-  const user =
-    getCurrentUser();
-
-
-  const deck =
-    user.decks.find(function(item){
-
-      return item.id === deckId;
-
-    });
-
-
-  if(!deck || deck.cards.length === 0){
-
-    alert("This deck has no flashcards yet.");
-
-    return;
-
-  }
-
-
-  studyDeckId = deckId;
-
-  studyCards =
-    deck.cards.map(function(card){
-
-      return {...card};
-
-    });
-
-
-  studyIndex = 0;
-
-
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("studyView")
-    .classList.remove("hidden");
-
-
-  document
-    .getElementById("studyDeckName")
-    .textContent = deck.name;
-
-
-  renderStudyCard();
-
-}
-
-
-function renderStudyCard(){
-
-  const content =
-    document.getElementById("studyContent");
-
-
-  if(studyIndex >= studyCards.length){
-
-    document
-      .getElementById("studyCount")
-      .textContent =
-        `${studyCards.length} / ${studyCards.length}`;
-
-
-    content.innerHTML = `
-
-      <div class="study-finished">
-
-        <div class="big">
-          🌷
-        </div>
-
-        <h2>
-          Nice work!
-        </h2>
-
-        <p>
-          You finished this study session.
-        </p>
-
-        <button
-          id="studyDoneButton"
-          class="primary-button"
-          type="button"
-        >
-          Done
-        </button>
-
-      </div>
-
-    `;
-
-
-    document
-      .getElementById("studyDoneButton")
-      .addEventListener(
-        "click",
-        exitStudy
-      );
-
-
-    return;
-
-  }
-
-
-  const card =
-    studyCards[studyIndex];
-
-
-  document
-    .getElementById("studyCount")
-    .textContent =
-      `${studyIndex + 1} / ${studyCards.length}`;
-
-
-  /*
-    IMPORTANT:
-    No "Question" or "Answer" labels.
-    The student only sees the exact text they entered.
-  */
-
-  content.innerHTML = `
-
-    <div class="flashcard-area">
-
-      <div
-        id="flashcard"
-        class="flashcard"
-      >
-
-        <div class="flashcard-inner">
-
-          <div class="card-face">
-
-            <div class="face-text">
-              ${escapeHTML(card.front)}
-            </div>
-
-          </div>
-
-
-          <div class="card-face answer">
-
-            <div class="face-text">
-              ${escapeHTML(card.back)}
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="study-actions">
-
-      <button
-        id="reviewCardButton"
-        class="study-action review"
-        type="button"
-      >
-        ↻ Need Review
-      </button>
-
-      <button
-        id="knownCardButton"
-        class="study-action known"
-        type="button"
-      >
-        ✓ Got It
-      </button>
-
-    </div>
-
-  `;
-
-
-  document
-    .getElementById("flashcard")
-    .addEventListener(
-      "click",
-      flipCurrentCard
-    );
-
-
-  document
-    .getElementById("reviewCardButton")
-    .addEventListener(
-      "click",
-      function(){
-
-        rateCurrentCard(false);
-
-      }
-    );
-
-
-  document
-    .getElementById("knownCardButton")
-    .addEventListener(
-      "click",
-      function(){
-
-        rateCurrentCard(true);
-
-      }
-    );
-
-}
-
-
-function flipCurrentCard(){
-
-  const card =
-    document.getElementById("flashcard");
-
-
-  if(!card) return;
-
-
-  card.classList.toggle("flipped");
-
-}
-
-
-function rateCurrentCard(known){
-
-  const user =
-    getCurrentUser();
-
-
-  const deck =
-    user.decks.find(function(item){
-
-      return item.id === studyDeckId;
-
-    });
-
-
-  if(!deck) return;
-
-
-  const studiedCard =
-    studyCards[studyIndex];
-
-
-  const original =
-    deck.cards.find(function(card){
-
-      return card.id === studiedCard.id;
-
-    });
-
-
-  if(original){
-
-    original.known = known;
-
-    original.reviews =
-      Number(original.reviews || 0) + 1;
-
-    original.lastReviewed =
-      new Date().toISOString();
-
-  }
-
-
-  saveAccounts();
-
-
-  studyIndex++;
-
-  renderStudyCard();
-
-}
-
-
-function exitStudy(){
-
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-  showHome();
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function renderProfile(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  document
-    .getElementById("profileName")
-    .textContent = user.name;
-
-
-  renderAvatar(
-    document.getElementById("bigProfileAvatar"),
-    user.photo,
-    "big"
-  );
-
-
-  renderAvatar(
-    document.getElementById("topAvatar"),
-    user.photo,
-    "small"
-  );
-
-
-  renderStudyCircle();
-
-}
-
-
-function renderAvatar(element,photo,size){
-
-  if(photo){
-
-    element.innerHTML = `
-
-      <img
-        src="${photo}"
-        alt="Profile photo"
-      >
-
-    `;
-
-  }else{
-
-    element.innerHTML =
-      size === "big"
-        ? "👤"
-        : "👤";
-
-  }
-
-}
-
-
-function openEditProfile(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  openModal(
-    "Edit Profile",
-    `
-
-      <div class="profile-header">
-
-        <div
-          id="editPreview"
-          class="profile-big-avatar"
-        >
-
-          <div class="profile-big-placeholder">
-            👤
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="editStudentName">
-          Student Name
-        </label>
-
-        <input
-          id="editStudentName"
-          class="form-input"
-          type="text"
-          maxlength="40"
-          value="${escapeHTML(user.name)}"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="profilePhotoInput">
-          Profile Picture
-        </label>
-
-        <input
-          id="profilePhotoInput"
-          class="form-input"
-          type="file"
-          accept="image/*"
-        >
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          id="cancelProfileButton"
-          class="secondary-button"
-          type="button"
-        >
-          Cancel
-        </button>
-
-        <button
-          id="saveProfileButton"
-          class="primary-button"
-          type="button"
-        >
-          Save Profile
-        </button>
-
-      </div>
-
-    `
-  );
-
-
-  const preview =
-    document.getElementById("editPreview");
-
-
-  renderAvatar(
-    preview,
-    user.photo,
-    "big"
-  );
-
-
-  document
-    .getElementById("cancelProfileButton")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  document
-    .getElementById("profilePhotoInput")
-    .addEventListener(
-      "change",
-      previewSelectedPhoto
-    );
-
-
-  document
-    .getElementById("saveProfileButton")
-    .addEventListener(
-      "click",
-      saveProfile
-    );
-
-}
-
-
-function previewSelectedPhoto(event){
-
-  const file =
-    event.target.files[0];
-
-
-  if(!file) return;
-
-
-  if(!file.type.startsWith("image/")){
-
-    alert("Please choose an image file.");
-
-    return;
-
-  }
-
-
-  if(file.size > 3 * 1024 * 1024){
-
-    alert(
-      "Please choose a photo smaller than 3 MB."
-    );
-
-    event.target.value = "";
-
-    return;
-
-  }
-
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload = function(){
-
-    renderAvatar(
-      document.getElementById("editPreview"),
-      reader.result,
-      "big"
-    );
-
-  };
-
-
-  reader.readAsDataURL(file);
-
-}
-
-
-function saveProfile(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  const newName =
-    document
-      .getElementById("editStudentName")
-      .value
-      .trim();
-
-
-  const photoInput =
-    document.getElementById("profilePhotoInput");
-
-
-  if(!newName){
-
-    alert("Please enter your student name.");
-
-    return;
-
-  }
-
-
-  /*
-    Keep the same account ID so the account
-    and all saved decks remain connected.
-  */
-
-  user.name = newName;
-
+document.addEventListener("visibilitychange",()=>{
 
   if(
-    photoInput.files &&
-    photoInput.files[0]
+    document.visibilityState === "hidden" &&
+    currentUser
   ){
 
-    const reader =
-      new FileReader();
-
-
-    reader.onload = function(){
-
-      user.photo =
-        reader.result;
-
-      saveAccounts();
-
-      finishProfileSave();
-
-    };
-
-
-    reader.readAsDataURL(
-      photoInput.files[0]
-    );
-
-  }else{
-
-    saveAccounts();
-
-    finishProfileSave();
+    saveCurrentUser();
 
   }
 
-}
-
-
-function finishProfileSave(){
-
-  closeModal();
-
-  renderProfile();
-
-  document
-    .getElementById("homeName")
-    .textContent =
-      getCurrentUser().name;
-
-  showToast("Profile saved ✨");
-
-}
-
-
-/* =====================================================
-   STUDY CIRCLE
-===================================================== */
-
-function toggleStudyCircle(){
-
-  const section =
-    document.getElementById("circleSection");
-
-
-  section
-    .classList
-    .toggle("hidden");
-
-
-  renderStudyCircle();
-
-}
-
-
-function renderStudyCircle(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  const container =
-    document.getElementById("circleContent");
-
-
-  /*
-    Offline limitation:
-    A standalone HTML file cannot see accounts
-    stored on another student's device.
-    This section is therefore transparent about
-    the current offline mode instead of pretending
-    other students are real online users.
-  */
-
-  container.innerHTML = `
-
-    <div class="circle-user">
-
-      <div class="circle-avatar">
-
-        ${
-          user.photo
-            ? `<img src="${user.photo}" alt="Your profile">`
-            : "👤"
-        }
-
-      </div>
-
-
-      <div class="circle-user-info">
-
-        <strong>
-          ${escapeHTML(user.name)}
-        </strong>
-
-        <span>
-          You • studying on this device
-        </span>
-
-      </div>
-
-
-      <div
-        class="status-dot"
-        style="background:#7da982"
-      ></div>
-
-    </div>
-
-
-    <p class="circle-message">
-
-      Your Study Circle is ready for the
-      future version of FLASHY. 💚
-      <br><br>
-
-      Because you're using the fully
-      <b>offline version</b>, FLASHY cannot
-      see students using the website on
-      other phones or computers yet.
-
-      <br><br>
-
-      Once a real online database is connected,
-      this space can show friends, profile
-      pictures, study status, and who's
-      currently reviewing.
-
-    </p>
-
-  `;
-
-}
-
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-function openModal(title,content){
-
-  document
-    .getElementById("modalTitle")
-    .textContent = title;
-
-
-  document
-    .getElementById("modalContent")
-    .innerHTML = content;
-
-
-  document
-    .getElementById("modalOverlay")
-    .classList
-    .remove("hidden");
-
-}
-
-
-function closeModal(){
-
-  document
-    .getElementById("modalOverlay")
-    .classList
-    .add("hidden");
-
-
-  document
-    .getElementById("modalContent")
-    .innerHTML = "";
-
-
-  editingCardId = null;
-
-}
-
-
-/* =====================================================
-   DARK MODE
-===================================================== */
-
-function toggleDarkMode(){
-
-  document
-    .body
-    .classList
-    .toggle("dark");
-
-
-  localStorage.setItem(
-    DARK_KEY,
-    document.body.classList.contains("dark")
-      ? "1"
-      : "0"
-  );
-
-
-  showToast(
-    document.body.classList.contains("dark")
-      ? "Dark mode on 🌙"
-      : "Light mode on ☀️"
-  );
-
-}
-
-
-/* =====================================================
-   BACKUP
-===================================================== */
-
-function exportBackup(){
-
-  const user =
-    getCurrentUser();
-
-
-  if(!user) return;
-
-
-  const backup = {
-
-    app:"FLASHY",
-
-    version:3,
-
-    exportedAt:new Date().toISOString(),
-
-    account:user
-
-  };
-
-
-  const blob =
-    new Blob(
-      [JSON.stringify(backup,null,2)],
-      {type:"application/json"}
-    );
-
-
-  const url =
-    URL.createObjectURL(blob);
-
-
-  const link =
-    document.createElement("a");
-
-
-  link.href = url;
-
-  link.download =
-    `FLASHY-${user.name.replace(/\s+/g,"-")}-backup.json`;
-
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  link.remove();
-
-
-  URL.revokeObjectURL(url);
-
-
-  showToast("Backup downloaded 💾");
-
-}
-
-
-/* =====================================================
-   RESTORE
-===================================================== */
-
-function importBackup(event){
-
-  const file =
-    event.target.files[0];
-
-
-  if(!file) return;
-
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload = function(){
-
-    try{
-
-      const data =
-        JSON.parse(reader.result);
-
-
-      const imported =
-        data.account || data;
-
-
-      if(
-        !imported.name ||
-        !Array.isArray(imported.decks)
-      ){
-
-        throw new Error(
-          "Invalid backup"
-        );
-
-      }
-
-
-      const id =
-        makeAccountId(imported.name);
-
-
-      const confirmed =
-        confirm(
-          "Restore this backup? The account with the same student name will be replaced."
-        );
-
-
-      if(!confirmed){
-
-        event.target.value = "";
-
-        return;
-
-      }
-
-
-      imported.id = id;
-
-
-      accounts[id] =
-        imported;
-
-
-      saveAccounts();
-
-
-      currentAccountId = id;
-
-
-      localStorage.setItem(
-        SESSION_KEY,
-        currentAccountId
-      );
-
-
-      event.target.value = "";
-
-
-      enterApp();
-
-      showToast("Backup restored 🌱");
-
-    }catch(error){
-
-      console.error(error);
-
-      alert(
-        "That file is not a valid FLASHY backup."
-      );
-
-      event.target.value = "";
-
-    }
-
-  };
-
-
-  reader.readAsText(file);
-
-}
-
-
-/* =====================================================
-   EVENTS
-===================================================== */
-
-function setupEvents(){
-
-  /* AUTH */
-
-  document
-    .getElementById("loginButton")
-    .addEventListener(
-      "click",
-      login
-    );
-
-
-  document
-    .getElementById("createAccountButton")
-    .addEventListener(
-      "click",
-      createAccount
-    );
-
-
-  document
-    .getElementById("showSignupButton")
-    .addEventListener(
-      "click",
-      showSignupPanel
-    );
-
-
-  document
-    .getElementById("showLoginButton")
-    .addEventListener(
-      "click",
-      showLoginPanel
-    );
-
-
-  /* TOP PROFILE */
-
-  document
-    .getElementById("topProfileButton")
-    .addEventListener(
-      "click",
-      showProfile
-    );
-
-
-  /* HOME */
-
-  document
-    .getElementById("studyNowButton")
-    .addEventListener(
-      "click",
-      studyNow
-    );
-
-
-  /* NAV */
-
-  document
-    .getElementById("homeNavButton")
-    .addEventListener(
-      "click",
-      showHome
-    );
-
-
-  document
-    .getElementById("decksNavButton")
-    .addEventListener(
-      "click",
-      showDecks
-    );
-
-
-  document
-    .getElementById("profileNavButton")
-    .addEventListener(
-      "click",
-      showProfile
-    );
-
-
-  /* DECKS */
-
-  document
-    .getElementById("newDeckButton")
-    .addEventListener(
-      "click",
-      openCreateDeckModal
-    );
-
-
-  /* PROFILE */
-
-  document
-    .getElementById("editProfileButton")
-    .addEventListener(
-      "click",
-      openEditProfile
-    );
-
-
-  document
-    .getElementById("studyCircleButton")
-    .addEventListener(
-      "click",
-      toggleStudyCircle
-    );
-
-
-  /* SETTINGS */
-
-  document
-    .getElementById("darkModeButton")
-    .addEventListener(
-      "click",
-      toggleDarkMode
-    );
-
-
-  document
-    .getElementById("exportButton")
-    .addEventListener(
-      "click",
-      exportBackup
-    );
-
-
-  document
-    .getElementById("importButton")
-    .addEventListener(
-      "click",
-      function(){
-
-        document
-          .getElementById("restoreInput")
-          .click();
-
-      }
-    );
-
-
-  document
-    .getElementById("restoreInput")
-    .addEventListener(
-      "change",
-      importBackup
-    );
-
-
-  document
-    .getElementById("logoutButton")
-    .addEventListener(
-      "click",
-      logout
-    );
-
-
-  document
-    .getElementById("deleteAccountButton")
-    .addEventListener(
-      "click",
-      deleteAccount
-    );
-
-
-  /* DECK VIEW */
-
-  document
-    .getElementById("deckBackButton")
-    .addEventListener(
-      "click",
-      showDecks
-    );
-
-
-  document
-    .getElementById("addCardButton")
-    .addEventListener(
-      "click",
-      openCreateCardModal
-    );
-
-
-  /* STUDY */
-
-  document
-    .getElementById("studyBackButton")
-    .addEventListener(
-      "click",
-      exitStudy
-    );
-
-
-  /* MODAL */
-
-  document
-    .getElementById("modalCloseButton")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  document
-    .getElementById("modalOverlay")
-    .addEventListener(
-      "click",
-      function(event){
-
-        if(
-          event.target ===
-          document.getElementById("modalOverlay")
-        ){
-
-          closeModal();
-
-        }
-
-      }
-    );
-
-
-  /* LOGIN ENTER KEY */
-
-  document
-    .getElementById("loginPassword")
-    .addEventListener(
-      "keydown",
-      function(event){
-
-        if(event.key === "Enter"){
-
-          login();
-
-        }
-
-      }
-    );
-
-
-  /* ESC */
-
-  document.addEventListener(
-    "keydown",
-    function(event){
-
-      if(event.key === "Escape"){
-
-        closeModal();
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   THEME
-===================================================== */
-
-function loadTheme(){
-
-  if(
-    localStorage.getItem(DARK_KEY) === "1"
-  ){
-
-    document
-      .body
-      .classList
-      .add("dark");
-
-  }
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-function startApp(){
-
-  setupEvents();
-
-  loadTheme();
-
-
-  if(
-    currentAccountId &&
-    accounts[currentAccountId]
-  ){
-
-    enterApp();
-
-  }else{
-
-    document
-      .getElementById("authScreen")
-      .classList
-      .remove("hidden");
-
-    showLoginPanel();
-
-  }
-
-}
-
-
-startApp();
+});
 
 </script>
 
