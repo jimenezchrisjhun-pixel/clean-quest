@@ -2,36 +2,1064 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#eaf7ec">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#dff3e5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
 <title>Clean Quest — Play Clean. Rank Up.</title>
+
 <style>
-:root{--ink:#20382d;--muted:#708279;--green:#287b4c;--green2:#48a96d;--mint:#eaf7ec;--pale:#f7fbf6;--line:#d9e9dc;--gold:#ffd978;--red:#df6856;--shadow:0 18px 50px rgba(42,91,58,.12)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 5%,#fff 0,transparent 28%),linear-gradient(145deg,#edf9ef,#f8fbf6 55%,#e5f3e8)}
-button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}
-.app{width:min(1120px,100%);margin:auto;padding:18px 16px 45px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:-.04em;font-size:clamp(20px,4vw,28px)}.brandmark{width:45px;height:45px;border-radius:15px;background:#ccebd1;display:grid;place-items:center;font-size:25px}.brand small{display:block;font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:1px}
-.screen{display:none}.screen.active{display:block;animation:fade .22s ease}@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
-.card{background:#ffffffdf;border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow)}
-.login-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.hero{min-height:455px;padding:clamp(26px,5vw,52px);background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);color:#fff;position:relative;overflow:hidden}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.18em;font-weight:900;opacity:.8}.hero h1{font-size:clamp(40px,6vw,66px);line-height:.98;letter-spacing:-.065em;margin:14px 0 16px}.hero p{max-width:400px;line-height:1.65;color:#e4f5e7;font-size:15px}.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.hero-chips span{padding:8px 11px;border-radius:999px;background:#ffffff1b;border:1px solid #ffffff2d;font-size:11px;font-weight:800}.hero-art{position:absolute;right:25px;bottom:20px;font-size:82px;transform:rotate(-7deg)}
-.form-card{padding:clamp(23px,4vw,36px);display:flex;flex-direction:column;justify-content:center}.form-card h2{margin:0;font-size:27px;letter-spacing:-.04em}.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:8px 0 24px}.tabs{display:grid;grid-template-columns:1fr 1fr;background:#edf5ee;padding:4px;border-radius:13px;margin-bottom:20px}.tab{border:0;background:transparent;border-radius:10px;padding:11px;color:var(--muted);font-size:13px;font-weight:850}.tab.active{background:#fff;color:var(--green);box-shadow:0 2px 8px #274b3510}
-label{display:block;font-size:12px;font-weight:850;margin:12px 0 7px}input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;background:#fbfefb;outline:none;color:var(--ink)}input:focus{border-color:#5bb77a;box-shadow:0 0 0 3px #5bb77a22}
-.btn{border:0;border-radius:13px;padding:13px 17px;background:var(--green);color:#fff;font-weight:900;box-shadow:0 6px 0 #1e5c39;transition:.12s}.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #1e5c39}.btn.full{width:100%;margin-top:18px}.btn.light{background:#e7f5e9;color:var(--green);box-shadow:0 5px 0 #c7e4cc}.btn.white{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}.btn.danger{background:#fff0ed;color:#b24b3d;border:1px solid #f1d4ce;box-shadow:none}.msg{min-height:18px;font-size:12px;font-weight:750;color:#b84b3d;margin-top:8px}.micro{color:#809085;font-size:10px;line-height:1.55;margin-top:14px}
-.dash-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 18px}.welcome{font-size:clamp(24px,4vw,34px);font-weight:950;letter-spacing:-.05em}.welcome span{color:var(--green)}.nav{display:flex;gap:7px;flex-wrap:wrap}.nav button{border:1px solid var(--line);background:#ffffffd0;color:var(--green);border-radius:999px;padding:10px 13px;font-size:11px;font-weight:850}.nav button.active{background:var(--green);color:#fff}.profile-btn{background:#e7f5e9!important;border-color:#cce5d0!important}
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}.stat{padding:17px 18px}.stat .label{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:900}.stat strong{display:block;font-size:28px;letter-spacing:-.04em;margin-top:6px}.stat em{font-size:10px;font-style:normal;color:var(--green);font-weight:800}
-.game-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(245px,.75fr);gap:16px}.game-card{padding:17px}.game-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.game-head h2{font-size:23px;margin:0;letter-spacing:-.04em}.game-head p{margin:5px 0 0;color:var(--muted);font-size:12px}.timer{flex-shrink:0;background:#fff2da;color:#8a5a07;border-radius:13px;padding:11px 14px;font-size:20px;font-weight:950;font-variant-numeric:tabular-nums}.timer.danger{background:#ffe3dd;color:#ac3929}
-.scene{position:relative;overflow:hidden;border-radius:20px;height:clamp(460px,58vw,570px);min-height:460px;background:linear-gradient(#d9f0ed 0 57%,#d7e6d3 57% 60%,#e9d4b4 60%);border:1px solid #c8dfd0}.window{position:absolute;top:22px;left:24px;width:120px;height:105px;border:8px solid #fffdf0;background:linear-gradient(135deg,#a8dfe0,#e4faf3);box-shadow:0 3px 0 #bbd7c9}.window:before,.window:after{content:"";position:absolute;background:#fffdf0}.window:before{width:5px;height:100%;left:48%;top:0}.window:after{height:5px;width:100%;top:48%;left:0}.board{position:absolute;top:24px;right:25px;width:39%;height:86px;background:#438468;border:8px solid #d2aa7d;border-radius:5px;color:#eaffec;text-align:center;padding:14px 5px;font-size:13px;font-weight:900;letter-spacing:.05em;box-shadow:0 5px 0 #b58a61}.floorline{position:absolute;left:0;right:0;bottom:0;height:41%;background:repeating-linear-gradient(90deg,#e4c9a8 0 59px,#d7b995 60px 62px),repeating-linear-gradient(0deg,transparent 0 44px,#d7b995 45px 47px)}.desk{position:absolute;bottom:70px;left:50%;transform:translateX(-50%);width:42%;height:70px;background:#b87c4c;border-radius:7px 7px 4px 4px;box-shadow:0 8px 0 #93613e;z-index:2}.desk:before{content:"";position:absolute;left:8%;right:8%;top:-12px;height:16px;background:#d9a271;border-radius:4px}.desk:after{content:"";position:absolute;left:14%;right:14%;top:67px;height:40px;border-left:8px solid #93613e;border-right:8px solid #93613e}.plant{position:absolute;left:25px;bottom:45px;z-index:2;font-size:55px}.bin{position:absolute;right:24px;bottom:41px;z-index:3;font-size:48px}
-.trash{position:absolute;z-index:5;border:2px solid #ffffffdf;border-radius:14px;background:#ffffffed;width:58px;height:58px;display:grid;place-items:center;font-size:29px;box-shadow:0 5px 14px #31573a20;transition:.12s;animation:pop .2s ease;user-select:none;touch-action:manipulation}.trash:hover{transform:translateY(-4px) rotate(4deg) scale(1.06)}.trash:active{transform:scale(.9)}@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}.trash.taken{pointer-events:none;animation:vanish .25s forwards}@keyframes vanish{to{transform:scale(1.5) rotate(20deg);opacity:0}}
-.float-points{position:absolute;z-index:8;font-size:17px;font-weight:1000;color:#227946;text-shadow:0 1px #fff;pointer-events:none;animation:floatup .8s forwards}@keyframes floatup{to{transform:translateY(-35px);opacity:0}}
-.pickup-slot{height:58px;display:flex;align-items:center;justify-content:center;padding:5px 0 0}.pickup-info{position:static;width:100%;min-height:46px;background:#ffffffef;border:1px solid #d8e9da;border-radius:15px;padding:9px 13px;display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;font-size:12px;font-weight:850;box-shadow:0 6px 20px #274b3515;pointer-events:none;opacity:0;transform:translateY(4px);transition:.2s}.pickup-info.show{opacity:1;transform:translateY(0)}.pickup-info strong{color:var(--green)}
-.overlay{position:absolute;inset:0;z-index:30;background:#f6fbf0e9;backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px}.overlay-box{width:min(92%,390px)}.overlay-icon{font-size:52px}.overlay h3{font-size:30px;letter-spacing:-.045em;margin:9px 0}.overlay p{color:#627568;line-height:1.6;font-size:13px;margin:0 auto 19px;max-width:350px}.overlay-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.result-score{font-size:54px;color:var(--green);font-weight:1000;letter-spacing:-.06em;margin:8px 0}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.result-box{background:#fff;border:1px solid #dce9dd;border-radius:13px;padding:10px 6px}.result-box strong{display:block;color:var(--green);font-size:19px}.result-box span{display:block;color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-top:2px}.game-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px;font-weight:750;margin-top:7px}
-.side-card{padding:20px}.side-card h3{margin:0 0 7px;font-size:20px}.side-card p{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 15px}.points-list{display:grid;gap:8px}.point-line{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f6faf5;border:1px solid #e5eee5;border-radius:11px;padding:9px 10px;font-size:11px}.pts{color:var(--green);font-weight:950}.tip{background:#fff7df;border:1px solid #f2e4b9;border-radius:13px;padding:12px;margin-top:15px;font-size:11px;line-height:1.5;color:#725b24}
-.leader-card{padding:clamp(20px,4vw,32px)}.leader-title{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}.leader-title h2{margin:0;font-size:31px}.leader-title p{color:var(--muted);font-size:12px;margin:7px 0 0}.leader-list{display:grid;gap:9px}.leader-row{display:grid;grid-template-columns:48px 48px minmax(0,1fr) auto;align-items:center;gap:10px;background:#f8fbf7;border:1px solid #e3ede3;border-radius:15px;padding:10px 15px}.leader-row.me{border:2px solid #82c694;background:#eff9f0}.rank-medal{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#e8f2e8;font-weight:950}.leader-row:nth-child(1) .rank-medal{background:#ffefbd}.leader-row:nth-child(2) .rank-medal{background:#e8edf0}.leader-row:nth-child(3) .rank-medal{background:#f4dfd1}.leader-avatar{width:42px;height:42px;border-radius:50%;background:#dcefe0;color:var(--green);display:grid;place-items:center;font-size:13px;font-weight:1000;overflow:hidden;border:3px solid #fff;box-shadow:0 3px 12px #31573a1c;flex-shrink:0}.leader-avatar img{width:100%;height:100%;object-fit:cover;display:block}.player-name{font-weight:900}.player-meta{display:block;font-size:9px;color:var(--muted);margin-top:3px}.leader-score{text-align:right;font-size:18px;font-weight:950;color:var(--green)}.leader-score small{display:block;font-size:8px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.empty{text-align:center;padding:40px 18px;color:var(--muted)}
-.modal{position:fixed;inset:0;z-index:100;background:#17332355;backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modal-card{width:min(430px,100%);background:#fff;border:1px solid var(--line);border-radius:25px;padding:25px;box-shadow:0 25px 80px #17332335}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.modal-head h2{margin:0}.close-btn{width:36px;height:36px;border:0;border-radius:50%;background:#edf5ee;color:var(--green);font-size:18px;font-weight:900}.avatar-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:18px}.avatar{width:92px;height:92px;border-radius:50%;background:#dcefe0;color:var(--green);display:grid;place-items:center;font-size:31px;font-weight:1000;overflow:hidden;border:4px solid #fff;box-shadow:0 4px 20px #31573a1c}.avatar img{width:100%;height:100%;object-fit:cover}.photo-label{margin-top:9px;color:var(--green);font-size:11px;font-weight:900;cursor:pointer}.photo-label input{display:none}
-.quiz-box{width:min(95%,520px)}.quiz-tag{color:var(--green);font-size:11px;letter-spacing:.16em;font-weight:950;text-transform:uppercase}.quiz-question{font-size:24px;font-weight:950;line-height:1.2;margin:10px 0 17px}.quiz-options{display:grid;gap:9px}.quiz-option{width:100%;border:2px solid #dce9dd;background:#fbfefb;color:var(--ink);text-align:left;border-radius:14px;padding:13px 14px;font-size:12px;font-weight:800;transition:.15s}.quiz-option:hover{border-color:#8bc99a;background:#f1faf2}.quiz-option.correct{border-color:#5db878;background:#eaf8ed;color:#247244}.quiz-option.wrong{border-color:#e49a8d;background:#fff0ed;color:#a94b3e}.quiz-feedback{min-height:24px;margin-top:13px;font-size:12px;font-weight:900}.quiz-feedback.good{color:#287b4c}.quiz-feedback.bad{color:#b24b3d}
-.footnote{text-align:center;font-size:10px;color:#7c8e80;margin-top:20px;line-height:1.7}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#20382d;color:#fff;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:850;z-index:200;box-shadow:0 8px 25px #0002;transition:.2s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:850px){.login-layout{grid-template-columns:1fr}.game-layout{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.app{padding:13px 10px 30px}header{align-items:flex-start}.top-pill{font-size:9px;padding:8px 9px}.hero{min-height:350px}.hero-art{font-size:62px}.stat-row{gap:8px}.stat{padding:13px}.stat strong{font-size:22px}.stat .label{font-size:8px}.scene{min-height:510px;height:510px}.window{left:13px;width:94px;height:84px}.board{right:13px;width:42%;font-size:10px;height:74px;padding:12px 3px}.desk{width:47%;bottom:78px}.plant{left:10px;bottom:45px;font-size:44px}.bin{right:10px;bottom:42px;font-size:39px}.trash{width:50px;height:50px;font-size:25px}.game-head h2{font-size:20px}.timer{font-size:17px;padding:9px 11px}.pickup-slot{height:60px}.pickup-info{font-size:10px;padding:8px 9px;gap:6px}.result-score{font-size:47px}.quiz-question{font-size:21px}.nav{width:100%}.nav button{flex:1}.leader-row{grid-template-columns:38px 42px minmax(0,1fr) auto;gap:7px;padding:9px 10px}.leader-avatar{width:38px;height:38px;font-size:11px}.rank-medal{width:34px;height:34px}.leader-score{font-size:15px}.player-name{font-size:12px}.player-meta{font-size:8px}}
+:root{
+  --bg:#edf8f0;
+  --card:#ffffff;
+  --green:#278553;
+  --green-dark:#1f6d45;
+  --green-soft:#dff3e5;
+  --mint:#eaf7ee;
+  --lime:#f4ffc5;
+  --yellow:#fff9c9;
+  --text:#21392d;
+  --muted:#7b8c83;
+  --danger:#b95048;
+  --border:#d8e7dc;
+  --shadow:0 12px 35px rgba(38,92,63,.10);
+  --radius:28px;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(105,190,135,.15), transparent 28%),
+    linear-gradient(180deg,#f4fbf5 0%,#e9f6ed 100%);
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Rounded",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.app{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  padding:18px 18px 45px;
+}
+
+/* =========================================================
+   TOP HERO
+========================================================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:230px;
+  border-radius:32px;
+  padding:26px 25px 25px;
+  background:
+    linear-gradient(145deg,#4eb878 0%,#319a61 50%,#258451 100%);
+  color:white;
+  box-shadow:0 18px 45px rgba(39,133,83,.20);
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:210px;
+  right:-75px;
+  top:-80px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:130px;
+  height:130px;
+  left:-70px;
+  bottom:-75px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.brand{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-.8px;
+}
+
+.earth{
+  font-size:30px;
+}
+
+.hero-title{
+  margin:34px 0 4px;
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-1.5px;
+}
+
+.hero-sub{
+  margin:10px 0 0;
+  font-size:15px;
+  opacity:.86;
+  max-width:560px;
+  line-height:1.5;
+}
+
+.hero-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:20px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.17);
+  font-weight:750;
+  font-size:13px;
+  backdrop-filter:blur(8px);
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+  background:rgba(255,255,255,.94);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+.login-card{
+  margin-top:34px;
+  padding:34px 28px 29px;
+}
+
+.section-title{
+  margin:0;
+  font-size:29px;
+  letter-spacing:-1px;
+}
+
+.section-subtitle{
+  margin:8px 0 26px;
+  color:var(--muted);
+  line-height:1.5;
+  font-size:15px;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:5px;
+  border-radius:20px;
+  background:#eaf5ed;
+  margin-bottom:28px;
+}
+
+.tab{
+  border:0;
+  background:transparent;
+  color:#75877d;
+  padding:14px 10px;
+  border-radius:16px;
+  font-weight:850;
+  font-size:15px;
+}
+
+.tab.active{
+  background:white;
+  color:var(--green-dark);
+  box-shadow:0 5px 14px rgba(41,95,62,.08);
+}
+
+.field{
+  margin-bottom:19px;
+}
+
+.field label{
+  display:block;
+  margin:0 0 8px;
+  font-weight:850;
+  font-size:14px;
+}
+
+.field input{
+  width:100%;
+  height:58px;
+  padding:0 17px;
+  border-radius:19px;
+  border:2px solid var(--border);
+  outline:none;
+  color:var(--text);
+  background:#fbfdfb;
+  transition:.2s;
+}
+
+.field input:focus{
+  border-color:#76b98f;
+  box-shadow:0 0 0 4px rgba(72,158,102,.10);
+}
+
+.field input.name-input{
+  background:#fbffc6;
+}
+
+.primary-btn{
+  width:100%;
+  border:0;
+  border-radius:20px;
+  padding:16px 18px;
+  background:var(--green);
+  color:white;
+  font-weight:900;
+  font-size:17px;
+  box-shadow:0 5px 0 var(--green-dark);
+  transition:.12s;
+}
+
+.primary-btn:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 var(--green-dark);
+}
+
+.secondary-btn{
+  border:2px solid var(--border);
+  background:white;
+  color:var(--green-dark);
+  border-radius:16px;
+  padding:11px 15px;
+  font-weight:850;
+}
+
+.demo-note{
+  margin:18px 0 0;
+  color:#8a9991;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.error-box{
+  margin-top:13px;
+  color:var(--danger);
+  font-weight:800;
+  line-height:1.35;
+}
+
+/* =========================================================
+   GAME HEADER
+========================================================= */
+
+.game-screen{
+  margin-top:24px;
+}
+
+.game-top{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:15px;
+  align-items:stretch;
+}
+
+.player-card{
+  padding:20px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.avatar{
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  background:#dff3e5;
+  font-size:28px;
+  overflow:hidden;
+  border:2px solid white;
+  box-shadow:0 4px 13px rgba(40,90,60,.12);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.player-name{
+  font-weight:900;
+  font-size:18px;
+  word-break:break-word;
+}
+
+.player-level{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+.score-card{
+  min-width:145px;
+  padding:20px;
+  text-align:center;
+}
+
+.score-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.score-value{
+  font-size:29px;
+  font-weight:950;
+  color:var(--green-dark);
+  margin-top:2px;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:14px;
+}
+
+.stat{
+  padding:17px 12px;
+  text-align:center;
+}
+
+.stat-icon{
+  font-size:21px;
+}
+
+.stat-value{
+  font-size:21px;
+  font-weight:950;
+  margin-top:4px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:750;
+  margin-top:2px;
+}
+
+/* =========================================================
+   GAME AREA
+========================================================= */
+
+.game-card{
+  margin-top:14px;
+  padding:22px;
+}
+
+.game-title-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+}
+
+.game-title{
+  margin:0;
+  font-size:24px;
+  letter-spacing:-.7px;
+}
+
+.game-instruction{
+  margin:7px 0 0;
+  color:var(--muted);
+  line-height:1.45;
+  font-size:14px;
+}
+
+.timer{
+  min-width:77px;
+  text-align:center;
+  padding:11px 10px;
+  border-radius:17px;
+  background:#eaf6ed;
+  color:var(--green-dark);
+  font-size:22px;
+  font-weight:950;
+}
+
+.timer.warning{
+  background:#fff2c6;
+  color:#98721b;
+}
+
+.timer.danger{
+  background:#ffe1dd;
+  color:#ad453e;
+}
+
+.progress-wrap{
+  height:9px;
+  background:#edf4ef;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:18px;
+}
+
+.progress{
+  height:100%;
+  width:100%;
+  background:var(--green);
+  border-radius:999px;
+  transition:width 1s linear;
+}
+
+/* =========================================================
+   CLASSROOM
+========================================================= */
+
+.classroom{
+  position:relative;
+  min-height:420px;
+  margin-top:20px;
+  overflow:hidden;
+  border-radius:24px;
+  border:2px solid #d7e7dc;
+  background:
+    linear-gradient(180deg,#f9fcfa 0%,#eef6f0 100%);
+}
+
+.classroom-wall{
+  position:absolute;
+  inset:0 0 120px;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(80,150,100,.08),transparent 25%),
+    linear-gradient(180deg,#f9fdf9,#edf7ef);
+}
+
+.window{
+  position:absolute;
+  width:115px;
+  height:90px;
+  left:23px;
+  top:28px;
+  border:8px solid #c5dbcb;
+  border-radius:10px;
+  background:
+    linear-gradient(90deg,transparent 47%,#c5dbcb 48%,#c5dbcb 53%,transparent 54%),
+    linear-gradient(transparent 46%,#c5dbcb 47%,#c5dbcb 53%,transparent 54%),
+    #dceff7;
+}
+
+.board{
+  position:absolute;
+  top:31px;
+  right:28px;
+  width:190px;
+  height:92px;
+  border-radius:8px;
+  background:#426955;
+  border:7px solid #b99b72;
+  box-shadow:0 6px 10px rgba(0,0,0,.08);
+}
+
+.board-text{
+  color:#e7f1e6;
+  font-weight:800;
+  text-align:center;
+  margin-top:27px;
+  font-size:13px;
+}
+
+.desk{
+  position:absolute;
+  width:110px;
+  height:55px;
+  background:#c59c70;
+  border-radius:8px 8px 4px 4px;
+  box-shadow:0 8px 0 #9b7955;
+}
+
+.desk:after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:-30px;
+  height:30px;
+  border-left:7px solid #9b7955;
+  border-right:7px solid #9b7955;
+}
+
+.desk.d1{
+  left:34px;
+  top:180px;
+}
+
+.desk.d2{
+  left:190px;
+  top:225px;
+}
+
+.desk.d3{
+  right:35px;
+  top:178px;
+}
+
+.bin{
+  position:absolute;
+  bottom:30px;
+  left:45%;
+  transform:translateX(-50%);
+  width:66px;
+  height:77px;
+  background:#7bb995;
+  border-radius:9px 9px 15px 15px;
+  border:5px solid #589871;
+}
+
+.bin:before{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:12px;
+  left:-12px;
+  top:-9px;
+  background:#589871;
+  border-radius:8px;
+}
+
+.bin-label{
+  position:absolute;
+  top:25px;
+  width:100%;
+  text-align:center;
+  color:white;
+  font-size:12px;
+  font-weight:950;
+}
+
+.floor{
+  position:absolute;
+  bottom:0;
+  height:120px;
+  left:0;
+  right:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #dbe9df 0,
+      #dbe9df 65px,
+      #d3e3d8 66px,
+      #d3e3d8 68px
+    );
+}
+
+.trash{
+  position:absolute;
+  z-index:8;
+  width:50px;
+  height:50px;
+  border:0;
+  background:transparent;
+  font-size:35px;
+  padding:0;
+  animation:trashFloat 2s ease-in-out infinite;
+  filter:drop-shadow(0 4px 3px rgba(0,0,0,.14));
+}
+
+.trash:active{
+  transform:scale(.75);
+}
+
+@keyframes trashFloat{
+  0%,100%{translate:0 0}
+  50%{translate:0 -4px}
+}
+
+.trash.picked{
+  animation:pick .35s forwards;
+}
+
+@keyframes pick{
+  to{
+    opacity:0;
+    transform:scale(.1) rotate(20deg);
+  }
+}
+
+.clean-message{
+  position:absolute;
+  z-index:20;
+  left:50%;
+  top:48%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  padding:13px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  color:var(--green-dark);
+  font-weight:950;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  animation:messagePop .75s ease forwards;
+}
+
+@keyframes messagePop{
+  0%{opacity:0;transform:translate(-50%,-40%) scale(.8)}
+  20%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-75%) scale(1)}
+}
+
+.game-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.game-actions button{
+  padding:14px;
+}
+
+/* =========================================================
+   MISSION / QUIZ
+========================================================= */
+
+.mission-card{
+  margin-top:14px;
+  padding:22px;
+}
+
+.mission-header{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.mission-icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:#e0f3e5;
+  font-size:25px;
+}
+
+.mission-title{
+  font-weight:950;
+  font-size:19px;
+}
+
+.mission-desc{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
+}
+
+.quiz{
+  margin-top:20px;
+}
+
+.quiz-question{
+  font-weight:900;
+  font-size:17px;
+  line-height:1.4;
+}
+
+.quiz-options{
+  display:grid;
+  gap:9px;
+  margin-top:13px;
+}
+
+.quiz-option{
+  width:100%;
+  text-align:left;
+  border:2px solid var(--border);
+  background:#fbfdfb;
+  border-radius:16px;
+  padding:13px;
+  font-weight:750;
+  color:var(--text);
+}
+
+.quiz-option.correct{
+  border-color:#62aa7c;
+  background:#e4f6e8;
+}
+
+.quiz-option.wrong{
+  border-color:#dc8b83;
+  background:#ffebe8;
+}
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+.leaderboard-card{
+  margin-top:14px;
+  padding:22px;
+}
+
+.leaderboard-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.leaderboard-title h2{
+  margin:0;
+  font-size:21px;
+}
+
+.online-dot{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  font-weight:850;
+  color:#5d7969;
+}
+
+.online-dot:before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#55a873;
+}
+
+.rank-list{
+  display:grid;
+  gap:9px;
+  margin-top:17px;
+}
+
+.rank-row{
+  display:grid;
+  grid-template-columns:40px 1fr auto;
+  align-items:center;
+  gap:11px;
+  padding:12px;
+  border-radius:17px;
+  background:#f6faf7;
+  border:1px solid #e3eee6;
+}
+
+.rank-number{
+  width:35px;
+  height:35px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:#e1f2e5;
+  font-weight:950;
+}
+
+.rank-name{
+  font-weight:850;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.rank-score{
+  font-weight:950;
+  color:var(--green-dark);
+}
+
+.empty-ranking{
+  text-align:center;
+  padding:25px 10px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+  text-align:center;
+  color:#829189;
+  font-size:12px;
+  margin:30px 5px 0;
+  line-height:1.6;
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(24,48,35,.45);
+  backdrop-filter:blur(7px);
+}
+
+.modal-card{
+  width:min(520px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:29px;
+  background:white;
+  padding:28px;
+  box-shadow:0 25px 80px rgba(0,0,0,.22);
+}
+
+.modal-title{
+  margin:0;
+  font-size:26px;
+}
+
+.modal-text{
+  color:var(--muted);
+  line-height:1.5;
+  font-size:14px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:9px;
+  margin-top:20px;
+}
+
+.modal-actions button{
+  flex:1;
+}
+
+.result-icon{
+  text-align:center;
+  font-size:60px;
+}
+
+.result-score{
+  text-align:center;
+  font-size:42px;
+  font-weight:950;
+  color:var(--green-dark);
+}
+
+.result-label{
+  text-align:center;
+  color:var(--muted);
+  margin-top:-5px;
+}
+
+.result-details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.result-detail{
+  padding:15px;
+  background:#f3f9f5;
+  border-radius:17px;
+  text-align:center;
+}
+
+.result-detail strong{
+  display:block;
+  font-size:21px;
+}
+
+.result-detail span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+  position:fixed;
+  z-index:200;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  padding:13px 18px;
+  border-radius:999px;
+  background:#20382d;
+  color:white;
+  font-weight:800;
+  font-size:13px;
+  box-shadow:0 10px 35px rgba(0,0,0,.2);
+  transition:.25s;
+  white-space:nowrap;
+  max-width:90vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:650px){
+
+  .app{
+    padding:12px 12px 34px;
+  }
+
+  .hero{
+    min-height:220px;
+    border-radius:28px;
+    padding:21px;
+  }
+
+  .hero-title{
+    font-size:34px;
+  }
+
+  .login-card{
+    margin-top:18px;
+    padding:27px 20px 24px;
+    border-radius:26px;
+  }
+
+  .section-title{
+    font-size:27px;
+  }
+
+  .game-top{
+    grid-template-columns:1fr;
+  }
+
+  .score-card{
+    min-width:0;
+  }
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .game-card,
+  .mission-card,
+  .leaderboard-card{
+    padding:17px;
+  }
+
+  .classroom{
+    min-height:400px;
+  }
+
+  .board{
+    width:145px;
+    right:15px;
+  }
+
+  .window{
+    width:90px;
+  }
+
+  .desk.d1{
+    left:17px;
+  }
+
+  .desk.d2{
+    left:125px;
+  }
+
+  .desk.d3{
+    right:14px;
+  }
+}
+
+@media(max-width:400px){
+
+  .hero-title{
+    font-size:30px;
+  }
+
+  .game-title{
+    font-size:21px;
+  }
+
+  .classroom{
+    min-height:380px;
+  }
+
+  .desk{
+    transform:scale(.85);
+  }
+
+  .game-actions{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 
@@ -39,2234 +1067,2141 @@ label{display:block;font-size:12px;font-weight:850;margin:12px 0 7px}input{width
 
 <div class="app">
 
-<header>
-<div class="brand">
-<div class="brandmark">🌱</div>
-<div>CLEAN QUEST<small>PLAY CLEAN. RANK UP.</small></div>
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section class="hero">
+    <div class="hero-content">
+
+      <div class="top-row">
+        <div class="brand">CLEAN QUEST</div>
+        <div class="earth">🌎</div>
+      </div>
+
+      <div class="hero-title">
+        Play Clean.<br>
+        Rank Up.
+      </div>
+
+      <p class="hero-sub">
+        A playable environmental school-project prototype.
+        Every tap counts toward a cleaner classroom.
+      </p>
+
+      <div class="hero-badges">
+        <div class="hero-badge">🌎 Environment mission</div>
+        <div class="hero-badge">🧹 45-second challenge</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       LOGIN / CREATE PLAYER
+  ====================================================== -->
+
+  <section id="authSection" class="card login-card">
+
+    <h1 class="section-title">Welcome, cleaner!</h1>
+
+    <p class="section-subtitle">
+      Create a demo player or log in to a profile saved online.
+    </p>
+
+    <div class="tabs">
+      <button id="createTab" class="tab active" onclick="switchAuth('create')">
+        Create player
+      </button>
+
+      <button id="loginTab" class="tab" onclick="switchAuth('login')">
+        Log in
+      </button>
+    </div>
+
+
+    <!-- CREATE -->
+
+    <div id="createForm">
+
+      <div class="field">
+        <label for="createName">
+          Player name / nickname
+        </label>
+
+        <input
+          id="createName"
+          class="name-input"
+          type="text"
+          maxlength="25"
+          placeholder="Enter a nickname"
+          autocomplete="nickname"
+        >
+      </div>
+
+      <div class="field">
+        <label for="createPin">
+          4-digit demo PIN
+        </label>
+
+        <input
+          id="createPin"
+          type="password"
+          maxlength="4"
+          inputmode="numeric"
+          placeholder="1234"
+        >
+      </div>
+
+      <button class="primary-btn" onclick="createPlayer()">
+        Create my player →
+      </button>
+
+      <div id="createError" class="error-box hidden"></div>
+
+      <p class="demo-note">
+        Your score and ranking can be saved in the shared online
+        leaderboard. For a school demo, a nickname is recommended
+        instead of your full name.
+      </p>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div id="loginForm" class="hidden">
+
+      <div class="field">
+        <label for="loginName">
+          Player name / nickname
+        </label>
+
+        <input
+          id="loginName"
+          type="text"
+          maxlength="25"
+          placeholder="Enter your nickname"
+          autocomplete="nickname"
+        >
+      </div>
+
+      <div class="field">
+        <label for="loginPin">
+          4-digit demo PIN
+        </label>
+
+        <input
+          id="loginPin"
+          type="password"
+          maxlength="4"
+          inputmode="numeric"
+          placeholder="1234"
+        >
+      </div>
+
+      <button class="primary-btn" onclick="loginPlayer()">
+        Log in →
+      </button>
+
+      <div id="loginError" class="error-box hidden"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       GAME
+  ====================================================== -->
+
+  <main id="gameSection" class="game-screen hidden">
+
+    <div class="game-top">
+
+      <div class="card player-card">
+
+        <div id="playerAvatar" class="avatar">
+          🧹
+        </div>
+
+        <div>
+          <div id="playerNameDisplay" class="player-name">
+            Cleaner
+          </div>
+
+          <div id="playerLevelDisplay" class="player-level">
+            Level 1 Cleaner
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card score-card">
+        <div class="score-label">Total score</div>
+        <div id="totalScoreDisplay" class="score-value">0</div>
+      </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+      <div class="card stat">
+        <div class="stat-icon">🗑️</div>
+        <div id="trashStat" class="stat-value">0</div>
+        <div class="stat-label">Trash picked</div>
+      </div>
+
+      <div class="card stat">
+        <div class="stat-icon">🔥</div>
+        <div id="streakStat" class="stat-value">0</div>
+        <div class="stat-label">Best streak</div>
+      </div>
+
+      <div class="card stat">
+        <div class="stat-icon">🏆</div>
+        <div id="rankStat" class="stat-value">—</div>
+        <div class="stat-label">Rank</div>
+      </div>
+
+      <div class="card stat">
+        <div class="stat-icon">🌱</div>
+        <div id="cleanStat" class="stat-value">0%</div>
+        <div class="stat-label">Clean rate</div>
+      </div>
+
+    </div>
+
+
+    <!-- GAME -->
+
+    <section class="card game-card">
+
+      <div class="game-title-row">
+
+        <div>
+          <h2 class="game-title">
+            🧹 Classroom Cleanup
+          </h2>
+
+          <p class="game-instruction">
+            Tap every piece of litter before the timer ends.
+          </p>
+        </div>
+
+        <div id="timer" class="timer">
+          45
+        </div>
+
+      </div>
+
+      <div class="progress-wrap">
+        <div id="progress" class="progress"></div>
+      </div>
+
+
+      <!-- CLASSROOM -->
+
+      <div id="classroom" class="classroom">
+
+        <div class="classroom-wall"></div>
+
+        <div class="window"></div>
+
+        <div class="board">
+          <div class="board-text">
+            KEEP OUR SCHOOL CLEAN 🌱
+          </div>
+        </div>
+
+        <div class="desk d1"></div>
+        <div class="desk d2"></div>
+        <div class="desk d3"></div>
+
+        <div class="floor"></div>
+
+        <div class="bin">
+          <div class="bin-label">BIN</div>
+        </div>
+
+        <div id="trashContainer"></div>
+
+      </div>
+
+
+      <div class="game-actions">
+
+        <button
+          id="startGameBtn"
+          class="primary-btn"
+          onclick="startGame()"
+        >
+          🧹 Start cleanup
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="showHowToPlay()"
+        >
+          How to play
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- MISSION -->
+
+    <section class="card mission-card">
+
+      <div class="mission-header">
+
+        <div class="mission-icon">
+          🌎
+        </div>
+
+        <div>
+          <div class="mission-title">
+            Environment Mission
+          </div>
+
+          <div class="mission-desc">
+            Learn, clean, and earn points.
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="quizArea" class="quiz">
+
+        <div class="quiz-question">
+          What should you do with recyclable materials?
+        </div>
+
+        <div class="quiz-options">
+
+          <button
+            class="quiz-option"
+            onclick="answerQuiz(this,false)"
+          >
+            A. Throw everything together
+          </button>
+
+          <button
+            class="quiz-option"
+            onclick="answerQuiz(this,true)"
+          >
+            B. Separate them properly
+          </button>
+
+          <button
+            class="quiz-option"
+            onclick="answerQuiz(this,false)"
+          >
+            C. Leave them on the floor
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- LEADERBOARD -->
+
+    <section class="card leaderboard-card">
+
+      <div class="leaderboard-title">
+
+        <h2>
+          🏆 Cleaner leaderboard
+        </h2>
+
+        <div class="online-dot">
+          <span id="connectionLabel">Local demo</span>
+        </div>
+
+      </div>
+
+      <div id="rankList" class="rank-list">
+        <div class="empty-ranking">
+          No players yet.
+        </div>
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+
+      CLEAN QUEST · A playable environmental school-project prototype
+      <br>
+      Every tap counts 🌎
+
+      <br><br>
+
+      <button
+        class="secondary-btn"
+        onclick="logoutPlayer()"
+      >
+        Log out
+      </button>
+
+    </div>
+
+  </main>
+
 </div>
-<div class="top-pill">♻️ ZERO-COST GAME</div>
-</header>
 
-<section id="loginScreen" class="screen active">
-<div class="login-layout">
 
-<div class="hero card">
-<div class="eyebrow">A tiny game for a greener campus</div>
-<h1>Little taps.<br>Big impact.</h1>
-<p>Pick up virtual litter, earn points, build your streak, and climb the eco leaderboard.</p>
-<div class="hero-chips">
-<span>🎮 45-second round</span>
-<span>🏆 Eco ranking</span>
-<span>🌍 Environment mission</span>
-</div>
-<div class="hero-art">🧹</div>
-</div>
+<!-- =======================================================
+     RESULT MODAL
+======================================================= -->
 
-<div class="form-card card">
-<h2>Welcome, cleaner!</h2>
-<p class="sub">Create a demo player or log in to a profile saved online.</p>
+<div id="resultModal" class="modal hidden">
 
-<div class="tabs">
-<button class="tab active" id="createTab" type="button">Create player</button>
-<button class="tab" id="loginTab" type="button">Log in</button>
-</div>
+  <div class="modal-card">
 
-<label for="playerName">Player name / nickname</label>
-<input id="playerName" maxlength="18" autocomplete="nickname" placeholder="e.g. EcoCJ">
+    <div class="result-icon">
+      🎉
+    </div>
 
-<label for="playerPin">4-digit demo PIN</label>
-<input id="playerPin" inputmode="numeric" maxlength="4" placeholder="e.g. 1234">
+    <h2
+      class="modal-title"
+      style="text-align:center;"
+    >
+      Cleanup complete!
+    </h2>
 
-<button id="formSubmit" class="btn full" type="button">Create my player →</button>
+    <div
+      id="resultScore"
+      class="result-score"
+    >
+      +0
+    </div>
 
-<div id="formMsg" class="msg"></div>
+    <div class="result-label">
+      points earned
+    </div>
 
-<p class="micro">
-Your score and ranking are saved in the shared online leaderboard.
-Use a nickname instead of your full name.
-</p>
-</div>
+    <div class="result-details">
 
-</div>
-</section>
+      <div class="result-detail">
+        <strong id="resultTrash">0</strong>
+        <span>trash picked</span>
+      </div>
 
-<section id="homeScreen" class="screen">
+      <div class="result-detail">
+        <strong id="resultAccuracy">0%</strong>
+        <span>clean rate</span>
+      </div>
 
-<div class="dash-top">
-<div class="welcome">Hey, <span id="welcomeName">Cleaner</span>! 🌿</div>
+      <div class="result-detail">
+        <strong id="resultStreak">0</strong>
+        <span>streak</span>
+      </div>
 
-<div class="nav">
-<button class="active" data-page="play">🎮 Play</button>
-<button data-page="leaderboard">🏆 Leaderboard</button>
-<button id="profileBtn" class="profile-btn">👤 Profile</button>
-</div>
-</div>
+      <div class="result-detail">
+        <strong id="resultRank">—</strong>
+        <span>current rank</span>
+      </div>
 
-<div id="playPage" class="screen active">
+    </div>
 
-<div class="stat-row">
+    <div class="modal-actions">
 
-<div class="stat card">
-<div class="label">Your best score</div>
-<strong id="bestScore">0</strong>
-<em>personal best</em>
-</div>
+      <button
+        class="primary-btn"
+        onclick="closeResultAndRestart()"
+      >
+        Play again
+      </button>
 
-<div class="stat card">
-<div class="label">Items collected</div>
-<strong id="totalItems">0</strong>
-<em>across your rounds</em>
-</div>
+      <button
+        class="secondary-btn"
+        onclick="closeResult()"
+      >
+        Done
+      </button>
 
-<div class="stat card">
-<div class="label">Your rank</div>
-<strong id="yourRank">—</strong>
-<em>on the leaderboard</em>
-</div>
+    </div>
 
-<div class="stat card">
-<div class="label">Rounds played</div>
-<strong id="gamesPlayed">0</strong>
-<em>clean-up rounds</em>
-</div>
+  </div>
 
 </div>
 
-<div class="game-layout">
 
-<div class="game-card card">
+<!-- =======================================================
+     HOW TO PLAY MODAL
+======================================================= -->
 
-<div class="game-head">
-<div>
-<h2>🧹 Clean the classroom!</h2>
-<p>Pick up as much litter as you can.</p>
-</div>
-<div id="timer" class="timer">00:45</div>
-</div>
+<div id="howModal" class="modal hidden">
 
-<div id="scene" class="scene">
+  <div class="modal-card">
 
-<div class="window"></div>
+    <h2 class="modal-title">
+      🧹 How to play
+    </h2>
 
-<div class="board">
-KEEP OUR<br>
-CLASSROOM CLEAN 🌿
-</div>
+    <p class="modal-text">
+      Your mission is simple: clean the classroom before the
+      45-second timer reaches zero.
+    </p>
 
-<div class="floorline"></div>
+    <p class="modal-text">
+      <strong>1.</strong> Press Start cleanup.
+      <br><br>
+      <strong>2.</strong> Tap the pieces of trash that appear
+      around the classroom.
+      <br><br>
+      <strong>3.</strong> Each correct tap gives you points.
+      <br><br>
+      <strong>4.</strong> Faster and consecutive pickups can
+      increase your streak.
+      <br><br>
+      <strong>5.</strong> Answer the environmental quiz to earn
+      a bonus.
+    </p>
 
-<div class="plant">🪴</div>
+    <button
+      class="primary-btn"
+      onclick="closeHowToPlay()"
+    >
+      Got it!
+    </button>
 
-<div class="desk"></div>
-
-<div class="bin">🗑️</div>
-
-<div id="trashLayer"></div>
-
-<div id="gameOverlay" class="overlay">
-
-<div class="overlay-box">
-
-<div class="overlay-icon">🧤</div>
-
-<h3>Ready, cleaner?</h3>
-
-<p>
-You have 45 seconds. Tap the litter you see
-around the classroom to pick it up and earn points.
-</p>
-
-<button id="startBtn" class="btn">
-Start cleaning! →
-</button>
+  </div>
 
 </div>
 
+
+<div id="toast" class="toast">
+  Saved!
 </div>
 
-</div>
 
-<div class="pickup-slot">
-<div id="pickupInfo" class="pickup-info"></div>
-</div>
+<!-- =======================================================
+     FIREBASE
+     
+     IMPORTANT:
+     Replace the values below with your Firebase Web App
+     configuration if you want a REAL SHARED ONLINE DATABASE.
 
-<div class="game-foot">
-
-<span>
-✨ Score:
-<strong id="scoreValue" style="color:var(--green)">0</strong>
-</span>
-
-<span>
-♻️ Collected:
-<strong id="collectedValue" style="color:var(--green)">0</strong>
-</span>
-
-<span>
-🔥 Streak:
-<strong id="streakValue" style="color:var(--green)">0</strong>
-</span>
-
-</div>
-
-</div>
-
-<aside class="side-card card">
-
-<h3>🧺 Litter = points</h3>
-
-<p>
-Tap the litter around the classroom to collect it.
-Harder-to-spot items can give more points!
-</p>
-
-<div class="points-list">
-
-<div class="point-line"><span>📄 Paper scrap</span><span class="pts">+5</span></div>
-<div class="point-line"><span>🍬 Candy wrapper</span><span class="pts">+10</span></div>
-<div class="point-line"><span>🥤 Plastic cup</span><span class="pts">+10</span></div>
-<div class="point-line"><span>🧴 Plastic bottle</span><span class="pts">+15</span></div>
-<div class="point-line"><span>🥫 Tin can</span><span class="pts">+12</span></div>
-<div class="point-line"><span>🧃 Juice box</span><span class="pts">+11</span></div>
-<div class="point-line"><span>🥡 Food container</span><span class="pts">+13</span></div>
-<div class="point-line"><span>📦 Cardboard carton</span><span class="pts">+8</span></div>
-<div class="point-line"><span>🧻 Tissue</span><span class="pts">+6</span></div>
-<div class="point-line"><span>🛍️ Plastic bag</span><span class="pts">+9</span></div>
-
-</div>
-
-<div class="tip">
-💡 <strong>Eco tip:</strong>
-The game is a virtual clean-up activity.
-In real life, only handle waste safely and follow
-your school's waste-segregation rules.
-</div>
-
-</aside>
-
-</div>
-
-</div>
-
-<div id="leaderboardPage" class="screen">
-
-<div class="leader-card card">
-
-<div class="leader-title">
-
-<div>
-<h2>🏆 Eco leaderboard</h2>
-<p>All players share the same online leaderboard.</p>
-</div>
-
-<button class="btn light" id="backToPlay">
-Play a round →
-</button>
-
-</div>
-
-<div id="leaderRows" class="leader-list"></div>
-
-<div class="footnote">
-Scores are stored in the Clean Quest online database,
-so the ranking can be opened on another device.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<div class="footnote">
-CLEAN QUEST · A playable environmental school-project prototype · Every tap counts 🌎
-</div>
-
-</div>
-
-<div id="profileModal" class="modal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-<h2>👤 My Profile</h2>
-<button id="closeProfile" class="close-btn">×</button>
-</div>
-
-<div class="avatar-wrap">
-
-<div id="profileAvatar" class="avatar">🌱</div>
-
-<label class="photo-label">
-Add / change picture
-<input id="photoInput" type="file" accept="image/*">
-</label>
-
-</div>
-
-<label for="editName">Player name / nickname</label>
-
-<input
-id="editName"
-maxlength="18"
-placeholder="Your nickname"
->
-
-<button id="saveProfile" class="btn full">
-Save profile
-</button>
-
-<button id="logoutBtn" class="btn danger full">
-Log out
-</button>
-
-<div id="profileMsg" class="msg"></div>
-
-</div>
-
-</div>
-
-<div id="quizModal" class="modal">
-
-<div class="modal-card quiz-box">
-
-<div class="quiz-tag">
-🌱 Bonus Eco Question
-</div>
-
-<div class="quiz-question">
-Which action helps reduce waste at school?
-</div>
-
-<div id="quizOptions" class="quiz-options">
-
-<button class="quiz-option" data-correct="false">
-Throwing everything on the floor
-</button>
-
-<button class="quiz-option" data-correct="true">
-Using reusable items when possible
-</button>
-
-<button class="quiz-option" data-correct="false">
-Leaving trash under desks
-</button>
-
-<button class="quiz-option" data-correct="false">
-Mixing all waste together
-</button>
-
-</div>
-
-<div id="quizFeedback" class="quiz-feedback"></div>
-
-<button
-id="quizContinue"
-class="btn full"
-style="display:none"
->
-Continue →
-</button>
-
-</div>
-
-</div>
-
-<div id="toast" class="toast"></div>
+     The game automatically falls back to Local Demo Mode
+     if Firebase is not configured.
+======================================================= -->
 
 <script type="module">
 
-import {
-initializeApp
-} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+/* =========================================================
+   FIREBASE IMPORTS
+========================================================= */
 
 import {
-getFirestore,
-doc,
-getDoc,
-setDoc,
-collection,
-getDocs,
-query,
-orderBy
-} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+=========================================================
+
+   PASTE YOUR FIREBASE CONFIG HERE.
+
+   Example:
+
+   const firebaseConfig = {
+     apiKey: "YOUR_API_KEY",
+     authDomain: "YOUR_PROJECT.firebaseapp.com",
+     projectId: "YOUR_PROJECT_ID",
+     storageBucket: "YOUR_PROJECT.appspot.com",
+     messagingSenderId: "123456789",
+     appId: "YOUR_APP_ID"
+   };
+
+   DO NOT change anything else unless needed.
+========================================================= */
 
 const firebaseConfig = {
 
-apiKey:
-"AIzaSyCNSrB-L5LkOTnbQPLOlLutcjs428SC420",
-
-authDomain:
-"clean-quest-886dd.firebaseapp.com",
-
-projectId:
-"clean-quest-886dd",
-
-storageBucket:
-"clean-quest-886dd.firebasestorage.app",
-
-messagingSenderId:
-"807769777759",
-
-appId:
-"1:807769777759:web:b3de6ebf3c44a71e3cddea",
-
-measurementId:
-"G-K5KRZ61HLM"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 
 };
 
 
-const app =
-initializeApp(firebaseConfig);
+/* =========================================================
+   DATABASE STATE
+========================================================= */
 
-const db =
-getFirestore(app);
+let db = null;
+
+let firebaseReady = false;
+
+try {
+
+  if(
+    firebaseConfig.apiKey &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId
+  ){
+
+    const app = initializeApp(firebaseConfig);
+
+    db = getFirestore(app);
+
+    firebaseReady = true;
+
+    document.getElementById("connectionLabel").textContent =
+      "Online leaderboard";
+
+  }
+
+}catch(error){
+
+  console.warn(
+    "Firebase unavailable. Running Local Demo Mode.",
+    error
+  );
+
+  firebaseReady = false;
+
+}
 
 
-(() => {
-
-const $ =
-id =>
-document.getElementById(id);
-
+/* =========================================================
+   GAME STATE
+========================================================= */
 
 let currentPlayer = null;
 
-let mode = "create";
+let gameRunning = false;
 
-let running = false;
+let gameTimer = null;
 
 let timeLeft = 45;
 
-let score = 0;
+let trashCount = 0;
 
-let collected = 0;
+let totalTrashThisRound = 0;
 
-let streak = 0;
+let roundScore = 0;
 
-let bestStreak = 0;
+let currentStreak = 0;
 
-let timerId = null;
+let bestRoundStreak = 0;
 
-let spawnId = null;
+let quizAnswered = false;
 
-let playersCache = {};
-
-
-const litter = [
-
-["📄","Paper scrap","Paper / Recyclable",5],
-["📰","Newspaper","Paper / Recyclable",7],
-["📃","Loose paper","Paper / Recyclable",5],
-["📦","Cardboard carton","Paper / Recyclable",8],
-["🍬","Candy wrapper","Residual waste",10],
-["🥤","Plastic cup","Plastic / Recyclable",10],
-["🧴","Plastic bottle","Plastic / Recyclable",15],
-["🧃","Juice box","Carton / Recyclable",11],
-["🥫","Tin can","Metal / Recyclable",12],
-["🍾","Glass bottle","Glass / Recyclable",16],
-["🍶","Drink bottle","Plastic / Recyclable",14],
-["🧋","Plastic drink cup","Plastic / Recyclable",10],
-["🥡","Food container","Plastic / Mixed",13],
-["🍱","Takeout food box","Mixed waste",13],
-["🛍️","Plastic shopping bag","Plastic / Recyclable",9],
-["🧻","Used tissue","Residual waste",6],
-["🧼","Soap wrapper","Plastic / Residual",8],
-["🧽","Used sponge","Residual waste",8],
-["🍿","Snack packet","Residual waste",10],
-["🍫","Chocolate wrapper","Residual waste",9],
-["🍭","Candy stick / wrapper","Residual waste",8],
-["🍎","Food waste","Biodegradable",7],
-["🍌","Banana peel","Biodegradable",7],
-["🍊","Fruit peel","Biodegradable",7],
-["🥕","Vegetable waste","Biodegradable",7],
-["🍞","Bread waste","Biodegradable",7],
-["☕","Disposable drink cup","Mixed waste",10],
-["🥢","Disposable chopsticks","Residual waste",6],
-["🥄","Disposable spoon","Plastic / Residual",7],
-["🍴","Disposable fork","Plastic / Residual",7]
-
-];
+let trashItems = [];
 
 
-function normalizeName(name){
+/* =========================================================
+   LOCAL STORAGE
+========================================================= */
 
-return name
-.trim()
-.replace(/\s+/g," ");
+const PLAYER_KEY = "cleanQuestCurrentPlayer";
+
+const PLAYERS_KEY = "cleanQuestPlayers";
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
-function playerId(name){
+function showToast(message){
 
-return encodeURIComponent(
-name.toLowerCase()
-);
+  const toast = document.getElementById("toast");
 
-}
+  toast.textContent = message;
 
+  toast.classList.add("show");
 
-async function hashPin(pin){
-
-const data =
-new TextEncoder().encode(pin);
-
-const hash =
-await crypto.subtle.digest(
-"SHA-256",
-data
-);
-
-return [
-...new Uint8Array(hash)
-]
-.map(
-b =>
-b.toString(16)
-.padStart(2,"0")
-)
-.join("");
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2200);
 
 }
 
 
-function screen(id){
+function setError(id,message){
 
-document
-.querySelectorAll(".screen")
-.forEach(
-s =>
-s.classList.remove("active")
-);
+  const box = document.getElementById(id);
 
-const el =
-$(id);
+  box.textContent = message;
 
-if(el)
-el.classList.add("active");
-
-window.scrollTo(0,0);
+  box.classList.remove("hidden");
 
 }
 
 
-function setMode(m){
+function clearError(id){
 
-mode = m;
+  const box = document.getElementById(id);
 
-$("createTab")
-.classList.toggle(
-"active",
-m === "create"
-);
+  box.textContent = "";
 
-$("loginTab")
-.classList.toggle(
-"active",
-m === "login"
-);
-
-$("formSubmit").textContent =
-m === "create"
-? "Create my player →"
-: "Log in and play →";
-
-$("formMsg").textContent =
-"";
+  box.classList.add("hidden");
 
 }
 
 
-$("createTab").onclick =
-() =>
-setMode("create");
+function getLocalPlayers(){
 
+  try{
 
-$("loginTab").onclick =
-() =>
-setMode("login");
+    return JSON.parse(
+      localStorage.getItem(PLAYERS_KEY) || "[]"
+    );
 
+  }catch{
 
-$("playerPin").oninput =
-e =>
-e.target.value =
-e.target.value
-.replace(/\D/g,"")
-.slice(0,4);
+    return [];
 
-
-async function savePlayer(){
-
-if(!currentPlayer)
-return;
-
-await setDoc(
-doc(
-db,
-"players",
-currentPlayer
-),
-playersCache[currentPlayer]
-);
+  }
 
 }
 
 
-async function getAllPlayers(){
+function saveLocalPlayers(players){
 
-const snap =
-await getDocs(
-query(
-collection(db,"players"),
-orderBy("best","desc")
-)
-);
-
-const arr = [];
-
-snap.forEach(
-d =>
-arr.push({
-id:d.id,
-...d.data()
-})
-);
-
-arr.sort(
-(a,b) =>
-(b.best || 0) -
-(a.best || 0) ||
-(b.totalItems || 0) -
-(a.totalItems || 0)
-);
-
-return arr;
+  localStorage.setItem(
+    PLAYERS_KEY,
+    JSON.stringify(players)
+  );
 
 }
 
 
-async function handleLogin(){
+function saveCurrentPlayerLocal(){
 
-const name =
-normalizeName(
-$("playerName").value
-);
+  if(currentPlayer){
 
-const pin =
-$("playerPin")
-.value
-.replace(/\D/g,"")
-.slice(0,4);
+    localStorage.setItem(
+      PLAYER_KEY,
+      JSON.stringify(currentPlayer)
+    );
 
-$("playerPin").value =
-pin;
-
-
-if(name.length < 2){
-
-$("formMsg").textContent =
-"Use at least 2 characters for your player name.";
-
-return;
+  }
 
 }
 
 
-if(!/^\d{4}$/.test(pin)){
+function loadCurrentPlayerLocal(){
 
-$("formMsg").textContent =
-"Enter exactly 4 digits for your demo PIN.";
+  try{
 
-return;
+    return JSON.parse(
+      localStorage.getItem(PLAYER_KEY) || "null"
+    );
 
-}
+  }catch{
 
+    return null;
 
-const id =
-playerId(name);
-
-
-$("formSubmit").disabled =
-true;
-
-$("formSubmit").textContent =
-"Connecting…";
-
-
-try{
-
-const ref =
-doc(
-db,
-"players",
-id
-);
-
-const snap =
-await getDoc(ref);
-
-const pinHash =
-await hashPin(pin);
-
-
-if(mode === "create"){
-
-if(snap.exists()){
-
-$("formMsg").textContent =
-"That player already exists. Tap Log in instead.";
-
-return;
+  }
 
 }
 
 
-const p = {
+function generatePlayerId(name){
 
-name,
+  return (
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g,"-")
+      .replace(/^-|-$/g,"")
+    +
+    "-"
+    +
+    Math.random().toString(36).slice(2,8)
+  );
 
-pinHash,
+}
 
-best:0,
 
-totalItems:0,
+/* =========================================================
+   AUTH TABS
+========================================================= */
 
-games:0,
+window.switchAuth = function(mode){
 
-totalPoints:0,
+  const createTab =
+    document.getElementById("createTab");
 
-photo:""
+  const loginTab =
+    document.getElementById("loginTab");
+
+  const createForm =
+    document.getElementById("createForm");
+
+  const loginForm =
+    document.getElementById("loginForm");
+
+  clearError("createError");
+  clearError("loginError");
+
+  if(mode === "create"){
+
+    createTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    createForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
+
+  }else{
+
+    createTab.classList.remove("active");
+    loginTab.classList.add("active");
+
+    createForm.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+
+  }
 
 };
 
 
-await setDoc(
-ref,
-p
-);
+/* =========================================================
+   CREATE PLAYER
+========================================================= */
 
-playersCache[id] =
-p;
+window.createPlayer = async function(){
 
-await login(id);
+  clearError("createError");
+
+  const name =
+    document.getElementById("createName").value.trim();
+
+  const pin =
+    document.getElementById("createPin").value.trim();
+
+  if(name.length < 2){
+
+    setError(
+      "createError",
+      "Please enter at least 2 characters for your nickname."
+    );
+
+    return;
+
+  }
+
+  if(!/^\d{4}$/.test(pin)){
+
+    setError(
+      "createError",
+      "Your demo PIN must contain exactly 4 digits."
+    );
+
+    return;
+
+  }
 
 
-}else{
+  const player = {
 
-if(!snap.exists()){
+    id: generatePlayerId(name),
 
-$("formMsg").textContent =
-"Player not found. Create the player first.";
+    name:name,
 
-return;
+    pin:pin,
+
+    score:0,
+
+    trash:0,
+
+    games:0,
+
+    bestStreak:0,
+
+    quizPoints:0,
+
+    createdAt:Date.now(),
+
+    updatedAt:Date.now()
+
+  };
+
+
+  try{
+
+    if(firebaseReady){
+
+      const playerRef =
+        doc(db,"players",player.id);
+
+      await setDoc(
+        playerRef,
+        player
+      );
+
+      currentPlayer = player;
+
+      showToast("Player saved online 🌎");
+
+    }else{
+
+      const players = getLocalPlayers();
+
+      const duplicate =
+        players.find(
+          p =>
+            p.name.toLowerCase() ===
+            name.toLowerCase()
+        );
+
+      if(duplicate){
+
+        setError(
+          "createError",
+          "That nickname already exists on this device. Try another one."
+        );
+
+        return;
+
+      }
+
+      players.push(player);
+
+      saveLocalPlayers(players);
+
+      currentPlayer = player;
+
+      showToast("Player created in Demo Mode 🌱");
+
+    }
+
+
+    saveCurrentPlayerLocal();
+
+    enterGame();
+
+  }catch(error){
+
+    console.error(error);
+
+    setError(
+      "createError",
+      "Could not save your player. Check your Firebase setup."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   LOGIN PLAYER
+========================================================= */
+
+window.loginPlayer = async function(){
+
+  clearError("loginError");
+
+  const name =
+    document.getElementById("loginName").value.trim();
+
+  const pin =
+    document.getElementById("loginPin").value.trim();
+
+  if(!name || !/^\d{4}$/.test(pin)){
+
+    setError(
+      "loginError",
+      "Enter your nickname and 4-digit PIN."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    if(firebaseReady){
+
+      const playersSnapshot =
+        await getDocs(
+          collection(db,"players")
+        );
+
+      let found = null;
+
+      playersSnapshot.forEach(snapshot=>{
+
+        const data = snapshot.data();
+
+        if(
+          data.name.toLowerCase() ===
+          name.toLowerCase() &&
+          data.pin === pin
+        ){
+
+          found = data;
+
+        }
+
+      });
+
+
+      if(!found){
+
+        setError(
+          "loginError",
+          "Player not found. Check your nickname and PIN."
+        );
+
+        return;
+
+      }
+
+      currentPlayer = found;
+
+    }else{
+
+      const players = getLocalPlayers();
+
+      const found =
+        players.find(
+          p =>
+            p.name.toLowerCase() ===
+            name.toLowerCase() &&
+            p.pin === pin
+        );
+
+      if(!found){
+
+        setError(
+          "loginError",
+          "Player not found on this device."
+        );
+
+        return;
+
+      }
+
+      currentPlayer = found;
+
+    }
+
+
+    saveCurrentPlayerLocal();
+
+    enterGame();
+
+    showToast("Welcome back, cleaner! 🧹");
+
+  }catch(error){
+
+    console.error(error);
+
+    setError(
+      "loginError",
+      "Could not connect to the database."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   ENTER GAME
+========================================================= */
+
+function enterGame(){
+
+  document
+    .getElementById("authSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("gameSection")
+    .classList.remove("hidden");
+
+  updatePlayerUI();
+
+  updateStats();
+
+  loadLeaderboard();
 
 }
 
 
-const p =
-snap.data();
+/* =========================================================
+   PLAYER UI
+========================================================= */
 
+function updatePlayerUI(){
 
-if(p.pinHash !== pinHash){
+  if(!currentPlayer) return;
 
-$("formMsg").textContent =
-"Incorrect player name or PIN.";
+  document.getElementById(
+    "playerNameDisplay"
+  ).textContent = currentPlayer.name;
 
-return;
+  document.getElementById(
+    "totalScoreDisplay"
+  ).textContent = currentPlayer.score || 0;
 
-}
+  const level =
+    Math.floor((currentPlayer.score || 0) / 100) + 1;
 
-
-playersCache[id] =
-p;
-
-await login(id);
-
-}
-
-
-}catch(err){
-
-console.error(err);
-
-$("formMsg").textContent =
-"Could not connect to the online database. Check your Firebase setup.";
-
-}finally{
-
-$("formSubmit").disabled =
-false;
-
-$("formSubmit").textContent =
-mode === "create"
-? "Create my player →"
-: "Log in and play →";
-
-}
+  document.getElementById(
+    "playerLevelDisplay"
+  ).textContent =
+    "Level " + level + " Cleaner";
 
 }
 
 
-$("formSubmit").onclick =
-handleLogin;
+/* =========================================================
+   STATS
+========================================================= */
 
+function updateStats(){
 
-async function login(id){
+  if(!currentPlayer) return;
 
-currentPlayer =
-id;
+  document.getElementById(
+    "trashStat"
+  ).textContent =
+    currentPlayer.trash || 0;
 
-$("welcomeName").textContent =
-playersCache[id].name;
+  document.getElementById(
+    "streakStat"
+  ).textContent =
+    currentPlayer.bestStreak || 0;
 
-screen("homeScreen");
+  const total =
+    currentPlayer.games || 0;
 
-showPage("play");
+  const trash =
+    currentPlayer.trash || 0;
 
-await refreshStats();
+  const cleanRate =
+    total > 0
+      ? Math.min(
+          100,
+          Math.round(
+            (trash / (total * 10)) * 100
+          )
+        )
+      : 0;
 
-resetRoundUI();
-
-toast(
-"Welcome, " +
-playersCache[id].name +
-"! 🌱"
-);
-
-}
-
-
-document
-.querySelectorAll("[data-page]")
-.forEach(
-button =>
-button.onclick =
-() =>
-showPage(
-button.dataset.page
-)
-);
-
-
-$("backToPlay").onclick =
-() =>
-showPage("play");
-
-
-async function showPage(page){
-
-$("playPage")
-.classList.toggle(
-"active",
-page === "play"
-);
-
-$("leaderboardPage")
-.classList.toggle(
-"active",
-page === "leaderboard"
-);
-
-
-document
-.querySelectorAll("[data-page]")
-.forEach(
-b =>
-b.classList.toggle(
-"active",
-b.dataset.page === page
-)
-);
-
-
-if(page === "leaderboard")
-await renderLeaderboard();
+  document.getElementById(
+    "cleanStat"
+  ).textContent =
+    cleanRate + "%";
 
 }
 
 
-async function refreshStats(){
+/* =========================================================
+   START GAME
+========================================================= */
 
-if(!currentPlayer)
-return;
+window.startGame = function(){
 
-const p =
-playersCache[currentPlayer];
+  if(gameRunning) return;
 
+  gameRunning = true;
 
-$("bestScore").textContent =
-(p.best || 0)
-.toLocaleString();
+  timeLeft = 45;
 
+  trashCount = 0;
 
-$("totalItems").textContent =
-(p.totalItems || 0)
-.toLocaleString();
+  totalTrashThisRound = 0;
 
+  roundScore = 0;
 
-$("gamesPlayed").textContent =
-(p.games || 0)
-.toLocaleString();
+  currentStreak = 0;
 
+  bestRoundStreak = 0;
 
-try{
+  quizAnswered = false;
 
-const arr =
-await getAllPlayers();
+  clearTrash();
 
-const index =
-arr.findIndex(
-x =>
-x.id === currentPlayer
-);
+  updateTimer();
 
-$("yourRank").textContent =
-index >= 0
-? "#" + (index + 1)
-: "—";
+  document.getElementById(
+    "startGameBtn"
+  ).textContent = "🧹 Cleanup in progress...";
 
-}catch(e){
+  document.getElementById(
+    "startGameBtn"
+  ).disabled = true;
 
-$("yourRank").textContent =
-"—";
+  document.getElementById(
+    "progress"
+  ).style.width = "100%";
 
-}
 
-}
+  spawnTrash(10);
 
 
-function resetRoundUI(){
+  gameTimer = setInterval(()=>{
 
-stopTimers();
+    timeLeft--;
 
-running = false;
+    updateTimer();
 
-timeLeft = 45;
+    if(timeLeft <= 0){
 
-score = 0;
+      finishGame();
 
-collected = 0;
+    }
 
-streak = 0;
+  },1000);
 
-bestStreak = 0;
+};
 
 
-$("timer").textContent =
-"00:45";
-
-$("timer")
-.classList.remove("danger");
-
-
-$("scoreValue").textContent =
-"0";
-
-$("collectedValue").textContent =
-"0";
-
-$("streakValue").textContent =
-"0";
-
-
-$("trashLayer").innerHTML =
-"";
-
-$("pickupInfo")
-.classList.remove("show");
-
-$("pickupInfo").innerHTML =
-"";
-
-
-$("gameOverlay").style.display =
-"flex";
-
-
-$("gameOverlay").innerHTML = `
-
-<div class="overlay-box">
-
-<div class="overlay-icon">
-🧤
-</div>
-
-<h3>
-Ready, cleaner?
-</h3>
-
-<p>
-You have 45 seconds.
-Tap the litter around the classroom
-to pick it up and earn points.
-</p>
-
-<button
-id="startBtn"
-class="btn"
->
-Start cleaning! →
-</button>
-
-</div>
-
-`;
-
-
-$("startBtn").onclick =
-startRound;
-
-}
-
-
-function stopTimers(){
-
-clearInterval(timerId);
-
-clearInterval(spawnId);
-
-timerId = null;
-
-spawnId = null;
-
-}
-
-
-function startRound(){
-
-if(
-!currentPlayer ||
-running
-)
-return;
-
-
-running = true;
-
-timeLeft = 45;
-
-score = 0;
-
-collected = 0;
-
-streak = 0;
-
-bestStreak = 0;
-
-
-$("gameOverlay").style.display =
-"none";
-
-$("trashLayer").innerHTML =
-"";
-
-$("pickupInfo")
-.classList.remove("show");
-
-$("pickupInfo").innerHTML =
-"";
-
-
-updateGameStats();
-
-
-for(
-let i = 0;
-i < 7;
-i++
-){
-
-spawnTrash();
-
-}
-
-
-updateTimer();
-
-
-timerId =
-setInterval(
-() => {
-
-timeLeft--;
-
-updateTimer();
-
-if(timeLeft <= 0)
-finishRound();
-
-},
-1000
-);
-
-
-spawnId =
-setInterval(
-() => {
-
-if(
-running &&
-$("trashLayer")
-.querySelectorAll(".trash")
-.length < 8
-){
-
-spawnTrash();
-
-}
-
-},
-700
-);
-
-}
-
-
-function spawnTrash(){
-
-if(!running)
-return;
-
-
-const item =
-litter[
-Math.floor(
-Math.random() *
-litter.length
-)
-];
-
-
-const el =
-document.createElement(
-"button"
-);
-
-
-el.type =
-"button";
-
-el.className =
-"trash";
-
-el.textContent =
-item[0];
-
-
-el.setAttribute(
-"aria-label",
-"Pick up " +
-item[1] +
-" for " +
-item[3] +
-" points"
-);
-
-
-el.title =
-item[1] +
-" • " +
-item[2] +
-" • +" +
-item[3];
-
-
-const rect =
-$("scene")
-.getBoundingClientRect();
-
-
-el.style.left =
-(
-12 +
-Math.random() *
-Math.max(
-20,
-rect.width - 76
-)
-) +
-"px";
-
-
-el.style.top =
-(
-145 +
-Math.random() *
-Math.max(
-30,
-rect.height - 235
-)
-) +
-"px";
-
-
-el.onclick =
-() =>
-collectTrash(
-el,
-item
-);
-
-
-$("trashLayer")
-.appendChild(el);
-
-}
-
-
-function collectTrash(
-el,
-item
-){
-
-if(
-!running ||
-el.classList.contains("taken")
-)
-return;
-
-
-el.classList.add("taken");
-
-
-streak++;
-
-
-bestStreak =
-Math.max(
-bestStreak,
-streak
-);
-
-
-const streakBonus =
-streak % 5 === 0
-? 5
-: 0;
-
-
-const earned =
-item[3] +
-streakBonus;
-
-
-score +=
-earned;
-
-collected++;
-
-
-updateGameStats();
-
-
-const info =
-$("pickupInfo");
-
-
-info.innerHTML =
-`${item[0]} <strong>${escapeHTML(item[1])}</strong> • ${escapeHTML(item[2])} • +${earned}${streakBonus ? " 🔥 Streak bonus +5" : ""}`;
-
-
-info.classList.add("show");
-
-
-clearTimeout(
-window.__pickupInfo
-);
-
-
-window.__pickupInfo =
-setTimeout(
-() =>
-info.classList.remove("show"),
-1000
-);
-
-
-const r =
-el.getBoundingClientRect();
-
-const sr =
-$("scene")
-.getBoundingClientRect();
-
-
-const fl =
-document.createElement(
-"div"
-);
-
-
-fl.className =
-"float-points";
-
-fl.textContent =
-"+" +
-earned;
-
-
-fl.style.left =
-(r.left - sr.left) +
-"px";
-
-fl.style.top =
-(r.top - sr.top) +
-"px";
-
-
-$("trashLayer")
-.appendChild(fl);
-
-
-setTimeout(
-() =>
-fl.remove(),
-700
-);
-
-
-setTimeout(
-() => {
-
-el.remove();
-
-if(running)
-spawnTrash();
-
-},
-160
-);
-
-}
-
-
-function updateGameStats(){
-
-$("scoreValue").textContent =
-score.toLocaleString();
-
-$("collectedValue").textContent =
-collected;
-
-$("streakValue").textContent =
-streak;
-
-}
-
+/* =========================================================
+   TIMER
+========================================================= */
 
 function updateTimer(){
 
-$("timer").textContent =
-"00:" +
-String(
-Math.max(
-0,
-timeLeft
-)
-)
-.padStart(
-2,
-"0"
-);
+  const timer =
+    document.getElementById("timer");
 
+  timer.textContent =
+    timeLeft;
 
-$("timer")
-.classList.toggle(
-"danger",
-timeLeft <= 10
-);
+  timer.classList.remove(
+    "warning",
+    "danger"
+  );
 
-}
+  if(timeLeft <= 10){
 
+    timer.classList.add("danger");
 
-async function finishRound(){
+  }else if(timeLeft <= 20){
 
-if(!running)
-return;
+    timer.classList.add("warning");
 
+  }
 
-running = false;
+  const percentage =
+    Math.max(
+      0,
+      (timeLeft / 45) * 100
+    );
 
-stopTimers();
-
-
-const p =
-playersCache[currentPlayer];
-
-
-p.best =
-Math.max(
-p.best || 0,
-score
-);
-
-
-p.totalItems =
-(p.totalItems || 0) +
-collected;
-
-
-p.games =
-(p.games || 0) +
-1;
-
-
-p.totalPoints =
-(p.totalPoints || 0) +
-score;
-
-
-try{
-
-await savePlayer();
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Round finished, but saving failed."
-);
+  document.getElementById(
+    "progress"
+  ).style.width =
+    percentage + "%";
 
 }
 
 
-await refreshStats();
+/* =========================================================
+   SPAWN TRASH
+========================================================= */
 
+function spawnTrash(amount){
 
-const rank =
-await getRank(
-currentPlayer
-);
+  const classroom =
+    document.getElementById("classroom");
 
+  const container =
+    document.getElementById("trashContainer");
 
-$("gameOverlay").style.display =
-"flex";
+  const types = [
+    "🧻",
+    "🥤",
+    "🍌",
+    "📄",
+    "🥫",
+    "🧴",
+    "🛍️",
+    "🍬",
+    "🧃",
+    "🧦"
+  ];
 
+  for(let i=0;i<amount;i++){
 
-$("gameOverlay").innerHTML = `
+    const item =
+      document.createElement("button");
 
-<div class="overlay-box">
+    item.className = "trash";
 
-<div class="overlay-icon">
-🧹
-</div>
+    item.type = "button";
 
-<h3>
-Cleaning complete!
-</h3>
+    item.textContent =
+      types[
+        Math.floor(
+          Math.random() * types.length
+        )
+      ];
 
-<div class="result-score">
-${score.toLocaleString()}
-</div>
+    const left =
+      8 +
+      Math.random() * 82;
 
-<p>
-Great job! You picked up
-<strong>${collected}</strong>
-pieces of litter.
-</p>
+    const top =
+      37 +
+      Math.random() * 49;
 
-<div class="result-grid">
+    item.style.left =
+      left + "%";
 
-<div class="result-box">
-<strong>${collected}</strong>
-<span>Items</span>
-</div>
+    item.style.top =
+      top + "%";
 
-<div class="result-box">
-<strong>${bestStreak}</strong>
-<span>Best streak</span>
-</div>
+    item.style.animationDelay =
+      (Math.random() * .7) + "s";
 
-<div class="result-box">
-<strong>${rank}</strong>
-<span>Ranking</span>
-</div>
+    item.dataset.picked = "false";
 
-</div>
+    item.addEventListener(
+      "click",
+      ()=>pickTrash(item)
+    );
 
-<p>
-🌱 Want extra points?
-Answer the bonus eco question!
-</p>
+    container.appendChild(item);
 
-<div class="overlay-actions">
+    trashItems.push(item);
 
-<button
-id="bonusBtn"
-class="btn"
->
-Answer bonus question →
-</button>
+  }
 
-<button
-id="againBtn"
-class="btn white"
->
-Play again
-</button>
-
-</div>
-
-</div>
-
-`;
-
-
-$("bonusBtn").onclick =
-openBonusQuestion;
-
-$("againBtn").onclick =
-resetRoundUI;
+  totalTrashThisRound += amount;
 
 }
 
 
-function openBonusQuestion(){
+/* =========================================================
+   PICK TRASH
+========================================================= */
 
-$("quizModal")
-.classList.add("show");
+function pickTrash(item){
+
+  if(!gameRunning) return;
+
+  if(item.dataset.picked === "true")
+    return;
+
+  item.dataset.picked = "true";
+
+  item.classList.add("picked");
+
+  trashCount++;
+
+  currentStreak++;
+
+  bestRoundStreak =
+    Math.max(
+      bestRoundStreak,
+      currentStreak
+    );
 
 
-$("quizFeedback").textContent =
-"";
+  let points = 10;
+
+  if(currentStreak >= 5)
+    points += 5;
+
+  if(currentStreak >= 10)
+    points += 10;
+
+  roundScore += points;
+
+  showCleanMessage(
+    "+" + points + " 🌱"
+  );
+
+  setTimeout(()=>{
+
+    item.remove();
+
+  },300);
 
 
-$("quizFeedback").className =
-"quiz-feedback";
+  /* Small chance to replace trash */
 
+  if(
+    timeLeft > 8 &&
+    trashCount % 2 === 0
+  ){
 
-$("quizContinue").style.display =
-"none";
+    setTimeout(()=>{
+      if(gameRunning){
+        spawnTrash(1);
+      }
+    },350);
 
-
-document
-.querySelectorAll(".quiz-option")
-.forEach(
-b => {
-
-b.disabled =
-false;
-
-b.classList.remove(
-"correct",
-"wrong"
-);
+  }
 
 }
-);
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showCleanMessage(text){
+
+  const classroom =
+    document.getElementById("classroom");
+
+  const message =
+    document.createElement("div");
+
+  message.className =
+    "clean-message";
+
+  message.textContent =
+    text;
+
+  classroom.appendChild(message);
+
+  setTimeout(()=>{
+    message.remove();
+  },800);
 
 }
 
 
-document
-.querySelectorAll(".quiz-option")
-.forEach(
-button =>
-button.onclick =
-async () => {
+/* =========================================================
+   CLEAR TRASH
+========================================================= */
 
-document
-.querySelectorAll(".quiz-option")
-.forEach(
-b =>
-b.disabled = true
-);
+function clearTrash(){
 
+  const container =
+    document.getElementById("trashContainer");
 
-const correct =
-button.dataset.correct ===
-"true";
+  container.innerHTML = "";
+
+  trashItems = [];
+
+}
 
 
-if(correct){
+/* =========================================================
+   FINISH GAME
+========================================================= */
 
-button.classList.add(
-"correct"
-);
+async function finishGame(){
 
+  if(!gameRunning) return;
 
-$("quizFeedback")
-.className =
-"quiz-feedback good";
+  gameRunning = false;
 
+  clearInterval(gameTimer);
 
-$("quizFeedback")
-.textContent =
-"✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
+  gameTimer = null;
 
+  document.getElementById(
+    "startGameBtn"
+  ).disabled = false;
 
-score +=
-25;
-
-
-const p =
-playersCache[currentPlayer];
-
-
-p.totalPoints =
-(p.totalPoints || 0) +
-25;
+  document.getElementById(
+    "startGameBtn"
+  ).textContent =
+    "🧹 Start cleanup";
 
 
-p.best =
-Math.max(
-p.best || 0,
-score
-);
+  /* Bonus for cleaning many items */
+
+  let bonus = 0;
+
+  if(trashCount >= 10){
+    bonus += 30;
+  }else if(trashCount >= 7){
+    bonus += 20;
+  }else if(trashCount >= 4){
+    bonus += 10;
+  }
 
 
-try{
-
-await savePlayer();
-
-}catch(e){}
+  const finalScore =
+    roundScore + bonus;
 
 
-await refreshStats();
+  currentPlayer.score =
+    (currentPlayer.score || 0)
+    + finalScore;
+
+  currentPlayer.trash =
+    (currentPlayer.trash || 0)
+    + trashCount;
+
+  currentPlayer.games =
+    (currentPlayer.games || 0)
+    + 1;
+
+  currentPlayer.bestStreak =
+    Math.max(
+      currentPlayer.bestStreak || 0,
+      bestRoundStreak
+    );
+
+  currentPlayer.updatedAt =
+    Date.now();
 
 
-$("quizContinue").style.display =
-"block";
+  await savePlayer();
 
 
-}else{
-
-button.classList.add(
-"wrong"
-);
+  const rank =
+    await getCurrentRank();
 
 
-document
-.querySelectorAll(".quiz-option")
-.forEach(
-b => {
+  document.getElementById(
+    "resultScore"
+  ).textContent =
+    "+" + finalScore;
 
-if(
-b.dataset.correct ===
-"true"
+  document.getElementById(
+    "resultTrash"
+  ).textContent =
+    trashCount;
+
+  const accuracy =
+    totalTrashThisRound > 0
+      ? Math.round(
+          (trashCount /
+            totalTrashThisRound) *
+          100
+        )
+      : 0;
+
+  document.getElementById(
+    "resultAccuracy"
+  ).textContent =
+    accuracy + "%";
+
+  document.getElementById(
+    "resultStreak"
+  ).textContent =
+    bestRoundStreak;
+
+  document.getElementById(
+    "resultRank"
+  ).textContent =
+    rank > 0
+      ? "#" + rank
+      : "—";
+
+
+  document
+    .getElementById("resultModal")
+    .classList.remove("hidden");
+
+
+  updatePlayerUI();
+
+  updateStats();
+
+  await loadLeaderboard();
+
+}
+
+
+/* =========================================================
+   SAVE PLAYER
+========================================================= */
+
+async function savePlayer(){
+
+  saveCurrentPlayerLocal();
+
+  if(!firebaseReady){
+
+    const players =
+      getLocalPlayers();
+
+    const index =
+      players.findIndex(
+        p => p.id === currentPlayer.id
+      );
+
+    if(index >= 0){
+
+      players[index] =
+        currentPlayer;
+
+    }else{
+
+      players.push(
+        currentPlayer
+      );
+
+    }
+
+    saveLocalPlayers(players);
+
+    return;
+
+  }
+
+
+  try{
+
+    await setDoc(
+      doc(
+        db,
+        "players",
+        currentPlayer.id
+      ),
+      currentPlayer
+    );
+
+  }catch(error){
+
+    console.error(
+      "Could not save online:",
+      error
+    );
+
+    showToast(
+      "Saved locally. Online save failed."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+async function loadLeaderboard(){
+
+  let players = [];
+
+  try{
+
+    if(firebaseReady){
+
+      const leaderboardQuery =
+        query(
+          collection(db,"players"),
+          orderBy("score","desc"),
+          limit(20)
+        );
+
+      const snapshot =
+        await getDocs(
+          leaderboardQuery
+        );
+
+      snapshot.forEach(docSnap=>{
+
+        players.push(
+          docSnap.data()
+        );
+
+      });
+
+    }else{
+
+      players =
+        getLocalPlayers()
+          .sort(
+            (a,b)=>
+              (b.score || 0) -
+              (a.score || 0)
+          )
+          .slice(0,20);
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    players =
+      getLocalPlayers()
+        .sort(
+          (a,b)=>
+            (b.score || 0) -
+            (a.score || 0)
+        )
+        .slice(0,20);
+
+  }
+
+
+  renderLeaderboard(players);
+
+}
+
+
+/* =========================================================
+   RENDER LEADERBOARD
+========================================================= */
+
+function renderLeaderboard(players){
+
+  const list =
+    document.getElementById("rankList");
+
+  if(!players.length){
+
+    list.innerHTML =
+      `<div class="empty-ranking">
+        No players yet. Be the first cleaner! 🌱
+      </div>`;
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  players.forEach((player,index)=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className =
+      "rank-row";
+
+    const rank =
+      index + 1;
+
+    let medal = "";
+
+    if(rank === 1) medal = "🥇";
+    else if(rank === 2) medal = "🥈";
+    else if(rank === 3) medal = "🥉";
+
+    const isCurrent =
+      currentPlayer &&
+      player.id === currentPlayer.id;
+
+    if(isCurrent){
+
+      row.style.borderColor =
+        "#9dcea9";
+
+      row.style.background =
+        "#edf9f0";
+
+    }
+
+    row.innerHTML = `
+
+      <div class="rank-number">
+        ${medal || "#" + rank}
+      </div>
+
+      <div class="rank-name">
+        ${escapeHTML(player.name)}
+        ${isCurrent ? " · You" : ""}
+      </div>
+
+      <div class="rank-score">
+        ${player.score || 0}
+      </div>
+
+    `;
+
+    list.appendChild(row);
+
+  });
+
+
+}
+
+
+/* =========================================================
+   GET CURRENT RANK
+========================================================= */
+
+async function getCurrentRank(){
+
+  if(!currentPlayer)
+    return 0;
+
+  let players = [];
+
+  try{
+
+    if(firebaseReady){
+
+      const snapshot =
+        await getDocs(
+          collection(db,"players")
+        );
+
+      snapshot.forEach(docSnap=>{
+        players.push(
+          docSnap.data()
+        );
+      });
+
+    }else{
+
+      players =
+        getLocalPlayers();
+
+    }
+
+  }catch{
+
+    players =
+      getLocalPlayers();
+
+  }
+
+
+  players.sort(
+    (a,b)=>
+      (b.score || 0) -
+      (a.score || 0)
+  );
+
+
+  const index =
+    players.findIndex(
+      p => p.id === currentPlayer.id
+    );
+
+  return index >= 0
+    ? index + 1
+    : 0;
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+window.answerQuiz = async function(
+  button,
+  correct
 ){
 
-b.classList.add(
-"correct"
-);
+  if(quizAnswered)
+    return;
 
-}
+  quizAnswered = true;
 
-}
-);
+  const options =
+    document.querySelectorAll(
+      ".quiz-option"
+    );
 
-
-$("quizFeedback")
-.className =
-"quiz-feedback bad";
-
-
-$("quizFeedback")
-.textContent =
-"❌ Not quite. The correct answer is “Using reusable items when possible.”";
+  options.forEach(option=>{
+    option.disabled = true;
+  });
 
 
-$("quizContinue").style.display =
-"block";
+  if(correct){
 
-}
+    button.classList.add("correct");
 
-}
-);
+    const bonus = 25;
 
+    currentPlayer.score =
+      (currentPlayer.score || 0)
+      + bonus;
 
-$("quizContinue").onclick =
-async () => {
+    currentPlayer.quizPoints =
+      (currentPlayer.quizPoints || 0)
+      + bonus;
 
-$("quizModal")
-.classList.remove(
-"show"
-);
+    currentPlayer.updatedAt =
+      Date.now();
 
+    await savePlayer();
 
-const finalRank =
-await getRank(
-currentPlayer
-);
+    updatePlayerUI();
 
+    updateStats();
 
-$("gameOverlay").style.display =
-"flex";
+    showToast(
+      "+25 bonus! Great environmental choice 🌱"
+    );
 
+    await loadLeaderboard();
 
-$("gameOverlay").innerHTML = `
+  }else{
 
-<div class="overlay-box">
+    button.classList.add("wrong");
 
-<div class="overlay-icon">
-🏆
-</div>
+    options.forEach(option=>{
 
-<h3>
-Round saved!
-</h3>
+      if(
+        option.textContent
+          .includes(
+            "Separate them properly"
+          )
+      ){
 
-<div class="result-score">
-${score.toLocaleString()}
-</div>
+        option.classList.add(
+          "correct"
+        );
 
-<p>
-Your final score includes your
-eco-question bonus.
-</p>
+      }
 
-<div class="result-grid">
+    });
 
-<div class="result-box">
-<strong>${collected}</strong>
-<span>Items</span>
-</div>
+    showToast(
+      "Not quite! Try to remember proper segregation ♻️"
+    );
 
-<div class="result-box">
-<strong>${bestStreak}</strong>
-<span>Best streak</span>
-</div>
-
-<div class="result-box">
-<strong>${finalRank}</strong>
-<span>Ranking</span>
-</div>
-
-</div>
-
-<div class="overlay-actions">
-
-<button
-id="againFinal"
-class="btn"
->
-Play again →
-</button>
-
-<button
-id="boardFinal"
-class="btn white"
->
-View leaderboard
-</button>
-
-</div>
-
-</div>
-
-`;
-
-
-$("againFinal").onclick =
-resetRoundUI;
-
-
-$("boardFinal").onclick =
-() =>
-showPage(
-"leaderboard"
-);
+  }
 
 };
 
 
-async function getRank(id){
+/* =========================================================
+   RESULT MODAL
+========================================================= */
 
-try{
+window.closeResult = function(){
 
-const arr =
-await getAllPlayers();
-
-const i =
-arr.findIndex(
-x =>
-x.id === id
-);
-
-return "#" +
-(i + 1);
-
-}catch(e){
-
-return "—";
-
-}
-
-}
-
-
-async function renderLeaderboard(){
-
-const box =
-$("leaderRows");
-
-
-box.innerHTML =
-`<div class="empty">Loading shared leaderboard… 🌱</div>`;
-
-
-try{
-
-const arr =
-await getAllPlayers();
-
-
-if(!arr.length){
-
-box.innerHTML =
-`<div class="empty">No players yet. Be the first cleaner! 🌱</div>`;
-
-return;
-
-}
-
-
-box.innerHTML =
-arr
-.map(
-(p,i) => {
-
-const medal =
-i === 0
-? "🥇"
-: i === 1
-? "🥈"
-: i === 2
-? "🥉"
-: i + 1;
-
-
-const isMe =
-currentPlayer &&
-p.id === currentPlayer;
-
-
-const avatar =
-p.photo
-
-? `<div class="leader-avatar"><img src="${p.photo}" alt="${escapeHTML(p.name)} profile picture"></div>`
-
-: `<div class="leader-avatar">${escapeHTML(getInitials(p.name))}</div>`;
-
-
-return `
-
-<div class="leader-row ${isMe ? "me" : ""}">
-
-<div class="rank-medal">
-${medal}
-</div>
-
-${avatar}
-
-<div>
-
-<div class="player-name">
-${escapeHTML(p.name)}
-</div>
-
-<div class="player-meta">
-${p.totalItems || 0}
-items collected
-•
-${p.games || 0}
-round${p.games === 1 ? "" : "s"}
-</div>
-
-</div>
-
-<div class="leader-score">
-
-${(p.best || 0).toLocaleString()}
-
-<small>
-best score
-</small>
-
-</div>
-
-</div>
-
-`;
-
-}
-)
-.join("");
-
-
-}catch(e){
-
-console.error(e);
-
-box.innerHTML =
-`<div class="empty">
-Unable to load the shared leaderboard.<br>
-Check your Firebase Firestore setup.
-</div>`;
-
-}
-
-}
-
-
-$("profileBtn").onclick =
-openProfile;
-
-$("closeProfile").onclick =
-closeProfile;
-
-
-$("profileModal").onclick =
-e => {
-
-if(
-e.target ===
-$("profileModal")
-)
-closeProfile();
+  document
+    .getElementById("resultModal")
+    .classList.add("hidden");
 
 };
 
 
-function openProfile(){
+window.closeResultAndRestart = function(){
 
-if(!currentPlayer)
-return;
+  closeResult();
 
-
-const p =
-playersCache[currentPlayer];
-
-
-$("editName").value =
-p.name;
-
-
-updateAvatar();
-
-
-$("profileMsg").textContent =
-"";
-
-
-$("profileModal")
-.classList.add(
-"show"
-);
-
-}
-
-
-function closeProfile(){
-
-$("profileModal")
-.classList.remove(
-"show"
-);
-
-}
-
-
-function updateAvatar(){
-
-const p =
-playersCache[currentPlayer];
-
-const avatar =
-$("profileAvatar");
-
-
-avatar.innerHTML =
-p.photo
-
-? `<img src="${p.photo}" alt="Profile picture">`
-
-: escapeHTML(
-getInitials(
-p.name
-)
-);
-
-}
-
-
-$("photoInput").onchange =
-e => {
-
-const file =
-e.target.files[0];
-
-if(!file)
-return;
-
-
-const reader =
-new FileReader();
-
-
-reader.onload =
-async () => {
-
-playersCache[currentPlayer].photo =
-reader.result;
-
-
-try{
-
-await savePlayer();
-
-updateAvatar();
-
-toast(
-"Profile picture updated! 🌱"
-);
-
-}catch(err){
-
-toast(
-"Could not save picture."
-);
-
-}
+  setTimeout(()=>{
+    startGame();
+  },150);
 
 };
 
 
-reader.readAsDataURL(
-file
-);
+/* =========================================================
+   HOW TO PLAY
+========================================================= */
+
+window.showHowToPlay = function(){
+
+  document
+    .getElementById("howModal")
+    .classList.remove("hidden");
 
 };
 
 
-$("saveProfile").onclick =
-async () => {
+window.closeHowToPlay = function(){
 
-const newName =
-normalizeName(
-$("editName").value
-);
-
-
-if(newName.length < 2){
-
-$("profileMsg").textContent =
-"Use at least 2 characters.";
-
-return;
-
-}
-
-
-const oldId =
-currentPlayer;
-
-const newId =
-playerId(
-newName
-);
-
-
-if(newId !== oldId){
-
-try{
-
-const existing =
-await getDoc(
-doc(
-db,
-"players",
-newId
-)
-);
-
-
-if(existing.exists()){
-
-$("profileMsg").textContent =
-"That nickname is already being used.";
-
-return;
-
-}
-
-
-const p =
-playersCache[oldId];
-
-
-p.name =
-newName;
-
-
-await setDoc(
-doc(
-db,
-"players",
-newId
-),
-p
-);
-
-
-playersCache[newId] =
-p;
-
-delete playersCache[oldId];
-
-currentPlayer =
-newId;
-
-
-}catch(e){
-
-$("profileMsg").textContent =
-"Could not update profile.";
-
-return;
-
-}
-
-}else{
-
-playersCache[oldId].name =
-newName;
-
-
-try{
-
-await savePlayer();
-
-}catch(e){
-
-$("profileMsg").textContent =
-"Could not save profile.";
-
-return;
-
-}
-
-}
-
-
-$("welcomeName").textContent =
-playersCache[currentPlayer].name;
-
-
-await refreshStats();
-
-updateAvatar();
-
-
-$("profileMsg").style.color =
-"#287b4c";
-
-
-$("profileMsg").textContent =
-"Profile saved successfully!";
-
-
-setTimeout(
-closeProfile,
-700
-);
+  document
+    .getElementById("howModal")
+    .classList.add("hidden");
 
 };
 
 
-$("logoutBtn").onclick =
-() => {
+/* =========================================================
+   LOGOUT
+========================================================= */
 
-stopTimers();
+window.logoutPlayer = function(){
 
-running = false;
+  if(gameRunning){
 
-currentPlayer = null;
+    clearInterval(gameTimer);
 
-$("playerName").value =
-"";
+    gameRunning = false;
 
-$("playerPin").value =
-"";
+  }
 
-setMode("create");
+  currentPlayer = null;
 
-closeProfile();
+  localStorage.removeItem(
+    PLAYER_KEY
+  );
 
-screen("loginScreen");
+  document
+    .getElementById("gameSection")
+    .classList.add("hidden");
+
+  document
+    .getElementById("authSection")
+    .classList.remove("hidden");
+
+  document.getElementById(
+    "createName"
+  ).value = "";
+
+  document.getElementById(
+    "createPin"
+  ).value = "";
+
+  document.getElementById(
+    "loginName"
+  ).value = "";
+
+  document.getElementById(
+    "loginPin"
+  ).value = "";
+
+  switchAuth("create");
+
+  showToast(
+    "Logged out successfully."
+  );
 
 };
 
 
-function getInitials(name){
+/* =========================================================
+   RESTORE SESSION
+========================================================= */
 
-return name
-.split(" ")
-.map(
-x =>
-x[0]
-)
-.join("")
-.slice(0,2)
-.toUpperCase();
+window.addEventListener(
+  "DOMContentLoaded",
+  async ()=>{
 
-}
+    const saved =
+      loadCurrentPlayerLocal();
 
+    if(saved){
 
-function escapeHTML(s){
+      currentPlayer = saved;
 
-return String(s).replace(
-/[&<>"']/g,
-m =>
-({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m])
+      enterGame();
+
+    }
+
+  }
 );
 
-}
 
+/* =========================================================
+   ENTER KEY SUPPORT
+========================================================= */
 
-function toast(msg){
+document.addEventListener(
+  "keydown",
+  event => {
 
-const t =
-$("toast");
+    if(event.key !== "Enter")
+      return;
 
-t.textContent =
-msg;
+    const active =
+      document.activeElement;
 
-t.classList.add(
-"show"
+    if(
+      active &&
+      (
+        active.id === "createPin" ||
+        active.id === "createName"
+      )
+    ){
+
+      createPlayer();
+
+    }
+
+    if(
+      active &&
+      (
+        active.id === "loginPin" ||
+        active.id === "loginName"
+      )
+    ){
+
+      loginPlayer();
+
+    }
+
+  }
 );
 
-clearTimeout(
-window.__cqToast
+</script>
+
+
+<!-- =======================================================
+     NON-MODULE FALLBACK / BASIC STARTUP
+======================================================= -->
+
+<script>
+
+/*
+  This part only makes sure the interface doesn't break
+  if JavaScript modules are delayed or unavailable.
+*/
+
+window.addEventListener("error",function(event){
+
+  console.warn(
+    "Clean Quest error:",
+    event.message
+  );
+
+});
+
+
+/*
+  Close modals when tapping the dark background.
+*/
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      event.target.classList.contains("modal")
+    ){
+
+      event.target.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
 );
-
-window.__cqToast =
-setTimeout(
-() =>
-t.classList.remove(
-"show"
-),
-1800
-);
-
-}
-
-
-setMode("create");
-
-screen("loginScreen");
-
-})();
 
 </script>
 
