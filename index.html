@@ -3,40 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#eef7ef">
+<meta name="theme-color" content="#eef6ee">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>FLASHY — Your Little Study Space</title>
 <style>
 :root{
-  --bg:#f7f5ee;
-  --card:#fffdf8;
-  --sage:#8faa91;
-  --sage-dark:#58745d;
-  --mint:#e7f1e5;
-  --cream:#fffaf0;
-  --text:#304437;
-  --muted:#7c887d;
-  --line:#e3e7df;
-  --peach:#f4d9c8;
-  --danger:#d77d72;
-  --shadow:0 10px 30px rgba(71,92,74,.09);
+  --bg:#f8f6ef;
+  --surface:#fffdf8;
+  --surface-2:#f2f6ef;
+  --sage:#91aa94;
+  --sage-dark:#5d7761;
+  --sage-light:#e7f0e5;
+  --text:#304236;
+  --muted:#7c887e;
+  --line:#e2e7df;
+  --danger:#b96d65;
+  --danger-bg:#f9e9e6;
+  --shadow:0 12px 32px rgba(55,76,59,.09);
   --radius:24px;
 }
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
-html,body{
-  margin:0;
-  padding:0;
+html{
   min-height:100%;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
 }
 body{
+  margin:0;
   min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 button,
 input,
@@ -46,145 +45,148 @@ textarea{
 button{
   cursor:pointer;
 }
+button:active{
+  transform:scale(.98);
+}
+input,
+textarea{
+  outline:none;
+}
 .hidden{
   display:none !important;
 }
 /* =========================
    AUTH
 ========================= */
-#authScreen{
+.auth-screen{
   min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   padding:24px;
 }
-.auth-box{
+.auth-container{
   width:100%;
   max-width:420px;
   text-align:center;
 }
-.logo-mark{
-  width:74px;
-  height:74px;
-  margin:0 auto 18px;
-  border-radius:24px;
-  background:var(--mint);
+.logo-icon{
+  width:76px;
+  height:76px;
+  margin:0 auto 16px;
+  border-radius:26px;
+  background:var(--sage-light);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:34px;
+  font-size:35px;
   box-shadow:var(--shadow);
 }
-.logo{
-  font-size:34px;
-  font-weight:800;
+.brand{
+  font-size:35px;
+  font-weight:850;
   letter-spacing:-1.5px;
-  margin-bottom:6px;
 }
 .tagline{
   color:var(--muted);
-  margin-bottom:34px;
+  margin-top:5px;
+  margin-bottom:30px;
 }
 .auth-card{
-  background:var(--card);
+  background:var(--surface);
   border:1px solid var(--line);
-  border-radius:30px;
-  padding:28px;
+  border-radius:28px;
+  padding:25px;
   box-shadow:var(--shadow);
   text-align:left;
 }
 .auth-card h2{
-  margin:0 0 7px;
+  margin:0 0 6px;
   font-size:22px;
 }
-.auth-card p{
-  margin:0 0 22px;
+.auth-card .description{
+  margin:0 0 21px;
   color:var(--muted);
   font-size:14px;
+  line-height:1.5;
 }
-.field{
+.form-group{
   margin-bottom:15px;
 }
-.field label{
+.form-group label{
   display:block;
-  font-size:13px;
-  font-weight:700;
   margin-bottom:7px;
+  font-size:13px;
+  font-weight:750;
 }
-.field input,
-.field textarea{
+.form-input,
+.form-textarea{
   width:100%;
   border:1px solid var(--line);
+  border-radius:15px;
   background:#fff;
   color:var(--text);
-  border-radius:15px;
   padding:13px 14px;
-  outline:none;
   transition:.2s;
 }
-.field textarea{
-  min-height:110px;
+.form-textarea{
+  min-height:115px;
   resize:vertical;
 }
-.field input:focus,
-.field textarea:focus{
+.form-input:focus,
+.form-textarea:focus{
   border-color:var(--sage);
-  box-shadow:0 0 0 3px rgba(143,170,145,.13);
+  box-shadow:0 0 0 3px rgba(145,170,148,.13);
 }
-.primary-btn{
+.primary-button{
   width:100%;
   border:0;
   border-radius:16px;
-  padding:14px 18px;
   background:var(--sage-dark);
-  color:white;
-  font-weight:700;
-  transition:.2s;
+  color:#fff;
+  padding:14px 18px;
+  font-weight:750;
 }
-.primary-btn:active{
-  transform:scale(.98);
-}
-.secondary-btn{
+.secondary-button{
   border:1px solid var(--line);
   border-radius:15px;
-  padding:12px 16px;
-  background:var(--card);
+  background:var(--surface);
   color:var(--text);
-  font-weight:650;
+  padding:12px 16px;
+  font-weight:700;
 }
-.auth-switch{
-  text-align:center;
-  margin-top:20px;
-  font-size:14px;
-  color:var(--muted);
-}
-.link-btn{
+.text-link{
   border:0;
   background:none;
   color:var(--sage-dark);
   font-weight:750;
   padding:0;
 }
+.auth-switch{
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  margin-top:18px;
+}
 /* =========================
    APP
 ========================= */
-#app{
+.app{
   min-height:100vh;
 }
-.app-shell{
+.app-content{
   width:100%;
   max-width:720px;
   margin:auto;
-  padding:22px 18px 100px;
+  padding:22px 18px 105px;
 }
 .topbar{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:24px;
+  justify-content:space-between;
+  margin-bottom:25px;
 }
-.topbar-left{
+.topbar-brand{
   display:flex;
   align-items:center;
   gap:10px;
@@ -193,41 +195,40 @@ button{
   width:43px;
   height:43px;
   border-radius:15px;
-  background:var(--mint);
+  background:var(--sage-light);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:21px;
 }
-.topbar-title{
-  font-weight:800;
+.mini-brand{
+  font-weight:850;
   font-size:18px;
 }
-.icon-btn{
+.icon-button{
   width:43px;
   height:43px;
   border:1px solid var(--line);
-  background:var(--card);
   border-radius:15px;
+  background:var(--surface);
   color:var(--text);
-  font-size:18px;
 }
-.greeting{
-  margin-bottom:22px;
-}
+/* =========================
+   HOME
+========================= */
 .greeting small{
   color:var(--muted);
 }
 .greeting h1{
-  margin:4px 0 0;
+  margin:5px 0 22px;
   font-size:29px;
   letter-spacing:-1px;
 }
 .hero{
-  background:var(--mint);
+  background:var(--sage-light);
   border-radius:28px;
   padding:25px;
-  margin-bottom:22px;
+  margin-bottom:25px;
   position:relative;
   overflow:hidden;
 }
@@ -236,7 +237,7 @@ button{
   position:absolute;
   right:24px;
   top:18px;
-  font-size:28px;
+  font-size:30px;
   opacity:.35;
 }
 .hero h2{
@@ -245,29 +246,29 @@ button{
 }
 .hero p{
   margin:0 0 18px;
-  color:#657568;
-  max-width:280px;
+  max-width:285px;
   line-height:1.5;
+  color:#657367;
 }
-.study-btn{
+.study-button{
   border:0;
-  background:var(--sage-dark);
-  color:white;
   border-radius:15px;
+  background:var(--sage-dark);
+  color:#fff;
   padding:12px 18px;
-  font-weight:700;
+  font-weight:750;
 }
-.section-head{
+.section-heading{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin:24px 2px 12px;
+  margin:0 2px 12px;
 }
-.section-head h2{
+.section-heading h2{
   margin:0;
   font-size:18px;
 }
-.text-btn{
+.small-action{
   border:0;
   background:none;
   color:var(--sage-dark);
@@ -275,19 +276,22 @@ button{
 }
 .deck-list{
   display:grid;
-  gap:12px;
+  gap:11px;
 }
 .deck-card{
-  background:var(--card);
+  width:100%;
   border:1px solid var(--line);
-  border-radius:22px;
-  padding:18px;
+  background:var(--surface);
+  border-radius:21px;
+  padding:16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  box-shadow:0 5px 18px rgba(71,92,74,.045);
+  text-align:left;
+  color:var(--text);
+  box-shadow:0 5px 18px rgba(55,76,59,.045);
 }
-.deck-main{
+.deck-card-main{
   display:flex;
   align-items:center;
   gap:13px;
@@ -298,7 +302,7 @@ button{
   height:47px;
   flex:none;
   border-radius:16px;
-  background:var(--cream);
+  background:#fff8ec;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -307,9 +311,10 @@ button{
 .deck-info{
   min-width:0;
 }
-.deck-info h3{
-  margin:0 0 4px;
-  font-size:16px;
+.deck-info strong{
+  display:block;
+  font-size:15px;
+  margin-bottom:4px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -318,90 +323,236 @@ button{
   color:var(--muted);
   font-size:13px;
 }
-.arrow{
+.deck-arrow{
   color:var(--muted);
-  font-size:20px;
+  font-size:22px;
+  padding-left:10px;
 }
-.empty{
+.empty-state{
   text-align:center;
-  padding:40px 20px;
-  color:var(--muted);
-  background:var(--card);
+  background:var(--surface);
   border:1px dashed var(--line);
   border-radius:22px;
+  padding:36px 20px;
+  color:var(--muted);
 }
-.empty .emoji{
-  font-size:32px;
+.empty-emoji{
+  font-size:33px;
   margin-bottom:10px;
 }
+.empty-state strong{
+  color:var(--text);
+}
+.empty-state p{
+  margin:7px 0 18px;
+  font-size:14px;
+}
+/* =========================
+   NAV
+========================= */
 .bottom-nav{
   position:fixed;
+  z-index:30;
   left:50%;
-  bottom:15px;
+  bottom:14px;
   transform:translateX(-50%);
   width:min(440px,calc(100% - 30px));
+  display:flex;
+  gap:5px;
+  padding:7px;
   background:rgba(255,253,248,.94);
   backdrop-filter:blur(16px);
   border:1px solid var(--line);
   border-radius:22px;
-  padding:8px;
-  display:flex;
-  gap:6px;
-  box-shadow:0 10px 30px rgba(71,92,74,.12);
-  z-index:20;
+  box-shadow:0 12px 30px rgba(55,76,59,.13);
 }
-.nav-btn{
+.nav-button{
   flex:1;
   border:0;
+  border-radius:15px;
   background:none;
   color:var(--muted);
-  padding:8px;
-  border-radius:15px;
+  padding:8px 5px;
   font-size:12px;
+  font-weight:750;
+  line-height:1.5;
+}
+.nav-button.active{
+  background:var(--sage-light);
+  color:var(--sage-dark);
+}
+/* =========================
+   PAGE HEAD
+========================= */
+.page-back{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:22px;
+}
+.back-button{
+  width:40px;
+  height:40px;
+  border:0;
+  background:none;
+  color:var(--text);
+  font-size:25px;
+  border-radius:13px;
+}
+.page-title{
+  margin:0;
+  font-size:25px;
+  letter-spacing:-.5px;
+}
+.page-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+/* =========================
+   DECK VIEW
+========================= */
+.add-card{
+  width:100%;
+  border:1px dashed var(--sage);
+  background:var(--sage-light);
+  color:var(--sage-dark);
+  border-radius:18px;
+  padding:14px;
+  font-weight:750;
+  margin-bottom:19px;
+}
+.card-list{
+  display:grid;
+  gap:10px;
+}
+.card-item{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.card-copy{
+  min-width:0;
+}
+.card-copy strong{
+  display:block;
+  font-size:14px;
+  line-height:1.4;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.card-copy span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.card-actions{
+  display:flex;
+  gap:6px;
+  flex:none;
+}
+.mini-button{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:12px;
+  background:var(--sage-light);
+}
+.mini-button.delete{
+  background:var(--danger-bg);
+}
+/* =========================
+   SETTINGS
+========================= */
+.settings-list{
+  display:grid;
+  gap:10px;
+}
+.setting-row{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+.setting-copy{
+  min-width:0;
+}
+.setting-copy strong{
+  display:block;
+  font-size:15px;
+}
+.setting-copy span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+.setting-button{
+  flex:none;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--sage-light);
+  color:var(--sage-dark);
+  padding:9px 12px;
   font-weight:700;
 }
-.nav-btn.active{
-  background:var(--mint);
-  color:var(--sage-dark);
+.setting-button.danger{
+  background:var(--danger-bg);
+  color:var(--danger);
 }
 /* =========================
    MODAL
 ========================= */
-.modal-bg{
+.modal-overlay{
   position:fixed;
+  z-index:80;
   inset:0;
   background:rgba(38,53,41,.28);
   display:flex;
   align-items:flex-end;
   justify-content:center;
-  z-index:50;
+  padding:0;
 }
 .modal{
   width:min(720px,100%);
-  background:var(--card);
-  border-radius:30px 30px 0 0;
-  padding:24px 20px 30px;
   max-height:90vh;
   overflow:auto;
+  background:var(--surface);
+  border-radius:29px 29px 0 0;
+  padding:23px 20px 28px;
 }
-.modal-head{
+.modal-header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   margin-bottom:20px;
 }
-.modal-head h2{
+.modal-header h2{
   margin:0;
   font-size:20px;
 }
-.close-btn{
-  border:0;
-  background:var(--mint);
+.close-button{
   width:38px;
   height:38px;
+  border:0;
   border-radius:13px;
-  font-size:18px;
+  background:var(--sage-light);
   color:var(--text);
+  font-size:20px;
 }
 .modal-actions{
   display:flex;
@@ -412,144 +563,84 @@ button{
   flex:1;
 }
 /* =========================
-   DECK VIEW
-========================= */
-.back-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px;
-}
-.back-btn{
-  border:0;
-  background:none;
-  color:var(--text);
-  font-size:21px;
-}
-.page-title{
-  font-size:24px;
-  font-weight:800;
-  margin:0;
-}
-.deck-subtitle{
-  color:var(--muted);
-  margin:4px 0 22px;
-}
-.add-card-btn{
-  width:100%;
-  border:1px dashed var(--sage);
-  background:var(--mint);
-  color:var(--sage-dark);
-  border-radius:18px;
-  padding:14px;
-  font-weight:750;
-  margin-bottom:20px;
-}
-.card-list{
-  display:grid;
-  gap:10px;
-}
-.card-row{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:center;
-}
-.card-row strong{
-  display:block;
-  font-size:14px;
-}
-.card-row small{
-  color:var(--muted);
-}
-.card-row-actions{
-  display:flex;
-  gap:6px;
-}
-.small-btn{
-  border:0;
-  width:36px;
-  height:36px;
-  border-radius:12px;
-  background:var(--mint);
-}
-.delete-btn{
-  background:#faece9;
-}
-/* =========================
    STUDY
 ========================= */
-.study-screen{
+.study-page{
   min-height:100vh;
-  padding:18px;
   max-width:720px;
   margin:auto;
+  padding:18px;
 }
-.study-top{
+.study-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
-.progress-text{
+.study-deck-name,
+.study-count{
   color:var(--muted);
   font-size:13px;
-  font-weight:700;
+  font-weight:750;
+}
+.flashcard-area{
+  perspective:1000px;
+  min-height:405px;
+  margin-bottom:18px;
 }
 .flashcard{
-  min-height:410px;
-  perspective:1000px;
-  margin:10px 0 22px;
+  width:100%;
+  min-height:405px;
+  position:relative;
+  cursor:pointer;
 }
 .flashcard-inner{
   width:100%;
-  min-height:410px;
+  min-height:405px;
   position:relative;
-  transition:transform .55s;
+  transition:transform .55s ease;
   transform-style:preserve-3d;
 }
 .flashcard.flipped .flashcard-inner{
   transform:rotateY(180deg);
 }
-.face{
+.card-face{
   position:absolute;
   inset:0;
-  backface-visibility:hidden;
-  border-radius:32px;
-  background:var(--card);
+  min-height:405px;
   border:1px solid var(--line);
+  border-radius:31px;
+  background:var(--surface);
   box-shadow:var(--shadow);
+  backface-visibility:hidden;
   display:flex;
   flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   padding:34px;
   text-align:center;
 }
-.face.back{
+.card-face.answer{
   transform:rotateY(180deg);
-  background:var(--mint);
+  background:var(--sage-light);
 }
 .face-label{
   color:var(--sage-dark);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.5px;
   text-transform:uppercase;
+  letter-spacing:.7px;
+  font-size:11px;
+  font-weight:850;
   margin-bottom:17px;
 }
 .face-text{
+  max-width:570px;
   font-size:24px;
-  line-height:1.35;
+  line-height:1.4;
   font-weight:750;
-  max-width:560px;
+  word-break:break-word;
 }
-.tap-hint{
-  margin-top:24px;
+.face-hint{
+  margin-top:25px;
   color:var(--muted);
   font-size:13px;
 }
@@ -557,221 +648,282 @@ button{
   display:flex;
   gap:10px;
 }
-.study-actions button{
+.study-action{
   flex:1;
   border:0;
   border-radius:17px;
-  padding:14px 10px;
+  padding:14px 8px;
   font-weight:750;
 }
-.review-btn{
-  background:#faece9;
-  color:#a65f57;
+.study-action.review{
+  background:var(--danger-bg);
+  color:var(--danger);
 }
-.know-btn{
-  background:var(--mint);
+.study-action.known{
+  background:var(--sage-light);
   color:var(--sage-dark);
 }
-.finish-message{
+.study-finished{
+  background:var(--sage-light);
+  border-radius:29px;
   text-align:center;
-  background:var(--mint);
-  border-radius:28px;
-  padding:35px 24px;
+  padding:40px 24px;
 }
-.finish-message .big{
-  font-size:44px;
+.study-finished .big{
+  font-size:45px;
 }
-.finish-message h2{
-  margin:8px 0;
+.study-finished h2{
+  margin:9px 0 6px;
 }
-.finish-message p{
+.study-finished p{
   color:var(--muted);
-}
-/* =========================
-   SETTINGS
-========================= */
-.settings-list{
-  display:grid;
-  gap:10px;
-}
-.setting{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:17px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.setting-info strong{
-  display:block;
-  font-size:15px;
-}
-.setting-info span{
-  color:var(--muted);
-  font-size:12px;
-}
-.setting button{
-  border:1px solid var(--line);
-  background:var(--mint);
-  color:var(--sage-dark);
-  border-radius:12px;
-  padding:9px 12px;
-  font-weight:700;
-}
-.danger{
-  color:var(--danger) !important;
-  background:#faece9 !important;
+  margin:0 0 22px;
 }
 /* =========================
    TOAST
 ========================= */
 .toast{
   position:fixed;
+  z-index:120;
   left:50%;
-  bottom:88px;
-  transform:translateX(-50%) translateY(20px);
+  bottom:91px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
   background:var(--text);
-  color:white;
+  color:#fff;
   padding:11px 16px;
   border-radius:14px;
   font-size:13px;
-  opacity:0;
-  pointer-events:none;
   transition:.25s;
-  z-index:100;
-  max-width:calc(100% - 40px);
   text-align:center;
+  max-width:calc(100% - 40px);
 }
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  transform:translate(-50%,0);
 }
 /* =========================
    DARK MODE
 ========================= */
 body.dark{
   --bg:#1d2821;
-  --card:#263329;
-  --sage:#8eaa92;
-  --sage-dark:#a8c3ab;
-  --mint:#314337;
-  --cream:#30392f;
+  --surface:#263329;
+  --surface-2:#303c33;
+  --sage:#91aa94;
+  --sage-dark:#b0c7b2;
+  --sage-light:#334438;
   --text:#edf3ed;
   --muted:#aab7ac;
-  --line:#3a493e;
-  --peach:#5a4438;
-  --shadow:0 10px 30px rgba(0,0,0,.2);
+  --line:#3c4a40;
+  --danger:#d58a81;
+  --danger-bg:#49312e;
+  --shadow:0 12px 32px rgba(0,0,0,.22);
 }
-body.dark .field input,
-body.dark .field textarea{
-  background:#202c23;
+body.dark .form-input,
+body.dark .form-textarea{
+  background:#202b23;
   color:var(--text);
 }
 body.dark .bottom-nav{
   background:rgba(38,51,41,.94);
 }
+body.dark .deck-icon{
+  background:#3a3b31;
+}
 /* =========================
-   RESPONSIVE
+   DESKTOP
 ========================= */
 @media(min-width:700px){
-  .modal-bg{
+  .modal-overlay{
     align-items:center;
     padding:20px;
   }
   .modal{
-    border-radius:30px;
+    border-radius:29px;
     max-width:520px;
   }
-  .app-shell{
+  .app-content{
     padding-top:30px;
   }
 }
-@media(max-width:420px){
+/* =========================
+   SMALL PHONES
+========================= */
+@media(max-width:390px){
   .face-text{
     font-size:21px;
   }
   .flashcard,
-  .flashcard-inner{
-    min-height:370px;
+  .flashcard-inner,
+  .card-face,
+  .flashcard-area{
+    min-height:365px;
+  }
+  .hero{
+    padding:21px;
   }
 }
 </style>
 </head>
 <body>
-<!-- =========================
+<!-- =====================================================
      AUTH SCREEN
-========================= -->
-<section id="authScreen">
-  <div class="auth-box">
-    <div class="logo-mark">🌱</div>
-    <div class="logo">FLASHY</div>
+===================================================== -->
+<section id="authScreen" class="auth-screen">
+  <div class="auth-container">
+    <div class="logo-icon">🌱</div>
+    <div class="brand">FLASHY</div>
     <div class="tagline">
       your little study space ♡
     </div>
     <!-- LOGIN -->
-    <div id="loginBox" class="auth-card">
+    <div id="loginPanel" class="auth-card">
       <h2>Welcome back! 🌷</h2>
-      <p>Log in to continue studying.</p>
-      <div class="field">
-        <label>Username</label>
-        <input id="loginUsername" type="text" autocomplete="username" placeholder="your username">
+      <p class="description">
+        Log in and continue where you left off.
+      </p>
+      <div class="form-group">
+        <label for="loginUsername">
+          Username
+        </label>
+        <input
+          id="loginUsername"
+          class="form-input"
+          type="text"
+          autocomplete="username"
+          placeholder="your username"
+        >
       </div>
-      <div class="field">
-        <label>Password</label>
-        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="your password">
+      <div class="form-group">
+        <label for="loginPassword">
+          Password
+        </label>
+        <input
+          id="loginPassword"
+          class="form-input"
+          type="password"
+          autocomplete="current-password"
+          placeholder="your password"
+        >
       </div>
-      <button class="primary-btn" onclick="login()">
+      <button
+        id="loginButton"
+        class="primary-button"
+        type="button"
+      >
         Log In
       </button>
       <div class="auth-switch">
         Don't have an account?
-        <button class="link-btn" onclick="showSignup()">Create Account</button>
+        <button
+          id="showSignupButton"
+          class="text-link"
+          type="button"
+        >
+          Create Account
+        </button>
       </div>
     </div>
-    <!-- SIGN UP -->
-    <div id="signupBox" class="auth-card hidden">
+    <!-- SIGNUP -->
+    <div
+      id="signupPanel"
+      class="auth-card hidden"
+    >
       <h2>Create your space 🌿</h2>
-      <p>Your study data stays saved on this device.</p>
-      <div class="field">
-        <label>Your Name</label>
-        <input id="signupName" type="text" placeholder="e.g. CJ">
+      <p class="description">
+        Your study data will be saved on this device.
+      </p>
+      <div class="form-group">
+        <label for="signupName">
+          Your Name
+        </label>
+        <input
+          id="signupName"
+          class="form-input"
+          type="text"
+          placeholder="e.g. CJ"
+          maxlength="40"
+        >
       </div>
-      <div class="field">
-        <label>Username</label>
-        <input id="signupUsername" type="text" autocomplete="username" placeholder="choose a username">
+      <div class="form-group">
+        <label for="signupUsername">
+          Username
+        </label>
+        <input
+          id="signupUsername"
+          class="form-input"
+          type="text"
+          autocomplete="username"
+          placeholder="choose a username"
+          maxlength="30"
+        >
       </div>
-      <div class="field">
-        <label>Password</label>
-        <input id="signupPassword" type="password" autocomplete="new-password" placeholder="choose a password">
+      <div class="form-group">
+        <label for="signupPassword">
+          Password
+        </label>
+        <input
+          id="signupPassword"
+          class="form-input"
+          type="password"
+          autocomplete="new-password"
+          placeholder="choose a password"
+        >
       </div>
-      <div class="field">
-        <label>Confirm Password</label>
-        <input id="signupConfirm" type="password" autocomplete="new-password" placeholder="repeat your password">
+      <div class="form-group">
+        <label for="signupConfirm">
+          Confirm Password
+        </label>
+        <input
+          id="signupConfirm"
+          class="form-input"
+          type="password"
+          autocomplete="new-password"
+          placeholder="repeat your password"
+        >
       </div>
-      <button class="primary-btn" onclick="createAccount()">
+      <button
+        id="createAccountButton"
+        class="primary-button"
+        type="button"
+      >
         Create Account
       </button>
       <div class="auth-switch">
         Already have an account?
-        <button class="link-btn" onclick="showLogin()">Log In</button>
+        <button
+          id="showLoginButton"
+          class="text-link"
+          type="button"
+        >
+          Log In
+        </button>
       </div>
     </div>
   </div>
 </section>
-<!-- =========================
-     APP
-========================= -->
-<section id="app" class="hidden">
-  <main class="app-shell">
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
+<section id="app" class="app hidden">
+  <main class="app-content">
+    <!-- TOPBAR -->
     <header class="topbar">
-      <div class="topbar-left">
-        <div class="mini-logo">🌱</div>
-        <div class="topbar-title">
+      <div class="topbar-brand">
+        <div class="mini-logo">
+          🌱
+        </div>
+        <div class="mini-brand">
           FLASHY
         </div>
       </div>
-      <button class="icon-btn" onclick="showSettings()">
+      <button
+        id="settingsTopButton"
+        class="icon-button"
+        type="button"
+        aria-label="Settings"
+      >
         ⚙️
       </button>
     </header>
@@ -782,41 +934,69 @@ body.dark .bottom-nav{
           Good day!
         </small>
         <h1>
-          Hi, <span id="userName">friend</span>! 👋
+          Hi, <span id="homeName">friend</span>! 👋
         </h1>
       </div>
       <div class="hero">
-        <h2>Ready to study?</h2>
+        <h2>
+          Ready to study?
+        </h2>
         <p>
           Take it one card at a time.
           You've got this. 🌷
         </p>
-        <button class="study-btn" onclick="studyRandomDeck()">
+        <button
+          id="studyNowButton"
+          class="study-button"
+          type="button"
+        >
           Study Now
         </button>
       </div>
-      <div class="section-head">
-        <h2>My Decks</h2>
-        <button class="text-btn" onclick="openCreateDeck()">
+      <div class="section-heading">
+        <h2>
+          My Decks
+        </h2>
+        <button
+          id="newDeckHomeButton"
+          class="small-action"
+          type="button"
+        >
           + New Deck
         </button>
       </div>
-      <div id="deckList" class="deck-list"></div>
+      <div id="homeDeckList" class="deck-list"></div>
     </section>
-    <!-- DECKS PAGE -->
-    <section id="decksPage" class="hidden">
-      <div class="section-head">
-        <h2>My Decks</h2>
-        <button class="text-btn" onclick="openCreateDeck()">
+    <!-- DECKS -->
+    <section
+      id="decksPage"
+      class="hidden"
+    >
+      <div class="section-heading">
+        <h2>
+          My Decks
+        </h2>
+        <button
+          id="newDeckButton"
+          class="small-action"
+          type="button"
+        >
           + New Deck
         </button>
       </div>
       <div id="allDeckList" class="deck-list"></div>
     </section>
     <!-- SETTINGS -->
-    <section id="settingsPage" class="hidden">
-      <div class="back-row">
-        <button class="back-btn" onclick="showHome()">
+    <section
+      id="settingsPage"
+      class="hidden"
+    >
+      <div class="page-back">
+        <button
+          id="settingsBackButton"
+          class="back-button"
+          type="button"
+        >
           ←
         </button>
         <h1 class="page-title">
@@ -824,55 +1004,94 @@ body.dark .bottom-nav{
         </h1>
       </div>
       <div class="settings-list">
-        <div class="setting">
-          <div class="setting-info">
-            <strong>🌙 Appearance</strong>
-            <span>Switch between light and dark</span>
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>
+              🌙 Appearance
+            </strong>
+            <span>
+              Switch between light and dark
+            </span>
           </div>
-          <button onclick="toggleDarkMode()">
+          <button
+            id="darkModeButton"
+            class="setting-button"
+            type="button"
+          >
             Toggle
           </button>
         </div>
-        <div class="setting">
-          <div class="setting-info">
-            <strong>💾 Backup</strong>
-            <span>Save your study data</span>
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>
+              💾 Backup
+            </strong>
+            <span>
+              Save your study data
+            </span>
           </div>
-          <button onclick="downloadBackup()">
+          <button
+            id="exportButton"
+            class="setting-button"
+            type="button"
+          >
             Export
           </button>
         </div>
-        <div class="setting">
-          <div class="setting-info">
-            <strong>📥 Restore</strong>
-            <span>Bring back a saved backup</span>
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>
+              📥 Restore
+            </strong>
+            <span>
+              Import a saved backup
+            </span>
           </div>
-          <button onclick="document.getElementById('restoreFile').click()">
+          <button
+            id="importButton"
+            class="setting-button"
+            type="button"
+          >
             Import
           </button>
           <input
-            id="restoreFile"
+            id="restoreInput"
             type="file"
-            accept=".json"
-            style="display:none"
-            onchange="restoreBackup(event)"
+            accept=".json,application/json"
+            class="hidden"
           >
         </div>
-        <div class="setting">
-          <div class="setting-info">
-            <strong>🚪 Log Out</strong>
-            <span>Your saved data will stay here</span>
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>
+              🚪 Log Out
+            </strong>
+            <span>
+              Your saved data will stay here
+            </span>
           </div>
-          <button onclick="logout()">
+          <button
+            id="logoutButton"
+            class="setting-button"
+            type="button"
+          >
             Log Out
           </button>
         </div>
-        <div class="setting">
-          <div class="setting-info">
-            <strong>🗑️ Delete Account</strong>
-            <span>Permanently remove local data</span>
+        <div class="setting-row">
+          <div class="setting-copy">
+            <strong>
+              🗑️ Delete Account
+            </strong>
+            <span>
+              Permanently remove local data
+            </span>
           </div>
-          <button class="danger" onclick="deleteAccount()">
+          <button
+            id="deleteAccountButton"
+            class="setting-button danger"
+            type="button"
+          >
             Delete
           </button>
         </div>
@@ -881,108 +1100,188 @@ body.dark .bottom-nav{
   </main>
   <!-- BOTTOM NAV -->
   <nav class="bottom-nav">
-    <button id="navHome" class="nav-btn active" onclick="showHome()">
-      🏡<br>Home
+    <button
+      id="homeNavButton"
+      class="nav-button active"
+      type="button"
+    >
+      🏡<br>
+      Home
     </button>
-    <button id="navDecks" class="nav-btn" onclick="showDecks()">
-      📚<br>Decks
+    <button
+      id="decksNavButton"
+      class="nav-button"
+      type="button"
+    >
+      📚<br>
+      Decks
     </button>
-    <button id="navSettings" class="nav-btn" onclick="showSettings()">
-      ⚙️<br>Settings
+    <button
+      id="settingsNavButton"
+      class="nav-button"
+      type="button"
+    >
+      ⚙️<br>
+      Settings
     </button>
   </nav>
 </section>
-<!-- =========================
+<!-- =====================================================
      DECK VIEW
-========================= -->
-<section id="deckView" class="hidden">
-  <main class="app-shell">
-    <div class="back-row">
-      <button class="back-btn" onclick="showDecks()">
+===================================================== -->
+<section
+  id="deckView"
+  class="app hidden"
+>
+  <main class="app-content">
+    <div class="page-back">
+      <button
+        id="deckBackButton"
+        class="back-button"
+        type="button"
+      >
         ←
       </button>
       <div>
-        <h1 id="deckViewTitle" class="page-title">
+        <h1
+          id="deckTitle"
+          class="page-title"
+        >
           Deck
         </h1>
-        <div id="deckViewSubtitle" class="deck-subtitle">
+        <div
+          id="deckSubtitle"
+          class="page-subtitle"
+        >
           0 cards
         </div>
       </div>
     </div>
-    <button class="add-card-btn" onclick="openCreateCard()">
+    <button
+      id="addCardButton"
+      class="add-card"
+      type="button"
+    >
       + Add a Flashcard
     </button>
-    <div id="cardList" class="card-list"></div>
+    <div
+      id="cardList"
+      class="card-list"
+    ></div>
   </main>
 </section>
-<!-- =========================
+<!-- =====================================================
      STUDY VIEW
-========================= -->
-<section id="studyView" class="hidden">
-  <main class="study-screen">
-    <div class="study-top">
-      <button class="back-btn" onclick="exitStudy()">
-        ←
-      </button>
-      <div id="studyDeckName" class="progress-text">
-        Deck
-      </div>
-      <div id="studyProgress" class="progress-text">
-        1 / 1
-      </div>
+===================================================== -->
+<section
+  id="studyView"
+  class="study-page hidden"
+>
+  <div class="study-header">
+    <button
+      id="studyBackButton"
+      class="back-button"
+      type="button"
+    >
+      ←
+    </button>
+    <div
+      id="studyDeckName"
+      class="study-deck-name"
+    >
+      Deck
     </div>
-    <div id="studyCardArea"></div>
-  </main>
+    <div
+      id="studyCount"
+      class="study-count"
+    >
+      1 / 1
+    </div>
+  </div>
+  <div id="studyContent"></div>
 </section>
-<!-- =========================
+<!-- =====================================================
      MODAL
-========================= -->
-div id="modalBg" class="modal-bg hidden">
-  <div class="modal">
-    <div class="modal-head">
+===================================================== -->
+<div
+  id="modalOverlay"
+  class="modal-overlay hidden"
+>
+  <div
+    id="modalBox"
+    class="modal"
+  >
+    <div class="modal-header">
       <h2 id="modalTitle">
         New Deck
       </h2>
-      <button class="close-btn" onclick="closeModal()">
+      <button
+        id="modalCloseButton"
+        class="close-button"
+        type="button"
+      >
         ×
       </button>
     </div>
     <div id="modalContent"></div>
   </div>
 </div>
-<div id="toast" class="toast">
-  Saved 🌱
-</div>
+<!-- TOAST -->
+<div
+  id="toast"
+  class="toast"
+></div>
 <script>
+"use strict";
 /* =========================================================
-   FLASHY — LOCAL OFFLINE DATA SYSTEM
+   STORAGE
 ========================================================= */
-const STORAGE_KEY = "flashy_accounts_v1";
-const SESSION_KEY = "flashy_session_v1";
-let accounts = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-let currentUser = localStorage.getItem(SESSION_KEY) || null;
+const ACCOUNTS_KEY = "flashy_accounts_v2";
+const SESSION_KEY = "flashy_session_v2";
+const DARK_KEY = "flashy_dark_v2";
+/* =========================================================
+   STATE
+========================================================= */
+let accounts = loadAccounts();
+let currentUsername = localStorage.getItem(SESSION_KEY) || null;
 let currentDeckId = null;
 let editingCardId = null;
 let studyDeckId = null;
 let studyCards = [];
 let studyIndex = 0;
-let studyFlipped = false;
 /* =========================================================
-   SAVE
+   BASIC HELPERS
 ========================================================= */
+function loadAccounts(){
+  try{
+    const saved =
+      localStorage.getItem(ACCOUNTS_KEY);
+    return saved ? JSON.parse(saved) : {};
+  }catch(error){
+    console.error(error);
+    return {};
+  }
+}
 function saveAccounts(){
   localStorage.setItem(
-    STORAGE_KEY,
+    ACCOUNTS_KEY,
     JSON.stringify(accounts)
   );
 }
-/* =========================================================
-   HELPERS
-========================================================= */
-function uid(){
-  return Date.now().toString(36) +
-    Math.random().toString(36).slice(2,8);
+function createId(){
+  return (
+    Date.now().toString(36) +
+    Math.random().toString(36).slice(2,8)
+  );
+}
+function getCurrentUser(){
+  if(
+    currentUsername &&
+    accounts[currentUsername]
+  ){
+    return accounts[currentUsername];
+  }
+  return null;
 }
 function escapeHTML(value){
   return String(value)
@@ -992,54 +1291,74 @@ function escapeHTML(value){
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
 }
-function getUser(){
-  return currentUser && accounts[currentUser]
-    ? accounts[currentUser]
-    : null;
-}
 function showToast(message){
-  const toast = document.getElementById("toast");
+  const toast =
+    document.getElementById("toast");
   toast.textContent = message;
   toast.classList.add("show");
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  },1800);
+  clearTimeout(window.flashyToastTimer);
+  window.flashyToastTimer =
+    setTimeout(function(){
+      toast.classList.remove("show");
+    },1800);
 }
 /* =========================================================
-   AUTH
+   AUTH SCREEN
 ========================================================= */
-function showSignup(){
-  document.getElementById("loginBox")
-    .classList.add("hidden");
-  document.getElementById("signupBox")
+function showLoginPanel(){
+  document
+    .getElementById("loginPanel")
     .classList.remove("hidden");
-}
-function showLogin(){
-  document.getElementById("signupBox")
+  document
+    .getElementById("signupPanel")
     .classList.add("hidden");
-  document.getElementById("loginBox")
+}
+function showSignupPanel(){
+  document
+    .getElementById("loginPanel")
+    .classList.add("hidden");
+  document
+    .getElementById("signupPanel")
     .classList.remove("hidden");
 }
 function createAccount(){
   const name =
-    document.getElementById("signupName").value.trim();
+    document
+      .getElementById("signupName")
+      .value
+      .trim();
   const username =
-    document.getElementById("signupUsername").value.trim().toLowerCase();
+    document
+      .getElementById("signupUsername")
+      .value
+      .trim()
+      .toLowerCase();
   const password =
-    document.getElementById("signupPassword").value;
-  const confirm =
-    document.getElementById("signupConfirm").value;
-  if(!name || !username || !password || !confirm){
-    alert("Please fill in everything 🌷");
+    document
+      .getElementById("signupPassword")
+      .value;
+  const confirmPassword =
+    document
+      .getElementById("signupConfirm")
+      .value;
+  if(!name || !username || !password || !confirmPassword){
+    alert("Please fill in all the fields. 🌷");
     return;
   }
-  if(password !== confirm){
+  if(username.length < 3){
+    alert("Your username should be at least 3 characters.");
+    return;
+  }
+  if(password.length < 4){
+    alert("Your password should be at least 4 characters.");
+    return;
+  }
+  if(password !== confirmPassword){
     alert("Your passwords don't match.");
     return;
   }
   if(accounts[username]){
-    alert("That username already exists.");
+    alert("That username is already taken.");
     return;
   }
   accounts[username] = {
@@ -1050,389 +1369,670 @@ function createAccount(){
     decks:[]
   };
   saveAccounts();
-  currentUser = username;
+  currentUsername = username;
   localStorage.setItem(
     SESSION_KEY,
-    currentUser
+    currentUsername
   );
-  document.getElementById("signupName").value = "";
-  document.getElementById("signupUsername").value = "";
-  document.getElementById("signupPassword").value = "";
-  document.getElementById("signupConfirm").value = "";
+  clearSignupForm();
   enterApp();
+  showToast("Welcome to FLASHY! 🌱");
+}
+function clearSignupForm(){
+  document
+    .getElementById("signupName")
+    .value = "";
+  document
+    .getElementById("signupUsername")
+    .value = "";
+  document
+    .getElementById("signupPassword")
+    .value = "";
+  document
+    .getElementById("signupConfirm")
+    .value = "";
 }
 function login(){
   const username =
-    document.getElementById("loginUsername")
-      .value.trim()
+    document
+      .getElementById("loginUsername")
+      .value
+      .trim()
       .toLowerCase();
   const password =
-    document.getElementById("loginPassword").value;
-  const account = accounts[username];
+    document
+      .getElementById("loginPassword")
+      .value;
+  if(!username || !password){
+    alert("Please enter your username and password.");
+    return;
+  }
+  const account =
+    accounts[username];
   if(!account || account.password !== password){
     alert("Username or password is incorrect.");
     return;
   }
-  currentUser = username;
+  currentUsername = username;
   localStorage.setItem(
     SESSION_KEY,
-    currentUser
+    currentUsername
   );
+  document
+    .getElementById("loginPassword")
+    .value = "";
   enterApp();
 }
 function logout(){
-  currentUser = null;
+  currentUsername = null;
   localStorage.removeItem(SESSION_KEY);
-  document.getElementById("app")
+  hideEverything();
+  document
+    .getElementById("app")
     .classList.add("hidden");
-  document.getElementById("deckView")
+  document
+    .getElementById("deckView")
     .classList.add("hidden");
-  document.getElementById("studyView")
+  document
+    .getElementById("studyView")
     .classList.add("hidden");
-  document.getElementById("authScreen")
+  document
+    .getElementById("authScreen")
     .classList.remove("hidden");
-  showLogin();
+  showLoginPanel();
+  document
+    .getElementById("loginUsername")
+    .value = "";
+  document
+    .getElementById("loginPassword")
+    .value = "";
 }
 function deleteAccount(){
-  const yes = confirm(
-    "Delete this account and all its study data?"
-  );
-  if(!yes) return;
-  delete accounts[currentUser];
+  const user =
+    getCurrentUser();
+  if(!user) return;
+  const confirmed =
+    confirm(
+      "Are you sure you want to permanently delete your account and all your flashcards?"
+    );
+  if(!confirmed) return;
+  delete accounts[currentUsername];
   saveAccounts();
   localStorage.removeItem(SESSION_KEY);
-  currentUser = null;
+  currentUsername = null;
   location.reload();
 }
 /* =========================================================
    ENTER APP
 ========================================================= */
 function enterApp(){
-  document.getElementById("authScreen")
-    .classList.add("hidden");
-  document.getElementById("app")
-    .classList.remove("hidden");
-  document.getElementById("deckView")
-    .classList.add("hidden");
-  document.getElementById("studyView")
-    .classList.add("hidden");
-  document.getElementById("userName")
-    .textContent = getUser().name;
-  updateGreeting();
-  renderDecks();
-  showHome();
-}
-function updateGreeting(){
-  const hour = new Date().getHours();
-  let greeting = "Good day!";
-  if(hour < 12){
-    greeting = "Good morning! ☀️";
-  }else if(hour < 18){
-    greeting = "Good afternoon! 🌤️";
-  }else{
-    greeting = "Good evening! 🌙";
+  const user =
+    getCurrentUser();
+  if(!user){
+    showLoginPanel();
+    document
+      .getElementById("authScreen")
+      .classList.remove("hidden");
+    return;
   }
-  document.getElementById("greetingText")
-    .textContent = greeting;
+  document
+    .getElementById("authScreen")
+    .classList.add("hidden");
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+  document
+    .getElementById("deckView")
+    .classList.add("hidden");
+  document
+    .getElementById("studyView")
+    .classList.add("hidden");
+  document
+    .getElementById("homeName")
+    .textContent = user.name;
+  updateGreeting();
+  renderHomeDecks();
+  showHome();
 }
 /* =========================================================
    NAVIGATION
 ========================================================= */
-function hideAllMain(){
-  document.getElementById("homePage")
+function hideEverything(){
+  document
+    .getElementById("homePage")
     .classList.add("hidden");
-  document.getElementById("decksPage")
+  document
+    .getElementById("decksPage")
     .classList.add("hidden");
-  document.getElementById("settingsPage")
-    .classList.add("hidden");
-  document.getElementById("deckView")
-    .classList.add("hidden");
-  document.getElementById("studyView")
+  document
+    .getElementById("settingsPage")
     .classList.add("hidden");
 }
-function updateNav(active){
-  document.querySelectorAll(".nav-btn")
-    .forEach(btn => btn.classList.remove("active"));
-  if(active === "home"){
-    document.getElementById("navHome")
+function setActiveNav(which){
+  document
+    .querySelectorAll(".nav-button")
+    .forEach(function(button){
+      button.classList.remove("active");
+    });
+  if(which === "home"){
+    document
+      .getElementById("homeNavButton")
       .classList.add("active");
   }
-  if(active === "decks"){
-    document.getElementById("navDecks")
+  if(which === "decks"){
+    document
+      .getElementById("decksNavButton")
       .classList.add("active");
   }
-  if(active === "settings"){
-    document.getElementById("navSettings")
+  if(which === "settings"){
+    document
+      .getElementById("settingsNavButton")
       .classList.add("active");
   }
 }
 function showHome(){
-  hideAllMain();
-  document.getElementById("app")
+  hideEverything();
+  document
+    .getElementById("app")
     .classList.remove("hidden");
-  document.getElementById("homePage")
+  document
+    .getElementById("homePage")
     .classList.remove("hidden");
-  updateNav("home");
-  renderDecks();
+  document
+    .getElementById("deckView")
+    .classList.add("hidden");
+  document
+    .getElementById("studyView")
+    .classList.add("hidden");
+  setActiveNav("home");
+  renderHomeDecks();
 }
 function showDecks(){
-  hideAllMain();
-  document.getElementById("app")
+  hideEverything();
+  document
+    .getElementById("app")
     .classList.remove("hidden");
-  document.getElementById("decksPage")
+  document
+    .getElementById("homePage")
+    .classList.add("hidden");
+  document
+    .getElementById("decksPage")
     .classList.remove("hidden");
-  updateNav("decks");
+  document
+    .getElementById("settingsPage")
+    .classList.add("hidden");
+  document
+    .getElementById("deckView")
+    .classList.add("hidden");
+  document
+    .getElementById("studyView")
+    .classList.add("hidden");
+  setActiveNav("decks");
   renderAllDecks();
 }
 function showSettings(){
-  hideAllMain();
-  document.getElementById("app")
+  hideEverything();
+  document
+    .getElementById("settingsPage")
     .classList.remove("hidden");
-  document.getElementById("settingsPage")
-    .classList.remove("hidden");
-  updateNav("settings");
+  document
+    .getElementById("homePage")
+    .classList.add("hidden");
+  document
+    .getElementById("decksPage")
+    .classList.add("hidden");
+  document
+    .getElementById("deckView")
+    .classList.add("hidden");
+  document
+    .getElementById("studyView")
+    .classList.add("hidden");
+  setActiveNav("settings");
 }
 /* =========================================================
-   DECKS
+   GREETING
 ========================================================= */
-function renderDecks(){
-  const user = getUser();
-  if(!user) return;
-  const container =
-    document.getElementById("deckList");
-  if(user.decks.length === 0){
-    container.innerHTML = `
-      <div class="empty">
-        <div class="emoji">🌱</div>
-        <strong>Your study space is empty.</strong>
-        <p>
-          Create your first deck and start learning.
-        </p>
-        <button
-          class="secondary-btn"
-          onclick="openCreateDeck()"
-        >
-          + Create a Deck
-        </button>
-      </div>
-    `;
-    return;
+function updateGreeting(){
+  const hour =
+    new Date().getHours();
+  let text = "Good day!";
+  if(hour < 12){
+    text = "Good morning! ☀️";
+  }else if(hour < 18){
+    text = "Good afternoon! 🌤️";
+  }else{
+    text = "Good evening! 🌙";
   }
-  container.innerHTML =
-    user.decks.slice(0,4)
-      .map(deckHTML)
-      .join("");
+  document
+    .getElementById("greetingText")
+    .textContent = text;
 }
-function renderAllDecks(){
-  const user = getUser();
-  const container =
-    document.getElementById("allDeckList");
-  if(!user || user.decks.length === 0){
-    container.innerHTML = `
-      <div class="empty">
-        <div class="emoji">📚</div>
-        <strong>No decks yet.</strong>
-        <p>Create one when you're ready.</p>
-      </div>
-    `;
-    return;
-  }
-  container.innerHTML =
-    user.decks.map(deckHTML).join("");
-}
-function deckHTML(deck){
+/* =========================================================
+   DECK RENDERING
+========================================================= */
+function deckMarkup(deck){
   return `
-    <div
+    <button
+      type="button"
       class="deck-card"
-      onclick="openDeck('${deck.id}')"
+      data-deck-id="${deck.id}"
     >
-      <div class="deck-main">
+      <div class="deck-card-main">
         <div class="deck-icon">
-          ${deck.icon || "📚"}
+          ${escapeHTML(deck.icon || "📚")}
         </div>
         <div class="deck-info">
-          <h3>
+          <strong>
             ${escapeHTML(deck.name)}
-          </h3>
+          </strong>
           <span>
             ${deck.cards.length}
             ${deck.cards.length === 1 ? "card" : "cards"}
           </span>
         </div>
       </div>
-      <div class="arrow">
+      <div class="deck-arrow">
         ›
       </div>
-    </div>
+    </button>
   `;
 }
-function openCreateDeck(){
+function attachDeckButtons(container){
+  container
+    .querySelectorAll("[data-deck-id]")
+    .forEach(function(button){
+      button.addEventListener(
+        "click",
+        function(){
+          openDeck(button.dataset.deckId);
+        }
+      );
+    });
+}
+function renderHomeDecks(){
+  const user =
+    getCurrentUser();
+  const container =
+    document.getElementById("homeDeckList");
+  if(!user){
+    container.innerHTML = "";
+    return;
+  }
+  if(user.decks.length === 0){
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-emoji">
+          🌱
+        </div>
+        <strong>
+          Your study space is empty.
+        </strong>
+        <p>
+          Create your first deck and start learning.
+        </p>
+        <button
+          id="emptyCreateDeckButton"
+          class="secondary-button"
+          type="button"
+        >
+          + Create a Deck
+        </button>
+      </div>
+    `;
+    document
+      .getElementById("emptyCreateDeckButton")
+      .addEventListener(
+        "click",
+        openCreateDeckModal
+      );
+    return;
+  }
+  container.innerHTML =
+    user.decks
+      .slice(0,4)
+      .map(deckMarkup)
+      .join("");
+  attachDeckButtons(container);
+}
+function renderAllDecks(){
+  const user =
+    getCurrentUser();
+  const container =
+    document.getElementById("allDeckList");
+  if(!user) return;
+  if(user.decks.length === 0){
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-emoji">
+          📚
+        </div>
+        <strong>
+          No decks yet.
+        </strong>
+        <p>
+          Create one whenever you're ready.
+        </p>
+        <button
+          id="emptyDeckCreateButton"
+          class="secondary-button"
+          type="button"
+        >
+          + Create a Deck
+        </button>
+      </div>
+    `;
+    document
+      .getElementById("emptyDeckCreateButton")
+      .addEventListener(
+        "click",
+        openCreateDeckModal
+      );
+    return;
+  }
+  container.innerHTML =
+    user.decks
+      .map(deckMarkup)
+      .join("");
+  attachDeckButtons(container);
+}
+/* =========================================================
+   CREATE DECK
+========================================================= */
+function openCreateDeckModal(){
+  editingCardId = null;
   openModal(
     "New Deck",
     `
-      <div class="field">
-        <label>Deck Name</label>
+      <div class="form-group">
+        <label for="newDeckName">
+          Deck Name
+        </label>
         <input
           id="newDeckName"
-          placeholder="e.g. Philosophy"
+          class="form-input"
+          type="text"
           maxlength="50"
+          placeholder="e.g. Philosophy"
         >
       </div>
-      <div class="field">
-        <label>Choose an icon</label>
+      <div class="form-group">
+        <label for="newDeckIcon">
+          Choose an icon
+        </label>
         <input
           id="newDeckIcon"
-          value="📚"
+          class="form-input"
+          type="text"
           maxlength="2"
+          value="📚"
         >
       </div>
       <div class="modal-actions">
         <button
-          class="secondary-btn"
-          onclick="closeModal()"
+          id="cancelDeckButton"
+          class="secondary-button"
+          type="button"
         >
           Cancel
         </button>
         <button
-          class="primary-btn"
-          onclick="createDeck()"
+          id="saveDeckButton"
+          class="primary-button"
+          type="button"
         >
-          Create
+          Save Deck
         </button>
       </div>
     `
   );
+  document
+    .getElementById("cancelDeckButton")
+    .addEventListener(
+      "click",
+      closeModal
+    );
+  document
+    .getElementById("saveDeckButton")
+    .addEventListener(
+      "click",
+      createDeck
+    );
+  setTimeout(function(){
+    document
+      .getElementById("newDeckName")
+      .focus();
+  },50);
 }
 function createDeck(){
   const name =
-    document.getElementById("newDeckName")
-      .value.trim();
+    document
+      .getElementById("newDeckName")
+      .value
+      .trim();
   const icon =
-    document.getElementById("newDeckIcon")
-      .value.trim() || "📚";
+    document
+      .getElementById("newDeckIcon")
+      .value
+      .trim() || "📚";
   if(!name){
-    alert("Give your deck a name 🌷");
+    alert("Please give your deck a name. 🌷");
     return;
   }
-  const user = getUser();
+  const user =
+    getCurrentUser();
   user.decks.push({
-    id:uid(),
+    id:createId(),
     name:name,
     icon:icon,
     cards:[]
   });
   saveAccounts();
   closeModal();
-  renderDecks();
+  renderHomeDecks();
   renderAllDecks();
-  showToast("Deck created 🌱");
+  showToast("Deck saved 🌱");
 }
 /* =========================================================
    OPEN DECK
 ========================================================= */
 function openDeck(deckId){
-  const user = getUser();
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === deckId);
+    user.decks.find(function(item){
+      return item.id === deckId;
+    });
   if(!deck) return;
   currentDeckId = deckId;
-  document.getElementById("app")
+  document
+    .getElementById("app")
     .classList.add("hidden");
-  document.getElementById("deckView")
+  document
+    .getElementById("studyView")
+    .classList.add("hidden");
+  document
+    .getElementById("deckView")
     .classList.remove("hidden");
-  document.getElementById("deckViewTitle")
+  document
+    .getElementById("deckTitle")
     .textContent = deck.name;
-  document.getElementById("deckViewSubtitle")
+  updateDeckSubtitle(deck);
+  renderCards();
+}
+function updateDeckSubtitle(deck){
+  document
+    .getElementById("deckSubtitle")
     .textContent =
       `${deck.cards.length} ${
         deck.cards.length === 1 ? "card" : "cards"
       }`;
-  renderCards();
 }
+/* =========================================================
+   CARD RENDERING
+========================================================= */
 function renderCards(){
-  const user = getUser();
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === currentDeckId);
+    user.decks.find(function(item){
+      return item.id === currentDeckId;
+    });
   const container =
     document.getElementById("cardList");
-  if(!deck || deck.cards.length === 0){
+  if(!deck){
+    container.innerHTML = "";
+    return;
+  }
+  updateDeckSubtitle(deck);
+  if(deck.cards.length === 0){
     container.innerHTML = `
-      <div class="empty">
-        <div class="emoji">🃏</div>
-        <strong>No flashcards yet.</strong>
+      <div class="empty-state">
+        <div class="empty-emoji">
+          🃏
+        </div>
+        <strong>
+          No flashcards yet.
+        </strong>
         <p>
           Add your first question and answer.
         </p>
+        <button
+          id="emptyAddCardButton"
+          class="secondary-button"
+          type="button"
+        >
+          + Add a Flashcard
+        </button>
       </div>
     `;
+    document
+      .getElementById("emptyAddCardButton")
+      .addEventListener(
+        "click",
+        openCreateCardModal
+      );
     return;
   }
   container.innerHTML =
-    deck.cards.map(card => `
-      <div class="card-row">
-        <div>
-          <strong>
-            ${escapeHTML(card.front)}
-          </strong>
-          <small>
-            ${escapeHTML(card.back)}
-          </small>
-        </div>
-        <div class="card-row-actions">
-          <button
-            class="small-btn"
-            onclick="event.stopPropagation(); editCard('${card.id}')"
-          >
-            ✏️
-          </button>
-          <button
-            class="small-btn delete-btn"
-            onclick="event.stopPropagation(); deleteCard('${card.id}')"
-          >
-            🗑️
-          </button>
-        </div>
-      </div>
-    `).join("");
+    deck.cards
+      .map(function(card){
+        return `
+          <div class="card-item">
+            <div class="card-copy">
+              <strong>
+                ${escapeHTML(card.front)}
+              </strong>
+              <span>
+                ${escapeHTML(card.back)}
+              </span>
+            </div>
+            <div class="card-actions">
+              <button
+                type="button"
+                class="mini-button edit-card-button"
+                data-card-id="${card.id}"
+                aria-label="Edit card"
+              >
+                ✏️
+              </button>
+              <button
+                type="button"
+                class="mini-button delete delete-card-button"
+                data-card-id="${card.id}"
+                aria-label="Delete card"
+              >
+                🗑️
+              </button>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+  container
+    .querySelectorAll(".edit-card-button")
+    .forEach(function(button){
+      button.addEventListener(
+        "click",
+        function(){
+          editCard(button.dataset.cardId);
+        }
+      );
+    });
+  container
+    .querySelectorAll(".delete-card-button")
+    .forEach(function(button){
+      button.addEventListener(
+        "click",
+        function(){
+          deleteCard(button.dataset.cardId);
+        }
+      );
+    });
 }
 /* =========================================================
-   CARDS
+   CREATE CARD
 ========================================================= */
-function openCreateCard(){
+function openCreateCardModal(){
   editingCardId = null;
   openModal(
     "New Flashcard",
-    cardFormHTML()
+    cardFormMarkup()
   );
+  document
+    .getElementById("cancelCardButton")
+    .addEventListener(
+      "click",
+      closeModal
+    );
+  document
+    .getElementById("saveCardButton")
+    .addEventListener(
+      "click",
+      saveCard
+    );
+  setTimeout(function(){
+    document
+      .getElementById("cardFront")
+      .focus();
+  },50);
 }
-function cardFormHTML(card = {}){
+function cardFormMarkup(card){
+  card = card || {};
   return `
-    <div class="field">
-      <label>Question</label>
+    <div class="form-group">
+      <label for="cardFront">
+        Question
+      </label>
       <textarea
         id="cardFront"
+        class="form-textarea"
         maxlength="400"
         placeholder="e.g. What is epistemology?"
       >${escapeHTML(card.front || "")}</textarea>
     </div>
-    <div class="field">
-      <label>Answer</label>
+    <div class="form-group">
+      <label for="cardBack">
+        Answer
+      </label>
       <textarea
         id="cardBack"
+        class="form-textarea"
         maxlength="400"
         placeholder="e.g. The study of knowledge."
       >${escapeHTML(card.back || "")}</textarea>
     </div>
     <div class="modal-actions">
       <button
-        class="secondary-btn"
-        onclick="closeModal()"
+        id="cancelCardButton"
+        class="secondary-button"
+        type="button"
       >
         Cancel
       </button>
       <button
-        class="primary-btn"
-        onclick="saveCard()"
+        id="saveCardButton"
+        class="primary-button"
+        type="button"
       >
         Save Card
       </button>
@@ -1441,218 +2041,316 @@ function cardFormHTML(card = {}){
 }
 function saveCard(){
   const front =
-    document.getElementById("cardFront")
-      .value.trim();
+    document
+      .getElementById("cardFront")
+      .value
+      .trim();
   const back =
-    document.getElementById("cardBack")
-      .value.trim();
+    document
+      .getElementById("cardBack")
+      .value
+      .trim();
   if(!front || !back){
-    alert("Please fill in both sides of the card.");
+    alert("Please fill in both the question and answer.");
     return;
   }
-  const user = getUser();
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === currentDeckId);
+    user.decks.find(function(item){
+      return item.id === currentDeckId;
+    });
+  if(!deck) return;
   if(editingCardId){
     const card =
-      deck.cards.find(c => c.id === editingCardId);
+      deck.cards.find(function(item){
+        return item.id === editingCardId;
+      });
     if(card){
       card.front = front;
       card.back = back;
     }
   }else{
     deck.cards.push({
-      id:uid(),
+      id:createId(),
       front:front,
       back:back,
       known:false,
-      reviews:0
+      reviews:0,
+      lastReviewed:null
     });
   }
   saveAccounts();
+  /*
+    IMPORTANT:
+    The modal is closed AFTER saving.
+    Therefore the typing fields disappear
+    completely instead of staying on screen.
+  */
   closeModal();
   renderCards();
-  document.getElementById("deckViewSubtitle")
-    .textContent =
-      `${deck.cards.length} ${
-        deck.cards.length === 1 ? "card" : "cards"
-      }`;
-  renderDecks();
-  showToast("Card saved 🌷");
+  renderHomeDecks();
+  renderAllDecks();
+  showToast(
+    editingCardId
+      ? "Card updated ✨"
+      : "Card saved 🌷"
+  );
+  editingCardId = null;
 }
 function editCard(cardId){
-  const user = getUser();
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === currentDeckId);
+    user.decks.find(function(item){
+      return item.id === currentDeckId;
+    });
+  if(!deck) return;
   const card =
-    deck.cards.find(c => c.id === cardId);
+    deck.cards.find(function(item){
+      return item.id === cardId;
+    });
   if(!card) return;
   editingCardId = cardId;
   openModal(
     "Edit Flashcard",
-    cardFormHTML(card)
+    cardFormMarkup(card)
   );
+  document
+    .getElementById("cancelCardButton")
+    .addEventListener(
+      "click",
+      closeModal
+    );
+  document
+    .getElementById("saveCardButton")
+    .addEventListener(
+      "click",
+      saveCard
+    );
 }
 function deleteCard(cardId){
-  const yes =
-    confirm("Delete this flashcard?");
-  if(!yes) return;
-  const user = getUser();
+  const confirmed =
+    confirm(
+      "Delete this flashcard?"
+    );
+  if(!confirmed) return;
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === currentDeckId);
+    user.decks.find(function(item){
+      return item.id === currentDeckId;
+    });
+  if(!deck) return;
   deck.cards =
-    deck.cards.filter(c => c.id !== cardId);
+    deck.cards.filter(function(card){
+      return card.id !== cardId;
+    });
   saveAccounts();
   renderCards();
-  document.getElementById("deckViewSubtitle")
-    .textContent =
-      `${deck.cards.length} ${
-        deck.cards.length === 1 ? "card" : "cards"
-      }`;
-  renderDecks();
+  renderHomeDecks();
+  renderAllDecks();
   showToast("Card removed");
 }
 /* =========================================================
    STUDY
 ========================================================= */
-function studyRandomDeck(){
-  const user = getUser();
+function studyNow(){
+  const user =
+    getCurrentUser();
   if(!user || user.decks.length === 0){
-    openCreateDeck();
+    alert(
+      "Create a deck and add some flashcards first. 🌱"
+    );
     return;
   }
-  const decksWithCards =
-    user.decks.filter(d => d.cards.length > 0);
-  if(decksWithCards.length === 0){
-    alert("Add some flashcards first 🌱");
+  const availableDecks =
+    user.decks.filter(function(deck){
+      return deck.cards.length > 0;
+    });
+  if(availableDecks.length === 0){
+    alert(
+      "Add at least one flashcard before studying. 🌷"
+    );
     return;
   }
   const deck =
-    decksWithCards[
+    availableDecks[
       Math.floor(
-        Math.random() * decksWithCards.length
+        Math.random() * availableDecks.length
       )
     ];
   startStudy(deck.id);
 }
 function startStudy(deckId){
-  const user = getUser();
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === deckId);
+    user.decks.find(function(item){
+      return item.id === deckId;
+    });
   if(!deck || deck.cards.length === 0){
-    alert("This deck has no cards yet.");
+    alert("This deck doesn't have any cards yet.");
     return;
   }
   studyDeckId = deckId;
-  studyCards = [...deck.cards];
+  studyCards =
+    deck.cards.map(function(card){
+      return {...card};
+    });
   studyIndex = 0;
-  studyFlipped = false;
-  document.getElementById("app")
+  document
+    .getElementById("app")
     .classList.add("hidden");
-  document.getElementById("deckView")
+  document
+    .getElementById("deckView")
     .classList.add("hidden");
-  document.getElementById("studyView")
+  document
+    .getElementById("studyView")
     .classList.remove("hidden");
-  document.getElementById("studyDeckName")
+  document
+    .getElementById("studyDeckName")
     .textContent = deck.name;
   renderStudyCard();
 }
 function renderStudyCard(){
-  const area =
-    document.getElementById("studyCardArea");
+  const content =
+    document.getElementById("studyContent");
   if(studyIndex >= studyCards.length){
-    area.innerHTML = `
-      <div class="finish-message">
-        <div class="big">🌷</div>
-        <h2>Nice work!</h2>
+    document
+      .getElementById("studyCount")
+      .textContent =
+        `${studyCards.length} / ${studyCards.length}`;
+    content.innerHTML = `
+      <div class="study-finished">
+        <div class="big">
+          🌷
+        </div>
+        <h2>
+          Nice work!
+        </h2>
         <p>
           You finished this study session.
         </p>
         <button
-          class="primary-btn"
-          onclick="exitStudy()"
+          id="studyDoneButton"
+          class="primary-button"
+          type="button"
         >
           Done
         </button>
       </div>
     `;
+    document
+      .getElementById("studyDoneButton")
+      .addEventListener(
+        "click",
+        exitStudy
+      );
     return;
   }
-  const card = studyCards[studyIndex];
-  studyFlipped = false;
-  document.getElementById("studyProgress")
+  const card =
+    studyCards[studyIndex];
+  document
+    .getElementById("studyCount")
     .textContent =
       `${studyIndex + 1} / ${studyCards.length}`;
-  area.innerHTML = `
+  content.innerHTML = `
     <div
-      class="flashcard"
-      onclick="flipStudyCard()"
+      id="flashcard"
+      class="flashcard-area"
     >
-      <div
-        id="studyFlip"
-        class="flashcard-inner"
-      >
-        <div class="face front">
-          <div class="face-label">
-            Question
+      <div class="flashcard">
+        <div class="flashcard-inner">
+          <div class="card-face question">
+            <div class="face-label">
+              Question
+            </div>
+            <div class="face-text">
+              ${escapeHTML(card.front)}
+            </div>
+            <div class="face-hint">
+              tap to reveal ♡
+            </div>
           </div>
-          <div class="face-text">
-            ${escapeHTML(card.front)}
-          </div>
-          <div class="tap-hint">
-            tap to reveal ♡
-          </div>
-        </div>
-        <div class="face back">
-          <div class="face-label">
-            Answer
-          </div>
-          <div class="face-text">
-            ${escapeHTML(card.back)}
-          </div>
-          <div class="tap-hint">
-            tap to flip back
+          <div class="card-face answer">
+            <div class="face-label">
+              Answer
+            </div>
+            <div class="face-text">
+              ${escapeHTML(card.back)}
+            </div>
+            <div class="face-hint">
+              tap to flip back
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="study-actions">
       <button
-        class="review-btn"
-        onclick="rateCard(false)"
+        id="reviewCardButton"
+        class="study-action review"
+        type="button"
       >
         ↻ Need Review
       </button>
       <button
-        class="know-btn"
-        onclick="rateCard(true)"
+        id="knownCardButton"
+        class="study-action known"
+        type="button"
       >
         ✓ Got It
       </button>
     </div>
   `;
+  document
+    .querySelector(".flashcard")
+    .addEventListener(
+      "click",
+      flipCurrentCard
+    );
+  document
+    .getElementById("reviewCardButton")
+    .addEventListener(
+      "click",
+      function(){
+        rateCurrentCard(false);
+      }
+    );
+  document
+    .getElementById("knownCardButton")
+    .addEventListener(
+      "click",
+      function(){
+        rateCurrentCard(true);
+      }
+    );
 }
-function flipStudyCard(){
+function flipCurrentCard(){
   const card =
     document.querySelector(".flashcard");
   if(!card) return;
   card.classList.toggle("flipped");
-  studyFlipped =
-    card.classList.contains("flipped");
 }
-function rateCard(known){
-  const user = getUser();
+function rateCurrentCard(known){
+  const user =
+    getCurrentUser();
   const deck =
-    user.decks.find(d => d.id === studyDeckId);
+    user.decks.find(function(item){
+      return item.id === studyDeckId;
+    });
   if(!deck) return;
+  const studiedCard =
+    studyCards[studyIndex];
   const original =
-    deck.cards.find(
-      c => c.id === studyCards[studyIndex].id
-    );
+    deck.cards.find(function(card){
+      return card.id === studiedCard.id;
+    });
   if(original){
     original.known = known;
     original.reviews =
-      (original.reviews || 0) + 1;
+      Number(original.reviews || 0) + 1;
     original.lastReviewed =
       new Date().toISOString();
   }
@@ -1661,9 +2359,11 @@ function rateCard(known){
   renderStudyCard();
 }
 function exitStudy(){
-  document.getElementById("studyView")
+  document
+    .getElementById("studyView")
     .classList.add("hidden");
-  document.getElementById("app")
+  document
+    .getElementById("app")
     .classList.remove("hidden");
   showHome();
 }
@@ -1671,57 +2371,79 @@ function exitStudy(){
    MODAL
 ========================================================= */
 function openModal(title,content){
-  document.getElementById("modalTitle")
+  document
+    .getElementById("modalTitle")
     .textContent = title;
-  document.getElementById("modalContent")
+  document
+    .getElementById("modalContent")
     .innerHTML = content;
-  document.getElementById("modalBg")
+  document
+    .getElementById("modalOverlay")
     .classList.remove("hidden");
 }
 function closeModal(){
-  document.getElementById("modalBg")
+  document
+    .getElementById("modalOverlay")
     .classList.add("hidden");
+  document
+    .getElementById("modalContent")
+    .innerHTML = "";
+  editingCardId = null;
 }
 /* =========================================================
    DARK MODE
 ========================================================= */
 function toggleDarkMode(){
-  document.body.classList.toggle("dark");
-  const enabled =
-    document.body.classList.contains("dark");
+  document
+    .body
+    .classList.toggle("dark");
   localStorage.setItem(
-    "flashy_dark_mode",
-    enabled ? "1" : "0"
+    DARK_KEY,
+    document.body.classList.contains("dark")
+      ? "1"
+      : "0"
+  );
+  showToast(
+    document.body.classList.contains("dark")
+      ? "Dark mode on 🌙"
+      : "Light mode on ☀️"
   );
 }
 /* =========================================================
-   BACKUP
+   BACKUP EXPORT
 ========================================================= */
-function downloadBackup(){
-  const user = getUser();
+function exportBackup(){
+  const user =
+    getCurrentUser();
   if(!user) return;
-  const data = JSON.stringify(
-    user,
-    null,
-    2
-  );
+  const backup = {
+    app:"FLASHY",
+    version:2,
+    exportedAt:new Date().toISOString(),
+    account:user
+  };
   const blob =
     new Blob(
-      [data],
+      [JSON.stringify(backup,null,2)],
       {type:"application/json"}
     );
   const url =
     URL.createObjectURL(blob);
-  const a =
+  const link =
     document.createElement("a");
-  a.href = url;
-  a.download =
-    `flashy-${user.username}-backup.json`;
-  a.click();
+  link.href = url;
+  link.download =
+    `FLASHY-${user.username}-backup.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
   URL.revokeObjectURL(url);
-  showToast("Backup saved 💾");
+  showToast("Backup downloaded 💾");
 }
-function restoreBackup(event){
+/* =========================================================
+   BACKUP IMPORT
+========================================================= */
+function importBackup(event){
   const file =
     event.target.files[0];
   if(!file) return;
@@ -1731,51 +2453,259 @@ function restoreBackup(event){
     try{
       const data =
         JSON.parse(reader.result);
+      const imported =
+        data.account || data;
       if(
-        !data.username ||
-        !Array.isArray(data.decks)
+        !imported.username ||
+        !Array.isArray(imported.decks)
       ){
-        throw new Error();
+        throw new Error(
+          "Invalid backup"
+        );
       }
-      const yes =
+      const confirmed =
         confirm(
           "Restore this backup? Your current account with the same username will be replaced."
         );
-      if(!yes) return;
-      accounts[data.username] = data;
+      if(!confirmed){
+        event.target.value = "";
+        return;
+      }
+      accounts[imported.username] =
+        imported;
       saveAccounts();
-      currentUser = data.username;
+      currentUsername =
+        imported.username;
       localStorage.setItem(
         SESSION_KEY,
-        currentUser
+        currentUsername
       );
+      event.target.value = "";
       enterApp();
       showToast("Backup restored 🌱");
-    }catch{
+    }catch(error){
+      console.error(error);
       alert(
-        "That backup file doesn't look valid."
+        "That file is not a valid FLASHY backup."
       );
+      event.target.value = "";
     }
   };
   reader.readAsText(file);
 }
 /* =========================================================
-   STARTUP
+   EVENT LISTENERS
 ========================================================= */
-function startup(){
-  const dark =
-    localStorage.getItem("flashy_dark_mode");
-  if(dark === "1"){
-    document.body.classList.add("dark");
-  }
-  if(currentUser && accounts[currentUser]){
-    enterApp();
-  }else{
-    document.getElementById("authScreen")
-      .classList.remove("hidden");
+function setupEvents(){
+  /* AUTH */
+  document
+    .getElementById("loginButton")
+    .addEventListener(
+      "click",
+      login
+    );
+  document
+    .getElementById("createAccountButton")
+    .addEventListener(
+      "click",
+      createAccount
+    );
+  document
+    .getElementById("showSignupButton")
+    .addEventListener(
+      "click",
+      showSignupPanel
+    );
+  document
+    .getElementById("showLoginButton")
+    .addEventListener(
+      "click",
+      showLoginPanel
+    );
+  /* HOME */
+  document
+    .getElementById("settingsTopButton")
+    .addEventListener(
+      "click",
+      showSettings
+    );
+  document
+    .getElementById("studyNowButton")
+    .addEventListener(
+      "click",
+      studyNow
+    );
+  document
+    .getElementById("newDeckHomeButton")
+    .addEventListener(
+      "click",
+      openCreateDeckModal
+    );
+  /* NAV */
+  document
+    .getElementById("homeNavButton")
+    .addEventListener(
+      "click",
+      showHome
+    );
+  document
+    .getElementById("decksNavButton")
+    .addEventListener(
+      "click",
+      showDecks
+    );
+  document
+    .getElementById("settingsNavButton")
+    .addEventListener(
+      "click",
+      showSettings
+    );
+  /* DECKS */
+  document
+    .getElementById("newDeckButton")
+    .addEventListener(
+      "click",
+      openCreateDeckModal
+    );
+  /* SETTINGS */
+  document
+    .getElementById("settingsBackButton")
+    .addEventListener(
+      "click",
+      showHome
+    );
+  document
+    .getElementById("darkModeButton")
+    .addEventListener(
+      "click",
+      toggleDarkMode
+    );
+  document
+    .getElementById("exportButton")
+    .addEventListener(
+      "click",
+      exportBackup
+    );
+  document
+    .getElementById("importButton")
+    .addEventListener(
+      "click",
+      function(){
+        document
+          .getElementById("restoreInput")
+          .click();
+      }
+    );
+  document
+    .getElementById("restoreInput")
+    .addEventListener(
+      "change",
+      importBackup
+    );
+  document
+    .getElementById("logoutButton")
+    .addEventListener(
+      "click",
+      logout
+    );
+  document
+    .getElementById("deleteAccountButton")
+    .addEventListener(
+      "click",
+      deleteAccount
+    );
+  /* DECK VIEW */
+  document
+    .getElementById("deckBackButton")
+    .addEventListener(
+      "click",
+      showDecks
+    );
+  document
+    .getElementById("addCardButton")
+    .addEventListener(
+      "click",
+      openCreateCardModal
+    );
+  /* STUDY */
+  document
+    .getElementById("studyBackButton")
+    .addEventListener(
+      "click",
+      exitStudy
+    );
+  /* MODAL */
+  document
+    .getElementById("modalCloseButton")
+    .addEventListener(
+      "click",
+      closeModal
+    );
+  document
+    .getElementById("modalOverlay")
+    .addEventListener(
+      "click",
+      function(event){
+        if(
+          event.target ===
+          document.getElementById("modalOverlay")
+        ){
+          closeModal();
+        }
+      }
+    );
+  /* ENTER KEY FOR LOGIN */
+  document
+    .getElementById("loginPassword")
+    .addEventListener(
+      "keydown",
+      function(event){
+        if(event.key === "Enter"){
+          login();
+        }
+      }
+    );
+  /* ESCAPE CLOSES MODAL */
+  document.addEventListener(
+    "keydown",
+    function(event){
+      if(event.key === "Escape"){
+        closeModal();
+      }
+    }
+  );
+}
+/* =========================================================
+   LOAD SAVED THEME
+========================================================= */
+function loadTheme(){
+  if(
+    localStorage.getItem(DARK_KEY) === "1"
+  ){
+    document
+      .body
+      .classList.add("dark");
   }
 }
-startup();
+/* =========================================================
+   START APP
+========================================================= */
+function startApp(){
+  setupEvents();
+  loadTheme();
+  if(
+    currentUsername &&
+    accounts[currentUsername]
+  ){
+    enterApp();
+  }else{
+    document
+      .getElementById("authScreen")
+      .classList.remove("hidden");
+    showLoginPanel();
+  }
+}
+startApp();
 </script>
 </body>
 </html>
