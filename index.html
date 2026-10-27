@@ -5,1318 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#eaf7ec">
 <title>Clean Quest — Play Clean. Rank Up.</title>
-
 <style>
-:root{
-  --ink:#20382d;
-  --muted:#708279;
-  --green:#287b4c;
-  --green2:#48a96d;
-  --mint:#eaf7ec;
-  --pale:#f7fbf6;
-  --line:#d9e9dc;
-  --gold:#ffd978;
-  --red:#df6856;
-  --shadow:0 18px 50px rgba(42,91,58,.12);
-}
-
-*{box-sizing:border-box}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 8% 5%,#ffffff 0,transparent 28%),
-    linear-gradient(145deg,#edf9ef,#f8fbf6 55%,#e5f3e8);
-}
-
-button,input{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-}
-
-.app{
-  width:min(1120px,100%);
-  margin:auto;
-  padding:18px 16px 45px;
-}
-
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:950;
-  letter-spacing:-.04em;
-  font-size:clamp(20px,4vw,28px);
-}
-
-.brandmark{
-  width:45px;
-  height:45px;
-  border-radius:15px;
-  background:#ccebd1;
-  display:grid;
-  place-items:center;
-  font-size:25px;
-}
-
-.brand small{
-  display:block;
-  font-size:9px;
-  letter-spacing:.16em;
-  color:var(--muted);
-  margin-top:1px;
-}
-
-.screen{
-  display:none;
-}
-
-.screen.active{
-  display:block;
-  animation:fade .22s ease;
-}
-
-@keyframes fade{
-  from{opacity:.4;transform:translateY(5px)}
-  to{opacity:1;transform:none}
-}
-
-.card{
-  background:#ffffffdf;
-  border:1px solid var(--line);
-  border-radius:25px;
-  box-shadow:var(--shadow);
-}
-
-/* =========================
-   LOGIN
-========================= */
-
-.login-layout{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:18px;
-}
-
-.hero{
-  min-height:455px;
-  padding:clamp(26px,5vw,52px);
-  background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);
-  color:white;
-  position:relative;
-  overflow:hidden;
-}
-
-.eyebrow{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-weight:900;
-  opacity:.8;
-}
-
-.hero h1{
-  font-size:clamp(40px,6vw,66px);
-  line-height:.98;
-  letter-spacing:-.065em;
-  margin:14px 0 16px;
-}
-
-.hero p{
-  max-width:400px;
-  line-height:1.65;
-  color:#e4f5e7;
-  font-size:15px;
-}
-
-.hero-chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:24px;
-}
-
-.hero-chips span{
-  padding:8px 11px;
-  border-radius:999px;
-  background:#ffffff1b;
-  border:1px solid #ffffff2d;
-  font-size:11px;
-  font-weight:800;
-}
-
-.hero-art{
-  position:absolute;
-  right:25px;
-  bottom:20px;
-  font-size:82px;
-  transform:rotate(-7deg);
-}
-
-.form-card{
-  padding:clamp(23px,4vw,36px);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.form-card h2{
-  margin:0;
-  font-size:27px;
-  letter-spacing:-.04em;
-}
-
-.sub{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.55;
-  margin:8px 0 24px;
-}
-
-.tabs{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  background:#edf5ee;
-  padding:4px;
-  border-radius:13px;
-  margin-bottom:20px;
-}
-
-.tab{
-  border:0;
-  background:transparent;
-  border-radius:10px;
-  padding:11px;
-  color:var(--muted);
-  font-size:13px;
-  font-weight:850;
-}
-
-.tab.active{
-  background:white;
-  color:var(--green);
-  box-shadow:0 2px 8px #274b3510;
-}
-
-label{
-  display:block;
-  font-size:12px;
-  font-weight:850;
-  margin:12px 0 7px;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border:1px solid #d9e7db;
-  border-radius:12px;
-  background:#fbfefb;
-  outline:none;
-  color:var(--ink);
-}
-
-input:focus{
-  border-color:#5bb77a;
-  box-shadow:0 0 0 3px #5bb77a22;
-}
-
-.btn{
-  border:0;
-  border-radius:13px;
-  padding:13px 17px;
-  background:var(--green);
-  color:white;
-  font-weight:900;
-  box-shadow:0 6px 0 #1e5c39;
-  transition:.12s;
-}
-
-.btn:active{
-  transform:translateY(3px);
-  box-shadow:0 3px 0 #1e5c39;
-}
-
-.btn.full{
-  width:100%;
-  margin-top:18px;
-}
-
-.btn.light{
-  background:#e7f5e9;
-  color:var(--green);
-  box-shadow:0 5px 0 #c7e4cc;
-}
-
-.btn.white{
-  background:white;
-  color:var(--green);
-  border:1px solid var(--line);
-  box-shadow:none;
-}
-
-.btn.danger{
-  background:#fff0ed;
-  color:#b24b3d;
-  border:1px solid #f1d4ce;
-  box-shadow:none;
-}
-
-.msg{
-  min-height:18px;
-  font-size:12px;
-  font-weight:750;
-  color:#b84b3d;
-  margin-top:8px;
-}
-
-.micro{
-  color:#809085;
-  font-size:10px;
-  line-height:1.55;
-  margin-top:14px;
-}
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.dash-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:8px 0 18px;
-}
-
-.welcome{
-  font-size:clamp(24px,4vw,34px);
-  font-weight:950;
-  letter-spacing:-.05em;
-}
-
-.welcome span{
-  color:var(--green);
-}
-
-.nav{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-}
-
-.nav button{
-  border:1px solid var(--line);
-  background:#ffffffd0;
-  color:var(--green);
-  border-radius:999px;
-  padding:10px 13px;
-  font-size:11px;
-  font-weight:850;
-}
-
-.nav button.active{
-  background:var(--green);
-  color:white;
-}
-
-.profile-btn{
-  background:#e7f5e9 !important;
-  border-color:#cce5d0 !important;
-}
-
-/* =========================
-   STATS
-========================= */
-
-.stat-row{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:17px;
-}
-
-.stat{
-  padding:17px 18px;
-}
-
-.stat .label{
-  font-size:9px;
-  letter-spacing:.11em;
-  text-transform:uppercase;
-  color:var(--muted);
-  font-weight:900;
-}
-
-.stat strong{
-  display:block;
-  font-size:28px;
-  letter-spacing:-.04em;
-  margin-top:6px;
-}
-
-.stat em{
-  font-size:10px;
-  font-style:normal;
-  color:var(--green);
-  font-weight:800;
-}
-
-/* =========================
-   GAME
-========================= */
-
-.game-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1.55fr) minmax(245px,.75fr);
-  gap:16px;
-}
-
-.game-card{
-  padding:17px;
-}
-
-.game-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:12px;
-}
-
-.game-head h2{
-  font-size:23px;
-  margin:0;
-  letter-spacing:-.04em;
-}
-
-.game-head p{
-  margin:5px 0 0;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.timer{
-  flex-shrink:0;
-  background:#fff2da;
-  color:#8a5a07;
-  border-radius:13px;
-  padding:11px 14px;
-  font-size:20px;
-  font-weight:950;
-  font-variant-numeric:tabular-nums;
-}
-
-.timer.danger{
-  background:#ffe3dd;
-  color:#ac3929;
-}
-
-/* =========================
-   BIGGER GAME AREA
-========================= */
-
-.scene{
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  height:clamp(460px,58vw,570px);
-  min-height:460px;
-  background:
-    linear-gradient(#d9f0ed 0 57%,#d7e6d3 57% 60%,#e9d4b4 60%);
-  border:1px solid #c8dfd0;
-}
-
-/* classroom decoration */
-
-.window{
-  position:absolute;
-  top:22px;
-  left:24px;
-  width:120px;
-  height:105px;
-  border:8px solid #fffdf0;
-  background:linear-gradient(135deg,#a8dfe0,#e4faf3);
-  box-shadow:0 3px 0 #bbd7c9;
-}
-
-.window:before,
-.window:after{
-  content:"";
-  position:absolute;
-  background:#fffdf0;
-}
-
-.window:before{
-  width:5px;
-  height:100%;
-  left:48%;
-  top:0;
-}
-
-.window:after{
-  height:5px;
-  width:100%;
-  top:48%;
-  left:0;
-}
-
-.board{
-  position:absolute;
-  top:24px;
-  right:25px;
-  width:39%;
-  height:86px;
-  background:#438468;
-  border:8px solid #d2aa7d;
-  border-radius:5px;
-  color:#eaffec;
-  text-align:center;
-  padding:14px 5px;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.05em;
-  box-shadow:0 5px 0 #b58a61;
-}
-
-.floorline{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:41%;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #e4c9a8 0 59px,
-      #d7b995 60px 62px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 44px,
-      #d7b995 45px 47px
-    );
-}
-
-.desk{
-  position:absolute;
-  bottom:70px;
-  left:50%;
-  transform:translateX(-50%);
-  width:42%;
-  height:70px;
-  background:#b87c4c;
-  border-radius:7px 7px 4px 4px;
-  box-shadow:0 8px 0 #93613e;
-  z-index:2;
-}
-
-.desk:before{
-  content:"";
-  position:absolute;
-  left:8%;
-  right:8%;
-  top:-12px;
-  height:16px;
-  background:#d9a271;
-  border-radius:4px;
-}
-
-.desk:after{
-  content:"";
-  position:absolute;
-  left:14%;
-  right:14%;
-  top:67px;
-  height:40px;
-  border-left:8px solid #93613e;
-  border-right:8px solid #93613e;
-}
-
-.plant{
-  position:absolute;
-  left:25px;
-  bottom:45px;
-  z-index:2;
-  font-size:55px;
-}
-
-.bin{
-  position:absolute;
-  right:24px;
-  bottom:41px;
-  z-index:3;
-  font-size:48px;
-}
-
-/* =========================
-   TRASH
-========================= */
-
-.trash{
-  position:absolute;
-  z-index:5;
-  border:2px solid #ffffffdf;
-  border-radius:14px;
-  background:#ffffffed;
-  width:58px;
-  height:58px;
-  display:grid;
-  place-items:center;
-  font-size:29px;
-  box-shadow:0 5px 14px #31573a20;
-  transition:.12s;
-  animation:pop .2s ease;
-  user-select:none;
-  touch-action:manipulation;
-}
-
-.trash:hover{
-  transform:translateY(-4px) rotate(4deg) scale(1.06);
-}
-
-.trash:active{
-  transform:scale(.9);
-}
-
-@keyframes pop{
-  from{transform:scale(.3);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-
-.trash.taken{
-  pointer-events:none;
-  animation:vanish .25s forwards;
-}
-
-@keyframes vanish{
-  to{
-    transform:scale(1.5) rotate(20deg);
-    opacity:0;
-  }
-}
-
-.float-points{
-  position:absolute;
-  z-index:8;
-  font-size:17px;
-  font-weight:1000;
-  color:#227946;
-  text-shadow:0 1px white;
-  pointer-events:none;
-  animation:floatup .8s forwards;
-}
-
-@keyframes floatup{
-  to{
-    transform:translateY(-35px);
-    opacity:0;
-  }
-}
-
-/* =========================
-   PICKUP INFO
-========================= */
-
-.pickup-slot{
-  height:58px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:5px 0 0;
-}
-
-.pickup-info{
-  position:static;
-  width:100%;
-  min-height:46px;
-  background:#ffffffef;
-  border:1px solid #d8e9da;
-  border-radius:15px;
-  padding:9px 13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  text-align:center;
-  font-size:12px;
-  font-weight:850;
-  box-shadow:0 6px 20px #274b3515;
-  pointer-events:none;
-  opacity:0;
-  transform:translateY(4px);
-  transition:.2s;
-}
-
-.pickup-info.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.pickup-info strong{
-  color:var(--green);
-}
-
-/* =========================
-   OVERLAY
-========================= */
-
-.overlay{
-  position:absolute;
-  inset:0;
-  z-index:30;
-  background:#f6fbf0e9;
-  backdrop-filter:blur(3px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:22px;
-}
-
-.overlay-box{
-  width:min(92%,390px);
-}
-
-.overlay-icon{
-  font-size:52px;
-}
-
-.overlay h3{
-  font-size:30px;
-  letter-spacing:-.045em;
-  margin:9px 0;
-}
-
-.overlay p{
-  color:#627568;
-  line-height:1.6;
-  font-size:13px;
-  margin:0 auto 19px;
-  max-width:350px;
-}
-
-.overlay-actions{
-  display:flex;
-  gap:9px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.result-score{
-  font-size:54px;
-  color:var(--green);
-  font-weight:1000;
-  letter-spacing:-.06em;
-  margin:8px 0;
-}
-
-.result-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin:16px 0;
-}
-
-.result-box{
-  background:white;
-  border:1px solid #dce9dd;
-  border-radius:13px;
-  padding:10px 6px;
-}
-
-.result-box strong{
-  display:block;
-  color:var(--green);
-  font-size:19px;
-}
-
-.result-box span{
-  display:block;
-  color:var(--muted);
-  font-size:8px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  font-weight:900;
-  margin-top:2px;
-}
-
-.game-foot{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:750;
-  margin-top:7px;
-}
-
-/* =========================
-   SIDE CARD
-========================= */
-
-.side-card{
-  padding:20px;
-}
-
-.side-card h3{
-  margin:0 0 7px;
-  font-size:20px;
-}
-
-.side-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-  margin:0 0 15px;
-}
-
-.points-list{
-  display:grid;
-  gap:8px;
-}
-
-.point-line{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  background:#f6faf5;
-  border:1px solid #e5eee5;
-  border-radius:11px;
-  padding:9px 10px;
-  font-size:11px;
-}
-
-.pts{
-  color:var(--green);
-  font-weight:950;
-}
-
-.tip{
-  background:#fff7df;
-  border:1px solid #f2e4b9;
-  border-radius:13px;
-  padding:12px;
-  margin-top:15px;
-  font-size:11px;
-  line-height:1.5;
-  color:#725b24;
-}
-
-/* =========================
-   LEADERBOARD
-========================= */
-
-.leader-card{
-  padding:clamp(20px,4vw,32px);
-}
-
-.leader-title{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-
-.leader-title h2{
-  margin:0;
-  font-size:31px;
-}
-
-.leader-title p{
-  color:var(--muted);
-  font-size:12px;
-  margin:7px 0 0;
-}
-
-.leader-list{
-  display:grid;
-  gap:9px;
-}
-
-.leader-row{
-  display:grid;
-  grid-template-columns:48px 48px minmax(0,1fr) auto;
-  align-items:center;
-  gap:10px;
-  background:#f8fbf7;
-  border:1px solid #e3ede3;
-  border-radius:15px;
-  padding:10px 15px;
-}
-
-.leader-row.me{
-  border:2px solid #82c694;
-  background:#eff9f0;
-}
-
-.rank-medal{
-  width:38px;
-  height:38px;
-  display:grid;
-  place-items:center;
-  border-radius:12px;
-  background:#e8f2e8;
-  font-weight:950;
-}
-
-.leader-row:nth-child(1) .rank-medal{
-  background:#ffefbd;
-}
-
-.leader-row:nth-child(2) .rank-medal{
-  background:#e8edf0;
-}
-
-.leader-row:nth-child(3) .rank-medal{
-  background:#f4dfd1;
-}
-
-.leader-avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#dcefe0;
-  color:var(--green);
-  display:grid;
-  place-items:center;
-  font-size:13px;
-  font-weight:1000;
-  overflow:hidden;
-  border:3px solid white;
-  box-shadow:0 3px 12px #31573a1c;
-  flex-shrink:0;
-}
-
-.leader-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.player-name{
-  font-weight:900;
-}
-
-.player-meta{
-  display:block;
-  font-size:9px;
-  color:var(--muted);
-  margin-top:3px;
-}
-
-.leader-score{
-  text-align:right;
-  font-size:18px;
-  font-weight:950;
-  color:var(--green);
-}
-
-.leader-score small{
-  display:block;
-  font-size:8px;
-  color:var(--muted);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.empty{
-  text-align:center;
-  padding:40px 18px;
-  color:var(--muted);
-}
-
-/* =========================
-   PROFILE MODAL
-========================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:#17332355;
-  backdrop-filter:blur(5px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-card{
-  width:min(430px,100%);
-  background:#ffffff;
-  border:1px solid var(--line);
-  border-radius:25px;
-  padding:25px;
-  box-shadow:0 25px 80px #17332335;
-}
-
-.modal-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:18px;
-}
-
-.modal-head h2{
-  margin:0;
-}
-
-.close-btn{
-  width:36px;
-  height:36px;
-  border:0;
-  border-radius:50%;
-  background:#edf5ee;
-  color:var(--green);
-  font-size:18px;
-  font-weight:900;
-}
-
-.avatar-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.avatar{
-  width:92px;
-  height:92px;
-  border-radius:50%;
-  background:#dcefe0;
-  color:var(--green);
-  display:grid;
-  place-items:center;
-  font-size:31px;
-  font-weight:1000;
-  overflow:hidden;
-  border:4px solid white;
-  box-shadow:0 4px 20px #31573a1c;
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.photo-label{
-  margin-top:9px;
-  color:var(--green);
-  font-size:11px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.photo-label input{
-  display:none;
-}
-
-/* =========================
-   BONUS QUESTION
-========================= */
-
-.quiz-box{
-  width:min(95%,520px);
-}
-
-.quiz-tag{
-  color:var(--green);
-  font-size:11px;
-  letter-spacing:.16em;
-  font-weight:950;
-  text-transform:uppercase;
-}
-
-.quiz-question{
-  font-size:24px;
-  font-weight:950;
-  line-height:1.2;
-  margin:10px 0 17px;
-}
-
-.quiz-options{
-  display:grid;
-  gap:9px;
-}
-
-.quiz-option{
-  width:100%;
-  border:2px solid #dce9dd;
-  background:#fbfefb;
-  color:var(--ink);
-  text-align:left;
-  border-radius:14px;
-  padding:13px 14px;
-  font-size:12px;
-  font-weight:800;
-  transition:.15s;
-}
-
-.quiz-option:hover{
-  border-color:#8bc99a;
-  background:#f1faf2;
-}
-
-.quiz-option.correct{
-  border-color:#5db878;
-  background:#eaf8ed;
-  color:#247244;
-}
-
-.quiz-option.wrong{
-  border-color:#e49a8d;
-  background:#fff0ed;
-  color:#a94b3e;
-}
-
-.quiz-feedback{
-  min-height:24px;
-  margin-top:13px;
-  font-size:12px;
-  font-weight:900;
-}
-
-.quiz-feedback.good{
-  color:#287b4c;
-}
-
-.quiz-feedback.bad{
-  color:#b24b3d;
-}
-
-/* =========================
-   FOOTER / TOAST
-========================= */
-
-.footnote{
-  text-align:center;
-  font-size:10px;
-  color:#7c8e80;
-  margin-top:20px;
-  line-height:1.7;
-}
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:22px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  background:#20382d;
-  color:white;
-  padding:11px 16px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:850;
-  z-index:200;
-  box-shadow:0 8px 25px #0002;
-  transition:.2s;
-  white-space:nowrap;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:850px){
-
-  .login-layout{
-    grid-template-columns:1fr;
-  }
-
-  .game-layout{
-    grid-template-columns:1fr;
-  }
-
-  .stat-row{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-}
-
-@media(max-width:560px){
-
-  .app{
-    padding:13px 10px 30px;
-  }
-
-  header{
-    align-items:flex-start;
-  }
-
-  .top-pill{
-    font-size:9px;
-    padding:8px 9px;
-  }
-
-  .hero{
-    min-height:350px;
-  }
-
-  .hero-art{
-    font-size:62px;
-  }
-
-  .stat-row{
-    gap:8px;
-  }
-
-  .stat{
-    padding:13px;
-  }
-
-  .stat strong{
-    font-size:22px;
-  }
-
-  .stat .label{
-    font-size:8px;
-  }
-
-  .scene{
-    min-height:510px;
-    height:510px;
-  }
-
-  .window{
-    left:13px;
-    width:94px;
-    height:84px;
-  }
-
-  .board{
-    right:13px;
-    width:42%;
-    font-size:10px;
-    height:74px;
-    padding:12px 3px;
-  }
-
-  .desk{
-    width:47%;
-    bottom:78px;
-  }
-
-  .plant{
-    left:10px;
-    bottom:45px;
-    font-size:44px;
-  }
-
-  .bin{
-    right:10px;
-    bottom:42px;
-    font-size:39px;
-  }
-
-  .trash{
-    width:50px;
-    height:50px;
-    font-size:25px;
-  }
-
-  .game-head h2{
-    font-size:20px;
-  }
-
-  .timer{
-    font-size:17px;
-    padding:9px 11px;
-  }
-
-  .pickup-slot{
-    height:60px;
-  }
-
-  .pickup-info{
-    font-size:10px;
-    padding:8px 9px;
-    gap:6px;
-  }
-
-  .result-score{
-    font-size:47px;
-  }
-
-  .quiz-question{
-    font-size:21px;
-  }
-
-  .nav{
-    width:100%;
-  }
-
-  .nav button{
-    flex:1;
-  }
-
-  .leader-row{
-    grid-template-columns:38px 42px minmax(0,1fr) auto;
-    gap:7px;
-    padding:9px 10px;
-  }
-
-  .leader-avatar{
-    width:38px;
-    height:38px;
-    font-size:11px;
-  }
-
-  .rank-medal{
-    width:34px;
-    height:34px;
-  }
-
-  .leader-score{
-    font-size:15px;
-  }
-
-  .player-name{
-    font-size:12px;
-  }
-
-  .player-meta{
-    font-size:8px;
-  }
-
-}
+:root{--ink:#20382d;--muted:#708279;--green:#287b4c;--green2:#48a96d;--mint:#eaf7ec;--pale:#f7fbf6;--line:#d9e9dc;--gold:#ffd978;--red:#df6856;--shadow:0 18px 50px rgba(42,91,58,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 5%,#fff 0,transparent 28%),linear-gradient(145deg,#edf9ef,#f8fbf6 55%,#e5f3e8)}
+button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.app{width:min(1120px,100%);margin:auto;padding:18px 16px 45px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:-.04em;font-size:clamp(20px,4vw,28px)}.brandmark{width:45px;height:45px;border-radius:15px;background:#ccebd1;display:grid;place-items:center;font-size:25px}.brand small{display:block;font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:1px}
+.screen{display:none}.screen.active{display:block;animation:fade .22s ease}@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card{background:#ffffffdf;border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow)}
+.login-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.hero{min-height:455px;padding:clamp(26px,5vw,52px);background:linear-gradient(150deg,#286e49,#338957 65%,#55b879);color:#fff;position:relative;overflow:hidden}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.18em;font-weight:900;opacity:.8}.hero h1{font-size:clamp(40px,6vw,66px);line-height:.98;letter-spacing:-.065em;margin:14px 0 16px}.hero p{max-width:400px;line-height:1.65;color:#e4f5e7;font-size:15px}.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.hero-chips span{padding:8px 11px;border-radius:999px;background:#ffffff1b;border:1px solid #ffffff2d;font-size:11px;font-weight:800}.hero-art{position:absolute;right:25px;bottom:20px;font-size:82px;transform:rotate(-7deg)}
+.form-card{padding:clamp(23px,4vw,36px);display:flex;flex-direction:column;justify-content:center}.form-card h2{margin:0;font-size:27px;letter-spacing:-.04em}.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:8px 0 24px}.tabs{display:grid;grid-template-columns:1fr 1fr;background:#edf5ee;padding:4px;border-radius:13px;margin-bottom:20px}.tab{border:0;background:transparent;border-radius:10px;padding:11px;color:var(--muted);font-size:13px;font-weight:850}.tab.active{background:#fff;color:var(--green);box-shadow:0 2px 8px #274b3510}
+label{display:block;font-size:12px;font-weight:850;margin:12px 0 7px}input{width:100%;padding:14px;border:1px solid #d9e7db;border-radius:12px;background:#fbfefb;outline:none;color:var(--ink)}input:focus{border-color:#5bb77a;box-shadow:0 0 0 3px #5bb77a22}
+.btn{border:0;border-radius:13px;padding:13px 17px;background:var(--green);color:#fff;font-weight:900;box-shadow:0 6px 0 #1e5c39;transition:.12s}.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #1e5c39}.btn.full{width:100%;margin-top:18px}.btn.light{background:#e7f5e9;color:var(--green);box-shadow:0 5px 0 #c7e4cc}.btn.white{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}.btn.danger{background:#fff0ed;color:#b24b3d;border:1px solid #f1d4ce;box-shadow:none}.msg{min-height:18px;font-size:12px;font-weight:750;color:#b84b3d;margin-top:8px}.micro{color:#809085;font-size:10px;line-height:1.55;margin-top:14px}
+.dash-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:8px 0 18px}.welcome{font-size:clamp(24px,4vw,34px);font-weight:950;letter-spacing:-.05em}.welcome span{color:var(--green)}.nav{display:flex;gap:7px;flex-wrap:wrap}.nav button{border:1px solid var(--line);background:#ffffffd0;color:var(--green);border-radius:999px;padding:10px 13px;font-size:11px;font-weight:850}.nav button.active{background:var(--green);color:#fff}.profile-btn{background:#e7f5e9!important;border-color:#cce5d0!important}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}.stat{padding:17px 18px}.stat .label{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:900}.stat strong{display:block;font-size:28px;letter-spacing:-.04em;margin-top:6px}.stat em{font-size:10px;font-style:normal;color:var(--green);font-weight:800}
+.game-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(245px,.75fr);gap:16px}.game-card{padding:17px}.game-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.game-head h2{font-size:23px;margin:0;letter-spacing:-.04em}.game-head p{margin:5px 0 0;color:var(--muted);font-size:12px}.timer{flex-shrink:0;background:#fff2da;color:#8a5a07;border-radius:13px;padding:11px 14px;font-size:20px;font-weight:950;font-variant-numeric:tabular-nums}.timer.danger{background:#ffe3dd;color:#ac3929}
+.scene{position:relative;overflow:hidden;border-radius:20px;height:clamp(460px,58vw,570px);min-height:460px;background:linear-gradient(#d9f0ed 0 57%,#d7e6d3 57% 60%,#e9d4b4 60%);border:1px solid #c8dfd0}.window{position:absolute;top:22px;left:24px;width:120px;height:105px;border:8px solid #fffdf0;background:linear-gradient(135deg,#a8dfe0,#e4faf3);box-shadow:0 3px 0 #bbd7c9}.window:before,.window:after{content:"";position:absolute;background:#fffdf0}.window:before{width:5px;height:100%;left:48%;top:0}.window:after{height:5px;width:100%;top:48%;left:0}.board{position:absolute;top:24px;right:25px;width:39%;height:86px;background:#438468;border:8px solid #d2aa7d;border-radius:5px;color:#eaffec;text-align:center;padding:14px 5px;font-size:13px;font-weight:900;letter-spacing:.05em;box-shadow:0 5px 0 #b58a61}.floorline{position:absolute;left:0;right:0;bottom:0;height:41%;background:repeating-linear-gradient(90deg,#e4c9a8 0 59px,#d7b995 60px 62px),repeating-linear-gradient(0deg,transparent 0 44px,#d7b995 45px 47px)}.desk{position:absolute;bottom:70px;left:50%;transform:translateX(-50%);width:42%;height:70px;background:#b87c4c;border-radius:7px 7px 4px 4px;box-shadow:0 8px 0 #93613e;z-index:2}.desk:before{content:"";position:absolute;left:8%;right:8%;top:-12px;height:16px;background:#d9a271;border-radius:4px}.desk:after{content:"";position:absolute;left:14%;right:14%;top:67px;height:40px;border-left:8px solid #93613e;border-right:8px solid #93613e}.plant{position:absolute;left:25px;bottom:45px;z-index:2;font-size:55px}.bin{position:absolute;right:24px;bottom:41px;z-index:3;font-size:48px}
+.trash{position:absolute;z-index:5;border:2px solid #ffffffdf;border-radius:14px;background:#ffffffed;width:58px;height:58px;display:grid;place-items:center;font-size:29px;box-shadow:0 5px 14px #31573a20;transition:.12s;animation:pop .2s ease;user-select:none;touch-action:manipulation}.trash:hover{transform:translateY(-4px) rotate(4deg) scale(1.06)}.trash:active{transform:scale(.9)}@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}.trash.taken{pointer-events:none;animation:vanish .25s forwards}@keyframes vanish{to{transform:scale(1.5) rotate(20deg);opacity:0}}
+.float-points{position:absolute;z-index:8;font-size:17px;font-weight:1000;color:#227946;text-shadow:0 1px #fff;pointer-events:none;animation:floatup .8s forwards}@keyframes floatup{to{transform:translateY(-35px);opacity:0}}
+.pickup-slot{height:58px;display:flex;align-items:center;justify-content:center;padding:5px 0 0}.pickup-info{position:static;width:100%;min-height:46px;background:#ffffffef;border:1px solid #d8e9da;border-radius:15px;padding:9px 13px;display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;font-size:12px;font-weight:850;box-shadow:0 6px 20px #274b3515;pointer-events:none;opacity:0;transform:translateY(4px);transition:.2s}.pickup-info.show{opacity:1;transform:translateY(0)}.pickup-info strong{color:var(--green)}
+.overlay{position:absolute;inset:0;z-index:30;background:#f6fbf0e9;backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px}.overlay-box{width:min(92%,390px)}.overlay-icon{font-size:52px}.overlay h3{font-size:30px;letter-spacing:-.045em;margin:9px 0}.overlay p{color:#627568;line-height:1.6;font-size:13px;margin:0 auto 19px;max-width:350px}.overlay-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.result-score{font-size:54px;color:var(--green);font-weight:1000;letter-spacing:-.06em;margin:8px 0}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.result-box{background:#fff;border:1px solid #dce9dd;border-radius:13px;padding:10px 6px}.result-box strong{display:block;color:var(--green);font-size:19px}.result-box span{display:block;color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-top:2px}.game-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px;font-weight:750;margin-top:7px}
+.side-card{padding:20px}.side-card h3{margin:0 0 7px;font-size:20px}.side-card p{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 15px}.points-list{display:grid;gap:8px}.point-line{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f6faf5;border:1px solid #e5eee5;border-radius:11px;padding:9px 10px;font-size:11px}.pts{color:var(--green);font-weight:950}.tip{background:#fff7df;border:1px solid #f2e4b9;border-radius:13px;padding:12px;margin-top:15px;font-size:11px;line-height:1.5;color:#725b24}
+.leader-card{padding:clamp(20px,4vw,32px)}.leader-title{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}.leader-title h2{margin:0;font-size:31px}.leader-title p{color:var(--muted);font-size:12px;margin:7px 0 0}.leader-list{display:grid;gap:9px}.leader-row{display:grid;grid-template-columns:48px 48px minmax(0,1fr) auto;align-items:center;gap:10px;background:#f8fbf7;border:1px solid #e3ede3;border-radius:15px;padding:10px 15px}.leader-row.me{border:2px solid #82c694;background:#eff9f0}.rank-medal{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#e8f2e8;font-weight:950}.leader-row:nth-child(1) .rank-medal{background:#ffefbd}.leader-row:nth-child(2) .rank-medal{background:#e8edf0}.leader-row:nth-child(3) .rank-medal{background:#f4dfd1}.leader-avatar{width:42px;height:42px;border-radius:50%;background:#dcefe0;color:var(--green);display:grid;place-items:center;font-size:13px;font-weight:1000;overflow:hidden;border:3px solid #fff;box-shadow:0 3px 12px #31573a1c;flex-shrink:0}.leader-avatar img{width:100%;height:100%;object-fit:cover;display:block}.player-name{font-weight:900}.player-meta{display:block;font-size:9px;color:var(--muted);margin-top:3px}.leader-score{text-align:right;font-size:18px;font-weight:950;color:var(--green)}.leader-score small{display:block;font-size:8px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.empty{text-align:center;padding:40px 18px;color:var(--muted)}
+.modal{position:fixed;inset:0;z-index:100;background:#17332355;backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modal-card{width:min(430px,100%);background:#fff;border:1px solid var(--line);border-radius:25px;padding:25px;box-shadow:0 25px 80px #17332335}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.modal-head h2{margin:0}.close-btn{width:36px;height:36px;border:0;border-radius:50%;background:#edf5ee;color:var(--green);font-size:18px;font-weight:900}.avatar-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:18px}.avatar{width:92px;height:92px;border-radius:50%;background:#dcefe0;color:var(--green);display:grid;place-items:center;font-size:31px;font-weight:1000;overflow:hidden;border:4px solid #fff;box-shadow:0 4px 20px #31573a1c}.avatar img{width:100%;height:100%;object-fit:cover}.photo-label{margin-top:9px;color:var(--green);font-size:11px;font-weight:900;cursor:pointer}.photo-label input{display:none}
+.quiz-box{width:min(95%,520px)}.quiz-tag{color:var(--green);font-size:11px;letter-spacing:.16em;font-weight:950;text-transform:uppercase}.quiz-question{font-size:24px;font-weight:950;line-height:1.2;margin:10px 0 17px}.quiz-options{display:grid;gap:9px}.quiz-option{width:100%;border:2px solid #dce9dd;background:#fbfefb;color:var(--ink);text-align:left;border-radius:14px;padding:13px 14px;font-size:12px;font-weight:800;transition:.15s}.quiz-option:hover{border-color:#8bc99a;background:#f1faf2}.quiz-option.correct{border-color:#5db878;background:#eaf8ed;color:#247244}.quiz-option.wrong{border-color:#e49a8d;background:#fff0ed;color:#a94b3e}.quiz-feedback{min-height:24px;margin-top:13px;font-size:12px;font-weight:900}.quiz-feedback.good{color:#287b4c}.quiz-feedback.bad{color:#b24b3d}
+.footnote{text-align:center;font-size:10px;color:#7c8e80;margin-top:20px;line-height:1.7}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#20382d;color:#fff;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:850;z-index:200;box-shadow:0 8px 25px #0002;transition:.2s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:850px){.login-layout{grid-template-columns:1fr}.game-layout{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.app{padding:13px 10px 30px}header{align-items:flex-start}.top-pill{font-size:9px;padding:8px 9px}.hero{min-height:350px}.hero-art{font-size:62px}.stat-row{gap:8px}.stat{padding:13px}.stat strong{font-size:22px}.stat .label{font-size:8px}.scene{min-height:510px;height:510px}.window{left:13px;width:94px;height:84px}.board{right:13px;width:42%;font-size:10px;height:74px;padding:12px 3px}.desk{width:47%;bottom:78px}.plant{left:10px;bottom:45px;font-size:44px}.bin{right:10px;bottom:42px;font-size:39px}.trash{width:50px;height:50px;font-size:25px}.game-head h2{font-size:20px}.timer{font-size:17px;padding:9px 11px}.pickup-slot{height:60px}.pickup-info{font-size:10px;padding:8px 9px;gap:6px}.result-score{font-size:47px}.quiz-question{font-size:21px}.nav{width:100%}.nav button{flex:1}.leader-row{grid-template-columns:38px 42px minmax(0,1fr) auto;gap:7px;padding:9px 10px}.leader-avatar{width:38px;height:38px;font-size:11px}.rank-medal{width:34px;height:34px}.leader-score{font-size:15px}.player-name{font-size:12px}.player-meta{font-size:8px}}
 </style>
 </head>
 
@@ -1325,2535 +40,2234 @@ input:focus{
 <div class="app">
 
 <header>
-
-  <div class="brand">
-
-    <div class="brandmark">🌱</div>
-
-    <div>
-      CLEAN QUEST
-      <small>PLAY CLEAN. RANK UP.</small>
-    </div>
-
-  </div>
-
-  <div class="top-pill">
-    ♻️ ZERO-COST GAME
-  </div>
-
+<div class="brand">
+<div class="brandmark">🌱</div>
+<div>CLEAN QUEST<small>PLAY CLEAN. RANK UP.</small></div>
+</div>
+<div class="top-pill">♻️ ZERO-COST GAME</div>
 </header>
 
-
-<!-- =========================
-     LOGIN SCREEN
-========================= -->
-
 <section id="loginScreen" class="screen active">
+<div class="login-layout">
 
-  <div class="login-layout">
+<div class="hero card">
+<div class="eyebrow">A tiny game for a greener campus</div>
+<h1>Little taps.<br>Big impact.</h1>
+<p>Pick up virtual litter, earn points, build your streak, and climb the eco leaderboard.</p>
+<div class="hero-chips">
+<span>🎮 45-second round</span>
+<span>🏆 Eco ranking</span>
+<span>🌍 Environment mission</span>
+</div>
+<div class="hero-art">🧹</div>
+</div>
 
-    <div class="hero card">
+<div class="form-card card">
+<h2>Welcome, cleaner!</h2>
+<p class="sub">Create a demo player or log in to a profile saved online.</p>
 
-      <div class="eyebrow">
-        A tiny game for a greener campus
-      </div>
+<div class="tabs">
+<button class="tab active" id="createTab" type="button">Create player</button>
+<button class="tab" id="loginTab" type="button">Log in</button>
+</div>
 
-      <h1>
-        Little taps.<br>
-        Big impact.
-      </h1>
+<label for="playerName">Player name / nickname</label>
+<input id="playerName" maxlength="18" autocomplete="nickname" placeholder="e.g. EcoCJ">
 
-      <p>
-        Pick up virtual litter, earn points, build your streak,
-        and climb the eco leaderboard.
-      </p>
+<label for="playerPin">4-digit demo PIN</label>
+<input id="playerPin" inputmode="numeric" maxlength="4" placeholder="e.g. 1234">
 
-      <div class="hero-chips">
-        <span>🎮 45-second round</span>
-        <span>🏆 Eco ranking</span>
-        <span>🌍 Environment mission</span>
-      </div>
+<button id="formSubmit" class="btn full" type="button">Create my player →</button>
 
-      <div class="hero-art">
-        🧹
-      </div>
+<div id="formMsg" class="msg"></div>
 
-    </div>
+<p class="micro">
+Your score and ranking are saved in the shared online leaderboard.
+Use a nickname instead of your full name.
+</p>
+</div>
 
-
-    <div class="form-card card">
-
-      <h2>
-        Welcome, cleaner!
-      </h2>
-
-      <p class="sub">
-        Create a demo player or log in to a profile saved on this device.
-      </p>
-
-      <div class="tabs">
-
-        <button
-          class="tab active"
-          id="createTab"
-          type="button"
-        >
-          Create player
-        </button>
-
-        <button
-          class="tab"
-          id="loginTab"
-          type="button"
-        >
-          Log in
-        </button>
-
-      </div>
-
-      <label for="playerName">
-        Player name / nickname
-      </label>
-
-      <input
-        id="playerName"
-        maxlength="18"
-        autocomplete="nickname"
-        placeholder="e.g. EcoCJ"
-      >
-
-      <label for="playerPin">
-        4-digit demo PIN
-      </label>
-
-      <input
-        id="playerPin"
-        inputmode="numeric"
-        maxlength="4"
-        placeholder="e.g. 1234"
-      >
-
-      <button
-        id="formSubmit"
-        class="btn full"
-        type="button"
-      >
-        Create my player →
-      </button>
-
-      <div id="formMsg" class="msg"></div>
-
-      <p class="micro">
-        Demo only: use a nickname instead of your full name.
-        This prototype stores demo data only in this browser.
-      </p>
-
-    </div>
-
-  </div>
-
+</div>
 </section>
-
-
-<!-- =========================
-     HOME
-========================= -->
 
 <section id="homeScreen" class="screen">
 
-  <div class="dash-top">
+<div class="dash-top">
+<div class="welcome">Hey, <span id="welcomeName">Cleaner</span>! 🌿</div>
 
-    <div class="welcome">
-      Hey, <span id="welcomeName">Cleaner</span>! 🌿
-    </div>
+<div class="nav">
+<button class="active" data-page="play">🎮 Play</button>
+<button data-page="leaderboard">🏆 Leaderboard</button>
+<button id="profileBtn" class="profile-btn">👤 Profile</button>
+</div>
+</div>
 
-    <div class="nav">
+<div id="playPage" class="screen active">
 
-      <button
-        class="active"
-        data-page="play"
-      >
-        🎮 Play
-      </button>
+<div class="stat-row">
 
-      <button data-page="leaderboard">
-        🏆 Leaderboard
-      </button>
+<div class="stat card">
+<div class="label">Your best score</div>
+<strong id="bestScore">0</strong>
+<em>personal best</em>
+</div>
 
-      <button
-        id="profileBtn"
-        class="profile-btn"
-      >
-        👤 Profile
-      </button>
+<div class="stat card">
+<div class="label">Items collected</div>
+<strong id="totalItems">0</strong>
+<em>across your rounds</em>
+</div>
 
-    </div>
+<div class="stat card">
+<div class="label">Your rank</div>
+<strong id="yourRank">—</strong>
+<em>on the leaderboard</em>
+</div>
 
-  </div>
+<div class="stat card">
+<div class="label">Rounds played</div>
+<strong id="gamesPlayed">0</strong>
+<em>clean-up rounds</em>
+</div>
 
+</div>
 
-  <!-- =========================
-       PLAY PAGE
-       
-       IMPORTANT:
-       The four stat cards are now
-       INSIDE playPage ONLY.
-       
-       Therefore they disappear
-       automatically when the user
-       switches to Leaderboard.
-  ========================= -->
+<div class="game-layout">
 
-  <div
-    id="playPage"
-    class="screen active"
-  >
+<div class="game-card card">
 
-    <!-- STATS — PLAY PAGE ONLY -->
+<div class="game-head">
+<div>
+<h2>🧹 Clean the classroom!</h2>
+<p>Pick up as much litter as you can.</p>
+</div>
+<div id="timer" class="timer">00:45</div>
+</div>
 
-    <div class="stat-row">
+<div id="scene" class="scene">
 
-      <div class="stat card">
+<div class="window"></div>
 
-        <div class="label">
-          Your best score
-        </div>
+<div class="board">
+KEEP OUR<br>
+CLASSROOM CLEAN 🌿
+</div>
 
-        <strong id="bestScore">
-          0
-        </strong>
+<div class="floorline"></div>
 
-        <em>
-          personal best
-        </em>
+<div class="plant">🪴</div>
 
-      </div>
+<div class="desk"></div>
 
+<div class="bin">🗑️</div>
 
-      <div class="stat card">
+<div id="trashLayer"></div>
 
-        <div class="label">
-          Items collected
-        </div>
+<div id="gameOverlay" class="overlay">
 
-        <strong id="totalItems">
-          0
-        </strong>
+<div class="overlay-box">
 
-        <em>
-          across your rounds
-        </em>
+<div class="overlay-icon">🧤</div>
 
-      </div>
+<h3>Ready, cleaner?</h3>
 
+<p>
+You have 45 seconds. Tap the litter you see
+around the classroom to pick it up and earn points.
+</p>
 
-      <div class="stat card">
+<button id="startBtn" class="btn">
+Start cleaning! →
+</button>
 
-        <div class="label">
-          Your rank
-        </div>
+</div>
 
-        <strong id="yourRank">
-          —
-        </strong>
+</div>
 
-        <em>
-        on the leaderboard
-        </em>
-        
-      </div>
+</div>
 
+<div class="pickup-slot">
+<div id="pickupInfo" class="pickup-info"></div>
+</div>
 
-      <div class="stat card">
+<div class="game-foot">
 
-        <div class="label">
-          Rounds played
-        </div>
+<span>
+✨ Score:
+<strong id="scoreValue" style="color:var(--green)">0</strong>
+</span>
 
-        <strong id="gamesPlayed">
-          0
-        </strong>
+<span>
+♻️ Collected:
+<strong id="collectedValue" style="color:var(--green)">0</strong>
+</span>
 
-        <em>
-          clean-up rounds
-        </em>
+<span>
+🔥 Streak:
+<strong id="streakValue" style="color:var(--green)">0</strong>
+</span>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
+<aside class="side-card card">
 
-    <!-- GAME -->
+<h3>🧺 Litter = points</h3>
 
-    <div class="game-layout">
+<p>
+Tap the litter around the classroom to collect it.
+Harder-to-spot items can give more points!
+</p>
 
-      <div class="game-card card">
+<div class="points-list">
 
-        <div class="game-head">
+<div class="point-line"><span>📄 Paper scrap</span><span class="pts">+5</span></div>
+<div class="point-line"><span>🍬 Candy wrapper</span><span class="pts">+10</span></div>
+<div class="point-line"><span>🥤 Plastic cup</span><span class="pts">+10</span></div>
+<div class="point-line"><span>🧴 Plastic bottle</span><span class="pts">+15</span></div>
+<div class="point-line"><span>🥫 Tin can</span><span class="pts">+12</span></div>
+<div class="point-line"><span>🧃 Juice box</span><span class="pts">+11</span></div>
+<div class="point-line"><span>🥡 Food container</span><span class="pts">+13</span></div>
+<div class="point-line"><span>📦 Cardboard carton</span><span class="pts">+8</span></div>
+<div class="point-line"><span>🧻 Tissue</span><span class="pts">+6</span></div>
+<div class="point-line"><span>🛍️ Plastic bag</span><span class="pts">+9</span></div>
 
-          <div>
+</div>
 
-            <h2>
-              🧹 Clean the classroom!
-            </h2>
+<div class="tip">
+💡 <strong>Eco tip:</strong>
+The game is a virtual clean-up activity.
+In real life, only handle waste safely and follow
+your school's waste-segregation rules.
+</div>
 
-            <p>
-              Pick up as much litter as you can.
-            </p>
+</aside>
 
-          </div>
+</div>
 
-          <div
-            id="timer"
-            class="timer"
-          >
-            00:45
-          </div>
+</div>
 
-        </div>
+<div id="leaderboardPage" class="screen">
 
+<div class="leader-card card">
 
-        <div
-          id="scene"
-          class="scene"
-        >
+<div class="leader-title">
 
-          <div class="window"></div>
+<div>
+<h2>🏆 Eco leaderboard</h2>
+<p>All players share the same online leaderboard.</p>
+</div>
 
-          <div class="board">
-            KEEP OUR<br>
-            CLASSROOM CLEAN 🌿
-          </div>
+<button class="btn light" id="backToPlay">
+Play a round →
+</button>
 
-          <div class="floorline"></div>
+</div>
 
-          <div class="plant">
-            🪴
-          </div>
+<div id="leaderRows" class="leader-list"></div>
 
-          <div class="desk"></div>
+<div class="footnote">
+Scores are stored in the Clean Quest online database,
+so the ranking can be opened on another device.
+</div>
 
-          <div class="bin">
-            🗑️
-          </div>
+</div>
 
-          <div id="trashLayer"></div>
-
-
-          <!-- START / RESULT OVERLAY -->
-
-          <div
-            id="gameOverlay"
-            class="overlay"
-          >
-
-            <div class="overlay-box">
-
-              <div class="overlay-icon">
-                🧤
-              </div>
-
-              <h3>
-                Ready, cleaner?
-              </h3>
-
-              <p>
-                You have 45 seconds. Tap the litter you see
-                around the classroom to pick it up and earn points.
-              </p>
-
-              <button
-                id="startBtn"
-                class="btn"
-              >
-                Start cleaning! →
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- DEDICATED PICKUP INFORMATION SPACE -->
-
-        <div class="pickup-slot">
-
-          <div
-            id="pickupInfo"
-            class="pickup-info"
-          ></div>
-
-        </div>
-
-
-        <div class="game-foot">
-
-          <span>
-            ✨ Score:
-            <strong
-              id="scoreValue"
-              style="color:var(--green)"
-            >
-              0
-            </strong>
-          </span>
-
-          <span>
-            ♻️ Collected:
-            <strong
-              id="collectedValue"
-              style="color:var(--green)"
-            >
-              0
-            </strong>
-          </span>
-
-          <span>
-            🔥 Streak:
-            <strong
-              id="streakValue"
-              style="color:var(--green)"
-            >
-              0
-            </strong>
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- SIDE GUIDE -->
-
-      <aside class="side-card card">
-
-        <h3>
-          🧺 Litter = points
-        </h3>
-
-        <p>
-          Tap the litter around the classroom to collect it.
-          Harder-to-spot items can give more points!
-        </p>
-
-        <div class="points-list">
-
-          <div class="point-line">
-            <span>📄 Paper scrap</span>
-            <span class="pts">+5</span>
-          </div>
-
-          <div class="point-line">
-            <span>🍬 Candy wrapper</span>
-            <span class="pts">+10</span>
-          </div>
-
-          <div class="point-line">
-            <span>🥤 Plastic cup</span>
-            <span class="pts">+10</span>
-          </div>
-
-          <div class="point-line">
-            <span>🧴 Plastic bottle</span>
-            <span class="pts">+15</span>
-          </div>
-
-          <div class="point-line">
-            <span>🥫 Tin can</span>
-            <span class="pts">+12</span>
-          </div>
-
-          <div class="point-line">
-            <span>🧃 Juice box</span>
-            <span class="pts">+11</span>
-          </div>
-
-          <div class="point-line">
-            <span>🥡 Food container</span>
-            <span class="pts">+13</span>
-          </div>
-
-          <div class="point-line">
-            <span>📦 Cardboard carton</span>
-            <span class="pts">+8</span>
-          </div>
-
-          <div class="point-line">
-            <span>🧻 Tissue</span>
-            <span class="pts">+6</span>
-          </div>
-
-          <div class="point-line">
-            <span>🛍️ Plastic bag</span>
-            <span class="pts">+9</span>
-          </div>
-
-        </div>
-
-        <div class="tip">
-
-          💡 <strong>Eco tip:</strong>
-          The game is a virtual clean-up activity.
-          In real life, only handle waste safely and follow
-          your school's waste-segregation rules.
-
-        </div>
-
-      </aside>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       LEADERBOARD
-       
-       IMPORTANT:
-       NO STAT ROW HERE.
-       
-       This means the leaderboard
-       starts directly with the
-       Eco leaderboard card.
-  ========================= -->
-
-  <div
-    id="leaderboardPage"
-    class="screen"
-  >
-
-    <div class="leader-card card">
-
-      <div class="leader-title">
-
-        <div>
-
-          <h2>
-            🏆 Eco leaderboard
-          </h2>
-
-          <p>
-            The highest personal best scores rise to the top.
-          </p>
-
-        </div>
-
-        <button
-          class="btn light"
-          id="backToPlay"
-        >
-          Play a round →
-        </button>
-
-      </div>
-
-      <div
-        id="leaderRows"
-        class="leader-list"
-      ></div>
-
-      <div class="footnote">
-        This demo leaderboard contains only players saved
-        in this browser on this device.
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-
 <div class="footnote">
-  CLEAN QUEST · A playable environmental school-project prototype · Every tap counts 🌎
+CLEAN QUEST · A playable environmental school-project prototype · Every tap counts 🌎
 </div>
 
 </div>
 
+<div id="profileModal" class="modal">
 
-<!-- =========================
-     PROFILE MODAL
-========================= -->
+<div class="modal-card">
 
-<div
-  id="profileModal"
-  class="modal"
+<div class="modal-head">
+<h2>👤 My Profile</h2>
+<button id="closeProfile" class="close-btn">×</button>
+</div>
+
+<div class="avatar-wrap">
+
+<div id="profileAvatar" class="avatar">🌱</div>
+
+<label class="photo-label">
+Add / change picture
+<input id="photoInput" type="file" accept="image/*">
+</label>
+
+</div>
+
+<label for="editName">Player name / nickname</label>
+
+<input
+id="editName"
+maxlength="18"
+placeholder="Your nickname"
 >
 
-  <div class="modal-card">
+<button id="saveProfile" class="btn full">
+Save profile
+</button>
 
-    <div class="modal-head">
+<button id="logoutBtn" class="btn danger full">
+Log out
+</button>
 
-      <h2>
-        👤 My Profile
-      </h2>
-
-      <button
-        id="closeProfile"
-        class="close-btn"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div class="avatar-wrap">
-
-      <div
-        id="profileAvatar"
-        class="avatar"
-      >
-        🌱
-      </div>
-
-      <label class="photo-label">
-
-        Add / change picture
-
-        <input
-          id="photoInput"
-          type="file"
-          accept="image/*"
-        >
-
-      </label>
-
-    </div>
-
-    <label for="editName">
-      Player name / nickname
-    </label>
-
-    <input
-      id="editName"
-      maxlength="18"
-      placeholder="Your nickname"
-    >
-
-    <button
-      id="saveProfile"
-      class="btn full"
-    >
-      Save profile
-    </button>
-
-    <button
-      id="logoutBtn"
-      class="btn danger full"
-    >
-      Log out
-    </button>
-
-    <div
-      id="profileMsg"
-      class="msg"
-    ></div>
-
-  </div>
+<div id="profileMsg" class="msg"></div>
 
 </div>
 
+</div>
 
-<!-- =========================
-     BONUS QUIZ MODAL
-========================= -->
+<div id="quizModal" class="modal">
 
-<div
-  id="quizModal"
-  class="modal"
+<div class="modal-card quiz-box">
+
+<div class="quiz-tag">
+🌱 Bonus Eco Question
+</div>
+
+<div class="quiz-question">
+Which action helps reduce waste at school?
+</div>
+
+<div id="quizOptions" class="quiz-options">
+
+<button class="quiz-option" data-correct="false">
+Throwing everything on the floor
+</button>
+
+<button class="quiz-option" data-correct="true">
+Using reusable items when possible
+</button>
+
+<button class="quiz-option" data-correct="false">
+Leaving trash under desks
+</button>
+
+<button class="quiz-option" data-correct="false">
+Mixing all waste together
+</button>
+
+</div>
+
+<div id="quizFeedback" class="quiz-feedback"></div>
+
+<button
+id="quizContinue"
+class="btn full"
+style="display:none"
 >
-
-  <div class="modal-card quiz-box">
-
-    <div class="quiz-tag">
-      🌱 Bonus Eco Question
-    </div>
-
-    <div class="quiz-question">
-      Which action helps reduce waste at school?
-    </div>
-
-    <div
-      id="quizOptions"
-      class="quiz-options"
-    >
-
-      <button
-        class="quiz-option"
-        data-correct="false"
-      >
-        Throwing everything on the floor
-      </button>
-
-      <button
-        class="quiz-option"
-        data-correct="true"
-      >
-        Using reusable items when possible
-      </button>
-
-      <button
-        class="quiz-option"
-        data-correct="false"
-      >
-        Leaving trash under desks
-      </button>
-
-      <button
-        class="quiz-option"
-        data-correct="false"
-      >
-        Mixing all waste together
-      </button>
-
-    </div>
-
-    <div
-      id="quizFeedback"
-      class="quiz-feedback"
-    ></div>
-
-    <button
-      id="quizContinue"
-      class="btn full"
-      style="display:none"
-    >
-      Continue →
-    </button>
-
-  </div>
+Continue →
+</button>
 
 </div>
 
+</div>
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<div id="toast" class="toast"></div>
+
+<script type="module">
+
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc,
+collection,
+getDocs,
+query,
+orderBy
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 
 
-<script>
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyCNSrB-L5LkOTnbQPLOlLutcjs428SC420",
+
+authDomain:
+"clean-quest-886dd.firebaseapp.com",
+
+projectId:
+"clean-quest-886dd",
+
+storageBucket:
+"clean-quest-886dd.firebasestorage.app",
+
+messagingSenderId:
+"807769777759",
+
+appId:
+"1:807769777759:web:b3de6ebf3c44a71e3cddea",
+
+measurementId:
+"G-K5KRZ61HLM"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+
 (() => {
 
-  const $ = id =>
-    document.getElementById(id);
+const $ =
+id =>
+document.getElementById(id);
 
-  const KEY =
-    "cleanQuestPlayers_v5";
 
-  let players = {};
+let currentPlayer = null;
 
-  let currentPlayer = null;
+let mode = "create";
 
-  let mode = "create";
+let running = false;
 
-  let running = false;
+let timeLeft = 45;
 
-  let timeLeft = 45;
+let score = 0;
 
-  let score = 0;
+let collected = 0;
 
-  let collected = 0;
+let streak = 0;
 
-  let streak = 0;
+let bestStreak = 0;
 
-  let bestStreak = 0;
+let timerId = null;
 
-  let timerId = null;
+let spawnId = null;
 
-  let spawnId = null;
+let playersCache = {};
 
-  let storageOK = false;
 
+const litter = [
 
-  /* =========================
-     STORAGE
-  ========================= */
+["📄","Paper scrap","Paper / Recyclable",5],
+["📰","Newspaper","Paper / Recyclable",7],
+["📃","Loose paper","Paper / Recyclable",5],
+["📦","Cardboard carton","Paper / Recyclable",8],
+["🍬","Candy wrapper","Residual waste",10],
+["🥤","Plastic cup","Plastic / Recyclable",10],
+["🧴","Plastic bottle","Plastic / Recyclable",15],
+["🧃","Juice box","Carton / Recyclable",11],
+["🥫","Tin can","Metal / Recyclable",12],
+["🍾","Glass bottle","Glass / Recyclable",16],
+["🍶","Drink bottle","Plastic / Recyclable",14],
+["🧋","Plastic drink cup","Plastic / Recyclable",10],
+["🥡","Food container","Plastic / Mixed",13],
+["🍱","Takeout food box","Mixed waste",13],
+["🛍️","Plastic shopping bag","Plastic / Recyclable",9],
+["🧻","Used tissue","Residual waste",6],
+["🧼","Soap wrapper","Plastic / Residual",8],
+["🧽","Used sponge","Residual waste",8],
+["🍿","Snack packet","Residual waste",10],
+["🍫","Chocolate wrapper","Residual waste",9],
+["🍭","Candy stick / wrapper","Residual waste",8],
+["🍎","Food waste","Biodegradable",7],
+["🍌","Banana peel","Biodegradable",7],
+["🍊","Fruit peel","Biodegradable",7],
+["🥕","Vegetable waste","Biodegradable",7],
+["🍞","Bread waste","Biodegradable",7],
+["☕","Disposable drink cup","Mixed waste",10],
+["🥢","Disposable chopsticks","Residual waste",6],
+["🥄","Disposable spoon","Plastic / Residual",7],
+["🍴","Disposable fork","Plastic / Residual",7]
 
-  try{
+];
 
-    const test =
-      "__cleanquest_test__";
 
-    localStorage.setItem(
-      test,
-      "1"
-    );
+function normalizeName(name){
 
-    localStorage.removeItem(
-      test
-    );
+return name
+.trim()
+.replace(/\s+/g," ");
 
-    storageOK = true;
+}
 
-    players =
-      JSON.parse(
-        localStorage.getItem(KEY) || "{}"
-      ) || {};
 
-  }catch(e){
+function playerId(name){
 
-    players = {};
+return encodeURIComponent(
+name.toLowerCase()
+);
 
-  }
+}
 
 
-  function persist(){
+async function hashPin(pin){
 
-    if(!storageOK) return;
+const data =
+new TextEncoder().encode(pin);
 
-    try{
+const hash =
+await crypto.subtle.digest(
+"SHA-256",
+data
+);
 
-      localStorage.setItem(
-        KEY,
-        JSON.stringify(players)
-      );
+return [
+...new Uint8Array(hash)
+]
+.map(
+b =>
+b.toString(16)
+.padStart(2,"0")
+)
+.join("");
 
-    }catch(e){}
+}
 
-  }
 
+function screen(id){
 
-  /* =========================
-     LITTER DATA
-  ========================= */
+document
+.querySelectorAll(".screen")
+.forEach(
+s =>
+s.classList.remove("active")
+);
 
-  const litter = [
+const el =
+$(id);
 
-    ["📄","Paper scrap","Paper / Recyclable",5],
-    ["📰","Newspaper","Paper / Recyclable",7],
-    ["📃","Loose paper","Paper / Recyclable",5],
-    ["📦","Cardboard carton","Paper / Recyclable",8],
-    ["🍬","Candy wrapper","Residual waste",10],
-    ["🥤","Plastic cup","Plastic / Recyclable",10],
-    ["🧴","Plastic bottle","Plastic / Recyclable",15],
-    ["🧃","Juice box","Carton / Recyclable",11],
-    ["🥫","Tin can","Metal / Recyclable",12],
-    ["🍾","Glass bottle","Glass / Recyclable",16],
-    ["🍶","Drink bottle","Plastic / Recyclable",14],
-    ["🧋","Plastic drink cup","Plastic / Recyclable",10],
-    ["🥡","Food container","Plastic / Mixed",13],
-    ["🍱","Takeout food box","Mixed waste",13],
-    ["🛍️","Plastic shopping bag","Plastic / Recyclable",9],
-    ["🧻","Used tissue","Residual waste",6],
-    ["🧼","Soap wrapper","Plastic / Residual",8],
-    ["🧽","Used sponge","Residual waste",8],
-    ["🍿","Snack packet","Residual waste",10],
-    ["🍫","Chocolate wrapper","Residual waste",9],
-    ["🍭","Candy stick / wrapper","Residual waste",8],
-    ["🍎","Food waste","Biodegradable",7],
-    ["🍌","Banana peel","Biodegradable",7],
-    ["🍊","Fruit peel","Biodegradable",7],
-    ["🥕","Vegetable waste","Biodegradable",7],
-    ["🍞","Bread waste","Biodegradable",7],
-    ["☕","Disposable drink cup","Mixed waste",10],
-    ["🥢","Disposable chopsticks","Residual waste",6],
-    ["🥄","Disposable spoon","Plastic / Residual",7],
-    ["🍴","Disposable fork","Plastic / Residual",7]
+if(el)
+el.classList.add("active");
 
-  ];
+window.scrollTo(0,0);
 
+}
 
-  /* =========================
-     SCREEN NAVIGATION
-  ========================= */
 
-  function screen(id){
+function setMode(m){
 
-    document
-      .querySelectorAll(".screen")
-      .forEach(s =>
-        s.classList.remove("active")
-      );
+mode = m;
 
-    const el = $(id);
+$("createTab")
+.classList.toggle(
+"active",
+m === "create"
+);
 
-    if(el){
-      el.classList.add("active");
-    }
+$("loginTab")
+.classList.toggle(
+"active",
+m === "login"
+);
 
-    window.scrollTo(0,0);
+$("formSubmit").textContent =
+m === "create"
+? "Create my player →"
+: "Log in and play →";
 
-  }
+$("formMsg").textContent =
+"";
 
+}
 
-  function setMode(m){
 
-    mode = m;
+$("createTab").onclick =
+() =>
+setMode("create");
 
-    $("createTab")
-      .classList.toggle(
-        "active",
-        m === "create"
-      );
 
-    $("loginTab")
-      .classList.toggle(
-        "active",
-        m === "login"
-      );
+$("loginTab").onclick =
+() =>
+setMode("login");
 
-    $("formSubmit").textContent =
-      m === "create"
-      ? "Create my player →"
-      : "Log in and play →";
 
-    $("formMsg").textContent = "";
+$("playerPin").oninput =
+e =>
+e.target.value =
+e.target.value
+.replace(/\D/g,"")
+.slice(0,4);
 
-  }
 
+async function savePlayer(){
 
-  $("createTab").onclick =
-    () => setMode("create");
+if(!currentPlayer)
+return;
 
-  $("loginTab").onclick =
-    () => setMode("login");
+await setDoc(
+doc(
+db,
+"players",
+currentPlayer
+),
+playersCache[currentPlayer]
+);
 
+}
 
-  /* =========================
-     LOGIN / CREATE
-  ========================= */
 
-  $("playerPin").oninput =
-    e => {
+async function getAllPlayers(){
 
-      e.target.value =
-        e.target.value
-        .replace(/\D/g,"")
-        .slice(0,4);
+const snap =
+await getDocs(
+query(
+collection(db,"players"),
+orderBy("best","desc")
+)
+);
 
-    };
+const arr = [];
 
+snap.forEach(
+d =>
+arr.push({
+id:d.id,
+...d.data()
+})
+);
 
-  $("formSubmit").onclick =
-    () => {
+arr.sort(
+(a,b) =>
+(b.best || 0) -
+(a.best || 0) ||
+(b.totalItems || 0) -
+(a.totalItems || 0)
+);
 
-      const name =
-        $("playerName")
-        .value
-        .trim()
-        .replace(/\s+/g," ");
+return arr;
 
-      const pin =
-        $("playerPin")
-        .value
-        .replace(/\D/g,"")
-        .slice(0,4);
+}
 
-      $("playerPin").value =
-        pin;
 
+async function handleLogin(){
 
-      if(name.length < 2){
+const name =
+normalizeName(
+$("playerName").value
+);
 
-        $("formMsg").textContent =
-          "Use at least 2 characters for your player name.";
+const pin =
+$("playerPin")
+.value
+.replace(/\D/g,"")
+.slice(0,4);
 
-        return;
+$("playerPin").value =
+pin;
 
-      }
 
+if(name.length < 2){
 
-      if(!/^\d{4}$/.test(pin)){
+$("formMsg").textContent =
+"Use at least 2 characters for your player name.";
 
-        $("formMsg").textContent =
-          "Enter exactly 4 digits for your demo PIN.";
+return;
 
-        return;
+}
 
-      }
 
+if(!/^\d{4}$/.test(pin)){
 
-      const key =
-        name.toLowerCase();
+$("formMsg").textContent =
+"Enter exactly 4 digits for your demo PIN.";
 
+return;
 
-      if(mode === "create"){
+}
 
-        if(players[key]){
 
-          $("formMsg").textContent =
-            "That player already exists. Tap Log in instead.";
+const id =
+playerId(name);
 
-          return;
 
-        }
+$("formSubmit").disabled =
+true;
 
+$("formSubmit").textContent =
+"Connecting…";
 
-        players[key] = {
 
-          name,
+try{
 
-          pin,
+const ref =
+doc(
+db,
+"players",
+id
+);
 
-          best:0,
+const snap =
+await getDoc(ref);
 
-          totalItems:0,
+const pinHash =
+await hashPin(pin);
 
-          games:0,
 
-          totalPoints:0,
+if(mode === "create"){
 
-          photo:""
+if(snap.exists()){
 
-        };
+$("formMsg").textContent =
+"That player already exists. Tap Log in instead.";
 
+return;
 
-        persist();
+}
 
-        login(key);
 
-      }else{
+const p = {
 
-        if(
-          !players[key] ||
-          players[key].pin !== pin
-        ){
+name,
 
-          $("formMsg").textContent =
-            "Player or PIN not found. Check your details.";
+pinHash,
 
-          return;
+best:0,
 
-        }
+totalItems:0,
 
-        login(key);
+games:0,
 
-      }
+totalPoints:0,
 
-    };
+photo:""
 
+};
 
-  function login(key){
 
-    currentPlayer = key;
+await setDoc(
+ref,
+p
+);
 
-    $("welcomeName").textContent =
-      players[key].name;
+playersCache[id] =
+p;
 
-    screen("homeScreen");
+await login(id);
 
-    showPage("play");
 
-    refreshStats();
+}else{
 
-    resetRoundUI();
+if(!snap.exists()){
 
-    toast(
-      "Welcome, " +
-      players[key].name +
-      "! 🌱"
-    );
+$("formMsg").textContent =
+"Player not found. Create the player first.";
 
-  }
+return;
 
+}
 
-  /* =========================
-     NAVIGATION
-  ========================= */
 
-  document
-    .querySelectorAll("[data-page]")
-    .forEach(button => {
+const p =
+snap.data();
 
-      button.onclick =
-        () =>
-          showPage(
-            button.dataset.page
-          );
 
-    });
+if(p.pinHash !== pinHash){
 
+$("formMsg").textContent =
+"Incorrect player name or PIN.";
 
-  $("backToPlay").onclick =
-    () =>
-      showPage("play");
+return;
 
+}
 
-  function showPage(page){
 
-    $("playPage")
-      .classList.toggle(
-        "active",
-        page === "play"
-      );
+playersCache[id] =
+p;
 
-    $("leaderboardPage")
-      .classList.toggle(
-        "active",
-        page === "leaderboard"
-      );
+await login(id);
 
+}
 
-    document
-      .querySelectorAll("[data-page]")
-      .forEach(button => {
 
-        button.classList.toggle(
-          "active",
-          button.dataset.page === page
-        );
+}catch(err){
 
-      });
+console.error(err);
 
+$("formMsg").textContent =
+"Could not connect to the online database. Check your Firebase setup.";
 
-    if(page === "leaderboard"){
+}finally{
 
-      renderLeaderboard();
+$("formSubmit").disabled =
+false;
 
-    }
+$("formSubmit").textContent =
+mode === "create"
+? "Create my player →"
+: "Log in and play →";
 
-  }
+}
 
+}
 
-  /* =========================
-     STATS
-  ========================= */
 
-  function refreshStats(){
+$("formSubmit").onclick =
+handleLogin;
 
-    if(!currentPlayer) return;
 
-    const p =
-      players[currentPlayer];
+async function login(id){
 
+currentPlayer =
+id;
 
-    $("bestScore").textContent =
-      p.best.toLocaleString();
+$("welcomeName").textContent =
+playersCache[id].name;
 
+screen("homeScreen");
 
-    $("totalItems").textContent =
-      p.totalItems.toLocaleString();
+showPage("play");
 
+await refreshStats();
 
-    $("gamesPlayed").textContent =
-      p.games.toLocaleString();
+resetRoundUI();
 
+toast(
+"Welcome, " +
+playersCache[id].name +
+"! 🌱"
+);
 
-    const arr =
-      Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems
-      );
+}
 
 
-    const index =
-      arr.findIndex(
-        x =>
-          x.name === p.name
-      );
+document
+.querySelectorAll("[data-page]")
+.forEach(
+button =>
+button.onclick =
+() =>
+showPage(
+button.dataset.page
+)
+);
 
 
-    $("yourRank").textContent =
-      index >= 0
-      ? "#" + (index + 1)
-      : "—";
+$("backToPlay").onclick =
+() =>
+showPage("play");
 
-  }
 
+async function showPage(page){
 
-  /* =========================
-     GAME RESET
-  ========================= */
+$("playPage")
+.classList.toggle(
+"active",
+page === "play"
+);
 
-  function resetRoundUI(){
+$("leaderboardPage")
+.classList.toggle(
+"active",
+page === "leaderboard"
+);
 
-    stopTimers();
 
-    running = false;
+document
+.querySelectorAll("[data-page]")
+.forEach(
+b =>
+b.classList.toggle(
+"active",
+b.dataset.page === page
+)
+);
 
-    timeLeft = 45;
 
-    score = 0;
+if(page === "leaderboard")
+await renderLeaderboard();
 
-    collected = 0;
+}
 
-    streak = 0;
 
-    bestStreak = 0;
+async function refreshStats(){
 
+if(!currentPlayer)
+return;
 
-    $("timer").textContent =
-      "00:45";
+const p =
+playersCache[currentPlayer];
 
-    $("timer")
-      .classList.remove("danger");
 
+$("bestScore").textContent =
+(p.best || 0)
+.toLocaleString();
 
-    $("scoreValue").textContent =
-      "0";
 
-    $("collectedValue").textContent =
-      "0";
+$("totalItems").textContent =
+(p.totalItems || 0)
+.toLocaleString();
 
-    $("streakValue").textContent =
-      "0";
 
+$("gamesPlayed").textContent =
+(p.games || 0)
+.toLocaleString();
 
-    $("trashLayer").innerHTML =
-      "";
 
+try{
 
-    $("pickupInfo")
-      .classList.remove("show");
+const arr =
+await getAllPlayers();
 
-    $("pickupInfo").innerHTML =
-      "";
+const index =
+arr.findIndex(
+x =>
+x.id === currentPlayer
+);
 
+$("yourRank").textContent =
+index >= 0
+? "#" + (index + 1)
+: "—";
 
-    $("gameOverlay")
-      .style.display =
-      "flex";
+}catch(e){
 
+$("yourRank").textContent =
+"—";
 
-    $("gameOverlay").innerHTML = `
+}
 
-      <div class="overlay-box">
+}
 
-        <div class="overlay-icon">
-          🧤
-        </div>
 
-        <h3>
-          Ready, cleaner?
-        </h3>
+function resetRoundUI(){
 
-        <p>
-          You have 45 seconds.
-          Tap the litter around the classroom
-          to pick it up and earn points.
-        </p>
+stopTimers();
 
-        <button
-          id="startBtn"
-          class="btn"
-        >
-          Start cleaning! →
-        </button>
+running = false;
 
-      </div>
+timeLeft = 45;
 
-    `;
+score = 0;
 
+collected = 0;
 
-    $("startBtn").onclick =
-      startRound;
+streak = 0;
 
-  }
+bestStreak = 0;
 
 
-  function stopTimers(){
+$("timer").textContent =
+"00:45";
 
-    clearInterval(timerId);
+$("timer")
+.classList.remove("danger");
 
-    clearInterval(spawnId);
 
-    timerId = null;
+$("scoreValue").textContent =
+"0";
 
-    spawnId = null;
+$("collectedValue").textContent =
+"0";
 
-  }
+$("streakValue").textContent =
+"0";
 
 
-  /* =========================
-     START GAME
-  ========================= */
+$("trashLayer").innerHTML =
+"";
 
-  function startRound(){
+$("pickupInfo")
+.classList.remove("show");
 
-    if(!currentPlayer || running)
-      return;
+$("pickupInfo").innerHTML =
+"";
 
 
-    running = true;
+$("gameOverlay").style.display =
+"flex";
 
-    timeLeft = 45;
 
-    score = 0;
+$("gameOverlay").innerHTML = `
 
-    collected = 0;
+<div class="overlay-box">
 
-    streak = 0;
+<div class="overlay-icon">
+🧤
+</div>
 
-    bestStreak = 0;
+<h3>
+Ready, cleaner?
+</h3>
 
+<p>
+You have 45 seconds.
+Tap the litter around the classroom
+to pick it up and earn points.
+</p>
 
-    $("gameOverlay")
-      .style.display =
-      "none";
+<button
+id="startBtn"
+class="btn"
+>
+Start cleaning! →
+</button>
 
+</div>
 
-    $("trashLayer").innerHTML =
-      "";
+`;
 
 
-    $("pickupInfo")
-      .classList.remove("show");
+$("startBtn").onclick =
+startRound;
 
-    $("pickupInfo").innerHTML =
-      "";
+}
 
 
-    updateGameStats();
+function stopTimers(){
 
+clearInterval(timerId);
 
-    for(let i=0;i<7;i++){
+clearInterval(spawnId);
 
-      spawnTrash();
+timerId = null;
 
-    }
+spawnId = null;
 
+}
 
-    updateTimer();
 
+function startRound(){
 
-    timerId =
-      setInterval(() => {
+if(
+!currentPlayer ||
+running
+)
+return;
 
-        timeLeft--;
 
-        updateTimer();
+running = true;
 
+timeLeft = 45;
 
-        if(timeLeft <= 0){
+score = 0;
 
-          finishRound();
+collected = 0;
 
-        }
+streak = 0;
 
-      },1000);
+bestStreak = 0;
 
 
-    spawnId =
-      setInterval(() => {
+$("gameOverlay").style.display =
+"none";
 
-        if(
-          running &&
-          $("trashLayer")
-          .querySelectorAll(".trash")
-          .length < 8
-        ){
+$("trashLayer").innerHTML =
+"";
 
-          spawnTrash();
+$("pickupInfo")
+.classList.remove("show");
 
-        }
+$("pickupInfo").innerHTML =
+"";
 
-      },700);
 
-  }
+updateGameStats();
 
 
-  /* =========================
-     SPAWN TRASH
-  ========================= */
+for(
+let i = 0;
+i < 7;
+i++
+){
 
-  function spawnTrash(){
+spawnTrash();
 
-    if(!running) return;
+}
 
 
-    const item =
-      litter[
-        Math.floor(
-          Math.random() *
-          litter.length
-        )
-      ];
+updateTimer();
 
 
-    const el =
-      document.createElement("button");
+timerId =
+setInterval(
+() => {
 
+timeLeft--;
 
-    el.type = "button";
+updateTimer();
 
-    el.className = "trash";
+if(timeLeft <= 0)
+finishRound();
 
-    el.textContent =
-      item[0];
+},
+1000
+);
 
 
-    el.setAttribute(
-      "aria-label",
-      "Pick up " +
-      item[1] +
-      " for " +
-      item[3] +
-      " points"
-    );
+spawnId =
+setInterval(
+() => {
 
+if(
+running &&
+$("trashLayer")
+.querySelectorAll(".trash")
+.length < 8
+){
 
-    el.title =
-      item[1] +
-      " • " +
-      item[2] +
-      " • +" +
-      item[3];
+spawnTrash();
 
+}
 
-    const scene =
-      $("scene");
+},
+700
+);
 
+}
 
-    const rect =
-      scene.getBoundingClientRect();
 
+function spawnTrash(){
 
-    const x =
-      12 +
-      Math.random() *
-      Math.max(
-        20,
-        rect.width - 76
-      );
+if(!running)
+return;
 
 
-    const y =
-      145 +
-      Math.random() *
-      Math.max(
-        30,
-        rect.height - 235
-      );
+const item =
+litter[
+Math.floor(
+Math.random() *
+litter.length
+)
+];
 
 
-    el.style.left =
-      x + "px";
+const el =
+document.createElement(
+"button"
+);
 
 
-    el.style.top =
-      y + "px";
+el.type =
+"button";
 
+el.className =
+"trash";
 
-    el.onclick =
-      () =>
-        collectTrash(
-          el,
-          item
-        );
+el.textContent =
+item[0];
 
 
-    $("trashLayer")
-      .appendChild(el);
+el.setAttribute(
+"aria-label",
+"Pick up " +
+item[1] +
+" for " +
+item[3] +
+" points"
+);
 
-  }
 
+el.title =
+item[1] +
+" • " +
+item[2] +
+" • +" +
+item[3];
 
-  /* =========================
-     PICK UP TRASH
-  ========================= */
 
-  function collectTrash(
-    el,
-    item
-  ){
+const rect =
+$("scene")
+.getBoundingClientRect();
 
-    if(
-      !running ||
-      el.classList.contains("taken")
-    ){
 
-      return;
+el.style.left =
+(
+12 +
+Math.random() *
+Math.max(
+20,
+rect.width - 76
+)
+) +
+"px";
 
-    }
 
+el.style.top =
+(
+145 +
+Math.random() *
+Math.max(
+30,
+rect.height - 235
+)
+) +
+"px";
 
-    el.classList.add("taken");
 
+el.onclick =
+() =>
+collectTrash(
+el,
+item
+);
 
-    streak++;
 
+$("trashLayer")
+.appendChild(el);
 
-    bestStreak =
-      Math.max(
-        bestStreak,
-        streak
-      );
+}
 
 
-    let streakBonus = 0;
+function collectTrash(
+el,
+item
+){
 
+if(
+!running ||
+el.classList.contains("taken")
+)
+return;
 
-    if(streak % 5 === 0){
 
-      streakBonus = 5;
+el.classList.add("taken");
 
-    }
 
+streak++;
 
-    const earned =
-      item[3] +
-      streakBonus;
 
+bestStreak =
+Math.max(
+bestStreak,
+streak
+);
 
-    score += earned;
 
-    collected++;
+const streakBonus =
+streak % 5 === 0
+? 5
+: 0;
 
 
-    updateGameStats();
+const earned =
+item[3] +
+streakBonus;
 
 
-    const info =
-      $("pickupInfo");
+score +=
+earned;
 
+collected++;
 
-    info.innerHTML = `
 
-      ${item[0]}
+updateGameStats();
 
-      <strong>
-        ${escapeHTML(item[1])}
-      </strong>
 
-      • ${escapeHTML(item[2])}
+const info =
+$("pickupInfo");
 
-      • +${earned}
 
-      ${
-        streakBonus
-        ? " 🔥 Streak bonus +5"
-        : ""
-      }
+info.innerHTML =
+`${item[0]} <strong>${escapeHTML(item[1])}</strong> • ${escapeHTML(item[2])} • +${earned}${streakBonus ? " 🔥 Streak bonus +5" : ""}`;
 
-    `;
 
+info.classList.add("show");
 
-    info.classList.add("show");
 
+clearTimeout(
+window.__pickupInfo
+);
 
-    clearTimeout(
-      window.__pickupInfo
-    );
 
+window.__pickupInfo =
+setTimeout(
+() =>
+info.classList.remove("show"),
+1000
+);
 
-    window.__pickupInfo =
-      setTimeout(() => {
 
-        info.classList.remove("show");
+const r =
+el.getBoundingClientRect();
 
-      },1000);
+const sr =
+$("scene")
+.getBoundingClientRect();
 
 
-    const r =
-      el.getBoundingClientRect();
+const fl =
+document.createElement(
+"div"
+);
 
 
-    const sr =
-      $("scene")
-      .getBoundingClientRect();
+fl.className =
+"float-points";
 
+fl.textContent =
+"+" +
+earned;
 
-    const float =
-      document.createElement("div");
 
+fl.style.left =
+(r.left - sr.left) +
+"px";
 
-    float.className =
-      "float-points";
+fl.style.top =
+(r.top - sr.top) +
+"px";
 
 
-    float.textContent =
-      "+" + earned;
+$("trashLayer")
+.appendChild(fl);
 
 
-    float.style.left =
-      (r.left - sr.left) +
-      "px";
+setTimeout(
+() =>
+fl.remove(),
+700
+);
 
 
-    float.style.top =
-      (r.top - sr.top) +
-      "px";
+setTimeout(
+() => {
 
+el.remove();
 
-    $("trashLayer")
-      .appendChild(float);
+if(running)
+spawnTrash();
 
+},
+160
+);
 
-    setTimeout(
-      () => float.remove(),
-      700
-    );
+}
 
 
-    setTimeout(() => {
+function updateGameStats(){
 
-      el.remove();
+$("scoreValue").textContent =
+score.toLocaleString();
 
+$("collectedValue").textContent =
+collected;
 
-      if(running){
+$("streakValue").textContent =
+streak;
 
-        spawnTrash();
+}
 
-      }
 
-    },160);
+function updateTimer(){
 
-  }
+$("timer").textContent =
+"00:" +
+String(
+Math.max(
+0,
+timeLeft
+)
+)
+.padStart(
+2,
+"0"
+);
 
 
-  function updateGameStats(){
+$("timer")
+.classList.toggle(
+"danger",
+timeLeft <= 10
+);
 
-    $("scoreValue").textContent =
-      score.toLocaleString();
+}
 
 
-    $("collectedValue").textContent =
-      collected;
+async function finishRound(){
 
+if(!running)
+return;
 
-    $("streakValue").textContent =
-      streak;
 
-  }
+running = false;
 
+stopTimers();
 
-  function updateTimer(){
 
-    $("timer").textContent =
-      "00:" +
-      String(
-        Math.max(
-          0,
-          timeLeft
-        )
-      ).padStart(
-        2,
-        "0"
-      );
+const p =
+playersCache[currentPlayer];
 
 
-    $("timer")
-      .classList.toggle(
-        "danger",
-        timeLeft <= 10
-      );
+p.best =
+Math.max(
+p.best || 0,
+score
+);
 
-  }
 
+p.totalItems =
+(p.totalItems || 0) +
+collected;
 
-  /* =========================
-     FINISH ROUND
-  ========================= */
 
-  function finishRound(){
+p.games =
+(p.games || 0) +
+1;
 
-    if(!running)
-      return;
 
+p.totalPoints =
+(p.totalPoints || 0) +
+score;
 
-    running = false;
 
-    stopTimers();
+try{
 
+await savePlayer();
 
-    const p =
-      players[currentPlayer];
+}catch(e){
 
+console.error(e);
 
-    p.best =
-      Math.max(
-        p.best,
-        score
-      );
+toast(
+"Round finished, but saving failed."
+);
 
+}
 
-    p.totalItems +=
-      collected;
 
+await refreshStats();
 
-    p.games++;
 
+const rank =
+await getRank(
+currentPlayer
+);
 
-    p.totalPoints +=
-      score;
 
+$("gameOverlay").style.display =
+"flex";
 
-    persist();
 
-    refreshStats();
+$("gameOverlay").innerHTML = `
 
+<div class="overlay-box">
 
-    const rank =
-      getRank(
-        currentPlayer
-      );
+<div class="overlay-icon">
+🧹
+</div>
 
+<h3>
+Cleaning complete!
+</h3>
 
-    $("gameOverlay")
-      .style.display =
-      "flex";
+<div class="result-score">
+${score.toLocaleString()}
+</div>
 
+<p>
+Great job! You picked up
+<strong>${collected}</strong>
+pieces of litter.
+</p>
 
-    $("gameOverlay").innerHTML = `
+<div class="result-grid">
 
-      <div class="overlay-box">
+<div class="result-box">
+<strong>${collected}</strong>
+<span>Items</span>
+</div>
 
-        <div class="overlay-icon">
-          🧹
-        </div>
+<div class="result-box">
+<strong>${bestStreak}</strong>
+<span>Best streak</span>
+</div>
 
-        <h3>
-          Cleaning complete!
-        </h3>
+<div class="result-box">
+<strong>${rank}</strong>
+<span>Ranking</span>
+</div>
 
-        <div class="result-score">
-          ${score.toLocaleString()}
-        </div>
+</div>
 
-        <p>
-          Great job! You picked up
-          <strong>${collected}</strong>
-          pieces of litter.
-        </p>
+<p>
+🌱 Want extra points?
+Answer the bonus eco question!
+</p>
 
-        <div class="result-grid">
+<div class="overlay-actions">
 
-          <div class="result-box">
+<button
+id="bonusBtn"
+class="btn"
+>
+Answer bonus question →
+</button>
 
-            <strong>
-              ${collected}
-            </strong>
+<button
+id="againBtn"
+class="btn white"
+>
+Play again
+</button>
 
-            <span>
-              Items
-            </span>
+</div>
 
-          </div>
+</div>
 
-          <div class="result-box">
+`;
 
-            <strong>
-              ${bestStreak}
-            </strong>
 
-            <span>
-              Best streak
-            </span>
+$("bonusBtn").onclick =
+openBonusQuestion;
 
-          </div>
+$("againBtn").onclick =
+resetRoundUI;
 
-          <div class="result-box">
+}
 
-            <strong>
-              ${rank}
-            </strong>
 
-            <span>
-              Ranking
-            </span>
+function openBonusQuestion(){
 
-          </div>
+$("quizModal")
+.classList.add("show");
 
-        </div>
 
-        <p>
-          🌱 Want extra points?
-          Answer the bonus eco question!
-        </p>
+$("quizFeedback").textContent =
+"";
 
-        <div class="overlay-actions">
 
-          <button
-            id="bonusBtn"
-            class="btn"
-          >
-            Answer bonus question →
-          </button>
+$("quizFeedback").className =
+"quiz-feedback";
 
-          <button
-            id="againBtn"
-            class="btn white"
-          >
-            Play again
-          </button>
 
-        </div>
+$("quizContinue").style.display =
+"none";
 
-      </div>
 
-    `;
+document
+.querySelectorAll(".quiz-option")
+.forEach(
+b => {
 
+b.disabled =
+false;
 
-    $("bonusBtn").onclick =
-      openBonusQuestion;
+b.classList.remove(
+"correct",
+"wrong"
+);
 
+}
+);
 
-    $("againBtn").onclick =
-      resetRoundUI;
+}
 
-  }
 
+document
+.querySelectorAll(".quiz-option")
+.forEach(
+button =>
+button.onclick =
+async () => {
 
-  /* =========================
-     BONUS QUESTION
-  ========================= */
+document
+.querySelectorAll(".quiz-option")
+.forEach(
+b =>
+b.disabled = true
+);
 
-  function openBonusQuestion(){
 
-    $("quizModal")
-      .classList.add("show");
+const correct =
+button.dataset.correct ===
+"true";
 
 
-    $("quizFeedback").textContent =
-      "";
+if(correct){
 
+button.classList.add(
+"correct"
+);
 
-    $("quizFeedback").className =
-      "quiz-feedback";
 
+$("quizFeedback")
+.className =
+"quiz-feedback good";
 
-    $("quizContinue")
-      .style.display =
-      "none";
 
+$("quizFeedback")
+.textContent =
+"✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
 
-    document
-      .querySelectorAll(".quiz-option")
-      .forEach(button => {
 
-        button.disabled =
-          false;
+score +=
+25;
 
-        button.classList.remove(
-          "correct",
-          "wrong"
-        );
 
-      });
+const p =
+playersCache[currentPlayer];
 
-  }
 
+p.totalPoints =
+(p.totalPoints || 0) +
+25;
 
-  document
-    .querySelectorAll(".quiz-option")
-    .forEach(button => {
 
-      button.onclick =
-        () => {
+p.best =
+Math.max(
+p.best || 0,
+score
+);
 
-          document
-            .querySelectorAll(".quiz-option")
-            .forEach(b => {
 
-              b.disabled = true;
+try{
 
-            });
+await savePlayer();
 
+}catch(e){}
 
-          const correct =
-            button.dataset.correct ===
-            "true";
 
+await refreshStats();
 
-          if(correct){
 
-            button.classList.add(
-              "correct"
-            );
+$("quizContinue").style.display =
+"block";
 
 
-            $("quizFeedback")
-              .className =
-              "quiz-feedback good";
+}else{
 
+button.classList.add(
+"wrong"
+);
 
-            $("quizFeedback")
-              .textContent =
-              "✅ Correct! +25 bonus points. Reusable items can help reduce waste.";
 
+document
+.querySelectorAll(".quiz-option")
+.forEach(
+b => {
 
-            score += 25;
+if(
+b.dataset.correct ===
+"true"
+){
 
+b.classList.add(
+"correct"
+);
 
-            const p =
-              players[currentPlayer];
+}
 
+}
+);
 
-            p.totalPoints += 25;
 
+$("quizFeedback")
+.className =
+"quiz-feedback bad";
 
-            if(score > p.best){
 
-              p.best =
-                score;
+$("quizFeedback")
+.textContent =
+"❌ Not quite. The correct answer is “Using reusable items when possible.”";
 
-            }
 
+$("quizContinue").style.display =
+"block";
 
-            persist();
+}
 
-            refreshStats();
+}
+);
 
 
-            $("quizContinue")
-              .style.display =
-              "block";
+$("quizContinue").onclick =
+async () => {
 
+$("quizModal")
+.classList.remove(
+"show"
+);
 
-          }else{
 
-            button.classList.add(
-              "wrong"
-            );
+const finalRank =
+await getRank(
+currentPlayer
+);
 
 
-            document
-              .querySelectorAll(".quiz-option")
-              .forEach(b => {
+$("gameOverlay").style.display =
+"flex";
 
-                if(
-                  b.dataset.correct ===
-                  "true"
-                ){
 
-                  b.classList.add(
-                    "correct"
-                  );
+$("gameOverlay").innerHTML = `
 
-                }
+<div class="overlay-box">
 
-              });
+<div class="overlay-icon">
+🏆
+</div>
 
+<h3>
+Round saved!
+</h3>
 
-            $("quizFeedback")
-              .className =
-              "quiz-feedback bad";
+<div class="result-score">
+${score.toLocaleString()}
+</div>
 
+<p>
+Your final score includes your
+eco-question bonus.
+</p>
 
-            $("quizFeedback")
-              .textContent =
-              "❌ Not quite. The correct answer is “Using reusable items when possible.”";
+<div class="result-grid">
 
+<div class="result-box">
+<strong>${collected}</strong>
+<span>Items</span>
+</div>
 
-            $("quizContinue")
-              .style.display =
-              "block";
+<div class="result-box">
+<strong>${bestStreak}</strong>
+<span>Best streak</span>
+</div>
 
-          }
+<div class="result-box">
+<strong>${finalRank}</strong>
+<span>Ranking</span>
+</div>
 
-        };
+</div>
 
-    });
+<div class="overlay-actions">
 
+<button
+id="againFinal"
+class="btn"
+>
+Play again →
+</button>
 
-  $("quizContinue").onclick =
-    () => {
+<button
+id="boardFinal"
+class="btn white"
+>
+View leaderboard
+</button>
 
-      $("quizModal")
-        .classList.remove(
-          "show"
-        );
+</div>
 
+</div>
 
-      const finalRank =
-        getRank(
-          currentPlayer
-        );
+`;
 
 
-      $("gameOverlay")
-        .style.display =
-        "flex";
+$("againFinal").onclick =
+resetRoundUI;
 
 
-      $("gameOverlay").innerHTML = `
+$("boardFinal").onclick =
+() =>
+showPage(
+"leaderboard"
+);
 
-        <div class="overlay-box">
+};
 
-          <div class="overlay-icon">
-            🏆
-          </div>
 
-          <h3>
-            Round saved!
-          </h3>
+async function getRank(id){
 
-          <div class="result-score">
-            ${score.toLocaleString()}
-          </div>
+try{
 
-          <p>
-            Your final score includes your
-            eco-question bonus.
-          </p>
+const arr =
+await getAllPlayers();
 
-          <div class="result-grid">
+const i =
+arr.findIndex(
+x =>
+x.id === id
+);
 
-            <div class="result-box">
+return "#" +
+(i + 1);
 
-              <strong>
-                ${collected}
-              </strong>
+}catch(e){
 
-              <span>
-                Items
-              </span>
+return "—";
 
-            </div>
+}
 
-            <div class="result-box">
+}
 
-              <strong>
-                ${bestStreak}
-              </strong>
 
-              <span>
-                Best streak
-              </span>
+async function renderLeaderboard(){
 
-            </div>
+const box =
+$("leaderRows");
 
-            <div class="result-box">
 
-              <strong>
-                ${finalRank}
-              </strong>
+box.innerHTML =
+`<div class="empty">Loading shared leaderboard… 🌱</div>`;
 
-              <span>
-                Ranking
-              </span>
 
-            </div>
+try{
 
-          </div>
+const arr =
+await getAllPlayers();
 
-          <div class="overlay-actions">
 
-            <button
-              id="againFinal"
-              class="btn"
-            >
-              Play again →
-            </button>
+if(!arr.length){
 
-            <button
-              id="boardFinal"
-              class="btn white"
-            >
-              View leaderboard
-            </button>
+box.innerHTML =
+`<div class="empty">No players yet. Be the first cleaner! 🌱</div>`;
 
-          </div>
+return;
 
-        </div>
+}
 
-      `;
 
+box.innerHTML =
+arr
+.map(
+(p,i) => {
 
-      $("againFinal").onclick =
-        resetRoundUI;
+const medal =
+i === 0
+? "🥇"
+: i === 1
+? "🥈"
+: i === 2
+? "🥉"
+: i + 1;
 
 
-      $("boardFinal").onclick =
-        () =>
-          showPage(
-            "leaderboard"
-          );
+const isMe =
+currentPlayer &&
+p.id === currentPlayer;
 
-    };
 
+const avatar =
+p.photo
 
-  /* =========================
-     RANKING
-  ========================= */
+? `<div class="leader-avatar"><img src="${p.photo}" alt="${escapeHTML(p.name)} profile picture"></div>`
 
-  function getRank(key){
+: `<div class="leader-avatar">${escapeHTML(getInitials(p.name))}</div>`;
 
-    const arr =
-      Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems
-      );
 
+return `
 
-    const p =
-      players[key];
+<div class="leader-row ${isMe ? "me" : ""}">
 
+<div class="rank-medal">
+${medal}
+</div>
 
-    const index =
-      arr.findIndex(
-        x =>
-          x.name === p.name
-      );
+${avatar}
 
+<div>
 
-    return "#" +
-      (index + 1);
+<div class="player-name">
+${escapeHTML(p.name)}
+</div>
 
-  }
+<div class="player-meta">
+${p.totalItems || 0}
+items collected
+•
+${p.games || 0}
+round${p.games === 1 ? "" : "s"}
+</div>
 
+</div>
 
-  function renderLeaderboard(){
+<div class="leader-score">
 
-    const arr =
-      Object.values(players)
-      .sort(
-        (a,b) =>
-          b.best - a.best ||
-          b.totalItems - a.totalItems
-      );
+${(p.best || 0).toLocaleString()}
 
+<small>
+best score
+</small>
 
-    const box =
-      $("leaderRows");
+</div>
 
+</div>
 
-    if(!arr.length){
+`;
 
-      box.innerHTML = `
+}
+)
+.join("");
 
-        <div class="empty">
-          No players yet.
-          Be the first cleaner! 🌱
-        </div>
 
-      `;
+}catch(e){
 
-      return;
+console.error(e);
 
-    }
+box.innerHTML =
+`<div class="empty">
+Unable to load the shared leaderboard.<br>
+Check your Firebase Firestore setup.
+</div>`;
 
+}
 
-    box.innerHTML =
-      arr.map(
-        (p,i) => {
+}
 
-          const medal =
-            i === 0
-            ? "🥇"
-            : i === 1
-            ? "🥈"
-            : i === 2
-            ? "🥉"
-            : (i + 1);
 
+$("profileBtn").onclick =
+openProfile;
 
-          const isMe =
-            currentPlayer &&
-            p.name ===
-            players[currentPlayer].name;
+$("closeProfile").onclick =
+closeProfile;
 
 
-          const avatar =
-            p.photo
+$("profileModal").onclick =
+e => {
 
-            ? `
-              <div class="leader-avatar">
-                <img
-                  src="${p.photo}"
-                  alt="${escapeHTML(p.name)} profile picture"
-                >
-              </div>
-            `
+if(
+e.target ===
+$("profileModal")
+)
+closeProfile();
 
-            : `
-              <div class="leader-avatar">
-                ${escapeHTML(
-                  getInitials(p.name)
-                )}
-              </div>
-            `;
+};
 
 
-          return `
+function openProfile(){
 
-            <div
-              class="leader-row ${isMe ? "me" : ""}"
-            >
+if(!currentPlayer)
+return;
 
-              <div class="rank-medal">
-                ${medal}
-              </div>
 
-              ${avatar}
+const p =
+playersCache[currentPlayer];
 
-              <div>
 
-                <div class="player-name">
-                  ${escapeHTML(p.name)}
-                </div>
+$("editName").value =
+p.name;
 
-                <div class="player-meta">
 
-                  ${p.totalItems}
-                  items collected
+updateAvatar();
 
-                  • ${p.games}
-                  round${p.games === 1 ? "" : "s"}
 
-                </div>
+$("profileMsg").textContent =
+"";
 
-              </div>
 
-              <div class="leader-score">
+$("profileModal")
+.classList.add(
+"show"
+);
 
-                ${p.best.toLocaleString()}
+}
 
-                <small>
-                  best score
-                </small>
 
-              </div>
+function closeProfile(){
 
-            </div>
+$("profileModal")
+.classList.remove(
+"show"
+);
 
-          `;
+}
 
-        }
-      ).join("");
 
-  }
+function updateAvatar(){
 
+const p =
+playersCache[currentPlayer];
 
-  /* =========================
-     PROFILE
-  ========================= */
+const avatar =
+$("profileAvatar");
 
-  $("profileBtn").onclick =
-    openProfile;
 
+avatar.innerHTML =
+p.photo
 
-  $("closeProfile").onclick =
-    closeProfile;
+? `<img src="${p.photo}" alt="Profile picture">`
 
+: escapeHTML(
+getInitials(
+p.name
+)
+);
 
-  $("profileModal").onclick =
-    e => {
+}
 
-      if(
-        e.target ===
-        $("profileModal")
-      ){
 
-        closeProfile();
+$("photoInput").onchange =
+e => {
 
-      }
+const file =
+e.target.files[0];
 
-    };
+if(!file)
+return;
 
 
-  function openProfile(){
+const reader =
+new FileReader();
 
-    if(!currentPlayer)
-      return;
 
+reader.onload =
+async () => {
 
-    const p =
-      players[currentPlayer];
+playersCache[currentPlayer].photo =
+reader.result;
 
 
-    $("editName").value =
-      p.name;
+try{
 
+await savePlayer();
 
-    updateAvatar();
+updateAvatar();
 
+toast(
+"Profile picture updated! 🌱"
+);
 
-    $("profileMsg").textContent =
-      "";
+}catch(err){
 
+toast(
+"Could not save picture."
+);
 
-    $("profileModal")
-      .classList.add(
-        "show"
-      );
+}
 
-  }
+};
 
 
-  function closeProfile(){
+reader.readAsDataURL(
+file
+);
 
-    $("profileModal")
-      .classList.remove(
-        "show"
-      );
+};
 
-  }
 
+$("saveProfile").onclick =
+async () => {
 
-  function updateAvatar(){
+const newName =
+normalizeName(
+$("editName").value
+);
 
-    const p =
-      players[currentPlayer];
 
+if(newName.length < 2){
 
-    const avatar =
-      $("profileAvatar");
+$("profileMsg").textContent =
+"Use at least 2 characters.";
 
+return;
 
-    if(p.photo){
+}
 
-      avatar.innerHTML =
-        `<img
-          src="${p.photo}"
-          alt="Profile picture"
-        >`;
 
-    }else{
+const oldId =
+currentPlayer;
 
-      avatar.textContent =
-        getInitials(
-          p.name
-        );
+const newId =
+playerId(
+newName
+);
 
-    }
 
-  }
+if(newId !== oldId){
 
+try{
 
-  $("photoInput").onchange =
-    e => {
+const existing =
+await getDoc(
+doc(
+db,
+"players",
+newId
+)
+);
 
-      const file =
-        e.target.files[0];
 
+if(existing.exists()){
 
-      if(!file)
-        return;
+$("profileMsg").textContent =
+"That nickname is already being used.";
 
+return;
 
-      const reader =
-        new FileReader();
+}
 
 
-      reader.onload =
-        () => {
+const p =
+playersCache[oldId];
 
-          const p =
-            players[currentPlayer];
 
+p.name =
+newName;
 
-          p.photo =
-            reader.result;
 
+await setDoc(
+doc(
+db,
+"players",
+newId
+),
+p
+);
 
-          persist();
 
-          updateAvatar();
+playersCache[newId] =
+p;
 
+delete playersCache[oldId];
 
-          toast(
-            "Profile picture updated! 🌱"
-          );
+currentPlayer =
+newId;
 
-        };
 
+}catch(e){
 
-      reader.readAsDataURL(
-        file
-      );
+$("profileMsg").textContent =
+"Could not update profile.";
 
-    };
+return;
 
+}
 
-  $("saveProfile").onclick =
-    () => {
+}else{
 
-      const newName =
-        $("editName")
-        .value
-        .trim()
-        .replace(/\s+/g," ");
+playersCache[oldId].name =
+newName;
 
 
-      if(newName.length < 2){
+try{
 
-        $("profileMsg").textContent =
-          "Use at least 2 characters.";
+await savePlayer();
 
-        return;
+}catch(e){
 
-      }
+$("profileMsg").textContent =
+"Could not save profile.";
 
+return;
 
-      const oldKey =
-        currentPlayer;
+}
 
+}
 
-      const newKey =
-        newName.toLowerCase();
 
+$("welcomeName").textContent =
+playersCache[currentPlayer].name;
 
-      if(
-        newKey !== oldKey &&
-        players[newKey]
-      ){
 
-        $("profileMsg").textContent =
-          "That nickname is already being used on this device.";
+await refreshStats();
 
-        return;
+updateAvatar();
 
-      }
 
+$("profileMsg").style.color =
+"#287b4c";
 
-      const p =
-        players[oldKey];
 
+$("profileMsg").textContent =
+"Profile saved successfully!";
 
-      p.name =
-        newName;
 
+setTimeout(
+closeProfile,
+700
+);
 
-      if(newKey !== oldKey){
+};
 
-        players[newKey] =
-          p;
 
-        delete players[oldKey];
+$("logoutBtn").onclick =
+() => {
 
-        currentPlayer =
-          newKey;
+stopTimers();
 
-      }
+running = false;
 
+currentPlayer = null;
 
-      persist();
+$("playerName").value =
+"";
 
+$("playerPin").value =
+"";
 
-      $("welcomeName").textContent =
-        p.name;
+setMode("create");
 
+closeProfile();
 
-      refreshStats();
+screen("loginScreen");
 
-      updateAvatar();
+};
 
 
-      $("profileMsg").style.color =
-        "#287b4c";
+function getInitials(name){
 
+return name
+.split(" ")
+.map(
+x =>
+x[0]
+)
+.join("")
+.slice(0,2)
+.toUpperCase();
 
-      $("profileMsg").textContent =
-        "Profile saved successfully!";
+}
 
 
-      setTimeout(
-        () => {
+function escapeHTML(s){
 
-          closeProfile();
+return String(s).replace(
+/[&<>"']/g,
+m =>
+({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
 
-        },
-        700
-      );
+}
 
-    };
 
+function toast(msg){
 
-  $("logoutBtn").onclick =
-    () => {
+const t =
+$("toast");
 
-      stopTimers();
+t.textContent =
+msg;
 
-      running = false;
+t.classList.add(
+"show"
+);
 
-      currentPlayer = null;
+clearTimeout(
+window.__cqToast
+);
 
+window.__cqToast =
+setTimeout(
+() =>
+t.classList.remove(
+"show"
+),
+1800
+);
 
-      $("playerName").value =
-        "";
+}
 
-      $("playerPin").value =
-        "";
 
+setMode("create");
 
-      setMode("create");
-
-      closeProfile();
-
-      screen(
-        "loginScreen"
-      );
-
-    };
-
-
-  /* =========================
-     HELPERS
-  ========================= */
-
-  function getInitials(name){
-
-    return name
-      .split(" ")
-      .map(x => x[0])
-      .join("")
-      .slice(0,2)
-      .toUpperCase();
-
-  }
-
-
-  function escapeHTML(s){
-
-    return String(s).replace(
-      /[&<>"']/g,
-      m =>
-        ({
-          "&":"&amp;",
-          "<":"&lt;",
-          ">":"&gt;",
-          '"':"&quot;",
-          "'":"&#039;"
-        }[m])
-    );
-
-  }
-
-
-  function toast(msg){
-
-    const t =
-      $("toast");
-
-
-    t.textContent =
-      msg;
-
-
-    t.classList.add(
-      "show"
-    );
-
-
-    clearTimeout(
-      window.__cqToast
-    );
-
-
-    window.__cqToast =
-      setTimeout(
-        () => {
-
-          t.classList.remove(
-            "show"
-          );
-
-        },
-        1800
-      );
-
-  }
-
-
-  /* =========================
-     INITIAL STATE
-  ========================= */
-
-  setMode("create");
-
-  screen(
-    "loginScreen"
-  );
+screen("loginScreen");
 
 })();
+
 </script>
 
 </body>
