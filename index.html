@@ -2,3208 +2,1780 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#dff3e5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eef7ef">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-<title>Clean Quest — Play Clean. Rank Up.</title>
-
+<title>FLASHY — Your Little Study Space</title>
 <style>
 :root{
-  --bg:#edf8f0;
-  --card:#ffffff;
-  --green:#278553;
-  --green-dark:#1f6d45;
-  --green-soft:#dff3e5;
-  --mint:#eaf7ee;
-  --lime:#f4ffc5;
-  --yellow:#fff9c9;
-  --text:#21392d;
-  --muted:#7b8c83;
-  --danger:#b95048;
-  --border:#d8e7dc;
-  --shadow:0 12px 35px rgba(38,92,63,.10);
-  --radius:28px;
+  --bg:#f7f5ee;
+  --card:#fffdf8;
+  --sage:#8faa91;
+  --sage-dark:#58745d;
+  --mint:#e7f1e5;
+  --cream:#fffaf0;
+  --text:#304437;
+  --muted:#7c887d;
+  --line:#e3e7df;
+  --peach:#f4d9c8;
+  --danger:#d77d72;
+  --shadow:0 10px 30px rgba(71,92,74,.09);
+  --radius:24px;
 }
-
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
+html,body{
   margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 10% 5%, rgba(105,190,135,.15), transparent 28%),
-    linear-gradient(180deg,#f4fbf5 0%,#e9f6ed 100%);
+  padding:0;
+  min-height:100%;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
   color:var(--text);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Rounded",
-    "Segoe UI",
-    Arial,
-    sans-serif;
 }
-
+body{
+  min-height:100vh;
+}
 button,
-input{
+input,
+textarea{
   font:inherit;
 }
-
 button{
   cursor:pointer;
 }
-
 .hidden{
-  display:none!important;
+  display:none !important;
 }
-
-.app{
-  width:100%;
-  max-width:900px;
-  margin:0 auto;
-  padding:18px 18px 45px;
-}
-
-/* =========================================================
-   TOP HERO
-========================================================= */
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  min-height:230px;
-  border-radius:32px;
-  padding:26px 25px 25px;
-  background:
-    linear-gradient(145deg,#4eb878 0%,#319a61 50%,#258451 100%);
-  color:white;
-  box-shadow:0 18px 45px rgba(39,133,83,.20);
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-  width:210px;
-  height:210px;
-  right:-75px;
-  top:-80px;
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-}
-
-.hero:after{
-  content:"";
-  position:absolute;
-  width:130px;
-  height:130px;
-  left:-70px;
-  bottom:-75px;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-}
-
-.top-row{
+/* =========================
+   AUTH
+========================= */
+#authScreen{
+  min-height:100vh;
   display:flex;
+  justify-content:center;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  padding:24px;
 }
-
-.brand{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-.8px;
-}
-
-.earth{
-  font-size:30px;
-}
-
-.hero-title{
-  margin:34px 0 4px;
-  font-size:38px;
-  line-height:1;
-  letter-spacing:-1.5px;
-}
-
-.hero-sub{
-  margin:10px 0 0;
-  font-size:15px;
-  opacity:.86;
-  max-width:560px;
-  line-height:1.5;
-}
-
-.hero-badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:20px;
-}
-
-.hero-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:9px 13px;
-  border-radius:999px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.17);
-  font-weight:750;
-  font-size:13px;
-  backdrop-filter:blur(8px);
-}
-
-/* =========================================================
-   CARDS
-========================================================= */
-
-.card{
-  background:rgba(255,255,255,.94);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-
-.login-card{
-  margin-top:34px;
-  padding:34px 28px 29px;
-}
-
-.section-title{
-  margin:0;
-  font-size:29px;
-  letter-spacing:-1px;
-}
-
-.section-subtitle{
-  margin:8px 0 26px;
-  color:var(--muted);
-  line-height:1.5;
-  font-size:15px;
-}
-
-.tabs{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding:5px;
-  border-radius:20px;
-  background:#eaf5ed;
-  margin-bottom:28px;
-}
-
-.tab{
-  border:0;
-  background:transparent;
-  color:#75877d;
-  padding:14px 10px;
-  border-radius:16px;
-  font-weight:850;
-  font-size:15px;
-}
-
-.tab.active{
-  background:white;
-  color:var(--green-dark);
-  box-shadow:0 5px 14px rgba(41,95,62,.08);
-}
-
-.field{
-  margin-bottom:19px;
-}
-
-.field label{
-  display:block;
-  margin:0 0 8px;
-  font-weight:850;
-  font-size:14px;
-}
-
-.field input{
+.auth-box{
   width:100%;
-  height:58px;
-  padding:0 17px;
-  border-radius:19px;
-  border:2px solid var(--border);
-  outline:none;
-  color:var(--text);
-  background:#fbfdfb;
-  transition:.2s;
-}
-
-.field input:focus{
-  border-color:#76b98f;
-  box-shadow:0 0 0 4px rgba(72,158,102,.10);
-}
-
-.field input.name-input{
-  background:#fbffc6;
-}
-
-.primary-btn{
-  width:100%;
-  border:0;
-  border-radius:20px;
-  padding:16px 18px;
-  background:var(--green);
-  color:white;
-  font-weight:900;
-  font-size:17px;
-  box-shadow:0 5px 0 var(--green-dark);
-  transition:.12s;
-}
-
-.primary-btn:active{
-  transform:translateY(3px);
-  box-shadow:0 2px 0 var(--green-dark);
-}
-
-.secondary-btn{
-  border:2px solid var(--border);
-  background:white;
-  color:var(--green-dark);
-  border-radius:16px;
-  padding:11px 15px;
-  font-weight:850;
-}
-
-.demo-note{
-  margin:18px 0 0;
-  color:#8a9991;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.error-box{
-  margin-top:13px;
-  color:var(--danger);
-  font-weight:800;
-  line-height:1.35;
-}
-
-/* =========================================================
-   GAME HEADER
-========================================================= */
-
-.game-screen{
-  margin-top:24px;
-}
-
-.game-top{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:15px;
-  align-items:stretch;
-}
-
-.player-card{
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.avatar{
-  width:58px;
-  height:58px;
-  flex:0 0 58px;
-  border-radius:20px;
-  display:grid;
-  place-items:center;
-  background:#dff3e5;
-  font-size:28px;
-  overflow:hidden;
-  border:2px solid white;
-  box-shadow:0 4px 13px rgba(40,90,60,.12);
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.player-name{
-  font-weight:900;
-  font-size:18px;
-  word-break:break-word;
-}
-
-.player-level{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:4px;
-}
-
-.score-card{
-  min-width:145px;
-  padding:20px;
+  max-width:420px;
   text-align:center;
 }
-
-.score-label{
-  color:var(--muted);
-  font-size:12px;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.7px;
-}
-
-.score-value{
-  font-size:29px;
-  font-weight:950;
-  color:var(--green-dark);
-  margin-top:2px;
-}
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:14px;
-}
-
-.stat{
-  padding:17px 12px;
-  text-align:center;
-}
-
-.stat-icon{
-  font-size:21px;
-}
-
-.stat-value{
-  font-size:21px;
-  font-weight:950;
-  margin-top:4px;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:11px;
-  font-weight:750;
-  margin-top:2px;
-}
-
-/* =========================================================
-   GAME AREA
-========================================================= */
-
-.game-card{
-  margin-top:14px;
-  padding:22px;
-}
-
-.game-title-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:15px;
-}
-
-.game-title{
-  margin:0;
-  font-size:24px;
-  letter-spacing:-.7px;
-}
-
-.game-instruction{
-  margin:7px 0 0;
-  color:var(--muted);
-  line-height:1.45;
-  font-size:14px;
-}
-
-.timer{
-  min-width:77px;
-  text-align:center;
-  padding:11px 10px;
-  border-radius:17px;
-  background:#eaf6ed;
-  color:var(--green-dark);
-  font-size:22px;
-  font-weight:950;
-}
-
-.timer.warning{
-  background:#fff2c6;
-  color:#98721b;
-}
-
-.timer.danger{
-  background:#ffe1dd;
-  color:#ad453e;
-}
-
-.progress-wrap{
-  height:9px;
-  background:#edf4ef;
-  border-radius:999px;
-  overflow:hidden;
-  margin-top:18px;
-}
-
-.progress{
-  height:100%;
-  width:100%;
-  background:var(--green);
-  border-radius:999px;
-  transition:width 1s linear;
-}
-
-/* =========================================================
-   CLASSROOM
-========================================================= */
-
-.classroom{
-  position:relative;
-  min-height:420px;
-  margin-top:20px;
-  overflow:hidden;
+.logo-mark{
+  width:74px;
+  height:74px;
+  margin:0 auto 18px;
   border-radius:24px;
-  border:2px solid #d7e7dc;
-  background:
-    linear-gradient(180deg,#f9fcfa 0%,#eef6f0 100%);
-}
-
-.classroom-wall{
-  position:absolute;
-  inset:0 0 120px;
-  background:
-    radial-gradient(circle at 15% 20%,rgba(80,150,100,.08),transparent 25%),
-    linear-gradient(180deg,#f9fdf9,#edf7ef);
-}
-
-.window{
-  position:absolute;
-  width:115px;
-  height:90px;
-  left:23px;
-  top:28px;
-  border:8px solid #c5dbcb;
-  border-radius:10px;
-  background:
-    linear-gradient(90deg,transparent 47%,#c5dbcb 48%,#c5dbcb 53%,transparent 54%),
-    linear-gradient(transparent 46%,#c5dbcb 47%,#c5dbcb 53%,transparent 54%),
-    #dceff7;
-}
-
-.board{
-  position:absolute;
-  top:31px;
-  right:28px;
-  width:190px;
-  height:92px;
-  border-radius:8px;
-  background:#426955;
-  border:7px solid #b99b72;
-  box-shadow:0 6px 10px rgba(0,0,0,.08);
-}
-
-.board-text{
-  color:#e7f1e6;
-  font-weight:800;
-  text-align:center;
-  margin-top:27px;
-  font-size:13px;
-}
-
-.desk{
-  position:absolute;
-  width:110px;
-  height:55px;
-  background:#c59c70;
-  border-radius:8px 8px 4px 4px;
-  box-shadow:0 8px 0 #9b7955;
-}
-
-.desk:after{
-  content:"";
-  position:absolute;
-  left:12px;
-  right:12px;
-  bottom:-30px;
-  height:30px;
-  border-left:7px solid #9b7955;
-  border-right:7px solid #9b7955;
-}
-
-.desk.d1{
-  left:34px;
-  top:180px;
-}
-
-.desk.d2{
-  left:190px;
-  top:225px;
-}
-
-.desk.d3{
-  right:35px;
-  top:178px;
-}
-
-.bin{
-  position:absolute;
-  bottom:30px;
-  left:45%;
-  transform:translateX(-50%);
-  width:66px;
-  height:77px;
-  background:#7bb995;
-  border-radius:9px 9px 15px 15px;
-  border:5px solid #589871;
-}
-
-.bin:before{
-  content:"";
-  position:absolute;
-  width:80px;
-  height:12px;
-  left:-12px;
-  top:-9px;
-  background:#589871;
-  border-radius:8px;
-}
-
-.bin-label{
-  position:absolute;
-  top:25px;
-  width:100%;
-  text-align:center;
-  color:white;
-  font-size:12px;
-  font-weight:950;
-}
-
-.floor{
-  position:absolute;
-  bottom:0;
-  height:120px;
-  left:0;
-  right:0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #dbe9df 0,
-      #dbe9df 65px,
-      #d3e3d8 66px,
-      #d3e3d8 68px
-    );
-}
-
-.trash{
-  position:absolute;
-  z-index:8;
-  width:50px;
-  height:50px;
-  border:0;
-  background:transparent;
-  font-size:35px;
-  padding:0;
-  animation:trashFloat 2s ease-in-out infinite;
-  filter:drop-shadow(0 4px 3px rgba(0,0,0,.14));
-}
-
-.trash:active{
-  transform:scale(.75);
-}
-
-@keyframes trashFloat{
-  0%,100%{translate:0 0}
-  50%{translate:0 -4px}
-}
-
-.trash.picked{
-  animation:pick .35s forwards;
-}
-
-@keyframes pick{
-  to{
-    opacity:0;
-    transform:scale(.1) rotate(20deg);
-  }
-}
-
-.clean-message{
-  position:absolute;
-  z-index:20;
-  left:50%;
-  top:48%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-  padding:13px 18px;
-  border-radius:999px;
-  background:rgba(255,255,255,.94);
-  color:var(--green-dark);
-  font-weight:950;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
-  animation:messagePop .75s ease forwards;
-}
-
-@keyframes messagePop{
-  0%{opacity:0;transform:translate(-50%,-40%) scale(.8)}
-  20%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  100%{opacity:0;transform:translate(-50%,-75%) scale(1)}
-}
-
-.game-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
-}
-
-.game-actions button{
-  padding:14px;
-}
-
-/* =========================================================
-   MISSION / QUIZ
-========================================================= */
-
-.mission-card{
-  margin-top:14px;
-  padding:22px;
-}
-
-.mission-header{
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.mission-icon{
-  width:48px;
-  height:48px;
-  display:grid;
-  place-items:center;
-  border-radius:16px;
-  background:#e0f3e5;
-  font-size:25px;
-}
-
-.mission-title{
-  font-weight:950;
-  font-size:19px;
-}
-
-.mission-desc{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:3px;
-}
-
-.quiz{
-  margin-top:20px;
-}
-
-.quiz-question{
-  font-weight:900;
-  font-size:17px;
-  line-height:1.4;
-}
-
-.quiz-options{
-  display:grid;
-  gap:9px;
-  margin-top:13px;
-}
-
-.quiz-option{
-  width:100%;
-  text-align:left;
-  border:2px solid var(--border);
-  background:#fbfdfb;
-  border-radius:16px;
-  padding:13px;
-  font-weight:750;
-  color:var(--text);
-}
-
-.quiz-option.correct{
-  border-color:#62aa7c;
-  background:#e4f6e8;
-}
-
-.quiz-option.wrong{
-  border-color:#dc8b83;
-  background:#ffebe8;
-}
-
-/* =========================================================
-   LEADERBOARD
-========================================================= */
-
-.leaderboard-card{
-  margin-top:14px;
-  padding:22px;
-}
-
-.leaderboard-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-}
-
-.leaderboard-title h2{
-  margin:0;
-  font-size:21px;
-}
-
-.online-dot{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:11px;
-  font-weight:850;
-  color:#5d7969;
-}
-
-.online-dot:before{
-  content:"";
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#55a873;
-}
-
-.rank-list{
-  display:grid;
-  gap:9px;
-  margin-top:17px;
-}
-
-.rank-row{
-  display:grid;
-  grid-template-columns:40px 1fr auto;
-  align-items:center;
-  gap:11px;
-  padding:12px;
-  border-radius:17px;
-  background:#f6faf7;
-  border:1px solid #e3eee6;
-}
-
-.rank-number{
-  width:35px;
-  height:35px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:#e1f2e5;
-  font-weight:950;
-}
-
-.rank-name{
-  font-weight:850;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.rank-score{
-  font-weight:950;
-  color:var(--green-dark);
-}
-
-.empty-ranking{
-  text-align:center;
-  padding:25px 10px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
-  text-align:center;
-  color:#829189;
-  font-size:12px;
-  margin:30px 5px 0;
-  line-height:1.6;
-}
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:100;
+  background:var(--mint);
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px;
-  background:rgba(24,48,35,.45);
-  backdrop-filter:blur(7px);
+  font-size:34px;
+  box-shadow:var(--shadow);
 }
-
-.modal-card{
-  width:min(520px,100%);
-  max-height:90vh;
-  overflow:auto;
-  border-radius:29px;
-  background:white;
-  padding:28px;
-  box-shadow:0 25px 80px rgba(0,0,0,.22);
+.logo{
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:-1.5px;
+  margin-bottom:6px;
 }
-
-.modal-title{
-  margin:0;
-  font-size:26px;
-}
-
-.modal-text{
+.tagline{
   color:var(--muted);
-  line-height:1.5;
+  margin-bottom:34px;
+}
+.auth-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:28px;
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+.auth-card h2{
+  margin:0 0 7px;
+  font-size:22px;
+}
+.auth-card p{
+  margin:0 0 22px;
+  color:var(--muted);
   font-size:14px;
 }
-
-.modal-actions{
-  display:flex;
-  gap:9px;
-  margin-top:20px;
+.field{
+  margin-bottom:15px;
 }
-
-.modal-actions button{
-  flex:1;
-}
-
-.result-icon{
-  text-align:center;
-  font-size:60px;
-}
-
-.result-score{
-  text-align:center;
-  font-size:42px;
-  font-weight:950;
-  color:var(--green-dark);
-}
-
-.result-label{
-  text-align:center;
-  color:var(--muted);
-  margin-top:-5px;
-}
-
-.result-details{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:20px;
-}
-
-.result-detail{
-  padding:15px;
-  background:#f3f9f5;
-  border-radius:17px;
-  text-align:center;
-}
-
-.result-detail strong{
+.field label{
   display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  border-radius:15px;
+  padding:13px 14px;
+  outline:none;
+  transition:.2s;
+}
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+.field input:focus,
+.field textarea:focus{
+  border-color:var(--sage);
+  box-shadow:0 0 0 3px rgba(143,170,145,.13);
+}
+.primary-btn{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:14px 18px;
+  background:var(--sage-dark);
+  color:white;
+  font-weight:700;
+  transition:.2s;
+}
+.primary-btn:active{
+  transform:scale(.98);
+}
+.secondary-btn{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px 16px;
+  background:var(--card);
+  color:var(--text);
+  font-weight:650;
+}
+.auth-switch{
+  text-align:center;
+  margin-top:20px;
+  font-size:14px;
+  color:var(--muted);
+}
+.link-btn{
+  border:0;
+  background:none;
+  color:var(--sage-dark);
+  font-weight:750;
+  padding:0;
+}
+/* =========================
+   APP
+========================= */
+#app{
+  min-height:100vh;
+}
+.app-shell{
+  width:100%;
+  max-width:720px;
+  margin:auto;
+  padding:22px 18px 100px;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
+}
+.topbar-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.mini-logo{
+  width:43px;
+  height:43px;
+  border-radius:15px;
+  background:var(--mint);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:21px;
 }
-
-.result-detail span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-  position:fixed;
-  z-index:200;
-  left:50%;
-  bottom:24px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  padding:13px 18px;
-  border-radius:999px;
-  background:#20382d;
-  color:white;
+.topbar-title{
   font-weight:800;
-  font-size:13px;
-  box-shadow:0 10px 35px rgba(0,0,0,.2);
-  transition:.25s;
+  font-size:18px;
+}
+.icon-btn{
+  width:43px;
+  height:43px;
+  border:1px solid var(--line);
+  background:var(--card);
+  border-radius:15px;
+  color:var(--text);
+  font-size:18px;
+}
+.greeting{
+  margin-bottom:22px;
+}
+.greeting small{
+  color:var(--muted);
+}
+.greeting h1{
+  margin:4px 0 0;
+  font-size:29px;
+  letter-spacing:-1px;
+}
+.hero{
+  background:var(--mint);
+  border-radius:28px;
+  padding:25px;
+  margin-bottom:22px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"✦";
+  position:absolute;
+  right:24px;
+  top:18px;
+  font-size:28px;
+  opacity:.35;
+}
+.hero h2{
+  margin:0 0 6px;
+  font-size:22px;
+}
+.hero p{
+  margin:0 0 18px;
+  color:#657568;
+  max-width:280px;
+  line-height:1.5;
+}
+.study-btn{
+  border:0;
+  background:var(--sage-dark);
+  color:white;
+  border-radius:15px;
+  padding:12px 18px;
+  font-weight:700;
+}
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:24px 2px 12px;
+}
+.section-head h2{
+  margin:0;
+  font-size:18px;
+}
+.text-btn{
+  border:0;
+  background:none;
+  color:var(--sage-dark);
+  font-weight:750;
+}
+.deck-list{
+  display:grid;
+  gap:12px;
+}
+.deck-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 5px 18px rgba(71,92,74,.045);
+}
+.deck-main{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-width:0;
+}
+.deck-icon{
+  width:47px;
+  height:47px;
+  flex:none;
+  border-radius:16px;
+  background:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+.deck-info{
+  min-width:0;
+}
+.deck-info h3{
+  margin:0 0 4px;
+  font-size:16px;
   white-space:nowrap;
-  max-width:90vw;
   overflow:hidden;
   text-overflow:ellipsis;
 }
-
+.deck-info span{
+  color:var(--muted);
+  font-size:13px;
+}
+.arrow{
+  color:var(--muted);
+  font-size:20px;
+}
+.empty{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px dashed var(--line);
+  border-radius:22px;
+}
+.empty .emoji{
+  font-size:32px;
+  margin-bottom:10px;
+}
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:15px;
+  transform:translateX(-50%);
+  width:min(440px,calc(100% - 30px));
+  background:rgba(255,253,248,.94);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:8px;
+  display:flex;
+  gap:6px;
+  box-shadow:0 10px 30px rgba(71,92,74,.12);
+  z-index:20;
+}
+.nav-btn{
+  flex:1;
+  border:0;
+  background:none;
+  color:var(--muted);
+  padding:8px;
+  border-radius:15px;
+  font-size:12px;
+  font-weight:700;
+}
+.nav-btn.active{
+  background:var(--mint);
+  color:var(--sage-dark);
+}
+/* =========================
+   MODAL
+========================= */
+.modal-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(38,53,41,.28);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:50;
+}
+.modal{
+  width:min(720px,100%);
+  background:var(--card);
+  border-radius:30px 30px 0 0;
+  padding:24px 20px 30px;
+  max-height:90vh;
+  overflow:auto;
+}
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+.modal-head h2{
+  margin:0;
+  font-size:20px;
+}
+.close-btn{
+  border:0;
+  background:var(--mint);
+  width:38px;
+  height:38px;
+  border-radius:13px;
+  font-size:18px;
+  color:var(--text);
+}
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+.modal-actions button{
+  flex:1;
+}
+/* =========================
+   DECK VIEW
+========================= */
+.back-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+.back-btn{
+  border:0;
+  background:none;
+  color:var(--text);
+  font-size:21px;
+}
+.page-title{
+  font-size:24px;
+  font-weight:800;
+  margin:0;
+}
+.deck-subtitle{
+  color:var(--muted);
+  margin:4px 0 22px;
+}
+.add-card-btn{
+  width:100%;
+  border:1px dashed var(--sage);
+  background:var(--mint);
+  color:var(--sage-dark);
+  border-radius:18px;
+  padding:14px;
+  font-weight:750;
+  margin-bottom:20px;
+}
+.card-list{
+  display:grid;
+  gap:10px;
+}
+.card-row{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+.card-row strong{
+  display:block;
+  font-size:14px;
+}
+.card-row small{
+  color:var(--muted);
+}
+.card-row-actions{
+  display:flex;
+  gap:6px;
+}
+.small-btn{
+  border:0;
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  background:var(--mint);
+}
+.delete-btn{
+  background:#faece9;
+}
+/* =========================
+   STUDY
+========================= */
+.study-screen{
+  min-height:100vh;
+  padding:18px;
+  max-width:720px;
+  margin:auto;
+}
+.study-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
+.progress-text{
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+}
+.flashcard{
+  min-height:410px;
+  perspective:1000px;
+  margin:10px 0 22px;
+}
+.flashcard-inner{
+  width:100%;
+  min-height:410px;
+  position:relative;
+  transition:transform .55s;
+  transform-style:preserve-3d;
+}
+.flashcard.flipped .flashcard-inner{
+  transform:rotateY(180deg);
+}
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:32px;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:34px;
+  text-align:center;
+}
+.face.back{
+  transform:rotateY(180deg);
+  background:var(--mint);
+}
+.face-label{
+  color:var(--sage-dark);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-bottom:17px;
+}
+.face-text{
+  font-size:24px;
+  line-height:1.35;
+  font-weight:750;
+  max-width:560px;
+}
+.tap-hint{
+  margin-top:24px;
+  color:var(--muted);
+  font-size:13px;
+}
+.study-actions{
+  display:flex;
+  gap:10px;
+}
+.study-actions button{
+  flex:1;
+  border:0;
+  border-radius:17px;
+  padding:14px 10px;
+  font-weight:750;
+}
+.review-btn{
+  background:#faece9;
+  color:#a65f57;
+}
+.know-btn{
+  background:var(--mint);
+  color:var(--sage-dark);
+}
+.finish-message{
+  text-align:center;
+  background:var(--mint);
+  border-radius:28px;
+  padding:35px 24px;
+}
+.finish-message .big{
+  font-size:44px;
+}
+.finish-message h2{
+  margin:8px 0;
+}
+.finish-message p{
+  color:var(--muted);
+}
+/* =========================
+   SETTINGS
+========================= */
+.settings-list{
+  display:grid;
+  gap:10px;
+}
+.setting{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.setting-info strong{
+  display:block;
+  font-size:15px;
+}
+.setting-info span{
+  color:var(--muted);
+  font-size:12px;
+}
+.setting button{
+  border:1px solid var(--line);
+  background:var(--mint);
+  color:var(--sage-dark);
+  border-radius:12px;
+  padding:9px 12px;
+  font-weight:700;
+}
+.danger{
+  color:var(--danger) !important;
+  background:#faece9 !important;
+}
+/* =========================
+   TOAST
+========================= */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:88px;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--text);
+  color:white;
+  padding:11px 16px;
+  border-radius:14px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:100;
+  max-width:calc(100% - 40px);
+  text-align:center;
+}
 .toast.show{
   opacity:1;
-  transform:translate(-50%,0);
+  transform:translateX(-50%) translateY(0);
 }
-
-/* =========================================================
+/* =========================
+   DARK MODE
+========================= */
+body.dark{
+  --bg:#1d2821;
+  --card:#263329;
+  --sage:#8eaa92;
+  --sage-dark:#a8c3ab;
+  --mint:#314337;
+  --cream:#30392f;
+  --text:#edf3ed;
+  --muted:#aab7ac;
+  --line:#3a493e;
+  --peach:#5a4438;
+  --shadow:0 10px 30px rgba(0,0,0,.2);
+}
+body.dark .field input,
+body.dark .field textarea{
+  background:#202c23;
+  color:var(--text);
+}
+body.dark .bottom-nav{
+  background:rgba(38,51,41,.94);
+}
+/* =========================
    RESPONSIVE
-========================================================= */
-
-@media(max-width:650px){
-
-  .app{
-    padding:12px 12px 34px;
+========================= */
+@media(min-width:700px){
+  .modal-bg{
+    align-items:center;
+    padding:20px;
   }
-
-  .hero{
-    min-height:220px;
-    border-radius:28px;
-    padding:21px;
+  .modal{
+    border-radius:30px;
+    max-width:520px;
   }
-
-  .hero-title{
-    font-size:34px;
-  }
-
-  .login-card{
-    margin-top:18px;
-    padding:27px 20px 24px;
-    border-radius:26px;
-  }
-
-  .section-title{
-    font-size:27px;
-  }
-
-  .game-top{
-    grid-template-columns:1fr;
-  }
-
-  .score-card{
-    min-width:0;
-  }
-
-  .stats-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .game-card,
-  .mission-card,
-  .leaderboard-card{
-    padding:17px;
-  }
-
-  .classroom{
-    min-height:400px;
-  }
-
-  .board{
-    width:145px;
-    right:15px;
-  }
-
-  .window{
-    width:90px;
-  }
-
-  .desk.d1{
-    left:17px;
-  }
-
-  .desk.d2{
-    left:125px;
-  }
-
-  .desk.d3{
-    right:14px;
+  .app-shell{
+    padding-top:30px;
   }
 }
-
-@media(max-width:400px){
-
-  .hero-title{
-    font-size:30px;
-  }
-
-  .game-title{
+@media(max-width:420px){
+  .face-text{
     font-size:21px;
   }
-
-  .classroom{
-    min-height:380px;
-  }
-
-  .desk{
-    transform:scale(.85);
-  }
-
-  .game-actions{
-    grid-template-columns:1fr;
+  .flashcard,
+  .flashcard-inner{
+    min-height:370px;
   }
 }
 </style>
 </head>
-
 <body>
-
-<div class="app">
-
-  <!-- =====================================================
-       HERO
-  ====================================================== -->
-
-  <section class="hero">
-    <div class="hero-content">
-
-      <div class="top-row">
-        <div class="brand">CLEAN QUEST</div>
-        <div class="earth">🌎</div>
-      </div>
-
-      <div class="hero-title">
-        Play Clean.<br>
-        Rank Up.
-      </div>
-
-      <p class="hero-sub">
-        A playable environmental school-project prototype.
-        Every tap counts toward a cleaner classroom.
-      </p>
-
-      <div class="hero-badges">
-        <div class="hero-badge">🌎 Environment mission</div>
-        <div class="hero-badge">🧹 45-second challenge</div>
-      </div>
-
+<!-- =========================
+     AUTH SCREEN
+========================= -->
+<section id="authScreen">
+  <div class="auth-box">
+    <div class="logo-mark">🌱</div>
+    <div class="logo">FLASHY</div>
+    <div class="tagline">
+      your little study space ♡
     </div>
-  </section>
-
-
-  <!-- =====================================================
-       LOGIN / CREATE PLAYER
-  ====================================================== -->
-
-  <section id="authSection" class="card login-card">
-
-    <h1 class="section-title">Welcome, cleaner!</h1>
-
-    <p class="section-subtitle">
-      Create a demo player or log in to a profile saved online.
-    </p>
-
-    <div class="tabs">
-      <button id="createTab" class="tab active" onclick="switchAuth('create')">
-        Create player
-      </button>
-
-      <button id="loginTab" class="tab" onclick="switchAuth('login')">
-        Log in
-      </button>
-    </div>
-
-
-    <!-- CREATE -->
-
-    <div id="createForm">
-
-      <div class="field">
-        <label for="createName">
-          Player name / nickname
-        </label>
-
-        <input
-          id="createName"
-          class="name-input"
-          type="text"
-          maxlength="25"
-          placeholder="Enter a nickname"
-          autocomplete="nickname"
-        >
-      </div>
-
-      <div class="field">
-        <label for="createPin">
-          4-digit demo PIN
-        </label>
-
-        <input
-          id="createPin"
-          type="password"
-          maxlength="4"
-          inputmode="numeric"
-          placeholder="1234"
-        >
-      </div>
-
-      <button class="primary-btn" onclick="createPlayer()">
-        Create my player →
-      </button>
-
-      <div id="createError" class="error-box hidden"></div>
-
-      <p class="demo-note">
-        Your score and ranking can be saved in the shared online
-        leaderboard. For a school demo, a nickname is recommended
-        instead of your full name.
-      </p>
-
-    </div>
-
-
     <!-- LOGIN -->
-
-    <div id="loginForm" class="hidden">
-
+    <div id="loginBox" class="auth-card">
+      <h2>Welcome back! 🌷</h2>
+      <p>Log in to continue studying.</p>
       <div class="field">
-        <label for="loginName">
-          Player name / nickname
-        </label>
-
-        <input
-          id="loginName"
-          type="text"
-          maxlength="25"
-          placeholder="Enter your nickname"
-          autocomplete="nickname"
-        >
+        <label>Username</label>
+        <input id="loginUsername" type="text" autocomplete="username" placeholder="your username">
       </div>
-
       <div class="field">
-        <label for="loginPin">
-          4-digit demo PIN
-        </label>
-
-        <input
-          id="loginPin"
-          type="password"
-          maxlength="4"
-          inputmode="numeric"
-          placeholder="1234"
-        >
+        <label>Password</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="your password">
       </div>
-
-      <button class="primary-btn" onclick="loginPlayer()">
-        Log in →
+      <button class="primary-btn" onclick="login()">
+        Log In
       </button>
-
-      <div id="loginError" class="error-box hidden"></div>
-
+      <div class="auth-switch">
+        Don't have an account?
+        <button class="link-btn" onclick="showSignup()">Create Account</button>
+      </div>
     </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       GAME
-  ====================================================== -->
-
-  <main id="gameSection" class="game-screen hidden">
-
-    <div class="game-top">
-
-      <div class="card player-card">
-
-        <div id="playerAvatar" class="avatar">
-          🧹
-        </div>
-
-        <div>
-          <div id="playerNameDisplay" class="player-name">
-            Cleaner
-          </div>
-
-          <div id="playerLevelDisplay" class="player-level">
-            Level 1 Cleaner
-          </div>
-        </div>
-
+    <!-- SIGN UP -->
+    <div id="signupBox" class="auth-card hidden">
+      <h2>Create your space 🌿</h2>
+      <p>Your study data stays saved on this device.</p>
+      <div class="field">
+        <label>Your Name</label>
+        <input id="signupName" type="text" placeholder="e.g. CJ">
       </div>
-
-      <div class="card score-card">
-        <div class="score-label">Total score</div>
-        <div id="totalScoreDisplay" class="score-value">0</div>
+      <div class="field">
+        <label>Username</label>
+        <input id="signupUsername" type="text" autocomplete="username" placeholder="choose a username">
       </div>
-
-    </div>
-
-
-    <!-- STATS -->
-
-    <div class="stats-grid">
-
-      <div class="card stat">
-        <div class="stat-icon">🗑️</div>
-        <div id="trashStat" class="stat-value">0</div>
-        <div class="stat-label">Trash picked</div>
+      <div class="field">
+        <label>Password</label>
+        <input id="signupPassword" type="password" autocomplete="new-password" placeholder="choose a password">
       </div>
-
-      <div class="card stat">
-        <div class="stat-icon">🔥</div>
-        <div id="streakStat" class="stat-value">0</div>
-        <div class="stat-label">Best streak</div>
+      <div class="field">
+        <label>Confirm Password</label>
+        <input id="signupConfirm" type="password" autocomplete="new-password" placeholder="repeat your password">
       </div>
-
-      <div class="card stat">
-        <div class="stat-icon">🏆</div>
-        <div id="rankStat" class="stat-value">—</div>
-        <div class="stat-label">Rank</div>
-      </div>
-
-      <div class="card stat">
-        <div class="stat-icon">🌱</div>
-        <div id="cleanStat" class="stat-value">0%</div>
-        <div class="stat-label">Clean rate</div>
-      </div>
-
-    </div>
-
-
-    <!-- GAME -->
-
-    <section class="card game-card">
-
-      <div class="game-title-row">
-
-        <div>
-          <h2 class="game-title">
-            🧹 Classroom Cleanup
-          </h2>
-
-          <p class="game-instruction">
-            Tap every piece of litter before the timer ends.
-          </p>
-        </div>
-
-        <div id="timer" class="timer">
-          45
-        </div>
-
-      </div>
-
-      <div class="progress-wrap">
-        <div id="progress" class="progress"></div>
-      </div>
-
-
-      <!-- CLASSROOM -->
-
-      <div id="classroom" class="classroom">
-
-        <div class="classroom-wall"></div>
-
-        <div class="window"></div>
-
-        <div class="board">
-          <div class="board-text">
-            KEEP OUR SCHOOL CLEAN 🌱
-          </div>
-        </div>
-
-        <div class="desk d1"></div>
-        <div class="desk d2"></div>
-        <div class="desk d3"></div>
-
-        <div class="floor"></div>
-
-        <div class="bin">
-          <div class="bin-label">BIN</div>
-        </div>
-
-        <div id="trashContainer"></div>
-
-      </div>
-
-
-      <div class="game-actions">
-
-        <button
-          id="startGameBtn"
-          class="primary-btn"
-          onclick="startGame()"
-        >
-          🧹 Start cleanup
-        </button>
-
-        <button
-          class="secondary-btn"
-          onclick="showHowToPlay()"
-        >
-          How to play
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- MISSION -->
-
-    <section class="card mission-card">
-
-      <div class="mission-header">
-
-        <div class="mission-icon">
-          🌎
-        </div>
-
-        <div>
-          <div class="mission-title">
-            Environment Mission
-          </div>
-
-          <div class="mission-desc">
-            Learn, clean, and earn points.
-          </div>
-        </div>
-
-      </div>
-
-
-      <div id="quizArea" class="quiz">
-
-        <div class="quiz-question">
-          What should you do with recyclable materials?
-        </div>
-
-        <div class="quiz-options">
-
-          <button
-            class="quiz-option"
-            onclick="answerQuiz(this,false)"
-          >
-            A. Throw everything together
-          </button>
-
-          <button
-            class="quiz-option"
-            onclick="answerQuiz(this,true)"
-          >
-            B. Separate them properly
-          </button>
-
-          <button
-            class="quiz-option"
-            onclick="answerQuiz(this,false)"
-          >
-            C. Leave them on the floor
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- LEADERBOARD -->
-
-    <section class="card leaderboard-card">
-
-      <div class="leaderboard-title">
-
-        <h2>
-          🏆 Cleaner leaderboard
-        </h2>
-
-        <div class="online-dot">
-          <span id="connectionLabel">Local demo</span>
-        </div>
-
-      </div>
-
-      <div id="rankList" class="rank-list">
-        <div class="empty-ranking">
-          No players yet.
-        </div>
-      </div>
-
-    </section>
-
-
-    <div class="footer">
-
-      CLEAN QUEST · A playable environmental school-project prototype
-      <br>
-      Every tap counts 🌎
-
-      <br><br>
-
-      <button
-        class="secondary-btn"
-        onclick="logoutPlayer()"
-      >
-        Log out
+      <button class="primary-btn" onclick="createAccount()">
+        Create Account
       </button>
-
+      <div class="auth-switch">
+        Already have an account?
+        <button class="link-btn" onclick="showLogin()">Log In</button>
+      </div>
     </div>
-
+  </div>
+</section>
+<!-- =========================
+     APP
+========================= -->
+<section id="app" class="hidden">
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="mini-logo">🌱</div>
+        <div class="topbar-title">
+          FLASHY
+        </div>
+      </div>
+      <button class="icon-btn" onclick="showSettings()">
+        ⚙️
+      </button>
+    </header>
+    <!-- HOME -->
+    <section id="homePage">
+      <div class="greeting">
+        <small id="greetingText">
+          Good day!
+        </small>
+        <h1>
+          Hi, <span id="userName">friend</span>! 👋
+        </h1>
+      </div>
+      <div class="hero">
+        <h2>Ready to study?</h2>
+        <p>
+          Take it one card at a time.
+          You've got this. 🌷
+        </p>
+        <button class="study-btn" onclick="studyRandomDeck()">
+          Study Now
+        </button>
+      </div>
+      <div class="section-head">
+        <h2>My Decks</h2>
+        <button class="text-btn" onclick="openCreateDeck()">
+          + New Deck
+        </button>
+      </div>
+      <div id="deckList" class="deck-list"></div>
+    </section>
+    <!-- DECKS PAGE -->
+    <section id="decksPage" class="hidden">
+      <div class="section-head">
+        <h2>My Decks</h2>
+        <button class="text-btn" onclick="openCreateDeck()">
+          + New Deck
+        </button>
+      </div>
+      <div id="allDeckList" class="deck-list"></div>
+    </section>
+    <!-- SETTINGS -->
+    <section id="settingsPage" class="hidden">
+      <div class="back-row">
+        <button class="back-btn" onclick="showHome()">
+          ←
+        </button>
+        <h1 class="page-title">
+          Settings
+        </h1>
+      </div>
+      <div class="settings-list">
+        <div class="setting">
+          <div class="setting-info">
+            <strong>🌙 Appearance</strong>
+            <span>Switch between light and dark</span>
+          </div>
+          <button onclick="toggleDarkMode()">
+            Toggle
+          </button>
+        </div>
+        <div class="setting">
+          <div class="setting-info">
+            <strong>💾 Backup</strong>
+            <span>Save your study data</span>
+          </div>
+          <button onclick="downloadBackup()">
+            Export
+          </button>
+        </div>
+        <div class="setting">
+          <div class="setting-info">
+            <strong>📥 Restore</strong>
+            <span>Bring back a saved backup</span>
+          </div>
+          <button onclick="document.getElementById('restoreFile').click()">
+            Import
+          </button>
+          <input
+            id="restoreFile"
+            type="file"
+            accept=".json"
+            style="display:none"
+            onchange="restoreBackup(event)"
+          >
+        </div>
+        <div class="setting">
+          <div class="setting-info">
+            <strong>🚪 Log Out</strong>
+            <span>Your saved data will stay here</span>
+          </div>
+          <button onclick="logout()">
+            Log Out
+          </button>
+        </div>
+        <div class="setting">
+          <div class="setting-info">
+            <strong>🗑️ Delete Account</strong>
+            <span>Permanently remove local data</span>
+          </div>
+          <button class="danger" onclick="deleteAccount()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
-
-</div>
-
-
-<!-- =======================================================
-     RESULT MODAL
-======================================================= -->
-
-<div id="resultModal" class="modal hidden">
-
-  <div class="modal-card">
-
-    <div class="result-icon">
-      🎉
-    </div>
-
-    <h2
-      class="modal-title"
-      style="text-align:center;"
-    >
-      Cleanup complete!
-    </h2>
-
-    <div
-      id="resultScore"
-      class="result-score"
-    >
-      +0
-    </div>
-
-    <div class="result-label">
-      points earned
-    </div>
-
-    <div class="result-details">
-
-      <div class="result-detail">
-        <strong id="resultTrash">0</strong>
-        <span>trash picked</span>
-      </div>
-
-      <div class="result-detail">
-        <strong id="resultAccuracy">0%</strong>
-        <span>clean rate</span>
-      </div>
-
-      <div class="result-detail">
-        <strong id="resultStreak">0</strong>
-        <span>streak</span>
-      </div>
-
-      <div class="result-detail">
-        <strong id="resultRank">—</strong>
-        <span>current rank</span>
-      </div>
-
-    </div>
-
-    <div class="modal-actions">
-
-      <button
-        class="primary-btn"
-        onclick="closeResultAndRestart()"
-      >
-        Play again
-      </button>
-
-      <button
-        class="secondary-btn"
-        onclick="closeResult()"
-      >
-        Done
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =======================================================
-     HOW TO PLAY MODAL
-======================================================= -->
-
-<div id="howModal" class="modal hidden">
-
-  <div class="modal-card">
-
-    <h2 class="modal-title">
-      🧹 How to play
-    </h2>
-
-    <p class="modal-text">
-      Your mission is simple: clean the classroom before the
-      45-second timer reaches zero.
-    </p>
-
-    <p class="modal-text">
-      <strong>1.</strong> Press Start cleanup.
-      <br><br>
-      <strong>2.</strong> Tap the pieces of trash that appear
-      around the classroom.
-      <br><br>
-      <strong>3.</strong> Each correct tap gives you points.
-      <br><br>
-      <strong>4.</strong> Faster and consecutive pickups can
-      increase your streak.
-      <br><br>
-      <strong>5.</strong> Answer the environmental quiz to earn
-      a bonus.
-    </p>
-
-    <button
-      class="primary-btn"
-      onclick="closeHowToPlay()"
-    >
-      Got it!
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button id="navHome" class="nav-btn active" onclick="showHome()">
+      🏡<br>Home
     </button>
-
+    <button id="navDecks" class="nav-btn" onclick="showDecks()">
+      📚<br>Decks
+    </button>
+    <button id="navSettings" class="nav-btn" onclick="showSettings()">
+      ⚙️<br>Settings
+    </button>
+  </nav>
+</section>
+<!-- =========================
+     DECK VIEW
+========================= -->
+<section id="deckView" class="hidden">
+  <main class="app-shell">
+    <div class="back-row">
+      <button class="back-btn" onclick="showDecks()">
+        ←
+      </button>
+      <div>
+        <h1 id="deckViewTitle" class="page-title">
+          Deck
+        </h1>
+        <div id="deckViewSubtitle" class="deck-subtitle">
+          0 cards
+        </div>
+      </div>
+    </div>
+    <button class="add-card-btn" onclick="openCreateCard()">
+      + Add a Flashcard
+    </button>
+    <div id="cardList" class="card-list"></div>
+  </main>
+</section>
+<!-- =========================
+     STUDY VIEW
+========================= -->
+<section id="studyView" class="hidden">
+  <main class="study-screen">
+    <div class="study-top">
+      <button class="back-btn" onclick="exitStudy()">
+        ←
+      </button>
+      <div id="studyDeckName" class="progress-text">
+        Deck
+      </div>
+      <div id="studyProgress" class="progress-text">
+        1 / 1
+      </div>
+    </div>
+    <div id="studyCardArea"></div>
+  </main>
+</section>
+<!-- =========================
+     MODAL
+========================= -->
+div id="modalBg" class="modal-bg hidden">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">
+        New Deck
+      </h2>
+      <button class="close-btn" onclick="closeModal()">
+        ×
+      </button>
+    </div>
+    <div id="modalContent"></div>
   </div>
-
 </div>
-
-
 <div id="toast" class="toast">
-  Saved!
+  Saved 🌱
 </div>
-
-
-<!-- =======================================================
-     FIREBASE
-     
-     IMPORTANT:
-     Replace the values below with your Firebase Web App
-     configuration if you want a REAL SHARED ONLINE DATABASE.
-
-     The game automatically falls back to Local Demo Mode
-     if Firebase is not configured.
-======================================================= -->
-
-<script type="module">
-
+<script>
 /* =========================================================
-   FIREBASE IMPORTS
+   FLASHY — LOCAL OFFLINE DATA SYSTEM
 ========================================================= */
-
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-
-import {
-  getFirestore,
-  collection,
-  doc,
-  getDoc,
-  setDoc,
-  addDoc,
-  getDocs,
-  query,
-  orderBy,
-  limit
-} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-
+const STORAGE_KEY = "flashy_accounts_v1";
+const SESSION_KEY = "flashy_session_v1";
+let accounts = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+let currentUser = localStorage.getItem(SESSION_KEY) || null;
+let currentDeckId = null;
+let editingCardId = null;
+let studyDeckId = null;
+let studyCards = [];
+let studyIndex = 0;
+let studyFlipped = false;
 /* =========================================================
-   FIREBASE CONFIG
-=========================================================
-
-   PASTE YOUR FIREBASE CONFIG HERE.
-
-   Example:
-
-   const firebaseConfig = {
-     apiKey: "YOUR_API_KEY",
-     authDomain: "YOUR_PROJECT.firebaseapp.com",
-     projectId: "YOUR_PROJECT_ID",
-     storageBucket: "YOUR_PROJECT.appspot.com",
-     messagingSenderId: "123456789",
-     appId: "YOUR_APP_ID"
-   };
-
-   DO NOT change anything else unless needed.
+   SAVE
 ========================================================= */
-
-const firebaseConfig = {
-
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
-
-};
-
-
-/* =========================================================
-   DATABASE STATE
-========================================================= */
-
-let db = null;
-
-let firebaseReady = false;
-
-try {
-
-  if(
-    firebaseConfig.apiKey &&
-    firebaseConfig.projectId &&
-    firebaseConfig.appId
-  ){
-
-    const app = initializeApp(firebaseConfig);
-
-    db = getFirestore(app);
-
-    firebaseReady = true;
-
-    document.getElementById("connectionLabel").textContent =
-      "Online leaderboard";
-
-  }
-
-}catch(error){
-
-  console.warn(
-    "Firebase unavailable. Running Local Demo Mode.",
-    error
+function saveAccounts(){
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(accounts)
   );
-
-  firebaseReady = false;
-
 }
-
-
-/* =========================================================
-   GAME STATE
-========================================================= */
-
-let currentPlayer = null;
-
-let gameRunning = false;
-
-let gameTimer = null;
-
-let timeLeft = 45;
-
-let trashCount = 0;
-
-let totalTrashThisRound = 0;
-
-let roundScore = 0;
-
-let currentStreak = 0;
-
-let bestRoundStreak = 0;
-
-let quizAnswered = false;
-
-let trashItems = [];
-
-
-/* =========================================================
-   LOCAL STORAGE
-========================================================= */
-
-const PLAYER_KEY = "cleanQuestCurrentPlayer";
-
-const PLAYERS_KEY = "cleanQuestPlayers";
-
-
 /* =========================================================
    HELPERS
 ========================================================= */
-
+function uid(){
+  return Date.now().toString(36) +
+    Math.random().toString(36).slice(2,8);
+}
 function escapeHTML(value){
-
   return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
-
-
+function getUser(){
+  return currentUser && accounts[currentUser]
+    ? accounts[currentUser]
+    : null;
+}
 function showToast(message){
-
   const toast = document.getElementById("toast");
-
   toast.textContent = message;
-
   toast.classList.add("show");
-
-  setTimeout(()=>{
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
     toast.classList.remove("show");
-  },2200);
-
+  },1800);
 }
-
-
-function setError(id,message){
-
-  const box = document.getElementById(id);
-
-  box.textContent = message;
-
-  box.classList.remove("hidden");
-
-}
-
-
-function clearError(id){
-
-  const box = document.getElementById(id);
-
-  box.textContent = "";
-
-  box.classList.add("hidden");
-
-}
-
-
-function getLocalPlayers(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(PLAYERS_KEY) || "[]"
-    );
-
-  }catch{
-
-    return [];
-
-  }
-
-}
-
-
-function saveLocalPlayers(players){
-
-  localStorage.setItem(
-    PLAYERS_KEY,
-    JSON.stringify(players)
-  );
-
-}
-
-
-function saveCurrentPlayerLocal(){
-
-  if(currentPlayer){
-
-    localStorage.setItem(
-      PLAYER_KEY,
-      JSON.stringify(currentPlayer)
-    );
-
-  }
-
-}
-
-
-function loadCurrentPlayerLocal(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(PLAYER_KEY) || "null"
-    );
-
-  }catch{
-
-    return null;
-
-  }
-
-}
-
-
-function generatePlayerId(name){
-
-  return (
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g,"-")
-      .replace(/^-|-$/g,"")
-    +
-    "-"
-    +
-    Math.random().toString(36).slice(2,8)
-  );
-
-}
-
-
 /* =========================================================
-   AUTH TABS
+   AUTH
 ========================================================= */
-
-window.switchAuth = function(mode){
-
-  const createTab =
-    document.getElementById("createTab");
-
-  const loginTab =
-    document.getElementById("loginTab");
-
-  const createForm =
-    document.getElementById("createForm");
-
-  const loginForm =
-    document.getElementById("loginForm");
-
-  clearError("createError");
-  clearError("loginError");
-
-  if(mode === "create"){
-
-    createTab.classList.add("active");
-    loginTab.classList.remove("active");
-
-    createForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-
-  }else{
-
-    createTab.classList.remove("active");
-    loginTab.classList.add("active");
-
-    createForm.classList.add("hidden");
-    loginForm.classList.remove("hidden");
-
-  }
-
-};
-
-
-/* =========================================================
-   CREATE PLAYER
-========================================================= */
-
-window.createPlayer = async function(){
-
-  clearError("createError");
-
+function showSignup(){
+  document.getElementById("loginBox")
+    .classList.add("hidden");
+  document.getElementById("signupBox")
+    .classList.remove("hidden");
+}
+function showLogin(){
+  document.getElementById("signupBox")
+    .classList.add("hidden");
+  document.getElementById("loginBox")
+    .classList.remove("hidden");
+}
+function createAccount(){
   const name =
-    document.getElementById("createName").value.trim();
-
-  const pin =
-    document.getElementById("createPin").value.trim();
-
-  if(name.length < 2){
-
-    setError(
-      "createError",
-      "Please enter at least 2 characters for your nickname."
-    );
-
+    document.getElementById("signupName").value.trim();
+  const username =
+    document.getElementById("signupUsername").value.trim().toLowerCase();
+  const password =
+    document.getElementById("signupPassword").value;
+  const confirm =
+    document.getElementById("signupConfirm").value;
+  if(!name || !username || !password || !confirm){
+    alert("Please fill in everything 🌷");
     return;
-
   }
-
-  if(!/^\d{4}$/.test(pin)){
-
-    setError(
-      "createError",
-      "Your demo PIN must contain exactly 4 digits."
-    );
-
+  if(password !== confirm){
+    alert("Your passwords don't match.");
     return;
-
   }
-
-
-  const player = {
-
-    id: generatePlayerId(name),
-
+  if(accounts[username]){
+    alert("That username already exists.");
+    return;
+  }
+  accounts[username] = {
     name:name,
-
-    pin:pin,
-
-    score:0,
-
-    trash:0,
-
-    games:0,
-
-    bestStreak:0,
-
-    quizPoints:0,
-
-    createdAt:Date.now(),
-
-    updatedAt:Date.now()
-
+    username:username,
+    password:password,
+    createdAt:new Date().toISOString(),
+    decks:[]
   };
-
-
-  try{
-
-    if(firebaseReady){
-
-      const playerRef =
-        doc(db,"players",player.id);
-
-      await setDoc(
-        playerRef,
-        player
-      );
-
-      currentPlayer = player;
-
-      showToast("Player saved online 🌎");
-
-    }else{
-
-      const players = getLocalPlayers();
-
-      const duplicate =
-        players.find(
-          p =>
-            p.name.toLowerCase() ===
-            name.toLowerCase()
-        );
-
-      if(duplicate){
-
-        setError(
-          "createError",
-          "That nickname already exists on this device. Try another one."
-        );
-
-        return;
-
-      }
-
-      players.push(player);
-
-      saveLocalPlayers(players);
-
-      currentPlayer = player;
-
-      showToast("Player created in Demo Mode 🌱");
-
-    }
-
-
-    saveCurrentPlayerLocal();
-
-    enterGame();
-
-  }catch(error){
-
-    console.error(error);
-
-    setError(
-      "createError",
-      "Could not save your player. Check your Firebase setup."
-    );
-
-  }
-
-};
-
-
-/* =========================================================
-   LOGIN PLAYER
-========================================================= */
-
-window.loginPlayer = async function(){
-
-  clearError("loginError");
-
-  const name =
-    document.getElementById("loginName").value.trim();
-
-  const pin =
-    document.getElementById("loginPin").value.trim();
-
-  if(!name || !/^\d{4}$/.test(pin)){
-
-    setError(
-      "loginError",
-      "Enter your nickname and 4-digit PIN."
-    );
-
+  saveAccounts();
+  currentUser = username;
+  localStorage.setItem(
+    SESSION_KEY,
+    currentUser
+  );
+  document.getElementById("signupName").value = "";
+  document.getElementById("signupUsername").value = "";
+  document.getElementById("signupPassword").value = "";
+  document.getElementById("signupConfirm").value = "";
+  enterApp();
+}
+function login(){
+  const username =
+    document.getElementById("loginUsername")
+      .value.trim()
+      .toLowerCase();
+  const password =
+    document.getElementById("loginPassword").value;
+  const account = accounts[username];
+  if(!account || account.password !== password){
+    alert("Username or password is incorrect.");
     return;
-
   }
-
-
-  try{
-
-    if(firebaseReady){
-
-      const playersSnapshot =
-        await getDocs(
-          collection(db,"players")
-        );
-
-      let found = null;
-
-      playersSnapshot.forEach(snapshot=>{
-
-        const data = snapshot.data();
-
-        if(
-          data.name.toLowerCase() ===
-          name.toLowerCase() &&
-          data.pin === pin
-        ){
-
-          found = data;
-
-        }
-
-      });
-
-
-      if(!found){
-
-        setError(
-          "loginError",
-          "Player not found. Check your nickname and PIN."
-        );
-
-        return;
-
-      }
-
-      currentPlayer = found;
-
-    }else{
-
-      const players = getLocalPlayers();
-
-      const found =
-        players.find(
-          p =>
-            p.name.toLowerCase() ===
-            name.toLowerCase() &&
-            p.pin === pin
-        );
-
-      if(!found){
-
-        setError(
-          "loginError",
-          "Player not found on this device."
-        );
-
-        return;
-
-      }
-
-      currentPlayer = found;
-
-    }
-
-
-    saveCurrentPlayerLocal();
-
-    enterGame();
-
-    showToast("Welcome back, cleaner! 🧹");
-
-  }catch(error){
-
-    console.error(error);
-
-    setError(
-      "loginError",
-      "Could not connect to the database."
-    );
-
-  }
-
-};
-
-
-/* =========================================================
-   ENTER GAME
-========================================================= */
-
-function enterGame(){
-
-  document
-    .getElementById("authSection")
+  currentUser = username;
+  localStorage.setItem(
+    SESSION_KEY,
+    currentUser
+  );
+  enterApp();
+}
+function logout(){
+  currentUser = null;
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById("app")
     .classList.add("hidden");
-
-  document
-    .getElementById("gameSection")
+  document.getElementById("deckView")
+    .classList.add("hidden");
+  document.getElementById("studyView")
+    .classList.add("hidden");
+  document.getElementById("authScreen")
     .classList.remove("hidden");
-
-  updatePlayerUI();
-
-  updateStats();
-
-  loadLeaderboard();
-
+  showLogin();
 }
-
-
-/* =========================================================
-   PLAYER UI
-========================================================= */
-
-function updatePlayerUI(){
-
-  if(!currentPlayer) return;
-
-  document.getElementById(
-    "playerNameDisplay"
-  ).textContent = currentPlayer.name;
-
-  document.getElementById(
-    "totalScoreDisplay"
-  ).textContent = currentPlayer.score || 0;
-
-  const level =
-    Math.floor((currentPlayer.score || 0) / 100) + 1;
-
-  document.getElementById(
-    "playerLevelDisplay"
-  ).textContent =
-    "Level " + level + " Cleaner";
-
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-function updateStats(){
-
-  if(!currentPlayer) return;
-
-  document.getElementById(
-    "trashStat"
-  ).textContent =
-    currentPlayer.trash || 0;
-
-  document.getElementById(
-    "streakStat"
-  ).textContent =
-    currentPlayer.bestStreak || 0;
-
-  const total =
-    currentPlayer.games || 0;
-
-  const trash =
-    currentPlayer.trash || 0;
-
-  const cleanRate =
-    total > 0
-      ? Math.min(
-          100,
-          Math.round(
-            (trash / (total * 10)) * 100
-          )
-        )
-      : 0;
-
-  document.getElementById(
-    "cleanStat"
-  ).textContent =
-    cleanRate + "%";
-
-}
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-window.startGame = function(){
-
-  if(gameRunning) return;
-
-  gameRunning = true;
-
-  timeLeft = 45;
-
-  trashCount = 0;
-
-  totalTrashThisRound = 0;
-
-  roundScore = 0;
-
-  currentStreak = 0;
-
-  bestRoundStreak = 0;
-
-  quizAnswered = false;
-
-  clearTrash();
-
-  updateTimer();
-
-  document.getElementById(
-    "startGameBtn"
-  ).textContent = "🧹 Cleanup in progress...";
-
-  document.getElementById(
-    "startGameBtn"
-  ).disabled = true;
-
-  document.getElementById(
-    "progress"
-  ).style.width = "100%";
-
-
-  spawnTrash(10);
-
-
-  gameTimer = setInterval(()=>{
-
-    timeLeft--;
-
-    updateTimer();
-
-    if(timeLeft <= 0){
-
-      finishGame();
-
-    }
-
-  },1000);
-
-};
-
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-function updateTimer(){
-
-  const timer =
-    document.getElementById("timer");
-
-  timer.textContent =
-    timeLeft;
-
-  timer.classList.remove(
-    "warning",
-    "danger"
+function deleteAccount(){
+  const yes = confirm(
+    "Delete this account and all its study data?"
   );
-
-  if(timeLeft <= 10){
-
-    timer.classList.add("danger");
-
-  }else if(timeLeft <= 20){
-
-    timer.classList.add("warning");
-
-  }
-
-  const percentage =
-    Math.max(
-      0,
-      (timeLeft / 45) * 100
-    );
-
-  document.getElementById(
-    "progress"
-  ).style.width =
-    percentage + "%";
-
+  if(!yes) return;
+  delete accounts[currentUser];
+  saveAccounts();
+  localStorage.removeItem(SESSION_KEY);
+  currentUser = null;
+  location.reload();
 }
-
-
 /* =========================================================
-   SPAWN TRASH
+   ENTER APP
 ========================================================= */
-
-function spawnTrash(amount){
-
-  const classroom =
-    document.getElementById("classroom");
-
-  const container =
-    document.getElementById("trashContainer");
-
-  const types = [
-    "🧻",
-    "🥤",
-    "🍌",
-    "📄",
-    "🥫",
-    "🧴",
-    "🛍️",
-    "🍬",
-    "🧃",
-    "🧦"
-  ];
-
-  for(let i=0;i<amount;i++){
-
-    const item =
-      document.createElement("button");
-
-    item.className = "trash";
-
-    item.type = "button";
-
-    item.textContent =
-      types[
-        Math.floor(
-          Math.random() * types.length
-        )
-      ];
-
-    const left =
-      8 +
-      Math.random() * 82;
-
-    const top =
-      37 +
-      Math.random() * 49;
-
-    item.style.left =
-      left + "%";
-
-    item.style.top =
-      top + "%";
-
-    item.style.animationDelay =
-      (Math.random() * .7) + "s";
-
-    item.dataset.picked = "false";
-
-    item.addEventListener(
-      "click",
-      ()=>pickTrash(item)
-    );
-
-    container.appendChild(item);
-
-    trashItems.push(item);
-
-  }
-
-  totalTrashThisRound += amount;
-
-}
-
-
-/* =========================================================
-   PICK TRASH
-========================================================= */
-
-function pickTrash(item){
-
-  if(!gameRunning) return;
-
-  if(item.dataset.picked === "true")
-    return;
-
-  item.dataset.picked = "true";
-
-  item.classList.add("picked");
-
-  trashCount++;
-
-  currentStreak++;
-
-  bestRoundStreak =
-    Math.max(
-      bestRoundStreak,
-      currentStreak
-    );
-
-
-  let points = 10;
-
-  if(currentStreak >= 5)
-    points += 5;
-
-  if(currentStreak >= 10)
-    points += 10;
-
-  roundScore += points;
-
-  showCleanMessage(
-    "+" + points + " 🌱"
-  );
-
-  setTimeout(()=>{
-
-    item.remove();
-
-  },300);
-
-
-  /* Small chance to replace trash */
-
-  if(
-    timeLeft > 8 &&
-    trashCount % 2 === 0
-  ){
-
-    setTimeout(()=>{
-      if(gameRunning){
-        spawnTrash(1);
-      }
-    },350);
-
-  }
-
-}
-
-
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-function showCleanMessage(text){
-
-  const classroom =
-    document.getElementById("classroom");
-
-  const message =
-    document.createElement("div");
-
-  message.className =
-    "clean-message";
-
-  message.textContent =
-    text;
-
-  classroom.appendChild(message);
-
-  setTimeout(()=>{
-    message.remove();
-  },800);
-
-}
-
-
-/* =========================================================
-   CLEAR TRASH
-========================================================= */
-
-function clearTrash(){
-
-  const container =
-    document.getElementById("trashContainer");
-
-  container.innerHTML = "";
-
-  trashItems = [];
-
-}
-
-
-/* =========================================================
-   FINISH GAME
-========================================================= */
-
-async function finishGame(){
-
-  if(!gameRunning) return;
-
-  gameRunning = false;
-
-  clearInterval(gameTimer);
-
-  gameTimer = null;
-
-  document.getElementById(
-    "startGameBtn"
-  ).disabled = false;
-
-  document.getElementById(
-    "startGameBtn"
-  ).textContent =
-    "🧹 Start cleanup";
-
-
-  /* Bonus for cleaning many items */
-
-  let bonus = 0;
-
-  if(trashCount >= 10){
-    bonus += 30;
-  }else if(trashCount >= 7){
-    bonus += 20;
-  }else if(trashCount >= 4){
-    bonus += 10;
-  }
-
-
-  const finalScore =
-    roundScore + bonus;
-
-
-  currentPlayer.score =
-    (currentPlayer.score || 0)
-    + finalScore;
-
-  currentPlayer.trash =
-    (currentPlayer.trash || 0)
-    + trashCount;
-
-  currentPlayer.games =
-    (currentPlayer.games || 0)
-    + 1;
-
-  currentPlayer.bestStreak =
-    Math.max(
-      currentPlayer.bestStreak || 0,
-      bestRoundStreak
-    );
-
-  currentPlayer.updatedAt =
-    Date.now();
-
-
-  await savePlayer();
-
-
-  const rank =
-    await getCurrentRank();
-
-
-  document.getElementById(
-    "resultScore"
-  ).textContent =
-    "+" + finalScore;
-
-  document.getElementById(
-    "resultTrash"
-  ).textContent =
-    trashCount;
-
-  const accuracy =
-    totalTrashThisRound > 0
-      ? Math.round(
-          (trashCount /
-            totalTrashThisRound) *
-          100
-        )
-      : 0;
-
-  document.getElementById(
-    "resultAccuracy"
-  ).textContent =
-    accuracy + "%";
-
-  document.getElementById(
-    "resultStreak"
-  ).textContent =
-    bestRoundStreak;
-
-  document.getElementById(
-    "resultRank"
-  ).textContent =
-    rank > 0
-      ? "#" + rank
-      : "—";
-
-
-  document
-    .getElementById("resultModal")
+function enterApp(){
+  document.getElementById("authScreen")
+    .classList.add("hidden");
+  document.getElementById("app")
     .classList.remove("hidden");
-
-
-  updatePlayerUI();
-
-  updateStats();
-
-  await loadLeaderboard();
-
+  document.getElementById("deckView")
+    .classList.add("hidden");
+  document.getElementById("studyView")
+    .classList.add("hidden");
+  document.getElementById("userName")
+    .textContent = getUser().name;
+  updateGreeting();
+  renderDecks();
+  showHome();
 }
-
-
-/* =========================================================
-   SAVE PLAYER
-========================================================= */
-
-async function savePlayer(){
-
-  saveCurrentPlayerLocal();
-
-  if(!firebaseReady){
-
-    const players =
-      getLocalPlayers();
-
-    const index =
-      players.findIndex(
-        p => p.id === currentPlayer.id
-      );
-
-    if(index >= 0){
-
-      players[index] =
-        currentPlayer;
-
-    }else{
-
-      players.push(
-        currentPlayer
-      );
-
-    }
-
-    saveLocalPlayers(players);
-
-    return;
-
-  }
-
-
-  try{
-
-    await setDoc(
-      doc(
-        db,
-        "players",
-        currentPlayer.id
-      ),
-      currentPlayer
-    );
-
-  }catch(error){
-
-    console.error(
-      "Could not save online:",
-      error
-    );
-
-    showToast(
-      "Saved locally. Online save failed."
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   LEADERBOARD
-========================================================= */
-
-async function loadLeaderboard(){
-
-  let players = [];
-
-  try{
-
-    if(firebaseReady){
-
-      const leaderboardQuery =
-        query(
-          collection(db,"players"),
-          orderBy("score","desc"),
-          limit(20)
-        );
-
-      const snapshot =
-        await getDocs(
-          leaderboardQuery
-        );
-
-      snapshot.forEach(docSnap=>{
-
-        players.push(
-          docSnap.data()
-        );
-
-      });
-
-    }else{
-
-      players =
-        getLocalPlayers()
-          .sort(
-            (a,b)=>
-              (b.score || 0) -
-              (a.score || 0)
-          )
-          .slice(0,20);
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    players =
-      getLocalPlayers()
-        .sort(
-          (a,b)=>
-            (b.score || 0) -
-            (a.score || 0)
-        )
-        .slice(0,20);
-
-  }
-
-
-  renderLeaderboard(players);
-
-}
-
-
-/* =========================================================
-   RENDER LEADERBOARD
-========================================================= */
-
-function renderLeaderboard(players){
-
-  const list =
-    document.getElementById("rankList");
-
-  if(!players.length){
-
-    list.innerHTML =
-      `<div class="empty-ranking">
-        No players yet. Be the first cleaner! 🌱
-      </div>`;
-
-    return;
-
-  }
-
-
-  list.innerHTML = "";
-
-
-  players.forEach((player,index)=>{
-
-    const row =
-      document.createElement("div");
-
-    row.className =
-      "rank-row";
-
-    const rank =
-      index + 1;
-
-    let medal = "";
-
-    if(rank === 1) medal = "🥇";
-    else if(rank === 2) medal = "🥈";
-    else if(rank === 3) medal = "🥉";
-
-    const isCurrent =
-      currentPlayer &&
-      player.id === currentPlayer.id;
-
-    if(isCurrent){
-
-      row.style.borderColor =
-        "#9dcea9";
-
-      row.style.background =
-        "#edf9f0";
-
-    }
-
-    row.innerHTML = `
-
-      <div class="rank-number">
-        ${medal || "#" + rank}
-      </div>
-
-      <div class="rank-name">
-        ${escapeHTML(player.name)}
-        ${isCurrent ? " · You" : ""}
-      </div>
-
-      <div class="rank-score">
-        ${player.score || 0}
-      </div>
-
-    `;
-
-    list.appendChild(row);
-
-  });
-
-
-}
-
-
-/* =========================================================
-   GET CURRENT RANK
-========================================================= */
-
-async function getCurrentRank(){
-
-  if(!currentPlayer)
-    return 0;
-
-  let players = [];
-
-  try{
-
-    if(firebaseReady){
-
-      const snapshot =
-        await getDocs(
-          collection(db,"players")
-        );
-
-      snapshot.forEach(docSnap=>{
-        players.push(
-          docSnap.data()
-        );
-      });
-
-    }else{
-
-      players =
-        getLocalPlayers();
-
-    }
-
-  }catch{
-
-    players =
-      getLocalPlayers();
-
-  }
-
-
-  players.sort(
-    (a,b)=>
-      (b.score || 0) -
-      (a.score || 0)
-  );
-
-
-  const index =
-    players.findIndex(
-      p => p.id === currentPlayer.id
-    );
-
-  return index >= 0
-    ? index + 1
-    : 0;
-
-}
-
-
-/* =========================================================
-   QUIZ
-========================================================= */
-
-window.answerQuiz = async function(
-  button,
-  correct
-){
-
-  if(quizAnswered)
-    return;
-
-  quizAnswered = true;
-
-  const options =
-    document.querySelectorAll(
-      ".quiz-option"
-    );
-
-  options.forEach(option=>{
-    option.disabled = true;
-  });
-
-
-  if(correct){
-
-    button.classList.add("correct");
-
-    const bonus = 25;
-
-    currentPlayer.score =
-      (currentPlayer.score || 0)
-      + bonus;
-
-    currentPlayer.quizPoints =
-      (currentPlayer.quizPoints || 0)
-      + bonus;
-
-    currentPlayer.updatedAt =
-      Date.now();
-
-    await savePlayer();
-
-    updatePlayerUI();
-
-    updateStats();
-
-    showToast(
-      "+25 bonus! Great environmental choice 🌱"
-    );
-
-    await loadLeaderboard();
-
+function updateGreeting(){
+  const hour = new Date().getHours();
+  let greeting = "Good day!";
+  if(hour < 12){
+    greeting = "Good morning! ☀️";
+  }else if(hour < 18){
+    greeting = "Good afternoon! 🌤️";
   }else{
-
-    button.classList.add("wrong");
-
-    options.forEach(option=>{
-
-      if(
-        option.textContent
-          .includes(
-            "Separate them properly"
-          )
-      ){
-
-        option.classList.add(
-          "correct"
-        );
-
-      }
-
+    greeting = "Good evening! 🌙";
+  }
+  document.getElementById("greetingText")
+    .textContent = greeting;
+}
+/* =========================================================
+   NAVIGATION
+========================================================= */
+function hideAllMain(){
+  document.getElementById("homePage")
+    .classList.add("hidden");
+  document.getElementById("decksPage")
+    .classList.add("hidden");
+  document.getElementById("settingsPage")
+    .classList.add("hidden");
+  document.getElementById("deckView")
+    .classList.add("hidden");
+  document.getElementById("studyView")
+    .classList.add("hidden");
+}
+function updateNav(active){
+  document.querySelectorAll(".nav-btn")
+    .forEach(btn => btn.classList.remove("active"));
+  if(active === "home"){
+    document.getElementById("navHome")
+      .classList.add("active");
+  }
+  if(active === "decks"){
+    document.getElementById("navDecks")
+      .classList.add("active");
+  }
+  if(active === "settings"){
+    document.getElementById("navSettings")
+      .classList.add("active");
+  }
+}
+function showHome(){
+  hideAllMain();
+  document.getElementById("app")
+    .classList.remove("hidden");
+  document.getElementById("homePage")
+    .classList.remove("hidden");
+  updateNav("home");
+  renderDecks();
+}
+function showDecks(){
+  hideAllMain();
+  document.getElementById("app")
+    .classList.remove("hidden");
+  document.getElementById("decksPage")
+    .classList.remove("hidden");
+  updateNav("decks");
+  renderAllDecks();
+}
+function showSettings(){
+  hideAllMain();
+  document.getElementById("app")
+    .classList.remove("hidden");
+  document.getElementById("settingsPage")
+    .classList.remove("hidden");
+  updateNav("settings");
+}
+/* =========================================================
+   DECKS
+========================================================= */
+function renderDecks(){
+  const user = getUser();
+  if(!user) return;
+  const container =
+    document.getElementById("deckList");
+  if(user.decks.length === 0){
+    container.innerHTML = `
+      <div class="empty">
+        <div class="emoji">🌱</div>
+        <strong>Your study space is empty.</strong>
+        <p>
+          Create your first deck and start learning.
+        </p>
+        <button
+          class="secondary-btn"
+          onclick="openCreateDeck()"
+        >
+          + Create a Deck
+        </button>
+      </div>
+    `;
+    return;
+  }
+  container.innerHTML =
+    user.decks.slice(0,4)
+      .map(deckHTML)
+      .join("");
+}
+function renderAllDecks(){
+  const user = getUser();
+  const container =
+    document.getElementById("allDeckList");
+  if(!user || user.decks.length === 0){
+    container.innerHTML = `
+      <div class="empty">
+        <div class="emoji">📚</div>
+        <strong>No decks yet.</strong>
+        <p>Create one when you're ready.</p>
+      </div>
+    `;
+    return;
+  }
+  container.innerHTML =
+    user.decks.map(deckHTML).join("");
+}
+function deckHTML(deck){
+  return `
+    <div
+      class="deck-card"
+      onclick="openDeck('${deck.id}')"
+    >
+      <div class="deck-main">
+        <div class="deck-icon">
+          ${deck.icon || "📚"}
+        </div>
+        <div class="deck-info">
+          <h3>
+            ${escapeHTML(deck.name)}
+          </h3>
+          <span>
+            ${deck.cards.length}
+            ${deck.cards.length === 1 ? "card" : "cards"}
+          </span>
+        </div>
+      </div>
+      <div class="arrow">
+        ›
+      </div>
+    </div>
+  `;
+}
+function openCreateDeck(){
+  openModal(
+    "New Deck",
+    `
+      <div class="field">
+        <label>Deck Name</label>
+        <input
+          id="newDeckName"
+          placeholder="e.g. Philosophy"
+          maxlength="50"
+        >
+      </div>
+      <div class="field">
+        <label>Choose an icon</label>
+        <input
+          id="newDeckIcon"
+          value="📚"
+          maxlength="2"
+        >
+      </div>
+      <div class="modal-actions">
+        <button
+          class="secondary-btn"
+          onclick="closeModal()"
+        >
+          Cancel
+        </button>
+        <button
+          class="primary-btn"
+          onclick="createDeck()"
+        >
+          Create
+        </button>
+      </div>
+    `
+  );
+}
+function createDeck(){
+  const name =
+    document.getElementById("newDeckName")
+      .value.trim();
+  const icon =
+    document.getElementById("newDeckIcon")
+      .value.trim() || "📚";
+  if(!name){
+    alert("Give your deck a name 🌷");
+    return;
+  }
+  const user = getUser();
+  user.decks.push({
+    id:uid(),
+    name:name,
+    icon:icon,
+    cards:[]
+  });
+  saveAccounts();
+  closeModal();
+  renderDecks();
+  renderAllDecks();
+  showToast("Deck created 🌱");
+}
+/* =========================================================
+   OPEN DECK
+========================================================= */
+function openDeck(deckId){
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === deckId);
+  if(!deck) return;
+  currentDeckId = deckId;
+  document.getElementById("app")
+    .classList.add("hidden");
+  document.getElementById("deckView")
+    .classList.remove("hidden");
+  document.getElementById("deckViewTitle")
+    .textContent = deck.name;
+  document.getElementById("deckViewSubtitle")
+    .textContent =
+      `${deck.cards.length} ${
+        deck.cards.length === 1 ? "card" : "cards"
+      }`;
+  renderCards();
+}
+function renderCards(){
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === currentDeckId);
+  const container =
+    document.getElementById("cardList");
+  if(!deck || deck.cards.length === 0){
+    container.innerHTML = `
+      <div class="empty">
+        <div class="emoji">🃏</div>
+        <strong>No flashcards yet.</strong>
+        <p>
+          Add your first question and answer.
+        </p>
+      </div>
+    `;
+    return;
+  }
+  container.innerHTML =
+    deck.cards.map(card => `
+      <div class="card-row">
+        <div>
+          <strong>
+            ${escapeHTML(card.front)}
+          </strong>
+          <small>
+            ${escapeHTML(card.back)}
+          </small>
+        </div>
+        <div class="card-row-actions">
+          <button
+            class="small-btn"
+            onclick="event.stopPropagation(); editCard('${card.id}')"
+          >
+            ✏️
+          </button>
+          <button
+            class="small-btn delete-btn"
+            onclick="event.stopPropagation(); deleteCard('${card.id}')"
+          >
+            🗑️
+          </button>
+        </div>
+      </div>
+    `).join("");
+}
+/* =========================================================
+   CARDS
+========================================================= */
+function openCreateCard(){
+  editingCardId = null;
+  openModal(
+    "New Flashcard",
+    cardFormHTML()
+  );
+}
+function cardFormHTML(card = {}){
+  return `
+    <div class="field">
+      <label>Question</label>
+      <textarea
+        id="cardFront"
+        maxlength="400"
+        placeholder="e.g. What is epistemology?"
+      >${escapeHTML(card.front || "")}</textarea>
+    </div>
+    <div class="field">
+      <label>Answer</label>
+      <textarea
+        id="cardBack"
+        maxlength="400"
+        placeholder="e.g. The study of knowledge."
+      >${escapeHTML(card.back || "")}</textarea>
+    </div>
+    <div class="modal-actions">
+      <button
+        class="secondary-btn"
+        onclick="closeModal()"
+      >
+        Cancel
+      </button>
+      <button
+        class="primary-btn"
+        onclick="saveCard()"
+      >
+        Save Card
+      </button>
+    </div>
+  `;
+}
+function saveCard(){
+  const front =
+    document.getElementById("cardFront")
+      .value.trim();
+  const back =
+    document.getElementById("cardBack")
+      .value.trim();
+  if(!front || !back){
+    alert("Please fill in both sides of the card.");
+    return;
+  }
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === currentDeckId);
+  if(editingCardId){
+    const card =
+      deck.cards.find(c => c.id === editingCardId);
+    if(card){
+      card.front = front;
+      card.back = back;
+    }
+  }else{
+    deck.cards.push({
+      id:uid(),
+      front:front,
+      back:back,
+      known:false,
+      reviews:0
     });
-
-    showToast(
-      "Not quite! Try to remember proper segregation ♻️"
+  }
+  saveAccounts();
+  closeModal();
+  renderCards();
+  document.getElementById("deckViewSubtitle")
+    .textContent =
+      `${deck.cards.length} ${
+        deck.cards.length === 1 ? "card" : "cards"
+      }`;
+  renderDecks();
+  showToast("Card saved 🌷");
+}
+function editCard(cardId){
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === currentDeckId);
+  const card =
+    deck.cards.find(c => c.id === cardId);
+  if(!card) return;
+  editingCardId = cardId;
+  openModal(
+    "Edit Flashcard",
+    cardFormHTML(card)
+  );
+}
+function deleteCard(cardId){
+  const yes =
+    confirm("Delete this flashcard?");
+  if(!yes) return;
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === currentDeckId);
+  deck.cards =
+    deck.cards.filter(c => c.id !== cardId);
+  saveAccounts();
+  renderCards();
+  document.getElementById("deckViewSubtitle")
+    .textContent =
+      `${deck.cards.length} ${
+        deck.cards.length === 1 ? "card" : "cards"
+      }`;
+  renderDecks();
+  showToast("Card removed");
+}
+/* =========================================================
+   STUDY
+========================================================= */
+function studyRandomDeck(){
+  const user = getUser();
+  if(!user || user.decks.length === 0){
+    openCreateDeck();
+    return;
+  }
+  const decksWithCards =
+    user.decks.filter(d => d.cards.length > 0);
+  if(decksWithCards.length === 0){
+    alert("Add some flashcards first 🌱");
+    return;
+  }
+  const deck =
+    decksWithCards[
+      Math.floor(
+        Math.random() * decksWithCards.length
+      )
+    ];
+  startStudy(deck.id);
+}
+function startStudy(deckId){
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === deckId);
+  if(!deck || deck.cards.length === 0){
+    alert("This deck has no cards yet.");
+    return;
+  }
+  studyDeckId = deckId;
+  studyCards = [...deck.cards];
+  studyIndex = 0;
+  studyFlipped = false;
+  document.getElementById("app")
+    .classList.add("hidden");
+  document.getElementById("deckView")
+    .classList.add("hidden");
+  document.getElementById("studyView")
+    .classList.remove("hidden");
+  document.getElementById("studyDeckName")
+    .textContent = deck.name;
+  renderStudyCard();
+}
+function renderStudyCard(){
+  const area =
+    document.getElementById("studyCardArea");
+  if(studyIndex >= studyCards.length){
+    area.innerHTML = `
+      <div class="finish-message">
+        <div class="big">🌷</div>
+        <h2>Nice work!</h2>
+        <p>
+          You finished this study session.
+        </p>
+        <button
+          class="primary-btn"
+          onclick="exitStudy()"
+        >
+          Done
+        </button>
+      </div>
+    `;
+    return;
+  }
+  const card = studyCards[studyIndex];
+  studyFlipped = false;
+  document.getElementById("studyProgress")
+    .textContent =
+      `${studyIndex + 1} / ${studyCards.length}`;
+  area.innerHTML = `
+    <div
+      class="flashcard"
+      onclick="flipStudyCard()"
+    >
+      <div
+        id="studyFlip"
+        class="flashcard-inner"
+      >
+        <div class="face front">
+          <div class="face-label">
+            Question
+          </div>
+          <div class="face-text">
+            ${escapeHTML(card.front)}
+          </div>
+          <div class="tap-hint">
+            tap to reveal ♡
+          </div>
+        </div>
+        <div class="face back">
+          <div class="face-label">
+            Answer
+          </div>
+          <div class="face-text">
+            ${escapeHTML(card.back)}
+          </div>
+          <div class="tap-hint">
+            tap to flip back
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="study-actions">
+      <button
+        class="review-btn"
+        onclick="rateCard(false)"
+      >
+        ↻ Need Review
+      </button>
+      <button
+        class="know-btn"
+        onclick="rateCard(true)"
+      >
+        ✓ Got It
+      </button>
+    </div>
+  `;
+}
+function flipStudyCard(){
+  const card =
+    document.querySelector(".flashcard");
+  if(!card) return;
+  card.classList.toggle("flipped");
+  studyFlipped =
+    card.classList.contains("flipped");
+}
+function rateCard(known){
+  const user = getUser();
+  const deck =
+    user.decks.find(d => d.id === studyDeckId);
+  if(!deck) return;
+  const original =
+    deck.cards.find(
+      c => c.id === studyCards[studyIndex].id
     );
-
+  if(original){
+    original.known = known;
+    original.reviews =
+      (original.reviews || 0) + 1;
+    original.lastReviewed =
+      new Date().toISOString();
   }
-
-};
-
-
-/* =========================================================
-   RESULT MODAL
-========================================================= */
-
-window.closeResult = function(){
-
-  document
-    .getElementById("resultModal")
+  saveAccounts();
+  studyIndex++;
+  renderStudyCard();
+}
+function exitStudy(){
+  document.getElementById("studyView")
     .classList.add("hidden");
-
-};
-
-
-window.closeResultAndRestart = function(){
-
-  closeResult();
-
-  setTimeout(()=>{
-    startGame();
-  },150);
-
-};
-
-
-/* =========================================================
-   HOW TO PLAY
-========================================================= */
-
-window.showHowToPlay = function(){
-
-  document
-    .getElementById("howModal")
+  document.getElementById("app")
     .classList.remove("hidden");
-
-};
-
-
-window.closeHowToPlay = function(){
-
-  document
-    .getElementById("howModal")
-    .classList.add("hidden");
-
-};
-
-
+  showHome();
+}
 /* =========================================================
-   LOGOUT
+   MODAL
 ========================================================= */
-
-window.logoutPlayer = function(){
-
-  if(gameRunning){
-
-    clearInterval(gameTimer);
-
-    gameRunning = false;
-
-  }
-
-  currentPlayer = null;
-
-  localStorage.removeItem(
-    PLAYER_KEY
-  );
-
-  document
-    .getElementById("gameSection")
-    .classList.add("hidden");
-
-  document
-    .getElementById("authSection")
+function openModal(title,content){
+  document.getElementById("modalTitle")
+    .textContent = title;
+  document.getElementById("modalContent")
+    .innerHTML = content;
+  document.getElementById("modalBg")
     .classList.remove("hidden");
-
-  document.getElementById(
-    "createName"
-  ).value = "";
-
-  document.getElementById(
-    "createPin"
-  ).value = "";
-
-  document.getElementById(
-    "loginName"
-  ).value = "";
-
-  document.getElementById(
-    "loginPin"
-  ).value = "";
-
-  switchAuth("create");
-
-  showToast(
-    "Logged out successfully."
-  );
-
-};
-
-
+}
+function closeModal(){
+  document.getElementById("modalBg")
+    .classList.add("hidden");
+}
 /* =========================================================
-   RESTORE SESSION
+   DARK MODE
 ========================================================= */
-
-window.addEventListener(
-  "DOMContentLoaded",
-  async ()=>{
-
-    const saved =
-      loadCurrentPlayerLocal();
-
-    if(saved){
-
-      currentPlayer = saved;
-
-      enterGame();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   ENTER KEY SUPPORT
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(event.key !== "Enter")
-      return;
-
-    const active =
-      document.activeElement;
-
-    if(
-      active &&
-      (
-        active.id === "createPin" ||
-        active.id === "createName"
-      )
-    ){
-
-      createPlayer();
-
-    }
-
-    if(
-      active &&
-      (
-        active.id === "loginPin" ||
-        active.id === "loginName"
-      )
-    ){
-
-      loginPlayer();
-
-    }
-
-  }
-);
-
-</script>
-
-
-<!-- =======================================================
-     NON-MODULE FALLBACK / BASIC STARTUP
-======================================================= -->
-
-<script>
-
-/*
-  This part only makes sure the interface doesn't break
-  if JavaScript modules are delayed or unavailable.
-*/
-
-window.addEventListener("error",function(event){
-
-  console.warn(
-    "Clean Quest error:",
-    event.message
+function toggleDarkMode(){
+  document.body.classList.toggle("dark");
+  const enabled =
+    document.body.classList.contains("dark");
+  localStorage.setItem(
+    "flashy_dark_mode",
+    enabled ? "1" : "0"
   );
-
-});
-
-
-/*
-  Close modals when tapping the dark background.
-*/
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target.classList.contains("modal")
-    ){
-
-      event.target.classList.add(
-        "hidden"
+}
+/* =========================================================
+   BACKUP
+========================================================= */
+function downloadBackup(){
+  const user = getUser();
+  if(!user) return;
+  const data = JSON.stringify(
+    user,
+    null,
+    2
+  );
+  const blob =
+    new Blob(
+      [data],
+      {type:"application/json"}
+    );
+  const url =
+    URL.createObjectURL(blob);
+  const a =
+    document.createElement("a");
+  a.href = url;
+  a.download =
+    `flashy-${user.username}-backup.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Backup saved 💾");
+}
+function restoreBackup(event){
+  const file =
+    event.target.files[0];
+  if(!file) return;
+  const reader =
+    new FileReader();
+  reader.onload = function(){
+    try{
+      const data =
+        JSON.parse(reader.result);
+      if(
+        !data.username ||
+        !Array.isArray(data.decks)
+      ){
+        throw new Error();
+      }
+      const yes =
+        confirm(
+          "Restore this backup? Your current account with the same username will be replaced."
+        );
+      if(!yes) return;
+      accounts[data.username] = data;
+      saveAccounts();
+      currentUser = data.username;
+      localStorage.setItem(
+        SESSION_KEY,
+        currentUser
       );
-
+      enterApp();
+      showToast("Backup restored 🌱");
+    }catch{
+      alert(
+        "That backup file doesn't look valid."
+      );
     }
-
+  };
+  reader.readAsText(file);
+}
+/* =========================================================
+   STARTUP
+========================================================= */
+function startup(){
+  const dark =
+    localStorage.getItem("flashy_dark_mode");
+  if(dark === "1"){
+    document.body.classList.add("dark");
   }
-);
-
+  if(currentUser && accounts[currentUser]){
+    enterApp();
+  }else{
+    document.getElementById("authScreen")
+      .classList.remove("hidden");
+  }
+}
+startup();
 </script>
-
 </body>
 </html>
