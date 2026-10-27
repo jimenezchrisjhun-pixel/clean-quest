@@ -6,30 +6,36 @@
 <meta name="theme-color" content="#eef6ee">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
 <title>FLASHY — Your Little Study Space</title>
+
 <style>
 :root{
-  --bg:#f8f6ef;
-  --surface:#fffdf8;
-  --surface-2:#f2f6ef;
-  --sage:#91aa94;
-  --sage-dark:#5d7761;
-  --sage-light:#e7f0e5;
-  --text:#304236;
-  --muted:#7c887e;
-  --line:#e2e7df;
-  --danger:#b96d65;
-  --danger-bg:#f9e9e6;
-  --shadow:0 12px 32px rgba(55,76,59,.09);
+  --bg:#f8f7f1;
+  --surface:#fffdf9;
+  --surface2:#f1f6ef;
+  --sage:#8fa88f;
+  --sage-dark:#5d765f;
+  --sage-light:#e5efe3;
+  --text:#304135;
+  --muted:#7f8a81;
+  --line:#e1e7df;
+  --danger:#b86e66;
+  --danger-bg:#f8e9e6;
+  --cream:#fff6e6;
+  --shadow:0 12px 32px rgba(55,76,59,.08);
   --radius:24px;
 }
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
+
 html{
   min-height:100%;
 }
+
 body{
   margin:0;
   min-height:100vh;
@@ -37,27 +43,92 @@ body{
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
+
 button,
 input,
 textarea{
   font:inherit;
 }
+
 button{
   cursor:pointer;
 }
+
 button:active{
   transform:scale(.98);
 }
-input,
-textarea{
-  outline:none;
-}
+
 .hidden{
   display:none !important;
 }
-/* =========================
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+.primary-button{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:14px 18px;
+  background:var(--sage-dark);
+  color:white;
+  font-weight:750;
+}
+
+.secondary-button{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px 16px;
+  background:var(--surface);
+  color:var(--text);
+  font-weight:700;
+}
+
+.text-button{
+  border:0;
+  background:none;
+  color:var(--sage-dark);
+  font-weight:750;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-size:13px;
+  font-weight:750;
+}
+
+.form-input,
+.form-textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:white;
+  color:var(--text);
+  padding:13px 14px;
+  outline:none;
+}
+
+.form-textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus{
+  border-color:var(--sage);
+  box-shadow:0 0 0 3px rgba(143,168,143,.14);
+}
+
+/* =====================================================
    AUTH
-========================= */
+===================================================== */
+
 .auth-screen{
   min-height:100vh;
   display:flex;
@@ -65,15 +136,17 @@ textarea{
   justify-content:center;
   padding:24px;
 }
+
 .auth-container{
   width:100%;
   max-width:420px;
   text-align:center;
 }
+
 .logo-icon{
   width:76px;
   height:76px;
-  margin:0 auto 16px;
+  margin:0 auto 15px;
   border-radius:26px;
   background:var(--sage-light);
   display:flex;
@@ -82,16 +155,19 @@ textarea{
   font-size:35px;
   box-shadow:var(--shadow);
 }
+
 .brand{
   font-size:35px;
   font-weight:850;
   letter-spacing:-1.5px;
 }
+
 .tagline{
   color:var(--muted);
   margin-top:5px;
-  margin-bottom:30px;
+  margin-bottom:29px;
 }
+
 .auth-card{
   background:var(--surface);
   border:1px solid var(--line);
@@ -100,97 +176,58 @@ textarea{
   box-shadow:var(--shadow);
   text-align:left;
 }
+
 .auth-card h2{
   margin:0 0 6px;
   font-size:22px;
 }
-.auth-card .description{
-  margin:0 0 21px;
+
+.description{
   color:var(--muted);
   font-size:14px;
   line-height:1.5;
+  margin:0 0 21px;
 }
-.form-group{
-  margin-bottom:15px;
-}
-.form-group label{
-  display:block;
-  margin-bottom:7px;
-  font-size:13px;
-  font-weight:750;
-}
-.form-input,
-.form-textarea{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:#fff;
-  color:var(--text);
-  padding:13px 14px;
-  transition:.2s;
-}
-.form-textarea{
-  min-height:115px;
-  resize:vertical;
-}
-.form-input:focus,
-.form-textarea:focus{
-  border-color:var(--sage);
-  box-shadow:0 0 0 3px rgba(145,170,148,.13);
-}
-.primary-button{
-  width:100%;
-  border:0;
-  border-radius:16px;
-  background:var(--sage-dark);
-  color:#fff;
-  padding:14px 18px;
-  font-weight:750;
-}
-.secondary-button{
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:var(--surface);
-  color:var(--text);
-  padding:12px 16px;
-  font-weight:700;
-}
-.text-link{
-  border:0;
-  background:none;
-  color:var(--sage-dark);
-  font-weight:750;
-  padding:0;
-}
+
 .auth-switch{
   text-align:center;
   color:var(--muted);
   font-size:14px;
   margin-top:18px;
 }
-/* =========================
-   APP
-========================= */
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
 .app{
   min-height:100vh;
 }
+
 .app-content{
   width:100%;
   max-width:720px;
   margin:auto;
   padding:22px 18px 105px;
 }
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin-bottom:25px;
 }
-.topbar-brand{
+
+.brand-mini{
   display:flex;
   align-items:center;
   gap:10px;
 }
+
 .mini-logo{
   width:43px;
   height:43px;
@@ -201,29 +238,52 @@ textarea{
   justify-content:center;
   font-size:21px;
 }
+
 .mini-brand{
-  font-weight:850;
   font-size:18px;
+  font-weight:850;
 }
-.icon-button{
-  width:43px;
-  height:43px;
+
+.profile-avatar-button{
+  width:45px;
+  height:45px;
   border:1px solid var(--line);
   border-radius:15px;
   background:var(--surface);
-  color:var(--text);
+  overflow:hidden;
+  padding:0;
 }
-/* =========================
+
+.profile-avatar-button img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.avatar-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--sage-light);
+  font-size:21px;
+}
+
+/* =====================================================
    HOME
-========================= */
+===================================================== */
+
 .greeting small{
   color:var(--muted);
 }
+
 .greeting h1{
   margin:5px 0 22px;
   font-size:29px;
   letter-spacing:-1px;
 }
+
 .hero{
   background:var(--sage-light);
   border-radius:28px;
@@ -232,7 +292,8 @@ textarea{
   position:relative;
   overflow:hidden;
 }
-.hero::after{
+
+.hero:after{
   content:"✦";
   position:absolute;
   right:24px;
@@ -240,44 +301,45 @@ textarea{
   font-size:30px;
   opacity:.35;
 }
+
 .hero h2{
   margin:0 0 6px;
   font-size:22px;
 }
+
 .hero p{
   margin:0 0 18px;
   max-width:285px;
   line-height:1.5;
-  color:#657367;
+  color:#667367;
 }
+
 .study-button{
   border:0;
   border-radius:15px;
   background:var(--sage-dark);
-  color:#fff;
+  color:white;
   padding:12px 18px;
   font-weight:750;
 }
+
 .section-heading{
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin:0 2px 12px;
 }
+
 .section-heading h2{
   margin:0;
   font-size:18px;
 }
-.small-action{
-  border:0;
-  background:none;
-  color:var(--sage-dark);
-  font-weight:750;
-}
+
 .deck-list{
   display:grid;
   gap:11px;
 }
+
 .deck-card{
   width:100%;
   border:1px solid var(--line);
@@ -291,26 +353,30 @@ textarea{
   color:var(--text);
   box-shadow:0 5px 18px rgba(55,76,59,.045);
 }
+
 .deck-card-main{
   display:flex;
   align-items:center;
   gap:13px;
   min-width:0;
 }
+
 .deck-icon{
   width:47px;
   height:47px;
   flex:none;
   border-radius:16px;
-  background:#fff8ec;
+  background:var(--cream);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:22px;
 }
+
 .deck-info{
   min-width:0;
 }
+
 .deck-info strong{
   display:block;
   font-size:15px;
@@ -319,15 +385,22 @@ textarea{
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
 .deck-info span{
   color:var(--muted);
   font-size:13px;
 }
+
 .deck-arrow{
   color:var(--muted);
   font-size:22px;
   padding-left:10px;
 }
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
 .empty-state{
   text-align:center;
   background:var(--surface);
@@ -336,20 +409,26 @@ textarea{
   padding:36px 20px;
   color:var(--muted);
 }
+
 .empty-emoji{
   font-size:33px;
   margin-bottom:10px;
 }
+
 .empty-state strong{
   color:var(--text);
 }
+
 .empty-state p{
   margin:7px 0 18px;
   font-size:14px;
+  line-height:1.5;
 }
-/* =========================
-   NAV
-========================= */
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
 .bottom-nav{
   position:fixed;
   z-index:30;
@@ -360,12 +439,13 @@ textarea{
   display:flex;
   gap:5px;
   padding:7px;
-  background:rgba(255,253,248,.94);
+  background:rgba(255,253,249,.95);
   backdrop-filter:blur(16px);
   border:1px solid var(--line);
   border-radius:22px;
   box-shadow:0 12px 30px rgba(55,76,59,.13);
 }
+
 .nav-button{
   flex:1;
   border:0;
@@ -377,19 +457,23 @@ textarea{
   font-weight:750;
   line-height:1.5;
 }
+
 .nav-button.active{
   background:var(--sage-light);
   color:var(--sage-dark);
 }
-/* =========================
+
+/* =====================================================
    PAGE HEAD
-========================= */
+===================================================== */
+
 .page-back{
   display:flex;
   align-items:center;
   gap:10px;
   margin-bottom:22px;
 }
+
 .back-button{
   width:40px;
   height:40px;
@@ -399,20 +483,24 @@ textarea{
   font-size:25px;
   border-radius:13px;
 }
+
 .page-title{
   margin:0;
   font-size:25px;
   letter-spacing:-.5px;
 }
+
 .page-subtitle{
   color:var(--muted);
   font-size:13px;
   margin-top:4px;
 }
-/* =========================
-   DECK VIEW
-========================= */
-.add-card{
+
+/* =====================================================
+   DECK PAGE
+===================================================== */
+
+.new-deck-button{
   width:100%;
   border:1px dashed var(--sage);
   background:var(--sage-light);
@@ -422,10 +510,12 @@ textarea{
   font-weight:750;
   margin-bottom:19px;
 }
+
 .card-list{
   display:grid;
   gap:10px;
 }
+
 .card-item{
   background:var(--surface);
   border:1px solid var(--line);
@@ -436,9 +526,11 @@ textarea{
   align-items:center;
   gap:12px;
 }
+
 .card-copy{
   min-width:0;
 }
+
 .card-copy strong{
   display:block;
   font-size:14px;
@@ -447,6 +539,7 @@ textarea{
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+
 .card-copy span{
   display:block;
   color:var(--muted);
@@ -456,11 +549,13 @@ textarea{
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+
 .card-actions{
   display:flex;
   gap:6px;
   flex:none;
 }
+
 .mini-button{
   width:36px;
   height:36px;
@@ -468,16 +563,205 @@ textarea{
   border-radius:12px;
   background:var(--sage-light);
 }
+
 .mini-button.delete{
   background:var(--danger-bg);
 }
-/* =========================
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-header{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.profile-big-avatar{
+  width:105px;
+  height:105px;
+  margin:0 auto 13px;
+  border-radius:32px;
+  overflow:hidden;
+  background:var(--sage-light);
+  border:4px solid var(--surface);
+  box-shadow:var(--shadow);
+}
+
+.profile-big-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile-big-placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+}
+
+.profile-name{
+  font-size:22px;
+  font-weight:850;
+}
+
+.profile-label{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+.profile-actions{
+  display:grid;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.profile-action{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:var(--surface);
+  color:var(--text);
+  padding:16px;
+  text-align:left;
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.profile-action-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:var(--sage-light);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  flex:none;
+}
+
+.profile-action-copy strong{
+  display:block;
+  font-size:14px;
+}
+
+.profile-action-copy span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.circle-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:23px;
+  padding:18px;
+}
+
+.circle-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.circle-title h2{
+  margin:0;
+  font-size:17px;
+}
+
+.offline-note{
+  font-size:11px;
+  color:var(--muted);
+  background:var(--surface2);
+  padding:5px 8px;
+  border-radius:10px;
+}
+
+.circle-message{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+  margin:0;
+}
+
+.circle-user{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.circle-user:last-child{
+  border-bottom:0;
+}
+
+.circle-avatar{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  overflow:hidden;
+  background:var(--sage-light);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+}
+
+.circle-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.circle-user-info{
+  flex:1;
+}
+
+.circle-user-info strong{
+  display:block;
+  font-size:13px;
+}
+
+.circle-user-info span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:2px;
+}
+
+.status-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#9aa49c;
+}
+
+/* =====================================================
    SETTINGS
-========================= */
+===================================================== */
+
+.settings-section{
+  margin-top:25px;
+}
+
+.settings-section h2{
+  font-size:16px;
+  margin:0 0 11px;
+}
+
 .settings-list{
   display:grid;
   gap:10px;
 }
+
 .setting-row{
   background:var(--surface);
   border:1px solid var(--line);
@@ -488,19 +772,23 @@ textarea{
   justify-content:space-between;
   gap:15px;
 }
+
 .setting-copy{
   min-width:0;
 }
+
 .setting-copy strong{
   display:block;
-  font-size:15px;
+  font-size:14px;
 }
+
 .setting-copy span{
   display:block;
   color:var(--muted);
   font-size:12px;
   margin-top:3px;
 }
+
 .setting-button{
   flex:none;
   border:1px solid var(--line);
@@ -510,13 +798,16 @@ textarea{
   padding:9px 12px;
   font-weight:700;
 }
+
 .setting-button.danger{
   background:var(--danger-bg);
   color:var(--danger);
 }
-/* =========================
+
+/* =====================================================
    MODAL
-========================= */
+===================================================== */
+
 .modal-overlay{
   position:fixed;
   z-index:80;
@@ -527,6 +818,7 @@ textarea{
   justify-content:center;
   padding:0;
 }
+
 .modal{
   width:min(720px,100%);
   max-height:90vh;
@@ -535,16 +827,19 @@ textarea{
   border-radius:29px 29px 0 0;
   padding:23px 20px 28px;
 }
+
 .modal-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin-bottom:20px;
 }
+
 .modal-header h2{
   margin:0;
   font-size:20px;
 }
+
 .close-button{
   width:38px;
   height:38px;
@@ -554,46 +849,55 @@ textarea{
   color:var(--text);
   font-size:20px;
 }
+
 .modal-actions{
   display:flex;
   gap:10px;
   margin-top:20px;
 }
+
 .modal-actions button{
   flex:1;
 }
-/* =========================
+
+/* =====================================================
    STUDY
-========================= */
+===================================================== */
+
 .study-page{
   min-height:100vh;
   max-width:720px;
   margin:auto;
   padding:18px;
 }
+
 .study-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
   margin-bottom:22px;
 }
+
 .study-deck-name,
 .study-count{
   color:var(--muted);
   font-size:13px;
   font-weight:750;
 }
+
 .flashcard-area{
   perspective:1000px;
   min-height:405px;
   margin-bottom:18px;
 }
+
 .flashcard{
   width:100%;
   min-height:405px;
   position:relative;
   cursor:pointer;
 }
+
 .flashcard-inner{
   width:100%;
   min-height:405px;
@@ -601,9 +905,11 @@ textarea{
   transition:transform .55s ease;
   transform-style:preserve-3d;
 }
+
 .flashcard.flipped .flashcard-inner{
   transform:rotateY(180deg);
 }
+
 .card-face{
   position:absolute;
   inset:0;
@@ -614,40 +920,30 @@ textarea{
   box-shadow:var(--shadow);
   backface-visibility:hidden;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
   padding:34px;
   text-align:center;
 }
+
 .card-face.answer{
   transform:rotateY(180deg);
   background:var(--sage-light);
 }
-.face-label{
-  color:var(--sage-dark);
-  text-transform:uppercase;
-  letter-spacing:.7px;
-  font-size:11px;
-  font-weight:850;
-  margin-bottom:17px;
-}
+
 .face-text{
   max-width:570px;
-  font-size:24px;
-  line-height:1.4;
+  font-size:25px;
+  line-height:1.45;
   font-weight:750;
   word-break:break-word;
 }
-.face-hint{
-  margin-top:25px;
-  color:var(--muted);
-  font-size:13px;
-}
+
 .study-actions{
   display:flex;
   gap:10px;
 }
+
 .study-action{
   flex:1;
   border:0;
@@ -655,33 +951,41 @@ textarea{
   padding:14px 8px;
   font-weight:750;
 }
+
 .study-action.review{
   background:var(--danger-bg);
   color:var(--danger);
 }
+
 .study-action.known{
   background:var(--sage-light);
   color:var(--sage-dark);
 }
+
 .study-finished{
   background:var(--sage-light);
   border-radius:29px;
   text-align:center;
   padding:40px 24px;
 }
+
 .study-finished .big{
   font-size:45px;
 }
+
 .study-finished h2{
   margin:9px 0 6px;
 }
+
 .study-finished p{
   color:var(--muted);
   margin:0 0 22px;
 }
-/* =========================
+
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
+
 .toast{
   position:fixed;
   z-index:120;
@@ -691,7 +995,7 @@ textarea{
   opacity:0;
   pointer-events:none;
   background:var(--text);
-  color:#fff;
+  color:white;
   padding:11px 16px;
   border-radius:14px;
   font-size:13px;
@@ -699,17 +1003,20 @@ textarea{
   text-align:center;
   max-width:calc(100% - 40px);
 }
+
 .toast.show{
   opacity:1;
   transform:translate(-50%,0);
 }
-/* =========================
+
+/* =====================================================
    DARK MODE
-========================= */
+===================================================== */
+
 body.dark{
   --bg:#1d2821;
   --surface:#263329;
-  --surface-2:#303c33;
+  --surface2:#303c33;
   --sage:#91aa94;
   --sage-dark:#b0c7b2;
   --sage-light:#334438;
@@ -718,87 +1025,122 @@ body.dark{
   --line:#3c4a40;
   --danger:#d58a81;
   --danger-bg:#49312e;
+  --cream:#3c3a31;
   --shadow:0 12px 32px rgba(0,0,0,.22);
 }
+
 body.dark .form-input,
 body.dark .form-textarea{
   background:#202b23;
   color:var(--text);
 }
+
 body.dark .bottom-nav{
-  background:rgba(38,51,41,.94);
+  background:rgba(38,51,41,.95);
 }
-body.dark .deck-icon{
-  background:#3a3b31;
-}
-/* =========================
+
+/* =====================================================
    DESKTOP
-========================= */
+===================================================== */
+
 @media(min-width:700px){
+
   .modal-overlay{
     align-items:center;
     padding:20px;
   }
+
   .modal{
     border-radius:29px;
     max-width:520px;
   }
+
   .app-content{
     padding-top:30px;
   }
+
 }
-/* =========================
+
+/* =====================================================
    SMALL PHONES
-========================= */
+===================================================== */
+
 @media(max-width:390px){
+
   .face-text{
     font-size:21px;
   }
+
   .flashcard,
   .flashcard-inner,
   .card-face,
   .flashcard-area{
     min-height:365px;
   }
+
   .hero{
     padding:21px;
   }
+
 }
 </style>
 </head>
+
 <body>
+
+
 <!-- =====================================================
-     AUTH SCREEN
+     AUTH
 ===================================================== -->
+
 <section id="authScreen" class="auth-screen">
+
   <div class="auth-container">
+
     <div class="logo-icon">🌱</div>
+
     <div class="brand">FLASHY</div>
+
     <div class="tagline">
       your little study space ♡
     </div>
+
+
     <!-- LOGIN -->
+
     <div id="loginPanel" class="auth-card">
+
       <h2>Welcome back! 🌷</h2>
+
       <p class="description">
         Log in and continue where you left off.
       </p>
+
+
       <div class="form-group">
-        <label for="loginUsername">
-          Username
+
+        <label for="loginName">
+          Student Name
         </label>
+
         <input
-          id="loginUsername"
+          id="loginName"
           class="form-input"
           type="text"
           autocomplete="username"
-          placeholder="your username"
+          placeholder="your name"
+          maxlength="40"
         >
+
       </div>
+
+
       <div class="form-group">
+
         <label for="loginPassword">
           Password
         </label>
+
         <input
           id="loginPassword"
           class="form-input"
@@ -806,7 +1148,10 @@ body.dark .deck-icon{
           autocomplete="current-password"
           placeholder="your password"
         >
+
       </div>
+
+
       <button
         id="loginButton"
         class="primary-button"
@@ -814,30 +1159,45 @@ body.dark .deck-icon{
       >
         Log In
       </button>
+
+
       <div class="auth-switch">
+
         Don't have an account?
+
         <button
           id="showSignupButton"
-          class="text-link"
+          class="text-button"
           type="button"
         >
           Create Account
         </button>
+
       </div>
+
     </div>
-    <!-- SIGNUP -->
+
+
+    <!-- CREATE ACCOUNT -->
+
     <div
       id="signupPanel"
       class="auth-card hidden"
     >
+
       <h2>Create your space 🌿</h2>
+
       <p class="description">
-        Your study data will be saved on this device.
+        Your study data stays saved on this device.
       </p>
+
+
       <div class="form-group">
+
         <label for="signupName">
-          Your Name
+          Student Name
         </label>
+
         <input
           id="signupName"
           class="form-input"
@@ -845,24 +1205,16 @@ body.dark .deck-icon{
           placeholder="e.g. CJ"
           maxlength="40"
         >
+
       </div>
+
+
       <div class="form-group">
-        <label for="signupUsername">
-          Username
-        </label>
-        <input
-          id="signupUsername"
-          class="form-input"
-          type="text"
-          autocomplete="username"
-          placeholder="choose a username"
-          maxlength="30"
-        >
-      </div>
-      <div class="form-group">
+
         <label for="signupPassword">
           Password
         </label>
+
         <input
           id="signupPassword"
           class="form-input"
@@ -870,11 +1222,16 @@ body.dark .deck-icon{
           autocomplete="new-password"
           placeholder="choose a password"
         >
+
       </div>
+
+
       <div class="form-group">
+
         <label for="signupConfirm">
           Confirm Password
         </label>
+
         <input
           id="signupConfirm"
           class="form-input"
@@ -882,7 +1239,10 @@ body.dark .deck-icon{
           autocomplete="new-password"
           placeholder="repeat your password"
         >
+
       </div>
+
+
       <button
         id="createAccountButton"
         class="primary-button"
@@ -890,61 +1250,102 @@ body.dark .deck-icon{
       >
         Create Account
       </button>
+
+
       <div class="auth-switch">
+
         Already have an account?
+
         <button
           id="showLoginButton"
-          class="text-link"
+          class="text-button"
           type="button"
         >
           Log In
         </button>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
+
+
 <!-- =====================================================
      MAIN APP
 ===================================================== -->
+
 <section id="app" class="app hidden">
+
   <main class="app-content">
+
+
     <!-- TOPBAR -->
+
     <header class="topbar">
-      <div class="topbar-brand">
+
+      <div class="brand-mini">
+
         <div class="mini-logo">
           🌱
         </div>
+
         <div class="mini-brand">
           FLASHY
         </div>
+
       </div>
+
+
       <button
-        id="settingsTopButton"
-        class="icon-button"
+        id="topProfileButton"
+        class="profile-avatar-button"
         type="button"
-        aria-label="Settings"
+        aria-label="Open profile"
       >
-        ⚙️
+        <div
+          id="topAvatar"
+          class="avatar-placeholder"
+        >
+          👤
+        </div>
       </button>
+
     </header>
-    <!-- HOME -->
+
+
+    <!-- =================================================
+         HOME
+    ================================================= -->
+
     <section id="homePage">
+
       <div class="greeting">
+
         <small id="greetingText">
           Good day!
         </small>
+
         <h1>
           Hi, <span id="homeName">friend</span>! 👋
         </h1>
+
       </div>
+
+
       <div class="hero">
+
         <h2>
           Ready to study?
         </h2>
+
         <p>
           Take it one card at a time.
           You've got this. 🌷
         </p>
+
         <button
           id="studyNowButton"
           class="study-button"
@@ -952,154 +1353,352 @@ body.dark .deck-icon{
         >
           Study Now
         </button>
+
       </div>
+
+
       <div class="section-heading">
+
         <h2>
           My Decks
         </h2>
-        <button
-          id="newDeckHomeButton"
-          class="small-action"
-          type="button"
-        >
-          + New Deck
-        </button>
+
       </div>
-      <div id="homeDeckList" class="deck-list"></div>
+
+
+      <div
+        id="homeDeckList"
+        class="deck-list"
+      ></div>
+
     </section>
-    <!-- DECKS -->
+
+
+    <!-- =================================================
+         DECKS
+    ================================================= -->
+
     <section
       id="decksPage"
       class="hidden"
     >
+
       <div class="section-heading">
+
         <h2>
           My Decks
         </h2>
-        <button
-          id="newDeckButton"
-          class="small-action"
-          type="button"
-        >
-          + New Deck
-        </button>
+
       </div>
-      <div id="allDeckList" class="deck-list"></div>
+
+
+      <!-- ONLY MAIN CREATE DECK BUTTON -->
+
+      <button
+        id="newDeckButton"
+        class="new-deck-button"
+        type="button"
+      >
+        + Create a New Deck
+      </button>
+
+
+      <div
+        id="allDeckList"
+        class="deck-list"
+      ></div>
+
     </section>
-    <!-- SETTINGS -->
+
+
+    <!-- =================================================
+         PROFILE
+    ================================================= -->
+
     <section
-      id="settingsPage"
+      id="profilePage"
       class="hidden"
     >
+
       <div class="page-back">
+
+        <h1 class="page-title">
+          My Profile
+        </h1>
+
+      </div>
+
+
+      <div class="profile-header">
+
+        <div class="profile-big-avatar">
+
+          <div
+            id="bigProfileAvatar"
+            class="profile-big-placeholder"
+          >
+            👤
+          </div>
+
+        </div>
+
+
+        <div
+          id="profileName"
+          class="profile-name"
+        >
+          Student
+        </div>
+
+        <div class="profile-label">
+          FLASHY student
+        </div>
+
+      </div>
+
+
+      <div class="profile-actions">
+
+
         <button
-          id="settingsBackButton"
-          class="back-button"
+          id="editProfileButton"
+          class="profile-action"
           type="button"
         >
-          ←
+
+          <div class="profile-action-icon">
+            ✏️
+          </div>
+
+          <div class="profile-action-copy">
+
+            <strong>
+              Edit Profile
+            </strong>
+
+            <span>
+              Change your name or profile picture
+            </span>
+
+          </div>
+
         </button>
-        <h1 class="page-title">
+
+
+        <button
+          id="studyCircleButton"
+          class="profile-action"
+          type="button"
+        >
+
+          <div class="profile-action-icon">
+            🫶
+          </div>
+
+          <div class="profile-action-copy">
+
+            <strong>
+              Study Circle
+            </strong>
+
+            <span>
+              See your study community
+            </span>
+
+          </div>
+
+        </button>
+
+      </div>
+
+
+      <!-- STUDY CIRCLE -->
+
+      <div
+        id="circleSection"
+        class="circle-card hidden"
+      >
+
+        <div class="circle-title">
+
+          <h2>
+            Study Circle
+          </h2>
+
+          <span class="offline-note">
+            offline mode
+          </span>
+
+        </div>
+
+
+        <div
+          id="circleContent"
+        ></div>
+
+      </div>
+
+
+      <!-- SETTINGS -->
+
+      <div class="settings-section">
+
+        <h2>
           Settings
-        </h1>
+        </h2>
+
+
+        <div class="settings-list">
+
+
+          <div class="setting-row">
+
+            <div class="setting-copy">
+
+              <strong>
+                🌙 Appearance
+              </strong>
+
+              <span>
+                Switch between light and dark
+              </span>
+
+            </div>
+
+            <button
+              id="darkModeButton"
+              class="setting-button"
+              type="button"
+            >
+              Toggle
+            </button>
+
+          </div>
+
+
+          <div class="setting-row">
+
+            <div class="setting-copy">
+
+              <strong>
+                💾 Backup
+              </strong>
+
+              <span>
+                Save your study data
+              </span>
+
+            </div>
+
+            <button
+              id="exportButton"
+              class="setting-button"
+              type="button"
+            >
+              Export
+            </button>
+
+          </div>
+
+
+          <div class="setting-row">
+
+            <div class="setting-copy">
+
+              <strong>
+                📥 Restore
+              </strong>
+
+              <span>
+                Import a saved backup
+              </span>
+
+            </div>
+
+            <button
+              id="importButton"
+              class="setting-button"
+              type="button"
+            >
+              Import
+            </button>
+
+            <input
+              id="restoreInput"
+              type="file"
+              accept=".json,application/json"
+              class="hidden"
+            >
+
+          </div>
+
+
+          <div class="setting-row">
+
+            <div class="setting-copy">
+
+              <strong>
+                🚪 Log Out
+              </strong>
+
+              <span>
+                Your data will stay saved
+              </span>
+
+            </div>
+
+            <button
+              id="logoutButton"
+              class="setting-button"
+              type="button"
+            >
+              Log Out
+            </button>
+
+          </div>
+
+
+          <div class="setting-row">
+
+            <div class="setting-copy">
+
+              <strong>
+                🗑️ Delete Account
+              </strong>
+
+              <span>
+                Permanently remove local data
+              </span>
+
+            </div>
+
+            <button
+              id="deleteAccountButton"
+              class="setting-button danger"
+              type="button"
+            >
+              Delete
+            </button>
+
+          </div>
+
+
+        </div>
+
       </div>
-      <div class="settings-list">
-        <div class="setting-row">
-          <div class="setting-copy">
-            <strong>
-              🌙 Appearance
-            </strong>
-            <span>
-              Switch between light and dark
-            </span>
-          </div>
-          <button
-            id="darkModeButton"
-            class="setting-button"
-            type="button"
-          >
-            Toggle
-          </button>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy">
-            <strong>
-              💾 Backup
-            </strong>
-            <span>
-              Save your study data
-            </span>
-          </div>
-          <button
-            id="exportButton"
-            class="setting-button"
-            type="button"
-          >
-            Export
-          </button>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy">
-            <strong>
-              📥 Restore
-            </strong>
-            <span>
-              Import a saved backup
-            </span>
-          </div>
-          <button
-            id="importButton"
-            class="setting-button"
-            type="button"
-          >
-            Import
-          </button>
-          <input
-            id="restoreInput"
-            type="file"
-            accept=".json,application/json"
-            class="hidden"
-          >
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy">
-            <strong>
-              🚪 Log Out
-            </strong>
-            <span>
-              Your saved data will stay here
-            </span>
-          </div>
-          <button
-            id="logoutButton"
-            class="setting-button"
-            type="button"
-          >
-            Log Out
-          </button>
-        </div>
-        <div class="setting-row">
-          <div class="setting-copy">
-            <strong>
-              🗑️ Delete Account
-            </strong>
-            <span>
-              Permanently remove local data
-            </span>
-          </div>
-          <button
-            id="deleteAccountButton"
-            class="setting-button danger"
-            type="button"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
+
     </section>
+
+
   </main>
-  <!-- BOTTOM NAV -->
+
+
+  <!-- =================================================
+       BOTTOM NAV
+  ================================================= -->
+
   <nav class="bottom-nav">
+
     <button
       id="homeNavButton"
       class="nav-button active"
@@ -1108,6 +1707,8 @@ body.dark .deck-icon{
       🏡<br>
       Home
     </button>
+
+
     <button
       id="decksNavButton"
       class="nav-button"
@@ -1116,25 +1717,35 @@ body.dark .deck-icon{
       📚<br>
       Decks
     </button>
+
+
     <button
-      id="settingsNavButton"
+      id="profileNavButton"
       class="nav-button"
       type="button"
     >
-      ⚙️<br>
-      Settings
+      👤<br>
+      Profile
     </button>
+
   </nav>
+
 </section>
+
+
 <!-- =====================================================
      DECK VIEW
 ===================================================== -->
+
 <section
   id="deckView"
   class="app hidden"
 >
+
   <main class="app-content">
+
     <div class="page-back">
+
       <button
         id="deckBackButton"
         class="back-button"
@@ -1142,42 +1753,58 @@ body.dark .deck-icon{
       >
         ←
       </button>
+
       <div>
+
         <h1
           id="deckTitle"
           class="page-title"
         >
           Deck
         </h1>
+
         <div
           id="deckSubtitle"
           class="page-subtitle"
         >
           0 cards
         </div>
+
       </div>
+
     </div>
+
+
     <button
       id="addCardButton"
-      class="add-card"
+      class="new-deck-button"
       type="button"
     >
       + Add a Flashcard
     </button>
+
+
     <div
       id="cardList"
       class="card-list"
     ></div>
+
   </main>
+
 </section>
+
+
 <!-- =====================================================
      STUDY VIEW
 ===================================================== -->
+
 <section
   id="studyView"
   class="study-page hidden"
 >
+
   <div class="study-header">
+
     <button
       id="studyBackButton"
       class="back-button"
@@ -1185,36 +1812,46 @@ body.dark .deck-icon{
     >
       ←
     </button>
+
     <div
       id="studyDeckName"
       class="study-deck-name"
     >
       Deck
     </div>
+
     <div
       id="studyCount"
       class="study-count"
     >
       1 / 1
     </div>
+
   </div>
+
+
   <div id="studyContent"></div>
+
 </section>
+
+
 <!-- =====================================================
      MODAL
 ===================================================== -->
+
 <div
   id="modalOverlay"
   class="modal-overlay hidden"
 >
-  <div
-    id="modalBox"
-    class="modal"
-  >
+
+  <div class="modal">
+
     <div class="modal-header">
+
       <h2 id="modalTitle">
         New Deck
       </h2>
+
       <button
         id="modalCloseButton"
         class="close-button"
@@ -1222,531 +1859,869 @@ body.dark .deck-icon{
       >
         ×
       </button>
+
     </div>
+
+
     <div id="modalContent"></div>
+
   </div>
+
 </div>
+
+
 <!-- TOAST -->
+
 <div
   id="toast"
   class="toast"
 ></div>
+
+
 <script>
 "use strict";
-/* =========================================================
+
+/* =====================================================
    STORAGE
-========================================================= */
-const ACCOUNTS_KEY = "flashy_accounts_v2";
-const SESSION_KEY = "flashy_session_v2";
-const DARK_KEY = "flashy_dark_v2";
-/* =========================================================
+===================================================== */
+
+const ACCOUNTS_KEY = "flashy_accounts_v3";
+const SESSION_KEY = "flashy_session_v3";
+const DARK_KEY = "flashy_dark_v3";
+
+
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
+
 let accounts = loadAccounts();
-let currentUsername = localStorage.getItem(SESSION_KEY) || null;
+let currentAccountId =
+  localStorage.getItem(SESSION_KEY) || null;
+
 let currentDeckId = null;
 let editingCardId = null;
+
 let studyDeckId = null;
 let studyCards = [];
 let studyIndex = 0;
-/* =========================================================
-   BASIC HELPERS
-========================================================= */
+
+
+/* =====================================================
+   STORAGE HELPERS
+===================================================== */
+
 function loadAccounts(){
+
   try{
+
     const saved =
       localStorage.getItem(ACCOUNTS_KEY);
+
     return saved ? JSON.parse(saved) : {};
+
   }catch(error){
+
     console.error(error);
+
     return {};
+
   }
+
 }
+
+
 function saveAccounts(){
+
   localStorage.setItem(
     ACCOUNTS_KEY,
     JSON.stringify(accounts)
   );
+
 }
+
+
+function makeAccountId(name){
+
+  return name
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g," ")
+    .replace(/[^\p{L}\p{N} ]/gu,"");
+
+}
+
+
 function createId(){
+
   return (
     Date.now().toString(36) +
-    Math.random().toString(36).slice(2,8)
+    Math.random().toString(36).slice(2,9)
   );
+
 }
+
+
 function getCurrentUser(){
+
   if(
-    currentUsername &&
-    accounts[currentUsername]
+    currentAccountId &&
+    accounts[currentAccountId]
   ){
-    return accounts[currentUsername];
+
+    return accounts[currentAccountId];
+
   }
+
   return null;
+
 }
+
+
+/* =====================================================
+   SAFE TEXT
+===================================================== */
+
 function escapeHTML(value){
+
   return String(value)
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
 function showToast(message){
+
   const toast =
     document.getElementById("toast");
+
   toast.textContent = message;
+
   toast.classList.add("show");
+
   clearTimeout(window.flashyToastTimer);
+
   window.flashyToastTimer =
     setTimeout(function(){
+
       toast.classList.remove("show");
+
     },1800);
+
 }
-/* =========================================================
-   AUTH SCREEN
-========================================================= */
+
+
+/* =====================================================
+   AUTH
+===================================================== */
+
 function showLoginPanel(){
+
   document
     .getElementById("loginPanel")
     .classList.remove("hidden");
+
   document
     .getElementById("signupPanel")
     .classList.add("hidden");
+
 }
+
+
 function showSignupPanel(){
+
   document
     .getElementById("loginPanel")
     .classList.add("hidden");
+
   document
     .getElementById("signupPanel")
     .classList.remove("hidden");
+
 }
+
+
 function createAccount(){
+
   const name =
     document
       .getElementById("signupName")
       .value
       .trim();
-  const username =
-    document
-      .getElementById("signupUsername")
-      .value
-      .trim()
-      .toLowerCase();
+
   const password =
     document
       .getElementById("signupPassword")
       .value;
+
   const confirmPassword =
     document
       .getElementById("signupConfirm")
       .value;
-  if(!name || !username || !password || !confirmPassword){
-    alert("Please fill in all the fields. 🌷");
+
+
+  if(!name || !password || !confirmPassword){
+
+    alert("Please fill in everything. 🌷");
+
     return;
+
   }
-  if(username.length < 3){
-    alert("Your username should be at least 3 characters.");
+
+
+  if(name.length < 2){
+
+    alert("Please enter your student name.");
+
     return;
+
   }
+
+
   if(password.length < 4){
+
     alert("Your password should be at least 4 characters.");
+
     return;
+
   }
+
+
   if(password !== confirmPassword){
+
     alert("Your passwords don't match.");
+
     return;
+
   }
-  if(accounts[username]){
-    alert("That username is already taken.");
+
+
+  const id =
+    makeAccountId(name);
+
+
+  if(!id){
+
+    alert("Please enter a valid student name.");
+
     return;
+
   }
-  accounts[username] = {
+
+
+  if(accounts[id]){
+
+    alert(
+      "An account with this student name already exists. Please log in instead."
+    );
+
+    return;
+
+  }
+
+
+  accounts[id] = {
+
+    id:id,
+
     name:name,
-    username:username,
+
     password:password,
+
+    photo:"",
+
     createdAt:new Date().toISOString(),
+
     decks:[]
+
   };
+
+
   saveAccounts();
-  currentUsername = username;
+
+
+  currentAccountId = id;
+
   localStorage.setItem(
     SESSION_KEY,
-    currentUsername
+    currentAccountId
   );
-  clearSignupForm();
-  enterApp();
-  showToast("Welcome to FLASHY! 🌱");
-}
-function clearSignupForm(){
+
+
   document
     .getElementById("signupName")
     .value = "";
-  document
-    .getElementById("signupUsername")
-    .value = "";
+
   document
     .getElementById("signupPassword")
     .value = "";
+
   document
     .getElementById("signupConfirm")
     .value = "";
+
+
+  enterApp();
+
+  showToast("Welcome to FLASHY! 🌱");
+
 }
+
+
 function login(){
-  const username =
+
+  const name =
     document
-      .getElementById("loginUsername")
+      .getElementById("loginName")
       .value
-      .trim()
-      .toLowerCase();
+      .trim();
+
   const password =
     document
       .getElementById("loginPassword")
       .value;
-  if(!username || !password){
-    alert("Please enter your username and password.");
+
+
+  if(!name || !password){
+
+    alert("Please enter your student name and password.");
+
     return;
+
   }
+
+
+  const id =
+    makeAccountId(name);
+
+
   const account =
-    accounts[username];
+    accounts[id];
+
+
   if(!account || account.password !== password){
-    alert("Username or password is incorrect.");
+
+    alert(
+      "Student name or password is incorrect."
+    );
+
     return;
+
   }
-  currentUsername = username;
+
+
+  currentAccountId = id;
+
   localStorage.setItem(
     SESSION_KEY,
-    currentUsername
+    currentAccountId
   );
+
+
   document
     .getElementById("loginPassword")
     .value = "";
+
+
   enterApp();
+
 }
+
+
 function logout(){
-  currentUsername = null;
+
+  currentAccountId = null;
+
   localStorage.removeItem(SESSION_KEY);
-  hideEverything();
-  document
-    .getElementById("app")
-    .classList.add("hidden");
-  document
-    .getElementById("deckView")
-    .classList.add("hidden");
-  document
-    .getElementById("studyView")
-    .classList.add("hidden");
+
+  hideAllScreens();
+
   document
     .getElementById("authScreen")
     .classList.remove("hidden");
+
   showLoginPanel();
-  document
-    .getElementById("loginUsername")
-    .value = "";
-  document
-    .getElementById("loginPassword")
-    .value = "";
+
 }
+
+
 function deleteAccount(){
+
   const user =
     getCurrentUser();
+
   if(!user) return;
+
+
   const confirmed =
     confirm(
-      "Are you sure you want to permanently delete your account and all your flashcards?"
+      "Delete your account and ALL of your flashcards permanently?"
     );
+
+
   if(!confirmed) return;
-  delete accounts[currentUsername];
+
+
+  delete accounts[currentAccountId];
+
   saveAccounts();
+
   localStorage.removeItem(SESSION_KEY);
-  currentUsername = null;
+
+  currentAccountId = null;
+
   location.reload();
+
 }
-/* =========================================================
-   ENTER APP
-========================================================= */
+
+
+/* =====================================================
+   APP ENTRY
+===================================================== */
+
 function enterApp(){
+
   const user =
     getCurrentUser();
+
+
   if(!user){
+
     showLoginPanel();
-    document
-      .getElementById("authScreen")
-      .classList.remove("hidden");
+
     return;
+
   }
+
+
   document
     .getElementById("authScreen")
     .classList.add("hidden");
+
+
   document
     .getElementById("app")
     .classList.remove("hidden");
+
+
   document
     .getElementById("deckView")
     .classList.add("hidden");
+
+
   document
     .getElementById("studyView")
     .classList.add("hidden");
+
+
   document
     .getElementById("homeName")
     .textContent = user.name;
+
+
   updateGreeting();
+
+  renderProfile();
+
   renderHomeDecks();
+
   showHome();
+
 }
-/* =========================================================
+
+
+/* =====================================================
    NAVIGATION
-========================================================= */
-function hideEverything(){
+===================================================== */
+
+function hideAppPages(){
+
   document
     .getElementById("homePage")
     .classList.add("hidden");
+
   document
     .getElementById("decksPage")
     .classList.add("hidden");
+
   document
-    .getElementById("settingsPage")
+    .getElementById("profilePage")
     .classList.add("hidden");
+
 }
+
+
+function hideAllScreens(){
+
+  document
+    .getElementById("authScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.add("hidden");
+
+  document
+    .getElementById("deckView")
+    .classList.add("hidden");
+
+  document
+    .getElementById("studyView")
+    .classList.add("hidden");
+
+}
+
+
 function setActiveNav(which){
+
   document
     .querySelectorAll(".nav-button")
     .forEach(function(button){
+
       button.classList.remove("active");
+
     });
+
+
   if(which === "home"){
+
     document
       .getElementById("homeNavButton")
       .classList.add("active");
+
   }
+
+
   if(which === "decks"){
+
     document
       .getElementById("decksNavButton")
       .classList.add("active");
+
   }
-  if(which === "settings"){
+
+
+  if(which === "profile"){
+
     document
-      .getElementById("settingsNavButton")
+      .getElementById("profileNavButton")
       .classList.add("active");
+
   }
+
 }
+
+
 function showHome(){
-  hideEverything();
+
+  hideAppPages();
+
   document
     .getElementById("app")
     .classList.remove("hidden");
+
   document
     .getElementById("homePage")
     .classList.remove("hidden");
+
   document
     .getElementById("deckView")
     .classList.add("hidden");
+
   document
     .getElementById("studyView")
     .classList.add("hidden");
+
   setActiveNav("home");
+
   renderHomeDecks();
+
 }
+
+
 function showDecks(){
-  hideEverything();
+
+  hideAppPages();
+
   document
     .getElementById("app")
     .classList.remove("hidden");
-  document
-    .getElementById("homePage")
-    .classList.add("hidden");
+
   document
     .getElementById("decksPage")
     .classList.remove("hidden");
-  document
-    .getElementById("settingsPage")
-    .classList.add("hidden");
+
   document
     .getElementById("deckView")
     .classList.add("hidden");
+
   document
     .getElementById("studyView")
     .classList.add("hidden");
+
   setActiveNav("decks");
+
   renderAllDecks();
+
 }
-function showSettings(){
-  hideEverything();
+
+
+function showProfile(){
+
+  hideAppPages();
+
   document
-    .getElementById("settingsPage")
+    .getElementById("app")
     .classList.remove("hidden");
+
   document
-    .getElementById("homePage")
-    .classList.add("hidden");
-  document
-    .getElementById("decksPage")
-    .classList.add("hidden");
+    .getElementById("profilePage")
+    .classList.remove("hidden");
+
   document
     .getElementById("deckView")
     .classList.add("hidden");
+
   document
     .getElementById("studyView")
     .classList.add("hidden");
-  setActiveNav("settings");
+
+  setActiveNav("profile");
+
+  renderProfile();
+
 }
-/* =========================================================
+
+
+/* =====================================================
    GREETING
-========================================================= */
+===================================================== */
+
 function updateGreeting(){
+
   const hour =
     new Date().getHours();
+
   let text = "Good day!";
+
   if(hour < 12){
+
     text = "Good morning! ☀️";
+
   }else if(hour < 18){
+
     text = "Good afternoon! 🌤️";
+
   }else{
+
     text = "Good evening! 🌙";
+
   }
+
+
   document
     .getElementById("greetingText")
     .textContent = text;
+
 }
-/* =========================================================
+
+
+/* =====================================================
    DECK RENDERING
-========================================================= */
+===================================================== */
+
 function deckMarkup(deck){
+
   return `
+
     <button
       type="button"
       class="deck-card"
       data-deck-id="${deck.id}"
     >
+
       <div class="deck-card-main">
+
         <div class="deck-icon">
           ${escapeHTML(deck.icon || "📚")}
         </div>
+
         <div class="deck-info">
+
           <strong>
             ${escapeHTML(deck.name)}
           </strong>
+
           <span>
             ${deck.cards.length}
             ${deck.cards.length === 1 ? "card" : "cards"}
           </span>
+
         </div>
+
       </div>
+
       <div class="deck-arrow">
         ›
       </div>
+
     </button>
+
   `;
+
 }
+
+
 function attachDeckButtons(container){
+
   container
     .querySelectorAll("[data-deck-id]")
     .forEach(function(button){
+
       button.addEventListener(
         "click",
         function(){
+
           openDeck(button.dataset.deckId);
+
         }
       );
+
     });
+
 }
+
+
 function renderHomeDecks(){
+
   const user =
     getCurrentUser();
+
   const container =
     document.getElementById("homeDeckList");
+
+
   if(!user){
+
     container.innerHTML = "";
+
     return;
+
   }
+
+
   if(user.decks.length === 0){
+
     container.innerHTML = `
+
       <div class="empty-state">
+
         <div class="empty-emoji">
           🌱
         </div>
+
         <strong>
           Your study space is empty.
         </strong>
+
         <p>
-          Create your first deck and start learning.
+          Go to <b>Decks</b> to create your first study deck.
         </p>
-        <button
-          id="emptyCreateDeckButton"
-          class="secondary-button"
-          type="button"
-        >
-          + Create a Deck
-        </button>
+
       </div>
+
     `;
-    document
-      .getElementById("emptyCreateDeckButton")
-      .addEventListener(
-        "click",
-        openCreateDeckModal
-      );
+
     return;
+
   }
+
+
   container.innerHTML =
     user.decks
       .slice(0,4)
       .map(deckMarkup)
       .join("");
+
+
   attachDeckButtons(container);
+
 }
+
+
 function renderAllDecks(){
+
   const user =
     getCurrentUser();
+
   const container =
     document.getElementById("allDeckList");
+
+
   if(!user) return;
+
+
   if(user.decks.length === 0){
+
     container.innerHTML = `
+
       <div class="empty-state">
+
         <div class="empty-emoji">
           📚
         </div>
+
         <strong>
           No decks yet.
         </strong>
+
         <p>
-          Create one whenever you're ready.
+          Create your first deck above.
         </p>
-        <button
-          id="emptyDeckCreateButton"
-          class="secondary-button"
-          type="button"
-        >
-          + Create a Deck
-        </button>
+
       </div>
+
     `;
-    document
-      .getElementById("emptyDeckCreateButton")
-      .addEventListener(
-        "click",
-        openCreateDeckModal
-      );
+
     return;
+
   }
+
+
   container.innerHTML =
     user.decks
       .map(deckMarkup)
       .join("");
+
+
   attachDeckButtons(container);
+
 }
-/* =========================================================
+
+
+/* =====================================================
    CREATE DECK
-========================================================= */
+===================================================== */
+
 function openCreateDeckModal(){
-  editingCardId = null;
+
   openModal(
-    "New Deck",
+    "Create a New Deck",
     `
+
       <div class="form-group">
+
         <label for="newDeckName">
           Deck Name
         </label>
+
         <input
           id="newDeckName"
           class="form-input"
@@ -1754,11 +2729,16 @@ function openCreateDeckModal(){
           maxlength="50"
           placeholder="e.g. Philosophy"
         >
+
       </div>
+
+
       <div class="form-group">
+
         <label for="newDeckIcon">
           Choose an icon
         </label>
+
         <input
           id="newDeckIcon"
           class="form-input"
@@ -1766,8 +2746,12 @@ function openCreateDeckModal(){
           maxlength="2"
           value="📚"
         >
+
       </div>
+
+
       <div class="modal-actions">
+
         <button
           id="cancelDeckButton"
           class="secondary-button"
@@ -1775,6 +2759,7 @@ function openCreateDeckModal(){
         >
           Cancel
         </button>
+
         <button
           id="saveDeckButton"
           class="primary-button"
@@ -1782,246 +2767,353 @@ function openCreateDeckModal(){
         >
           Save Deck
         </button>
+
       </div>
+
     `
   );
+
+
   document
     .getElementById("cancelDeckButton")
     .addEventListener(
       "click",
       closeModal
     );
+
+
   document
     .getElementById("saveDeckButton")
     .addEventListener(
       "click",
       createDeck
     );
+
+
   setTimeout(function(){
+
     document
       .getElementById("newDeckName")
       .focus();
+
   },50);
+
 }
+
+
 function createDeck(){
+
   const name =
     document
       .getElementById("newDeckName")
       .value
       .trim();
+
   const icon =
     document
       .getElementById("newDeckIcon")
       .value
       .trim() || "📚";
+
+
   if(!name){
+
     alert("Please give your deck a name. 🌷");
+
     return;
+
   }
+
+
   const user =
     getCurrentUser();
+
+
+  if(!user) return;
+
+
   user.decks.push({
+
     id:createId(),
+
     name:name,
+
     icon:icon,
+
     cards:[]
+
   });
+
+
   saveAccounts();
+
   closeModal();
+
   renderHomeDecks();
+
   renderAllDecks();
+
   showToast("Deck saved 🌱");
+
 }
-/* =========================================================
+
+
+/* =====================================================
    OPEN DECK
-========================================================= */
+===================================================== */
+
 function openDeck(deckId){
+
   const user =
     getCurrentUser();
+
+  if(!user) return;
+
+
   const deck =
     user.decks.find(function(item){
+
       return item.id === deckId;
+
     });
+
+
   if(!deck) return;
+
+
   currentDeckId = deckId;
+
+
   document
     .getElementById("app")
     .classList.add("hidden");
+
   document
     .getElementById("studyView")
     .classList.add("hidden");
+
   document
     .getElementById("deckView")
     .classList.remove("hidden");
+
+
   document
     .getElementById("deckTitle")
     .textContent = deck.name;
+
+
   updateDeckSubtitle(deck);
+
   renderCards();
+
 }
+
+
 function updateDeckSubtitle(deck){
+
   document
     .getElementById("deckSubtitle")
     .textContent =
       `${deck.cards.length} ${
         deck.cards.length === 1 ? "card" : "cards"
       }`;
+
 }
-/* =========================================================
-   CARD RENDERING
-========================================================= */
+
+
+/* =====================================================
+   CARD LIST
+===================================================== */
+
 function renderCards(){
+
   const user =
     getCurrentUser();
+
+
+  if(!user) return;
+
+
   const deck =
     user.decks.find(function(item){
+
       return item.id === currentDeckId;
+
     });
+
+
   const container =
     document.getElementById("cardList");
+
+
   if(!deck){
+
     container.innerHTML = "";
+
     return;
+
   }
+
+
   updateDeckSubtitle(deck);
+
+
   if(deck.cards.length === 0){
+
     container.innerHTML = `
+
       <div class="empty-state">
+
         <div class="empty-emoji">
           🃏
         </div>
+
         <strong>
           No flashcards yet.
         </strong>
+
         <p>
-          Add your first question and answer.
+          Add your first flashcard above.
         </p>
-        <button
-          id="emptyAddCardButton"
-          class="secondary-button"
-          type="button"
-        >
-          + Add a Flashcard
-        </button>
+
       </div>
+
     `;
-    document
-      .getElementById("emptyAddCardButton")
-      .addEventListener(
-        "click",
-        openCreateCardModal
-      );
+
     return;
+
   }
+
+
   container.innerHTML =
     deck.cards
       .map(function(card){
+
         return `
+
           <div class="card-item">
+
             <div class="card-copy">
+
               <strong>
                 ${escapeHTML(card.front)}
               </strong>
+
               <span>
                 ${escapeHTML(card.back)}
               </span>
+
             </div>
+
+
             <div class="card-actions">
+
               <button
                 type="button"
                 class="mini-button edit-card-button"
                 data-card-id="${card.id}"
-                aria-label="Edit card"
               >
                 ✏️
               </button>
+
+
               <button
                 type="button"
                 class="mini-button delete delete-card-button"
                 data-card-id="${card.id}"
-                aria-label="Delete card"
               >
                 🗑️
               </button>
+
             </div>
+
           </div>
+
         `;
+
       })
       .join("");
+
+
   container
     .querySelectorAll(".edit-card-button")
     .forEach(function(button){
+
       button.addEventListener(
         "click",
         function(){
+
           editCard(button.dataset.cardId);
+
         }
       );
+
     });
+
+
   container
     .querySelectorAll(".delete-card-button")
     .forEach(function(button){
+
       button.addEventListener(
         "click",
         function(){
+
           deleteCard(button.dataset.cardId);
+
         }
       );
+
     });
+
 }
-/* =========================================================
-   CREATE CARD
-========================================================= */
-function openCreateCardModal(){
-  editingCardId = null;
-  openModal(
-    "New Flashcard",
-    cardFormMarkup()
-  );
-  document
-    .getElementById("cancelCardButton")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-  document
-    .getElementById("saveCardButton")
-    .addEventListener(
-      "click",
-      saveCard
-    );
-  setTimeout(function(){
-    document
-      .getElementById("cardFront")
-      .focus();
-  },50);
-}
+
+
+/* =====================================================
+   FLASHCARD CREATION
+===================================================== */
+
 function cardFormMarkup(card){
+
   card = card || {};
+
+
   return `
+
     <div class="form-group">
+
       <label for="cardFront">
-        Question
+        Front
       </label>
+
       <textarea
         id="cardFront"
         class="form-textarea"
         maxlength="400"
-        placeholder="e.g. What is epistemology?"
+        placeholder="Type what you want to remember..."
       >${escapeHTML(card.front || "")}</textarea>
+
     </div>
+
+
     <div class="form-group">
+
       <label for="cardBack">
-        Answer
+        Back
       </label>
+
       <textarea
         id="cardBack"
         class="form-textarea"
         maxlength="400"
-        placeholder="e.g. The study of knowledge."
+        placeholder="Type the answer or explanation..."
       >${escapeHTML(card.back || "")}</textarea>
+
     </div>
+
+
     <div class="modal-actions">
+
       <button
         id="cancelCardButton"
         class="secondary-button"
@@ -2029,6 +3121,7 @@ function cardFormMarkup(card){
       >
         Cancel
       </button>
+
       <button
         id="saveCardButton"
         class="primary-button"
@@ -2036,202 +3129,405 @@ function cardFormMarkup(card){
       >
         Save Card
       </button>
+
     </div>
+
   `;
+
 }
-function saveCard(){
-  const front =
-    document
-      .getElementById("cardFront")
-      .value
-      .trim();
-  const back =
-    document
-      .getElementById("cardBack")
-      .value
-      .trim();
-  if(!front || !back){
-    alert("Please fill in both the question and answer.");
-    return;
-  }
-  const user =
-    getCurrentUser();
-  const deck =
-    user.decks.find(function(item){
-      return item.id === currentDeckId;
-    });
-  if(!deck) return;
-  if(editingCardId){
-    const card =
-      deck.cards.find(function(item){
-        return item.id === editingCardId;
-      });
-    if(card){
-      card.front = front;
-      card.back = back;
-    }
-  }else{
-    deck.cards.push({
-      id:createId(),
-      front:front,
-      back:back,
-      known:false,
-      reviews:0,
-      lastReviewed:null
-    });
-  }
-  saveAccounts();
-  /*
-    IMPORTANT:
-    The modal is closed AFTER saving.
-    Therefore the typing fields disappear
-    completely instead of staying on screen.
-  */
-  closeModal();
-  renderCards();
-  renderHomeDecks();
-  renderAllDecks();
-  showToast(
-    editingCardId
-      ? "Card updated ✨"
-      : "Card saved 🌷"
-  );
+
+
+function openCreateCardModal(){
+
   editingCardId = null;
-}
-function editCard(cardId){
-  const user =
-    getCurrentUser();
-  const deck =
-    user.decks.find(function(item){
-      return item.id === currentDeckId;
-    });
-  if(!deck) return;
-  const card =
-    deck.cards.find(function(item){
-      return item.id === cardId;
-    });
-  if(!card) return;
-  editingCardId = cardId;
+
+
   openModal(
-    "Edit Flashcard",
-    cardFormMarkup(card)
+    "New Flashcard",
+    cardFormMarkup()
   );
+
+
   document
     .getElementById("cancelCardButton")
     .addEventListener(
       "click",
       closeModal
     );
+
+
   document
     .getElementById("saveCardButton")
     .addEventListener(
       "click",
       saveCard
     );
+
+
+  setTimeout(function(){
+
+    document
+      .getElementById("cardFront")
+      .focus();
+
+  },50);
+
 }
+
+
+function saveCard(){
+
+  const front =
+    document
+      .getElementById("cardFront")
+      .value
+      .trim();
+
+  const back =
+    document
+      .getElementById("cardBack")
+      .value
+      .trim();
+
+
+  if(!front || !back){
+
+    alert(
+      "Please fill in both sides of the flashcard."
+    );
+
+    return;
+
+  }
+
+
+  const user =
+    getCurrentUser();
+
+
+  const deck =
+    user.decks.find(function(item){
+
+      return item.id === currentDeckId;
+
+    });
+
+
+  if(!deck) return;
+
+
+  if(editingCardId){
+
+    const card =
+      deck.cards.find(function(item){
+
+        return item.id === editingCardId;
+
+      });
+
+
+    if(card){
+
+      card.front = front;
+
+      card.back = back;
+
+    }
+
+  }else{
+
+    deck.cards.push({
+
+      id:createId(),
+
+      front:front,
+
+      back:back,
+
+      known:false,
+
+      reviews:0,
+
+      lastReviewed:null
+
+    });
+
+  }
+
+
+  saveAccounts();
+
+
+  /*
+    The form disappears after saving.
+    Nothing remains in the typing area.
+  */
+
+  closeModal();
+
+  renderCards();
+
+  renderHomeDecks();
+
+  renderAllDecks();
+
+
+  showToast(
+    editingCardId
+      ? "Flashcard updated ✨"
+      : "Flashcard saved 🌷"
+  );
+
+
+  editingCardId = null;
+
+}
+
+
+function editCard(cardId){
+
+  const user =
+    getCurrentUser();
+
+
+  const deck =
+    user.decks.find(function(item){
+
+      return item.id === currentDeckId;
+
+    });
+
+
+  if(!deck) return;
+
+
+  const card =
+    deck.cards.find(function(item){
+
+      return item.id === cardId;
+
+    });
+
+
+  if(!card) return;
+
+
+  editingCardId = cardId;
+
+
+  openModal(
+    "Edit Flashcard",
+    cardFormMarkup(card)
+  );
+
+
+  document
+    .getElementById("cancelCardButton")
+    .addEventListener(
+      "click",
+      closeModal
+    );
+
+
+  document
+    .getElementById("saveCardButton")
+    .addEventListener(
+      "click",
+      saveCard
+    );
+
+}
+
+
 function deleteCard(cardId){
+
   const confirmed =
     confirm(
       "Delete this flashcard?"
     );
+
+
   if(!confirmed) return;
+
+
   const user =
     getCurrentUser();
+
+
   const deck =
     user.decks.find(function(item){
+
       return item.id === currentDeckId;
+
     });
+
+
   if(!deck) return;
+
+
   deck.cards =
     deck.cards.filter(function(card){
+
       return card.id !== cardId;
+
     });
+
+
   saveAccounts();
+
   renderCards();
+
   renderHomeDecks();
+
   renderAllDecks();
-  showToast("Card removed");
+
+  showToast("Flashcard removed");
+
 }
-/* =========================================================
-   STUDY
-========================================================= */
+
+
+/* =====================================================
+   STUDY MODE
+===================================================== */
+
 function studyNow(){
+
   const user =
     getCurrentUser();
+
+
   if(!user || user.decks.length === 0){
+
     alert(
-      "Create a deck and add some flashcards first. 🌱"
+      "Create a deck and add flashcards first. 🌱"
     );
+
     return;
+
   }
+
+
   const availableDecks =
     user.decks.filter(function(deck){
+
       return deck.cards.length > 0;
+
     });
+
+
   if(availableDecks.length === 0){
+
     alert(
       "Add at least one flashcard before studying. 🌷"
     );
+
     return;
+
   }
+
+
   const deck =
     availableDecks[
       Math.floor(
         Math.random() * availableDecks.length
       )
     ];
+
+
   startStudy(deck.id);
+
 }
+
+
 function startStudy(deckId){
+
   const user =
     getCurrentUser();
+
+
   const deck =
     user.decks.find(function(item){
+
       return item.id === deckId;
+
     });
+
+
   if(!deck || deck.cards.length === 0){
-    alert("This deck doesn't have any cards yet.");
+
+    alert("This deck has no flashcards yet.");
+
     return;
+
   }
+
+
   studyDeckId = deckId;
+
   studyCards =
     deck.cards.map(function(card){
+
       return {...card};
+
     });
+
+
   studyIndex = 0;
+
+
   document
     .getElementById("app")
     .classList.add("hidden");
+
   document
     .getElementById("deckView")
     .classList.add("hidden");
+
   document
     .getElementById("studyView")
     .classList.remove("hidden");
+
+
   document
     .getElementById("studyDeckName")
     .textContent = deck.name;
+
+
   renderStudyCard();
+
 }
+
+
 function renderStudyCard(){
+
   const content =
     document.getElementById("studyContent");
+
+
   if(studyIndex >= studyCards.length){
+
     document
       .getElementById("studyCount")
       .textContent =
         `${studyCards.length} / ${studyCards.length}`;
+
+
     content.innerHTML = `
+
       <div class="study-finished">
+
         <div class="big">
           🌷
         </div>
+
         <h2>
           Nice work!
         </h2>
+
         <p>
           You finished this study session.
         </p>
+
         <button
           id="studyDoneButton"
           class="primary-button"
@@ -2239,55 +3535,78 @@ function renderStudyCard(){
         >
           Done
         </button>
+
       </div>
+
     `;
+
+
     document
       .getElementById("studyDoneButton")
       .addEventListener(
         "click",
         exitStudy
       );
+
+
     return;
+
   }
+
+
   const card =
     studyCards[studyIndex];
+
+
   document
     .getElementById("studyCount")
     .textContent =
       `${studyIndex + 1} / ${studyCards.length}`;
+
+
+  /*
+    IMPORTANT:
+    No "Question" or "Answer" labels.
+    The student only sees the exact text they entered.
+  */
+
   content.innerHTML = `
-    <div
-      id="flashcard"
-      class="flashcard-area"
-    >
-      <div class="flashcard">
+
+    <div class="flashcard-area">
+
+      <div
+        id="flashcard"
+        class="flashcard"
+      >
+
         <div class="flashcard-inner">
-          <div class="card-face question">
-            <div class="face-label">
-              Question
-            </div>
+
+          <div class="card-face">
+
             <div class="face-text">
               ${escapeHTML(card.front)}
             </div>
-            <div class="face-hint">
-              tap to reveal ♡
-            </div>
+
           </div>
+
+
           <div class="card-face answer">
-            <div class="face-label">
-              Answer
-            </div>
+
             <div class="face-text">
               ${escapeHTML(card.back)}
             </div>
-            <div class="face-hint">
-              tap to flip back
-            </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
+
     <div class="study-actions">
+
       <button
         id="reviewCardButton"
         class="study-action review"
@@ -2295,6 +3614,7 @@ function renderStudyCard(){
       >
         ↻ Need Review
       </button>
+
       <button
         id="knownCardButton"
         class="study-action known"
@@ -2302,410 +3622,1112 @@ function renderStudyCard(){
       >
         ✓ Got It
       </button>
+
     </div>
+
   `;
+
+
   document
-    .querySelector(".flashcard")
+    .getElementById("flashcard")
     .addEventListener(
       "click",
       flipCurrentCard
     );
+
+
   document
     .getElementById("reviewCardButton")
     .addEventListener(
       "click",
       function(){
+
         rateCurrentCard(false);
+
       }
     );
+
+
   document
     .getElementById("knownCardButton")
     .addEventListener(
       "click",
       function(){
+
         rateCurrentCard(true);
+
       }
     );
+
 }
+
+
 function flipCurrentCard(){
+
   const card =
-    document.querySelector(".flashcard");
+    document.getElementById("flashcard");
+
+
   if(!card) return;
+
+
   card.classList.toggle("flipped");
+
 }
+
+
 function rateCurrentCard(known){
+
   const user =
     getCurrentUser();
+
+
   const deck =
     user.decks.find(function(item){
+
       return item.id === studyDeckId;
+
     });
+
+
   if(!deck) return;
+
+
   const studiedCard =
     studyCards[studyIndex];
+
+
   const original =
     deck.cards.find(function(card){
+
       return card.id === studiedCard.id;
+
     });
+
+
   if(original){
+
     original.known = known;
+
     original.reviews =
       Number(original.reviews || 0) + 1;
+
     original.lastReviewed =
       new Date().toISOString();
+
   }
+
+
   saveAccounts();
+
+
   studyIndex++;
+
   renderStudyCard();
+
 }
+
+
 function exitStudy(){
+
   document
     .getElementById("studyView")
     .classList.add("hidden");
+
   document
     .getElementById("app")
     .classList.remove("hidden");
+
   showHome();
+
 }
-/* =========================================================
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function renderProfile(){
+
+  const user =
+    getCurrentUser();
+
+
+  if(!user) return;
+
+
+  document
+    .getElementById("profileName")
+    .textContent = user.name;
+
+
+  renderAvatar(
+    document.getElementById("bigProfileAvatar"),
+    user.photo,
+    "big"
+  );
+
+
+  renderAvatar(
+    document.getElementById("topAvatar"),
+    user.photo,
+    "small"
+  );
+
+
+  renderStudyCircle();
+
+}
+
+
+function renderAvatar(element,photo,size){
+
+  if(photo){
+
+    element.innerHTML = `
+
+      <img
+        src="${photo}"
+        alt="Profile photo"
+      >
+
+    `;
+
+  }else{
+
+    element.innerHTML =
+      size === "big"
+        ? "👤"
+        : "👤";
+
+  }
+
+}
+
+
+function openEditProfile(){
+
+  const user =
+    getCurrentUser();
+
+
+  if(!user) return;
+
+
+  openModal(
+    "Edit Profile",
+    `
+
+      <div class="profile-header">
+
+        <div
+          id="editPreview"
+          class="profile-big-avatar"
+        >
+
+          <div class="profile-big-placeholder">
+            👤
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="editStudentName">
+          Student Name
+        </label>
+
+        <input
+          id="editStudentName"
+          class="form-input"
+          type="text"
+          maxlength="40"
+          value="${escapeHTML(user.name)}"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="profilePhotoInput">
+          Profile Picture
+        </label>
+
+        <input
+          id="profilePhotoInput"
+          class="form-input"
+          type="file"
+          accept="image/*"
+        >
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          id="cancelProfileButton"
+          class="secondary-button"
+          type="button"
+        >
+          Cancel
+        </button>
+
+        <button
+          id="saveProfileButton"
+          class="primary-button"
+          type="button"
+        >
+          Save Profile
+        </button>
+
+      </div>
+
+    `
+  );
+
+
+  const preview =
+    document.getElementById("editPreview");
+
+
+  renderAvatar(
+    preview,
+    user.photo,
+    "big"
+  );
+
+
+  document
+    .getElementById("cancelProfileButton")
+    .addEventListener(
+      "click",
+      closeModal
+    );
+
+
+  document
+    .getElementById("profilePhotoInput")
+    .addEventListener(
+      "change",
+      previewSelectedPhoto
+    );
+
+
+  document
+    .getElementById("saveProfileButton")
+    .addEventListener(
+      "click",
+      saveProfile
+    );
+
+}
+
+
+function previewSelectedPhoto(event){
+
+  const file =
+    event.target.files[0];
+
+
+  if(!file) return;
+
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please choose an image file.");
+
+    return;
+
+  }
+
+
+  if(file.size > 3 * 1024 * 1024){
+
+    alert(
+      "Please choose a photo smaller than 3 MB."
+    );
+
+    event.target.value = "";
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = function(){
+
+    renderAvatar(
+      document.getElementById("editPreview"),
+      reader.result,
+      "big"
+    );
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+function saveProfile(){
+
+  const user =
+    getCurrentUser();
+
+
+  if(!user) return;
+
+
+  const newName =
+    document
+      .getElementById("editStudentName")
+      .value
+      .trim();
+
+
+  const photoInput =
+    document.getElementById("profilePhotoInput");
+
+
+  if(!newName){
+
+    alert("Please enter your student name.");
+
+    return;
+
+  }
+
+
+  /*
+    Keep the same account ID so the account
+    and all saved decks remain connected.
+  */
+
+  user.name = newName;
+
+
+  if(
+    photoInput.files &&
+    photoInput.files[0]
+  ){
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = function(){
+
+      user.photo =
+        reader.result;
+
+      saveAccounts();
+
+      finishProfileSave();
+
+    };
+
+
+    reader.readAsDataURL(
+      photoInput.files[0]
+    );
+
+  }else{
+
+    saveAccounts();
+
+    finishProfileSave();
+
+  }
+
+}
+
+
+function finishProfileSave(){
+
+  closeModal();
+
+  renderProfile();
+
+  document
+    .getElementById("homeName")
+    .textContent =
+      getCurrentUser().name;
+
+  showToast("Profile saved ✨");
+
+}
+
+
+/* =====================================================
+   STUDY CIRCLE
+===================================================== */
+
+function toggleStudyCircle(){
+
+  const section =
+    document.getElementById("circleSection");
+
+
+  section
+    .classList
+    .toggle("hidden");
+
+
+  renderStudyCircle();
+
+}
+
+
+function renderStudyCircle(){
+
+  const user =
+    getCurrentUser();
+
+
+  if(!user) return;
+
+
+  const container =
+    document.getElementById("circleContent");
+
+
+  /*
+    Offline limitation:
+    A standalone HTML file cannot see accounts
+    stored on another student's device.
+    This section is therefore transparent about
+    the current offline mode instead of pretending
+    other students are real online users.
+  */
+
+  container.innerHTML = `
+
+    <div class="circle-user">
+
+      <div class="circle-avatar">
+
+        ${
+          user.photo
+            ? `<img src="${user.photo}" alt="Your profile">`
+            : "👤"
+        }
+
+      </div>
+
+
+      <div class="circle-user-info">
+
+        <strong>
+          ${escapeHTML(user.name)}
+        </strong>
+
+        <span>
+          You • studying on this device
+        </span>
+
+      </div>
+
+
+      <div
+        class="status-dot"
+        style="background:#7da982"
+      ></div>
+
+    </div>
+
+
+    <p class="circle-message">
+
+      Your Study Circle is ready for the
+      future version of FLASHY. 💚
+      <br><br>
+
+      Because you're using the fully
+      <b>offline version</b>, FLASHY cannot
+      see students using the website on
+      other phones or computers yet.
+
+      <br><br>
+
+      Once a real online database is connected,
+      this space can show friends, profile
+      pictures, study status, and who's
+      currently reviewing.
+
+    </p>
+
+  `;
+
+}
+
+
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
+
 function openModal(title,content){
+
   document
     .getElementById("modalTitle")
     .textContent = title;
+
+
   document
     .getElementById("modalContent")
     .innerHTML = content;
+
+
   document
     .getElementById("modalOverlay")
-    .classList.remove("hidden");
+    .classList
+    .remove("hidden");
+
 }
+
+
 function closeModal(){
+
   document
     .getElementById("modalOverlay")
-    .classList.add("hidden");
+    .classList
+    .add("hidden");
+
+
   document
     .getElementById("modalContent")
     .innerHTML = "";
+
+
   editingCardId = null;
+
 }
-/* =========================================================
+
+
+/* =====================================================
    DARK MODE
-========================================================= */
+===================================================== */
+
 function toggleDarkMode(){
+
   document
     .body
-    .classList.toggle("dark");
+    .classList
+    .toggle("dark");
+
+
   localStorage.setItem(
     DARK_KEY,
     document.body.classList.contains("dark")
       ? "1"
       : "0"
   );
+
+
   showToast(
     document.body.classList.contains("dark")
       ? "Dark mode on 🌙"
       : "Light mode on ☀️"
   );
+
 }
-/* =========================================================
-   BACKUP EXPORT
-========================================================= */
+
+
+/* =====================================================
+   BACKUP
+===================================================== */
+
 function exportBackup(){
+
   const user =
     getCurrentUser();
+
+
   if(!user) return;
+
+
   const backup = {
+
     app:"FLASHY",
-    version:2,
+
+    version:3,
+
     exportedAt:new Date().toISOString(),
+
     account:user
+
   };
+
+
   const blob =
     new Blob(
       [JSON.stringify(backup,null,2)],
       {type:"application/json"}
     );
+
+
   const url =
     URL.createObjectURL(blob);
+
+
   const link =
     document.createElement("a");
+
+
   link.href = url;
+
   link.download =
-    `FLASHY-${user.username}-backup.json`;
+    `FLASHY-${user.name.replace(/\s+/g,"-")}-backup.json`;
+
+
   document.body.appendChild(link);
+
   link.click();
+
   link.remove();
+
+
   URL.revokeObjectURL(url);
+
+
   showToast("Backup downloaded 💾");
+
 }
-/* =========================================================
-   BACKUP IMPORT
-========================================================= */
+
+
+/* =====================================================
+   RESTORE
+===================================================== */
+
 function importBackup(event){
+
   const file =
     event.target.files[0];
+
+
   if(!file) return;
+
+
   const reader =
     new FileReader();
+
+
   reader.onload = function(){
+
     try{
+
       const data =
         JSON.parse(reader.result);
+
+
       const imported =
         data.account || data;
+
+
       if(
-        !imported.username ||
+        !imported.name ||
         !Array.isArray(imported.decks)
       ){
+
         throw new Error(
           "Invalid backup"
         );
+
       }
+
+
+      const id =
+        makeAccountId(imported.name);
+
+
       const confirmed =
         confirm(
-          "Restore this backup? Your current account with the same username will be replaced."
+          "Restore this backup? The account with the same student name will be replaced."
         );
+
+
       if(!confirmed){
+
         event.target.value = "";
+
         return;
+
       }
-      accounts[imported.username] =
+
+
+      imported.id = id;
+
+
+      accounts[id] =
         imported;
+
+
       saveAccounts();
-      currentUsername =
-        imported.username;
+
+
+      currentAccountId = id;
+
+
       localStorage.setItem(
         SESSION_KEY,
-        currentUsername
+        currentAccountId
       );
+
+
       event.target.value = "";
+
+
       enterApp();
+
       showToast("Backup restored 🌱");
+
     }catch(error){
+
       console.error(error);
+
       alert(
         "That file is not a valid FLASHY backup."
       );
+
       event.target.value = "";
+
     }
+
   };
+
+
   reader.readAsText(file);
+
 }
-/* =========================================================
-   EVENT LISTENERS
-========================================================= */
+
+
+/* =====================================================
+   EVENTS
+===================================================== */
+
 function setupEvents(){
+
   /* AUTH */
+
   document
     .getElementById("loginButton")
     .addEventListener(
       "click",
       login
     );
+
+
   document
     .getElementById("createAccountButton")
     .addEventListener(
       "click",
       createAccount
     );
+
+
   document
     .getElementById("showSignupButton")
     .addEventListener(
       "click",
       showSignupPanel
     );
+
+
   document
     .getElementById("showLoginButton")
     .addEventListener(
       "click",
       showLoginPanel
     );
-  /* HOME */
+
+
+  /* TOP PROFILE */
+
   document
-    .getElementById("settingsTopButton")
+    .getElementById("topProfileButton")
     .addEventListener(
       "click",
-      showSettings
+      showProfile
     );
+
+
+  /* HOME */
+
   document
     .getElementById("studyNowButton")
     .addEventListener(
       "click",
       studyNow
     );
-  document
-    .getElementById("newDeckHomeButton")
-    .addEventListener(
-      "click",
-      openCreateDeckModal
-    );
+
+
   /* NAV */
+
   document
     .getElementById("homeNavButton")
     .addEventListener(
       "click",
       showHome
     );
+
+
   document
     .getElementById("decksNavButton")
     .addEventListener(
       "click",
       showDecks
     );
+
+
   document
-    .getElementById("settingsNavButton")
+    .getElementById("profileNavButton")
     .addEventListener(
       "click",
-      showSettings
+      showProfile
     );
+
+
   /* DECKS */
+
   document
     .getElementById("newDeckButton")
     .addEventListener(
       "click",
       openCreateDeckModal
     );
-  /* SETTINGS */
+
+
+  /* PROFILE */
+
   document
-    .getElementById("settingsBackButton")
+    .getElementById("editProfileButton")
     .addEventListener(
       "click",
-      showHome
+      openEditProfile
     );
+
+
+  document
+    .getElementById("studyCircleButton")
+    .addEventListener(
+      "click",
+      toggleStudyCircle
+    );
+
+
+  /* SETTINGS */
+
   document
     .getElementById("darkModeButton")
     .addEventListener(
       "click",
       toggleDarkMode
     );
+
+
   document
     .getElementById("exportButton")
     .addEventListener(
       "click",
       exportBackup
     );
+
+
   document
     .getElementById("importButton")
     .addEventListener(
       "click",
       function(){
+
         document
           .getElementById("restoreInput")
           .click();
+
       }
     );
+
+
   document
     .getElementById("restoreInput")
     .addEventListener(
       "change",
       importBackup
     );
+
+
   document
     .getElementById("logoutButton")
     .addEventListener(
       "click",
       logout
     );
+
+
   document
     .getElementById("deleteAccountButton")
     .addEventListener(
       "click",
       deleteAccount
     );
+
+
   /* DECK VIEW */
+
   document
     .getElementById("deckBackButton")
     .addEventListener(
       "click",
       showDecks
     );
+
+
   document
     .getElementById("addCardButton")
     .addEventListener(
       "click",
       openCreateCardModal
     );
+
+
   /* STUDY */
+
   document
     .getElementById("studyBackButton")
     .addEventListener(
       "click",
       exitStudy
     );
+
+
   /* MODAL */
+
   document
     .getElementById("modalCloseButton")
     .addEventListener(
       "click",
       closeModal
     );
+
+
   document
     .getElementById("modalOverlay")
     .addEventListener(
       "click",
       function(event){
+
         if(
           event.target ===
           document.getElementById("modalOverlay")
         ){
+
           closeModal();
+
         }
+
       }
     );
-  /* ENTER KEY FOR LOGIN */
+
+
+  /* LOGIN ENTER KEY */
+
   document
     .getElementById("loginPassword")
     .addEventListener(
       "keydown",
       function(event){
+
         if(event.key === "Enter"){
+
           login();
+
         }
+
       }
     );
-  /* ESCAPE CLOSES MODAL */
+
+
+  /* ESC */
+
   document.addEventListener(
     "keydown",
     function(event){
+
       if(event.key === "Escape"){
+
         closeModal();
+
       }
+
     }
   );
+
 }
-/* =========================================================
-   LOAD SAVED THEME
-========================================================= */
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
 function loadTheme(){
+
   if(
     localStorage.getItem(DARK_KEY) === "1"
   ){
+
     document
       .body
-      .classList.add("dark");
+      .classList
+      .add("dark");
+
   }
+
 }
-/* =========================================================
-   START APP
-========================================================= */
+
+
+/* =====================================================
+   START
+===================================================== */
+
 function startApp(){
+
   setupEvents();
+
   loadTheme();
+
+
   if(
-    currentUsername &&
-    accounts[currentUsername]
+    currentAccountId &&
+    accounts[currentAccountId]
   ){
+
     enterApp();
+
   }else{
+
     document
       .getElementById("authScreen")
-      .classList.remove("hidden");
+      .classList
+      .remove("hidden");
+
     showLoginPanel();
+
   }
+
 }
+
+
 startApp();
+
 </script>
+
 </body>
 </html>
